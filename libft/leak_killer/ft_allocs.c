@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:00:18 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/25 10:00:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:30:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,11 @@ void	*ft_malloc(size_t size)
 	return (ptr);
 }
 
-static void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*ptr;
+// static void	ft_bzero(void *s, size_t n)
+// {
+// 	unsigned char	*ptr;
 
-	ptr = s;
-	while (n-- > 0)
-		*ptr++ = 0;
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-
-	ptr = ft_malloc(count * size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, count * size);
-	return (ptr);
-}
+// 	ptr = s;
+// 	while (n-- > 0)
+// 		*ptr++ = 0;
+// }
