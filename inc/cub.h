@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/27 10:36:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:51:52 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ void	save_floor_and_ceiling(char *line, t_data *data);
 //utils:
 void	error_and_exit(char *str);
 void	init_env(t_env *env);
-
-
 
 
 
