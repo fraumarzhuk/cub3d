@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/26 18:43:28 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/27 10:36:56 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ typedef struct s_env
 //parsing:
 void	map_validation(char *argv, t_env *env);
 int		parse_line(t_map **map, t_data *data);
+void	save_textures(t_map *map, t_data *data);
+t_rgb	*save_rgb(char *line);
+void	save_floor_and_ceiling(char *line, t_data *data);
 
 //utils:
 void	error_and_exit(char *str);
