@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/27 10:48:05 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:12:10 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	map_init(t_env *env)
 	map->next = NULL;
 	while (parse_line(&map, env->data))
 		env->data->line_count++;
+	save_textures(map, env->data);
 	return (1);
 }
 
@@ -57,10 +58,10 @@ int	parse_line(t_map **map, t_data *data)
 		curr = curr->next;
 	curr->next = new_node;
 	new_node->line = get_next_line(data->fd);
-	if (ft_strlen(new_node->line) > 1)
+    if (!new_node->line)
+        return (0);
+	else if (ft_strlen(new_node->line) > 1)
 		new_node->line[ft_strlen(new_node->line)] = '\0';
-	if (!new_node->line)
-		return (0);
 	return (1);
 }
 
@@ -113,10 +114,13 @@ t_rgb *save_rgb(char *line)
 
 	rgb = (t_rgb *)ft_malloc(sizeof(t_rgb));
 	res = ft_split(line, ',');
+	if (!rgb || !res)
+		error_and_exit("Malloc failed!");
 	rgb->r = ft_atoi(ft_strdup(res[0]));
 	rgb->g = ft_atoi(ft_strdup(res[1]));
 	rgb->b = ft_atoi(ft_strdup(res[2]));
 	free_split(res);
+	
 	return (rgb);
 }
 // while temp->line[0] != '1'
