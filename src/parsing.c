@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 14:57:12 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:41:24 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	parse_line(t_map **map, t_data *data)
 	new_node->line = get_next_line(data->fd);
     if (!new_node->line)
         return (0);
-	else if (ft_strlen(new_node->line) > 1)
+	else if (ft_strlen(new_node->line) > 1 && new_node->line[ft_strlen(new_node->line) - 1] == '\n')
 		new_node->line[ft_strlen(new_node->line) - 1] = '\0';
 	return (1);
 }
@@ -111,7 +111,7 @@ int is_map_line(char *line)
 	while (len > 0 && is_space(trimmed_line[len - 1]))
 		len--;	
 	if (trimmed_line[len - 1] == '1')
-			end = true;	
+			end = true;
 	return (start && end);
 }
 
@@ -153,19 +153,21 @@ t_rgb *save_rgb(char *line)
 
 void save_map_copy(t_data *data, t_map *map)
 {
-	int	i;
+	int		i;
+	t_map	*temp;
 	
 	i = 0;
+	temp = map;
 	data->map_copy = (char **)ft_calloc(((sizeof(char *) * (data->map_lines) + 1)), 1);
 	if (!data->map_copy)
 		error_and_exit("Malloc failed.");
-	while (map && map->line && !is_map_line(map->line))
-		map = map->next;
-	while (map && map->line && i <= data->map_lines)
+	while (temp && temp->line && !is_map_line(temp->line))
+		temp = temp->next;
+	while (temp && temp->line && i <= data->map_lines - 1)
 	{
-		data->map_copy[i] = ft_strdup(map->line);
-		printf("%s\n", data->map_copy[i]);
-		map = map->next;
+		data->map_copy[i] = ft_strdup(temp->line);
+		printf("Current line: %s\n", data->map_copy[i]);
+		temp = temp->next;
 		i++;
 	}
 	data->map_copy[i] = NULL;
