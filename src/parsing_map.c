@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 16:59:30 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:18:36 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	map_init(t_env *env)
 	while (parse_line(&map, env->data))
 		env->data->line_count++;
 	save_textures(map, env->data);
+	save_map_end(map);
 	save_map_copy(env->data, map);
-	// print_parsed_data(map, env->data);
 	return (1);
 }
 
@@ -38,13 +38,10 @@ void save_map_end(t_map *map)
 	t_map	*temp;
 	
 	temp = map;
-	while (temp && temp->next)
+	while (temp && temp->next && temp->line && temp->next->line)
 		temp = temp->next;
-	printf("check\n");
 	while (temp && temp->prev && !is_map_line(temp->line))
-	{
 		temp = temp->prev;
-	}
 	if (is_map_line(temp->line))
 		temp->last_line = true;
 }
@@ -83,13 +80,14 @@ void save_map_copy(t_data *data, t_map *map)
 		error_and_exit("Malloc failed.");
 	while (temp && temp->line && !is_map_line(temp->line))
 		temp = temp->next;
-	while (temp && temp->line && !temp->last_line)
+	while (temp && temp->line)
 	{
-		printf("current line: %s\n", temp->line);
-		if (!temp->is_map)
+		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
 		data->map_copy[i] = ft_strdup(temp->line);
-		// printf("Current line: %s\n", data->map_copy[i]);
+		//printf("Current line: %s\n", data->map_copy[i]);
+		if (temp->last_line)
+			break;
 		temp = temp->next;
 		i++;
 	}
