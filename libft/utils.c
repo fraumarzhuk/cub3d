@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:47:06 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/08/21 15:11:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:27:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,19 @@ void	*my_malloc(size_t size)
 		return (NULL);
 	}
 	return (ptr);
+}
+
+char	*trim_spaces(char *str)
+{
+	char *res;
+	res = str;
+	
+	while (*res && is_space(*res))
+		res++;
+	return (res);
+}
+
+int is_space(char c)
+{
+	return (c == ' ' || c == '\v' || c == '\f' || c == '\r');
 }

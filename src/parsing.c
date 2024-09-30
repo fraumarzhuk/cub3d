@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/27 12:52:53 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:49:36 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	map_init(t_env *env)
 	while (parse_line(&map, env->data))
 		env->data->line_count++;
 	save_textures(map, env->data);
-	print_parsed_data(map, env->data);
+	save_map_copy(env->data, map);
+	// print_parsed_data(map, env->data);
 	return (1);
 }
 
@@ -69,24 +70,59 @@ int	parse_line(t_map **map, t_data *data)
 void save_textures(t_map *map, t_data *data)
 {
 	t_map *temp;
-
-	temp = map;
-	while (temp)
+	
+	while (map && map->line)
 	{
-		if (!(ft_strncmp(temp->line, "NO", 2)))
-			data->north = temp->line + 3;
-		else if (!(ft_strncmp(temp->line, "SO", 2)))
-			data->south = temp->line + 3;
-		else if (!(ft_strncmp(temp->line, "WE", 2)))
-			data->west = temp->line + 3;
-		else if (!(ft_strncmp(temp->line, "EA", 2)))
-			data->east = temp->line + 3;
-		else if (temp->line[0] == 'F' || temp->line[0] == 'C')
-				save_floor_and_ceiling(temp->line, data);
-		else if (temp->line[0] == '1')
+		if (!(ft_strncmp(map->line, "NO", 2)))
+			data->north = map->line + 3;
+		else if (!(ft_strncmp(map->line, "SO", 2)))
+			data->south = map->line + 3;
+		else if (!(ft_strncmp(map->line, "WE", 2)))
+			data->west = map->line + 3;
+		else if (!(ft_strncmp(map->line, "EA", 2)))
+			data->east = map->line + 3;
+		else if (map->line[0] == 'F' || map->line[0] == 'C')
+				save_floor_and_ceiling(map->line, data);
+		else if ((map->line[0] == '1' || is_space(map->line[0])) && is_map_line(map->line))
 			break ;
+		map = map->next;
+	}
+	temp = map;
+	while (temp && temp->line && ft_strchr(temp->line, '1'))
+	{
+		data->map_lines++;
 		temp = temp->next;
 	}
+}
+
+int is_map_line(char *line)
+{
+	char	*trimmed_line;
+	int		len;
+	bool	start;
+	bool	end;
+	
+	start = false;
+	end = false;
+	if (line[0] == '1' || is_space(line[0]))
+	{
+		trimmed_line = trim_spaces(line);
+		if (trimmed_line[0] == '1')
+			start = true;
+		len = ft_strlen(line);
+		while (len > 0 && is_space(trimmed_line[len]))
+		{
+			if (trimmed_line[len] == '1')
+			{
+				end = true;	
+				break ;
+			}
+			len--;	
+		}
+	}
+	if (start && end)
+		printf("return true\n");
+	return (start && end);
 }
 
 void	save_floor_and_ceiling(char *line, t_data *data)
@@ -123,6 +159,29 @@ t_rgb *save_rgb(char *line)
 	free_split(res);
 	
 	return (rgb);
+}
+
+void save_map_copy(t_data *data, t_map *map)
+{
+	int	i;
+	
+	i = 0;
+	data->map_copy = (char **)ft_calloc(((sizeof(char *) * (data->map_lines) + 1)), 1);
+	if (!data->map_copy)
+		error_and_exit("Malloc failed.");
+	while (map && map->line && !is_map_line(map->line))
+	{
+		printf("not a map line\n");
+		map = map->next;
+	}
+	while (map && map->line && i <= data->map_lines)
+	{
+		data->map_copy[i] = ft_strdup(map->line);
+		printf("%s\n", data->map_copy[i]);
+		map = map->next;
+		i++;
+	}
+	data->map_copy[i] = NULL;
 }
 // while temp->line[0] != '1'
 

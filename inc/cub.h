@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/27 12:51:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:32:59 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ typedef struct s_player
 typedef struct s_data
 {
 	int		fd;
-	char 	**map;
+	// char 	**map;
 	char 	**map_copy;
 	int		line_count;
+	int		map_lines;
 	char 	*north;
 	char 	*south;
 	char 	*west;
@@ -98,6 +99,8 @@ int		parse_line(t_map **map, t_data *data);
 void	save_textures(t_map *map, t_data *data);
 t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
+void	save_map_copy(t_data *data, t_map *map);
+int		is_map_line(char *line);
 
 //utils:
 void	error_and_exit(char *str);

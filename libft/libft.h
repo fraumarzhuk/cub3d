@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 22:58:37 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/09/25 10:09:07 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:08:51 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ size_t	ft_strlen(const char *s);
 void	free_split(char **split);
 int		ft_isnum(char *str);
 void	*my_malloc(size_t size);
+char	*trim_spaces(char *str);
+int		is_space(char c);
 
 #endif
