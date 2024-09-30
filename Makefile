@@ -13,7 +13,8 @@ else ifeq ($(UNAME_S), Darwin)
 	MINILIBX_DIR = ./minilibx_opengl_20191021
 endif
 SRCS =	src/main.c \
-		src/parsing.c \
+		src/parsing_file.c \
+		src/parsing_map.c \
 		src/utils.c
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 13:38:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:02:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@
 typedef struct map
 {
 	char		*line;
+	bool		is_map;
+	bool		last_line;
 	struct map	*next;
+	struct map	*prev;
 }	t_map;
 
 typedef struct s_rgb
@@ -92,14 +95,20 @@ typedef struct s_env
 }	t_env;
 
 
-//parsing:
-void	map_validation(char *argv, t_env *env);
+
+//parsing_file:
+void	file_validation(char *argv, t_env *env);
 int		parse_line(t_map **map, t_data *data);
 void	save_textures(t_map *map, t_data *data);
 t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
+
+//parsing_map:
+int		map_init(t_env *env);
 void	save_map_copy(t_data *data, t_map *map);
 int		is_map_line(char *line);
+void	save_map_end(t_map *map);
+
 
 //utils:
 void	error_and_exit(char *str);
