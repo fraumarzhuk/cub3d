@@ -1,0 +1,18 @@
+Map rules from the subject:
+
+***********************************************
+Map itself(maze):
+
+1. Only 0 for an empty space, 1 for a wall, and N,S,E or W for player's start position;
+Can be spaces between the walls!
+2.Must be closed, surrounded by walls.
+3. Always has to be the last!
+
+***********************************************
+
+><><><><><><><><><><><><><><><><><><><><><><><>
+The file(textures and rgbs):
+1. Before the map!
+2. Can be separated by one or more empty lines
+3. Can be separated by more than 1 space.
+><><><><><><><><><><><><><><><><><><><><><><><>
