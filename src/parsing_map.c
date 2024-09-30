@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 17:18:36 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:25:36 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void save_map_copy(t_data *data, t_map *map)
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
 		data->map_copy[i] = ft_strdup(temp->line);
-		//printf("Current line: %s\n", data->map_copy[i]);
+		printf("Current line: %s\n", data->map_copy[i]);
 		if (temp->last_line)
 			break;
 		temp = temp->next;
@@ -99,3 +99,6 @@ void save_map_copy(t_data *data, t_map *map)
 //1. run check walls and other checks on copy of 2d map_copy;
 //2. For the textures add check for spaces
 //new branch
+
+// questionable:
+// incorrect parsing if the map is in the beginning of the file. Can be fixed, but do we need to? Subject says map only in the end of the file?
