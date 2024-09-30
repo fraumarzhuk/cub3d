@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 13:38:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:43:31 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,3 +174,4 @@ void save_map_copy(t_data *data, t_map *map)
 
 //TODO:
 //1. run check walls and other checks on copy of 2d map_copy;
+//new branch
