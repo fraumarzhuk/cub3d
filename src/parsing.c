@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 12:49:36 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:38:13 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,24 +104,14 @@ int is_map_line(char *line)
 	
 	start = false;
 	end = false;
-	if (line[0] == '1' || is_space(line[0]))
-	{
-		trimmed_line = trim_spaces(line);
-		if (trimmed_line[0] == '1')
+	trimmed_line = trim_spaces(line);
+	if (trimmed_line[0] == '1')
 			start = true;
-		len = ft_strlen(line);
-		while (len > 0 && is_space(trimmed_line[len]))
-		{
-			if (trimmed_line[len] == '1')
-			{
-				end = true;	
-				break ;
-			}
-			len--;	
-		}
-	}
-	if (start && end)
-		printf("return true\n");
+	len = ft_strlen(trimmed_line);
+	while (len > 0 && is_space(trimmed_line[len - 1]))
+		len--;	
+	if (trimmed_line[len - 1] == '1')
+			end = true;	
 	return (start && end);
 }
 
@@ -170,10 +160,7 @@ void save_map_copy(t_data *data, t_map *map)
 	if (!data->map_copy)
 		error_and_exit("Malloc failed.");
 	while (map && map->line && !is_map_line(map->line))
-	{
-		printf("not a map line\n");
 		map = map->next;
-	}
 	while (map && map->line && i <= data->map_lines)
 	{
 		data->map_copy[i] = ft_strdup(map->line);
@@ -183,7 +170,7 @@ void save_map_copy(t_data *data, t_map *map)
 	}
 	data->map_copy[i] = NULL;
 }
-// while temp->line[0] != '1'
+
 
 //TODO:
-//1. Add a function that saves the copy of the map without any textures and everything. Then run check walls and other checks on it;
+//1. run check walls and other checks on copy of 2d map_copy;

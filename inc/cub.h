@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 12:32:59 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/09/30 13:38:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_player
 typedef struct s_data
 {
 	int		fd;
-	// char 	**map;
 	char 	**map_copy;
 	int		line_count;
 	int		map_lines;
