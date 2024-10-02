@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 14:11:04 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:11:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	save_textures(t_map *map, t_data *data)
 {	
 	while (map && map->line)
 	{
+		if (is_map_line(map->line))
+			break ;
 		map->line = trim_spaces(map->line);
 		//printf("cur_line: %s\n", map->line);
 		if (!(ft_strncmp(map->line, "NO", 2)))
@@ -63,8 +65,6 @@ void	save_textures(t_map *map, t_data *data)
 			data->east = get_texture(map->line, "EA");
 		else if (map->line[0] == 'F' || map->line[0] == 'C')
 				save_floor_and_ceiling(map->line, data);
-		else if (is_map_line(map->line))
-			break ;
 		map = map->next;
 	}
 	save_map_lines(map, data);

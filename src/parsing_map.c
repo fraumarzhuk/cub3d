@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 14:53:07 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:10:05 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	map_init(t_env *env)
 	save_textures(map, env->data);
 	save_map_end(map);
 	save_map_copy(env->data, &map);
-	map_checks(env->data->map_copy);
+	map_checks(env->data->map_copy, env->data);
 	check_parsed_data(env, map);
 	return (1);
 }
@@ -59,8 +59,8 @@ int is_map_line(char *line)
 	start = false;
 	end = false;
 	//CHANGE TO THIS AFTER FIXINMG AND CHECK:
-	// trimmed_line = trim_spaces(line);
-	trimmed_line = ft_strtrim(line, " ");
+	trimmed_line = trim_spaces(line);
+	// trimmed_line = ft_strtrim(line, " ");
 	if (trimmed_line[0] == '1')
 			start = true;
 	len = ft_strlen(trimmed_line);
@@ -69,32 +69,6 @@ int is_map_line(char *line)
 	return (start && end);
 }
 
-
-// void save_map_copy(t_data *data, t_map *map)
-// {
-// 	int		i;
-// 	t_map	*temp;
-	
-// 	i = 0;
-// 	temp = map;
-// 	data->map_copy = (char **)ft_calloc(((sizeof(char *) * (data->map_lines) + 1)), 1);
-// 	if (!data->map_copy)
-// 		error_and_exit("Malloc failed.");
-// 	while (temp && temp->line && !is_map_line(temp->line))
-// 		temp = temp->next;
-// 	while (temp && temp->line)
-// 	{
-// 		if (!temp->is_map && !temp->last_line)
-// 			error_and_exit("Empty line in the middle of the map!");
-// 		data->map_copy[i] = ft_strdup(temp->line);
-// 		//printf("Current line: %s\n", data->map_copy[i]);
-// 		if (temp->last_line)
-// 			break;
-// 		temp = temp->next;
-// 		i++;
-// 	}
-// 	data->map_copy[++i] = NULL;
-// }
 void save_map_copy(t_data *data, t_map **map)
 {
 	int		i;
