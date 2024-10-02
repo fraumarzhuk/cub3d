@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 12:47:24 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:49:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,20 @@ void	save_textures(t_map *map, t_data *data);
 t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
 char	*get_texture(char *line, char *p_name);
+//add a function to test if rgbs are correct and try opening files(textures);
+//maybe create a separate file for textures and rgb, for norm and readability
 
 //parsing_map:
 int		map_init(t_env *env);
-void	save_map_copy(t_data *data, t_map *map);
+void	save_map_copy(t_data *data, t_map **map);
 int		is_map_line(char *line);
 void	save_map_end(t_map *map);
+void	save_map_lines(t_map *map, t_data *data);
 
 //map-checks
 void	map_checks(char **map_copy);
 int		invalid_char_check(char *line);
+void	check_parsed_data(t_env *env, t_map *map);
 
 //utils:
 void	error_and_exit(char *str);

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:13:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 16:56:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:41:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return (printf("No map is provided\n"));
 	else
+	{
 		file_validation(argv[1], env);
+	}
 	return (0);
 }
