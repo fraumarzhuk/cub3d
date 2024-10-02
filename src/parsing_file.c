@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_validation.c                                  :+:      :+:    :+:   */
+/*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 16:59:34 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:49:10 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ void save_textures(t_map *map, t_data *data)
 	}
 }
 
+// void get_texture(char *line, char *p_name)
+// {
+// 	char *texture;
+// 	texture = 
+// }
+
 void	save_floor_and_ceiling(char *line, t_data *data)
 {
 	
@@ -112,3 +118,7 @@ t_rgb *save_rgb(char *line)
 	
 	return (rgb);
 }
+
+//TODO:
+//1. Map is the last check
+//2. Skip spaces before and between textures and rgb
