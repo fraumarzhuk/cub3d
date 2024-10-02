@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 09:19:41 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:59:03 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int		parse_line(t_map **map, t_data *data);
 void	save_textures(t_map *map, t_data *data);
 t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
+char	*get_texture(char *line, char *p_name);
 
 //parsing_map:
 int		map_init(t_env *env);

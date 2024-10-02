@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 09:51:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:28:16 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int is_map_line(char *line)
 	
 	start = false;
 	end = false;
+	//CHANGE TO THIS AFTER FIXINMG AND CHECK:
 	// trimmed_line = trim_spaces(line);
 	trimmed_line = ft_strtrim(line, " ");
 	if (trimmed_line[0] == '1')

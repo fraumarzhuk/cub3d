@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:58:25 by mzhukova          #+#    #+#             */
-/*   Updated: 2023/11/18 13:44:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:04:12 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		n--;
 	}
 	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
 // int main() {
