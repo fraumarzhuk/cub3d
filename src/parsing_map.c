@@ -34,6 +34,7 @@ int	map_init(t_env *env)
 	save_textures(map, env->data);
 	save_map_end(map);
 	save_map_copy(env->data, map);
+	map_checks(env->data->map_copy);
 	return (1);
 }
 
@@ -89,13 +90,13 @@ void save_map_copy(t_data *data, t_map *map)
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
 		data->map_copy[i] = ft_strdup(temp->line);
-		printf("Current line: %s\n", data->map_copy[i]);
+		//printf("Current line: %s\n", data->map_copy[i]);
 		if (temp->last_line)
 			break;
 		temp = temp->next;
 		i++;
 	}
-	data->map_copy[i] = NULL;
+	data->map_copy[++i] = NULL;
 }
 
 
