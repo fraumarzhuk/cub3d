@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 10:32:02 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:11:04 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ int	parse_line(t_map **map, t_data *data)
 }
 
 void	save_textures(t_map *map, t_data *data)
-{
-	t_map *temp;
-	
+{	
 	while (map && map->line)
 	{
 		map->line = trim_spaces(map->line);
@@ -69,14 +67,7 @@ void	save_textures(t_map *map, t_data *data)
 			break ;
 		map = map->next;
 	}
-	temp = map;
-	while (temp && temp->line)
-	{
-		data->map_lines++;
-		if (is_map_line(temp->line))
-			temp->is_map = true;
-		temp = temp->next;
-	}
+	save_map_lines(map, data);
 }
 
 char	*get_texture(char *line, char *p_name)
