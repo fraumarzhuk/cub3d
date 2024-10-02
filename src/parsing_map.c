@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 10:28:16 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 13:02:35 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	map_init(t_env *env)
 	save_textures(map, env->data);
 	save_map_end(map);
 	save_map_copy(env->data, map);
+	map_checks(env->data->map_copy);
 	return (1);
 }
 
@@ -85,13 +86,13 @@ void save_map_copy(t_data *data, t_map *map)
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
 		data->map_copy[i] = ft_strdup(temp->line);
-		printf("Current line: %s\n", data->map_copy[i]);
+		//printf("Current line: %s\n", data->map_copy[i]);
 		if (temp->last_line)
 			break;
 		temp = temp->next;
 		i++;
 	}
-	data->map_copy[i] = NULL;
+	data->map_copy[++i] = NULL;
 }
 
 
@@ -99,3 +100,4 @@ void save_map_copy(t_data *data, t_map *map)
 //1. run check walls and other checks on copy of 2d map_copy;
 //2. For the textures add check for spaces
 //new branch
+//add a function to free t_map *map. Call it after map_checks;
