@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 14:40:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:09:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@
 //is last(inside map_checks()
 //check walls
 
-void map_checks(char **map_copy) //pass data->map_copy
+void map_checks(char **map_copy, t_data *data) //pass data->map_copy
 {
 	int	i;
 
 	i = 0;
+	(void) data;
 	while (map_copy[i])
 	{
 		invalid_char_check(map_copy[i]);
 		i++;
 	}
+	//check_walls(map_copy, data);
 }
 
 int invalid_char_check(char *line)
@@ -44,8 +46,10 @@ int invalid_char_check(char *line)
 }
 
 
-// void check_walls(char **map_copy)
+// void check_walls(char **map_copy, t_data *data)
 // {
+// 	int	i;
+
 // 	//1.check first and last line
 // 		//trim and check if only contains ones
 // 	//2. check first and last character of each line
@@ -87,4 +91,5 @@ void check_parsed_data(t_env *env, t_map *map)
 		printf("floor rgb: %d, %d, %d\n", env->data->floor->r, env->data->floor->g, env->data->floor->b);
 		printf("ceiling rgb: %d, %d, %d\n", env->data->ceiling->r, env->data->ceiling->g, env->data->ceiling->b);
 	}
+	printf("map_lines: %d\n", env->data->map_lines);
 }
