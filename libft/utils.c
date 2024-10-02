@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:47:06 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/09/30 12:27:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:25:40 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,18 @@ void	*my_malloc(size_t size)
 
 char	*trim_spaces(char *str)
 {
-	char *res;
-	res = str;
-	
-	while (*res && is_space(*res))
-		res++;
-	return (res);
+	char	*end;
+
+	while (is_space((unsigned char)*str)) str++;
+
+	if (*str == 0)
+		return str;
+	end = str + ft_strlen(str) - 1;
+	while (end > str && is_space((unsigned char)*end))
+		end--;
+	*(end + 1) = '\0';
+
+	return (str);
 }
 
 int is_space(char c)

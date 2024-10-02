@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_validation.c                                  :+:      :+:    :+:   */
+/*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/30 16:59:34 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/02 10:32:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-void file_validation(char *argv, t_env *env)
+void	file_validation(char *argv, t_env *env)
 {
 	char	*res;
 
@@ -47,20 +47,22 @@ int	parse_line(t_map **map, t_data *data)
 	return (1);
 }
 
-void save_textures(t_map *map, t_data *data)
+void	save_textures(t_map *map, t_data *data)
 {
 	t_map *temp;
 	
 	while (map && map->line)
 	{
+		map->line = trim_spaces(map->line);
+		//printf("cur_line: %s\n", map->line);
 		if (!(ft_strncmp(map->line, "NO", 2)))
-			data->north = map->line + 3;
+			data->north = get_texture(map->line, "NO");
 		else if (!(ft_strncmp(map->line, "SO", 2)))
-			data->south = map->line + 3;
+			data->south = get_texture(map->line, "SO");
 		else if (!(ft_strncmp(map->line, "WE", 2)))
-			data->west = map->line + 3;
+			data->west = get_texture(map->line, "WE");
 		else if (!(ft_strncmp(map->line, "EA", 2)))
-			data->east = map->line + 3;
+			data->east = get_texture(map->line, "EA");
 		else if (map->line[0] == 'F' || map->line[0] == 'C')
 				save_floor_and_ceiling(map->line, data);
 		else if (is_map_line(map->line))
@@ -77,22 +79,34 @@ void save_textures(t_map *map, t_data *data)
 	}
 }
 
+char	*get_texture(char *line, char *p_name)
+{
+	char	*texture;
+	
+	texture = ft_strtrim(line, p_name);
+	texture = trim_spaces(texture);
+	//printf("texture %s: %s\n", p_name, texture);
+	if (!texture)
+		error_and_exit("Incorrect map!");
+	return (texture);
+}
+
 void	save_floor_and_ceiling(char *line, t_data *data)
 {
 	
 	if (ft_strchr(line, ','))
 	{
 		if (line[0] == 'F')
-			data->floor = save_rgb(&line[2]);
+			data->floor = save_rgb(get_texture(line, "F"));
 		else if (line[0] == 'C')
-			data->ceiling = save_rgb(&line[2]);
+			data->ceiling = save_rgb(get_texture(line, "C"));
 	}
 	else
 	{
 		if (line[0] == 'F')
-			data->pic_floor = line + 3;
+			data->pic_floor = get_texture(line, "F");
 		else if (line[0] == 'C')
-			data->pic_ceiling = line + 3;
+			data->pic_ceiling = get_texture(line, "F");
 	}
 }
 
@@ -112,3 +126,7 @@ t_rgb *save_rgb(char *line)
 	
 	return (rgb);
 }
+
+//TODO:
+//1. Map is the last check
+//2. Skip spaces before and between textures and rgb
