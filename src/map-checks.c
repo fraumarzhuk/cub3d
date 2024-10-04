@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 17:09:02 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:53:12 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,60 @@ int invalid_char_check(char *line)
 }
 
 
-// void check_walls(char **map_copy, t_data *data)
-// {
-// 	int	i;
+void check_walls(char **map_copy, t_data *data)
+{
 
-// 	//1.check first and last line
-// 		//trim and check if only contains ones
-// 	//2. check first and last character of each line
-// }
+	char *trimmed_line;
+
+	trimmed_line = trim_spaces(map_copy[0]);
+	find_wall_errors(trimmed_line, map_copy);
+	trimmed_line = trim_spaces(map_copy[data->map_lines - 1]);
+	find_wall_errors(trimmed_line, map_copy);
+
+}
+
+void	find_wall_errors(char *trimmed_line, char **map)
+{
+	int	i;
+
+	i = 0;
+	
+	while (trimmed_line[i])
+	{
+		if (is_space(trimmed_line[i]))
+			check_gap_walls(trimmed_line, map, i);
+		if (trimmed_line[i] != '1')
+			error_and_exit("Incorrect wall!");
+		i++;
+	}
+}
+
+
+void check_gap_walls(char *cur_line, char **map, int pos)
+{
+
+	if (is_space(cur_line[pos + 1]))
+		explore_right_gap(cur_line, pos);
+	else if (is_space(cur_line[pos - 1]))
+		explore_left_gap(cur_line, pos);
+}
+
+void explore_right_gap(char *cur_line, int pos)
+{
+	int		gap_len;
+	int		i;
+	
+	i = 0;
+	gap_len = 0;
+	while (is_space(cur_line[i++]))
+		gap_len++;
+	
+	
+}
+
+
+
+
 
 void check_parsed_data(t_env *env, t_map *map)
 {

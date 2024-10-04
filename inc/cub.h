@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 17:08:36 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:52:33 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,11 @@ void	save_map_lines(t_map *map, t_data *data);
 //map-checks
 void	map_checks(char **map_copy, t_data *data);
 int		invalid_char_check(char *line);
-//void	check_walls(char **map_copy, t_data *data);
+void	check_walls(char **map_copy, t_data *data);
 void	check_parsed_data(t_env *env, t_map *map);
+void	find_wall_errors(char *trimmed_line, char **map);
+void	check_gap_walls(char *cur_line, char **map, int pos);
+void	explore_right_gap(char *cur_line, int pos);
 
 //utils:
 void	error_and_exit(char *str);
