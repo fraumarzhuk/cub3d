@@ -1,3 +1,4 @@
 *.o
 .idea
 .vscode
+.minilibx_opengl_20191021
