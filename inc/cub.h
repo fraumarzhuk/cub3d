@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariannazhukova <mariannazhukova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/04 15:52:33 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:53:35 by mariannazhu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define CUB_H
 # ifdef __APPLE__
 #  include "../minilibx_opengl_20191021/mlx.h"
-#  include "key_macos.h"
+// #  include "key_macos.h"
 # elif __linux__
 #  include "../minilibx-linux/mlx.h"
 # endif // __linux__
@@ -118,9 +118,8 @@ void	map_checks(char **map_copy, t_data *data);
 int		invalid_char_check(char *line);
 void	check_walls(char **map_copy, t_data *data);
 void	check_parsed_data(t_env *env, t_map *map);
-void	find_wall_errors(char *trimmed_line, char **map);
-void	check_gap_walls(char *cur_line, char **map, int pos);
-void	explore_right_gap(char *cur_line, int pos);
+void	explore_borders(char **map_copy, t_data *data, int x);
+int		is_valid_x(char **map_copy, int x, int y);
 
 //utils:
 void	error_and_exit(char *str);
