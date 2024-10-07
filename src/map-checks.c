@@ -6,7 +6,7 @@
 /*   By: mariannazhukova <mariannazhukova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/07 15:14:57 by mariannazhu      ###   ########.fr       */
+/*   Updated: 2024/10/07 17:27:58 by mariannazhu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,57 +61,54 @@ void explore_borders(char **map_copy, t_data *data, int x)
 
 	y = 0;
 	//down
-	while ((map_copy[y]))
+	while (map_copy[y] && map_copy[y][x])
 	{
-		while (map_copy[y][x])
-		{
-			if (!is_valid_x(map_copy, x, y))
-				error_and_exit("Incorrect walls!");
-			if (map_copy[y][x + 1] == '1')
-				x++;
-			else if (map_copy[y + 1][x] && map_copy[y + 1][x] == '1')
-				y++;
-			else if (x > 0 && map_copy[y][x - 1] == '1')
-				x--;
-			else 
-				break ;
+		// printf("curr line: %s,   || y = %d || x = %d\n", map_copy[y], y, x);
+		if (map_copy[y][x + 1] == '1')
+			x++;
+		else if (map_copy[y + 1][x] && map_copy[y + 1][x] == '1')
+			y++;
+		else if (x > 0 && map_copy[y][x - 1] == '1')
+			x--;
+		if (!is_valid_x(map_copy, x, y))
+			error_and_exit("Incorrect wall borders!");
+		y++;
 
-		}
 	}
 	//up
 	y = data->map_lines - 1;
 	x = ft_strlen(map_copy[y]) - 1;
-	while (map_copy[y][x])
+	printf("loop2\n");
+	while (map_copy[y] && map_copy[y][x])
 	{
-		if (!is_valid_x(map_copy, x, y))
-				error_and_exit("Incorrect walls!");
-		if (y + 1 < data->map_lines && map_copy[y + 1][x] == '1')
-				y++;
-		else if (y > 0 && map_copy[y - 1][x] == '1')
+		printf("curr line: %s,   || y = %d || x = %d\n", map_copy[y], y, x);
+		// if (y + 1 < data->map_lines && map_copy[y + 1][x] == '1')
+		// 		y++;
+		if (map_copy[y][x + 1] == '1')
+				x++;
+		if (y > 0 && map_copy[y - 1][x] == '1')
 				y--;
 		else if (x > 0 && map_copy[y][x - 1] == '1')
 				x--;
-		else if (map_copy[y][x + 1] == '1')
-				x++;
-		else
-			break ;
+		if (!is_valid_x(map_copy, x, y))
+			error_and_exit("Incorrect wall borders!");
+		y--;
 	}
 	
 }
+
 int is_valid_x(char **map_copy, int x, int y)
 {
-	// return ((y > 0 && map_copy[y - 1][x] && map_copy[y - 1][x] != '1') &&
-	// 		(map_copy[y][x + 1] && map_copy[y][x + 1] != '1') &&
-	// 		(x > 0 && map_copy[y][x - 1] && map_copy[y][x - 1] != '1'));
-	if ((y > 0 && map_copy[y - 1][x] && map_copy[y - 1][x] != '1') &&
-			(map_copy[y][x + 1] && map_copy[y][x + 1] != '1') &&
-			(x > 0 && map_copy[y][x - 1] && map_copy[y][x - 1] != '1'))
-			{
-				return (0);
-			}
-	printf("Cur line: %s\n", map_copy[y]);
-	return (1);
+	printf("position of imposter: x: %d y: %d. Imposter itself: %c\n", x, y, map_copy[y][x]);
+	if ((y > 0 && (is_space(map_copy[y - 1][x]) || map_copy[y - 1][x] == '0')) &&
+        (map_copy[y][x + 1] && (is_space(map_copy[y][x + 1]) || map_copy[y][x + 1] == '0')) &&
+        (x > 0 && (is_space(map_copy[y][x - 1]) || map_copy[y][x - 1] == '0')))
+	{
+		return 0;
+	}
+	return 1;
 }
+
 
 void check_parsed_data(t_env *env, t_map *map)
 {

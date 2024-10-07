@@ -2,29 +2,29 @@
 triple:          'arm64-apple-darwin'
 binary-path:     cub3D
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000006F8, symSize: 0x80 }
-  - { offsetInCU: 0x234, offset: 0x234, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000006F8, symSize: 0x80 }
-  - { offsetInCU: 0x26, offset: 0x29E, size: 0x8, addend: 0x0, symName: _file_validation, symObjAddr: 0x0, symBinAddr: 0x100000778, symSize: 0xEC }
-  - { offsetInCU: 0x85, offset: 0x2FD, size: 0x8, addend: 0x0, symName: _file_validation, symObjAddr: 0x0, symBinAddr: 0x100000778, symSize: 0xEC }
-  - { offsetInCU: 0xC5, offset: 0x33D, size: 0x8, addend: 0x0, symName: _parse_line, symObjAddr: 0xEC, symBinAddr: 0x100000864, symSize: 0x170 }
-  - { offsetInCU: 0x117, offset: 0x38F, size: 0x8, addend: 0x0, symName: _save_textures, symObjAddr: 0x25C, symBinAddr: 0x1000009D4, symSize: 0x230 }
-  - { offsetInCU: 0x149, offset: 0x3C1, size: 0x8, addend: 0x0, symName: _get_texture, symObjAddr: 0x48C, symBinAddr: 0x100000C04, symSize: 0x64 }
-  - { offsetInCU: 0x18D, offset: 0x405, size: 0x8, addend: 0x0, symName: _save_floor_and_ceiling, symObjAddr: 0x4F0, symBinAddr: 0x100000C68, symSize: 0x124 }
-  - { offsetInCU: 0x1BF, offset: 0x437, size: 0x8, addend: 0x0, symName: _save_rgb, symObjAddr: 0x614, symBinAddr: 0x100000D8C, symSize: 0xC4 }
-  - { offsetInCU: 0x26, offset: 0x6B6, size: 0x8, addend: 0x0, symName: _map_init, symObjAddr: 0x0, symBinAddr: 0x100000E50, symSize: 0x14C }
-  - { offsetInCU: 0x4B, offset: 0x6DB, size: 0x8, addend: 0x0, symName: _map_init, symObjAddr: 0x0, symBinAddr: 0x100000E50, symSize: 0x14C }
-  - { offsetInCU: 0x81, offset: 0x711, size: 0x8, addend: 0x0, symName: _save_map_end, symObjAddr: 0x14C, symBinAddr: 0x100000F9C, symSize: 0x160 }
-  - { offsetInCU: 0xB3, offset: 0x743, size: 0x8, addend: 0x0, symName: _save_map_copy, symObjAddr: 0x2AC, symBinAddr: 0x1000010FC, symSize: 0x1E4 }
-  - { offsetInCU: 0x101, offset: 0x791, size: 0x8, addend: 0x0, symName: _is_map_line, symObjAddr: 0x490, symBinAddr: 0x1000012E0, symSize: 0xB8 }
-  - { offsetInCU: 0x161, offset: 0x7F1, size: 0x8, addend: 0x0, symName: _save_map_lines, symObjAddr: 0x548, symBinAddr: 0x100001398, symSize: 0xB8 }
-  - { offsetInCU: 0x26, offset: 0xAA6, size: 0x8, addend: 0x0, symName: _map_checks, symObjAddr: 0x0, symBinAddr: 0x100001450, symSize: 0x70 }
-  - { offsetInCU: 0x41, offset: 0xAC1, size: 0x8, addend: 0x0, symName: _map_checks, symObjAddr: 0x0, symBinAddr: 0x100001450, symSize: 0x70 }
-  - { offsetInCU: 0x81, offset: 0xB01, size: 0x8, addend: 0x0, symName: _invalid_char_check, symObjAddr: 0x70, symBinAddr: 0x1000014C0, symSize: 0x130 }
-  - { offsetInCU: 0xB7, offset: 0xB37, size: 0x8, addend: 0x0, symName: _check_walls, symObjAddr: 0x1A0, symBinAddr: 0x1000015F0, symSize: 0x6C }
-  - { offsetInCU: 0xF7, offset: 0xB77, size: 0x8, addend: 0x0, symName: _explore_borders, symObjAddr: 0x20C, symBinAddr: 0x10000165C, symSize: 0x35C }
-  - { offsetInCU: 0x145, offset: 0xBC5, size: 0x8, addend: 0x0, symName: _is_valid_x, symObjAddr: 0x568, symBinAddr: 0x1000019B8, symSize: 0x174 }
-  - { offsetInCU: 0x189, offset: 0xC09, size: 0x8, addend: 0x0, symName: _check_parsed_data, symObjAddr: 0x6DC, symBinAddr: 0x100001B2C, symSize: 0x330 }
-  - { offsetInCU: 0x26, offset: 0xED1, size: 0x8, addend: 0x0, symName: _error_and_exit, symObjAddr: 0x0, symBinAddr: 0x100001E5C, symSize: 0x34 }
-  - { offsetInCU: 0x1F7, offset: 0x10A2, size: 0x8, addend: 0x0, symName: _error_and_exit, symObjAddr: 0x0, symBinAddr: 0x100001E5C, symSize: 0x34 }
-  - { offsetInCU: 0x21B, offset: 0x10C6, size: 0x8, addend: 0x0, symName: _init_env, symObjAddr: 0x34, symBinAddr: 0x100001E90, symSize: 0x54 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000061C, symSize: 0x80 }
+  - { offsetInCU: 0x234, offset: 0x234, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000061C, symSize: 0x80 }
+  - { offsetInCU: 0x26, offset: 0x29E, size: 0x8, addend: 0x0, symName: _file_validation, symObjAddr: 0x0, symBinAddr: 0x10000069C, symSize: 0xEC }
+  - { offsetInCU: 0x85, offset: 0x2FD, size: 0x8, addend: 0x0, symName: _file_validation, symObjAddr: 0x0, symBinAddr: 0x10000069C, symSize: 0xEC }
+  - { offsetInCU: 0xC5, offset: 0x33D, size: 0x8, addend: 0x0, symName: _parse_line, symObjAddr: 0xEC, symBinAddr: 0x100000788, symSize: 0x170 }
+  - { offsetInCU: 0x117, offset: 0x38F, size: 0x8, addend: 0x0, symName: _save_textures, symObjAddr: 0x25C, symBinAddr: 0x1000008F8, symSize: 0x230 }
+  - { offsetInCU: 0x149, offset: 0x3C1, size: 0x8, addend: 0x0, symName: _get_texture, symObjAddr: 0x48C, symBinAddr: 0x100000B28, symSize: 0x64 }
+  - { offsetInCU: 0x18D, offset: 0x405, size: 0x8, addend: 0x0, symName: _save_floor_and_ceiling, symObjAddr: 0x4F0, symBinAddr: 0x100000B8C, symSize: 0x124 }
+  - { offsetInCU: 0x1BF, offset: 0x437, size: 0x8, addend: 0x0, symName: _save_rgb, symObjAddr: 0x614, symBinAddr: 0x100000CB0, symSize: 0xC4 }
+  - { offsetInCU: 0x26, offset: 0x6B6, size: 0x8, addend: 0x0, symName: _map_init, symObjAddr: 0x0, symBinAddr: 0x100000D74, symSize: 0x14C }
+  - { offsetInCU: 0x4B, offset: 0x6DB, size: 0x8, addend: 0x0, symName: _map_init, symObjAddr: 0x0, symBinAddr: 0x100000D74, symSize: 0x14C }
+  - { offsetInCU: 0x81, offset: 0x711, size: 0x8, addend: 0x0, symName: _save_map_end, symObjAddr: 0x14C, symBinAddr: 0x100000EC0, symSize: 0x160 }
+  - { offsetInCU: 0xB3, offset: 0x743, size: 0x8, addend: 0x0, symName: _save_map_copy, symObjAddr: 0x2AC, symBinAddr: 0x100001020, symSize: 0x1E4 }
+  - { offsetInCU: 0x101, offset: 0x791, size: 0x8, addend: 0x0, symName: _is_map_line, symObjAddr: 0x490, symBinAddr: 0x100001204, symSize: 0xB8 }
+  - { offsetInCU: 0x161, offset: 0x7F1, size: 0x8, addend: 0x0, symName: _save_map_lines, symObjAddr: 0x548, symBinAddr: 0x1000012BC, symSize: 0xB8 }
+  - { offsetInCU: 0x26, offset: 0xAA6, size: 0x8, addend: 0x0, symName: _map_checks, symObjAddr: 0x0, symBinAddr: 0x100001374, symSize: 0x70 }
+  - { offsetInCU: 0x41, offset: 0xAC1, size: 0x8, addend: 0x0, symName: _map_checks, symObjAddr: 0x0, symBinAddr: 0x100001374, symSize: 0x70 }
+  - { offsetInCU: 0x81, offset: 0xB01, size: 0x8, addend: 0x0, symName: _invalid_char_check, symObjAddr: 0x70, symBinAddr: 0x1000013E4, symSize: 0x130 }
+  - { offsetInCU: 0xB7, offset: 0xB37, size: 0x8, addend: 0x0, symName: _check_walls, symObjAddr: 0x1A0, symBinAddr: 0x100001514, symSize: 0x6C }
+  - { offsetInCU: 0xF7, offset: 0xB77, size: 0x8, addend: 0x0, symName: _explore_borders, symObjAddr: 0x20C, symBinAddr: 0x100001580, symSize: 0x384 }
+  - { offsetInCU: 0x145, offset: 0xBC5, size: 0x8, addend: 0x0, symName: _is_valid_x, symObjAddr: 0x590, symBinAddr: 0x100001904, symSize: 0x1CC }
+  - { offsetInCU: 0x189, offset: 0xC09, size: 0x8, addend: 0x0, symName: _check_parsed_data, symObjAddr: 0x75C, symBinAddr: 0x100001AD0, symSize: 0x330 }
+  - { offsetInCU: 0x26, offset: 0xED1, size: 0x8, addend: 0x0, symName: _error_and_exit, symObjAddr: 0x0, symBinAddr: 0x100001E00, symSize: 0x34 }
+  - { offsetInCU: 0x1F7, offset: 0x10A2, size: 0x8, addend: 0x0, symName: _error_and_exit, symObjAddr: 0x0, symBinAddr: 0x100001E00, symSize: 0x34 }
+  - { offsetInCU: 0x21B, offset: 0x10C6, size: 0x8, addend: 0x0, symName: _init_env, symObjAddr: 0x34, symBinAddr: 0x100001E34, symSize: 0x54 }
 ...
