@@ -6,7 +6,7 @@
 /*   By: mariannazhukova <mariannazhukova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/07 14:53:24 by mariannazhu      ###   ########.fr       */
+/*   Updated: 2024/10/07 15:14:57 by mariannazhu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,13 @@ void explore_borders(char **map_copy, t_data *data, int x)
 				error_and_exit("Incorrect walls!");
 			if (map_copy[y][x + 1] == '1')
 				x++;
-			else if (map_copy[y + 1][x] == '1')
+			else if (map_copy[y + 1][x] && map_copy[y + 1][x] == '1')
 				y++;
-			else if (map_copy[y][x - 1] == '1')
+			else if (x > 0 && map_copy[y][x - 1] == '1')
 				x--;
+			else 
+				break ;
+
 		}
 	}
 	//up
@@ -82,20 +85,32 @@ void explore_borders(char **map_copy, t_data *data, int x)
 	{
 		if (!is_valid_x(map_copy, x, y))
 				error_and_exit("Incorrect walls!");
-		if (map_copy[y + 1][x] == '1')
+		if (y + 1 < data->map_lines && map_copy[y + 1][x] == '1')
 				y++;
-		else if (map_copy[y - 1][x] == '1')
+		else if (y > 0 && map_copy[y - 1][x] == '1')
 				y--;
-		else if (map_copy[y][x - 1] == '1')
+		else if (x > 0 && map_copy[y][x - 1] == '1')
 				x--;
 		else if (map_copy[y][x + 1] == '1')
 				x++;
+		else
+			break ;
 	}
 	
 }
 int is_valid_x(char **map_copy, int x, int y)
 {
-	return ((map_copy[y - 1][x] && map_copy[y - 1][x] != '1') && (map_copy[y][x + 1] && map_copy[y][x + 1] != '1') && (map_copy[y][x - 1] && map_copy[y][x - 1] != '1'));
+	// return ((y > 0 && map_copy[y - 1][x] && map_copy[y - 1][x] != '1') &&
+	// 		(map_copy[y][x + 1] && map_copy[y][x + 1] != '1') &&
+	// 		(x > 0 && map_copy[y][x - 1] && map_copy[y][x - 1] != '1'));
+	if ((y > 0 && map_copy[y - 1][x] && map_copy[y - 1][x] != '1') &&
+			(map_copy[y][x + 1] && map_copy[y][x + 1] != '1') &&
+			(x > 0 && map_copy[y][x - 1] && map_copy[y][x - 1] != '1'))
+			{
+				return (0);
+			}
+	printf("Cur line: %s\n", map_copy[y]);
+	return (1);
 }
 
 void check_parsed_data(t_env *env, t_map *map)
