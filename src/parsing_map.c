@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 13:32:05 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:55:06 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void save_map_copy(t_data *data, t_map **map)
 		i++;
 	}
 	data->map_copy[++i] = NULL;
+	data->map_lines = i;
 }
 
 void	save_map_lines(t_map *map, t_data *data)

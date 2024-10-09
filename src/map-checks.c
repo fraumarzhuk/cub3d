@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 13:42:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:51:25 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void check_first_last_line(char *map_line)
 	int x;
 
 	x = 0;
-	while (map_line[x])
+	while (map_line && map_line[x])
 	{
 		if (!is_wall_or_space(map_line[x]))
 			error_and_exit("Incorrect wall!");

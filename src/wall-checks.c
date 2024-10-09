@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 13:10:49 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:52:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void check_walls(char **map_copy, t_data *data)
 	y = 1;
 	check_first_last_line(map_copy[0]);
 	check_first_last_line(map_copy[data->map_lines - 1]);
-	while (y < data->map_lines - 1)
+	while (y < data->map_lines - 1 && map_copy[y])
 	{
 		trimmed_line = trim_spaces(map_copy[y]);
 		skip_h_gap(trimmed_line, y);
