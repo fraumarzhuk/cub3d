@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 17:24:16 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:32:05 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void save_map_end(t_map *map)
 	temp = map;
 	while (temp && temp->next && temp->line && temp->next->line)
 		temp = temp->next;
-	while (temp && temp->prev && !is_map_line(temp->line))
+	while (temp && temp->line && temp->prev && !is_map_line(temp->line))
 		temp = temp->prev;
 	if (is_map_line(temp->line))
 		temp->last_line = true;
@@ -83,10 +83,10 @@ void save_map_copy(t_data *data, t_map **map)
 	temp = *map;
 	while (temp && temp->line)
 	{
+		printf("Current line: %s\n", temp->line);
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
 		data->map_copy[i] = ft_strdup(temp->line);
-		//printf("Current line: %s\n", data->map_copy[i]);
 		if (temp->last_line)
 			break;
 		temp = temp->next;

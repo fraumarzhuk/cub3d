@@ -15,6 +15,7 @@ endif
 SRCS =	src/main.c \
 		src/parsing_file.c \
 		src/parsing_map.c \
+		src/wall-checks.c \
 		src/map-checks.c \
 		src/utils.c
 

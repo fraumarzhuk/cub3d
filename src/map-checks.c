@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 12:36:03 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:42:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void map_checks(char **map_copy, t_data *data) //pass data->map_copy
 		i++;
 	}
 	check_walls(map_copy, data);
+	check_rgb(data);
 }
 
 int invalid_char_check(char *line)
@@ -38,84 +39,15 @@ int invalid_char_check(char *line)
 	while (line[i])
 	{
 		if (!is_space(line[i]) && line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != '0' && line[i] != '1')
+		{
+			//printf("char: %c\n", line[i]);
 			error_and_exit("Incorrect characters inside map!");
+		}
 		i++;
 	}
 	return (1);
 }
 
-
-void check_walls(char **map_copy, t_data *data)
-{
-	int		y;
-	char	*trimmed_line;
-
-	y = 1;
-	check_first_last_line(map_copy[0]);
-	check_first_last_line(map_copy[data->map_lines - 1]);
-	while (y < data->map_lines - 1)
-	{
-		trimmed_line = trim_spaces(map_copy[y]);
-		skip_h_gap(trimmed_line, y);
-		y++;
-	}
-	scan_vertically(map_copy, data);
-}
-
-void scan_vertically(char **map_copy, t_data *data)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < data->map_lines)
-	{
-		x = 1;
-		while (map_copy[y][x])
-		{
-			if (is_space(map_copy[y][x]))
-			{
-				if (y == 0 && !is_wall_or_space(map_copy[y + 1][x]))
-					error_and_exit("Incorrect_wall!");
-				else if ((y > 0 && !is_wall_or_space(map_copy[y - 1][x])) || 
-						 (y + 1 < data->map_lines && !is_wall_or_space(map_copy[y + 1][x])))
-				{
-					printf("vertical. x: %d, y: %d\n", x, y);
-					error_and_exit("Incorrect_wall!");
-				}
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-
-
-
-void skip_h_gap(char *map_line, int y)
-{
-	int x;
-
-	x = 1;
-	while (x < (int)ft_strlen(map_line) - 1)
-	{
-		if (is_space(map_line[x]))
-		{
-			if ((!is_wall_or_space(map_line[x - 1]) || !is_wall_or_space(map_line[x + 1])))
-			{
-				printf("horizontal. x: %d, y: %d\n", x, y);
-				error_and_exit("Incorrect_wall!");
-			}
-		}
-		x++;
-	}
-}
-
-int	is_wall_or_space(char c)
-{
-	return (c == '1' || is_space(c));
-}
 
 void check_first_last_line(char *map_line)
 {
@@ -129,41 +61,14 @@ void check_first_last_line(char *map_line)
 		x++;
 	}
 }
-void check_parsed_data(t_env *env, t_map *map)
+void check_rgb(t_data *data)
 {
-	printf("PARSED MAP FROM LINKED LIST:\n\n");
-	t_map *temp;
-	temp = map;
-	while (temp)
-	{
-		printf("%s\n", temp->line);
-		temp = temp->next;
-	}
-	printf("**************************\n");
-	printf("PARSED MAP FROM 2D array:\n\n");
-	int i = 0;
-	while (env->data->map_copy[i])
-	{
-		printf("%s\n", env->data->map_copy[i]);
-		i++;
-	}
-	printf("**************************\n");
-	printf("PARSED TEXTURES:\n\n");
-	printf("NO: %s\n", env->data->north);
-	printf("SO: %s\n", env->data->south);
-	printf("WE: %s\n", env->data->east);
-	printf("EA: %s\n", env->data->west);
-	if (env->data->pic_ceiling && env->data->pic_floor)
-	{
-		printf("WE: %s\n", env->data->pic_ceiling);
-		printf("EA: %s\n", env->data->pic_floor);
-	}
-	printf("**************************\n");
-	if (env->data->ceiling && env->data->floor)
-	{		
-		printf("RGB TEXTURES (F and C):\n\n");
-		printf("floor rgb: %d, %d, %d\n", env->data->floor->r, env->data->floor->g, env->data->floor->b);
-		printf("ceiling rgb: %d, %d, %d\n", env->data->ceiling->r, env->data->ceiling->g, env->data->ceiling->b);
-	}
-	printf("map_lines: %d\n", env->data->map_lines);
+	if ((data->ceiling->r < 0 || data->ceiling->g < 0 || data->ceiling->b < 0 || data->ceiling->r > 255 || data->ceiling->g > 255 || data->ceiling->b > 255) && !data->pic_ceiling)
+		error_and_exit("No correct data for ceiling provided.");
+	if ((data->floor->r < 0 || data->floor->g < 0 || data->floor->b < 0 || data->floor->r > 255 || data->floor->g > 255 || data->floor->b > 255) && !data->pic_floor)
+		error_and_exit("No correct data for floor provided.");
+	if (data->ceiling->r > 255 || data->ceiling->g > 255 || data->ceiling->b > 255)
+		error_and_exit("Incorrect RGB colors for ceiling.");
+	if (data->floor->r > 255 || data->floor->g > 255 || data->floor->b > 255)
+		error_and_exit("Incorrect RGB colors for floor.");
 }
