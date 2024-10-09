@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 11:45:43 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:36:03 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ void check_walls(char **map_copy, t_data *data)
 	char	*trimmed_line;
 
 	y = 1;
-	while (y < data->map_lines)
+	check_first_last_line(map_copy[0]);
+	check_first_last_line(map_copy[data->map_lines - 1]);
+	while (y < data->map_lines - 1)
 	{
 		trimmed_line = trim_spaces(map_copy[y]);
 		skip_h_gap(trimmed_line, y);
@@ -64,17 +66,19 @@ void scan_vertically(char **map_copy, t_data *data)
 {
 	int	y;
 	int	x;
-	
-	x = 1;
-	y = 1;
-	while (y < data->map_lines -1)
+
+	y = 0;
+	while (y < data->map_lines)
 	{
 		x = 1;
 		while (map_copy[y][x])
 		{
 			if (is_space(map_copy[y][x]))
 			{
-				if ((!is_wall_or_space(map_copy[y - 1][x]) || !is_wall_or_space(map_copy[y + 1][x])))
+				if (y == 0 && !is_wall_or_space(map_copy[y + 1][x]))
+					error_and_exit("Incorrect_wall!");
+				else if ((y > 0 && !is_wall_or_space(map_copy[y - 1][x])) || 
+						 (y + 1 < data->map_lines && !is_wall_or_space(map_copy[y + 1][x])))
 				{
 					printf("vertical. x: %d, y: %d\n", x, y);
 					error_and_exit("Incorrect_wall!");
@@ -85,6 +89,9 @@ void scan_vertically(char **map_copy, t_data *data)
 		y++;
 	}
 }
+
+
+
 
 void skip_h_gap(char *map_line, int y)
 {
@@ -110,6 +117,18 @@ int	is_wall_or_space(char c)
 	return (c == '1' || is_space(c));
 }
 
+void check_first_last_line(char *map_line)
+{
+	int x;
+
+	x = 0;
+	while (map_line[x])
+	{
+		if (!is_wall_or_space(map_line[x]))
+			error_and_exit("Incorrect wall!");
+		x++;
+	}
+}
 void check_parsed_data(t_env *env, t_map *map)
 {
 	printf("PARSED MAP FROM LINKED LIST:\n\n");
