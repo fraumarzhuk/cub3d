@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:04:04 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/25 10:04:06 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:12:06 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,4 @@ bool	ft_alloc_init(void)
 		return (false);
 	ft_allocs(lst);
 	return (true);
-}
+} 

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 13:55:06 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:42:00 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void save_map_copy(t_data *data, t_map **map)
 	t_map	*temp;
 	
 	i = 0;
-	data->map_copy = (char **)ft_calloc(((sizeof(char *) * (data->map_lines) + 1)), 1);
+	data->map_copy = (char **)ft_calloc(data->true_lines + 1, sizeof(char *));
 	if (!data->map_copy)
 		error_and_exit("Malloc failed.");
 	while (*map && (*map)->line && !is_map_line((*map)->line))
@@ -83,7 +83,7 @@ void save_map_copy(t_data *data, t_map **map)
 	temp = *map;
 	while (temp && temp->line)
 	{
-		printf("Current line: %s\n", temp->line);
+		//printf("Current line: %s\n", temp->line);
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
 		data->map_copy[i] = ft_strdup(temp->line);
@@ -93,7 +93,7 @@ void save_map_copy(t_data *data, t_map **map)
 		i++;
 	}
 	data->map_copy[++i] = NULL;
-	data->map_lines = i;
+	data->map_lines = data->true_lines;
 }
 
 void	save_map_lines(t_map *map, t_data *data)
@@ -105,7 +105,10 @@ void	save_map_lines(t_map *map, t_data *data)
 	{
 		data->map_lines++;
 		if (is_map_line(temp->line))
+		{
 			temp->is_map = true;
+			data->true_lines++;
+		}
 		temp = temp->next;
 	}
 }

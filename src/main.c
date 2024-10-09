@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:13:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 14:41:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:43:54 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main(int argc, char **argv)
 {
 	t_env *env;
 
+	ft_alloc_init();
 	env = (t_env *)ft_malloc(sizeof(t_env));
 	init_env(env);
 	if (argc != 2)
@@ -24,5 +25,6 @@ int main(int argc, char **argv)
 	{
 		file_validation(argv[1], env);
 	}
+	ft_destructor();
 	return (0);
 }

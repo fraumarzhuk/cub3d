@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 13:19:17 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:33:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_data
 	char 	**map_copy;
 	int		line_count;
 	int		map_lines;
+	int		true_lines;
 	char 	*north;
 	char 	*south;
 	char 	*west;

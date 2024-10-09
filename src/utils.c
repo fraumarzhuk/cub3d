@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 13:11:40 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:39:50 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,17 @@ void	error_and_exit(char *str)
 void	init_env(t_env *env)
 {
 	env->data = (t_data *)ft_malloc(sizeof(t_data));
+	env->data->ceiling = (t_rgb *)ft_malloc(sizeof(t_rgb));
+	env->data->floor = (t_rgb *)ft_malloc(sizeof(t_rgb));
 	env->img = (t_img *)ft_malloc(sizeof(t_img));
 	env->player = (t_player *)ft_malloc(sizeof(t_player));
+	env->data->true_lines = 0;
+	env->data->map_lines = 0;
+	env->data->ceiling = NULL;
+	env->data->pic_ceiling = NULL;
+	env->data->pic_floor = NULL;
+	env->data->floor = NULL;
+	//env->data->map_copy = NULL;
 }
 
 void check_parsed_data(t_env *env, t_map *map)
@@ -62,5 +71,5 @@ void check_parsed_data(t_env *env, t_map *map)
 		printf("floor rgb: %d, %d, %d\n", env->data->floor->r, env->data->floor->g, env->data->floor->b);
 		printf("ceiling rgb: %d, %d, %d\n", env->data->ceiling->r, env->data->ceiling->g, env->data->ceiling->b);
 	}
-	printf("map_lines: %d\n", env->data->map_lines);
+	printf("map_lines: %d\n", env->data->true_lines);
 }
