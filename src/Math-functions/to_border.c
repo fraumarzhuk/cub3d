@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_wall.c                                          :+:      :+:    :+:   */
+/*   to_border.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:29 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/09/28 03:17:29 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/10/09 02:20:34 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include "xMath.h"
 
-void	set_d(float hor_rad, float ver_rad, float *d[3])
+void	set_d(double hor_rad, double ver_rad, double d[3])
 {
-	*d[0] = cos(ver_rad) * cos(hor_rad);
-	*d[1] = sin(ver_rad);
-	*d[2] = cos(ver_rad) * sin(hor_rad);
+	d[0] = cos(ver_rad) * cos(hor_rad);
+	d[1] = sin(ver_rad);
+	d[2] = cos(ver_rad) * sin(hor_rad);
 }
 
-void	set_dist(float pos, float d, float *dist)
+void	set_dist(double pos, double d, double *dist)
 {
 	if (d > 0)
 		*dist = ceil(pos) - pos;
@@ -29,29 +29,29 @@ void	set_dist(float pos, float d, float *dist)
 		*dist = INFINITY;
 }
 
-float	distance_to_wall(float *pos, float dir[2])
+double	distance_to_border(double *pos, double dir[2])
 {
-	float	hor_rad;
-	float	ver_rad;
-	float	d[3];
-	float	dist[3];
-	float	dist_to_wall;
+	double	hor_rad;
+	double	ver_rad;
+	double	d[3];
+	double	dist[3];
+	double	dist_to_border;
 
 	hor_rad = degrees_to_radians(dir[0]);
 	ver_rad = degrees_to_radians(dir[1]);
-	set_d(hor_rad, ver_rad, &d);
-	setdist(pos[0], d[0], &(dist[0]));
-	setdist(pos[1], d[1], &(dist[1]));
-	setdist(pos[2], d[2], &(dist[2]));
-	dist_to_wall = fmin(dist[0] / fabs(d[0]), fmin(dist[1] / fabs(d[1]), dist[2]
-			/ fabs(d[2])));
-	return (dist_to_wall);
+	set_d(hor_rad, ver_rad, d);
+	set_dist(pos[0], d[0], &(dist[0]));
+	set_dist(pos[1], d[1], &(dist[1]));
+	set_dist(pos[2], d[2], &(dist[2]));
+	dist_to_border = fmin(dist[0] / fabs(d[0]), fmin(dist[1] / fabs(d[1]),
+			dist[2] / fabs(d[2])));
+	return (dist_to_border);
 }
 
-void	to_wall(float *pos, float dir[2], float *new_pos)
+void	to_border(double *pos, double dir[2], double *new_pos)
 {
-	float	dist;
+	double	dist;
 
-	dist = distance_to_wall(pos, dir);
+	dist = distance_to_border(pos, dir);
 	get_new_pos3(pos, dir, dist, new_pos);
 }
