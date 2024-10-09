@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 11:38:16 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:45:43 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void scan_vertically(char **map_copy, t_data *data)
 		{
 			if (is_space(map_copy[y][x]))
 			{
-				if ((!is_space(map_copy[y - 1][x]) || map_copy[y - 1][x] != '1') && 
-					(!is_space(map_copy[y + 1][x]) || map_copy[y + 1][x] != '1'))
+				if ((!is_wall_or_space(map_copy[y - 1][x]) || !is_wall_or_space(map_copy[y + 1][x])))
 				{
 					printf("vertical. x: %d, y: %d\n", x, y);
 					error_and_exit("Incorrect_wall!");
@@ -89,21 +88,26 @@ void scan_vertically(char **map_copy, t_data *data)
 
 void skip_h_gap(char *map_line, int y)
 {
-	int	x;
+	int x;
 
 	x = 1;
-	while (map_line[x] && (x < (int)ft_strlen(map_line)))
+	while (x < (int)ft_strlen(map_line) - 1)
 	{
-		if(is_space(map_line[x]))
+		if (is_space(map_line[x]))
 		{
-			if ((!is_space(map_line[x - 1]) || map_line[x - 1] != '1') && (!is_space(map_line[x + 1]) || map_line[x + 1] != '1'))
+			if ((!is_wall_or_space(map_line[x - 1]) || !is_wall_or_space(map_line[x + 1])))
 			{
 				printf("horizontal. x: %d, y: %d\n", x, y);
 				error_and_exit("Incorrect_wall!");
 			}
-		}	
+		}
 		x++;
 	}
+}
+
+int	is_wall_or_space(char c)
+{
+	return (c == '1' || is_space(c));
 }
 
 void check_parsed_data(t_env *env, t_map *map)
