@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map-checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariannazhukova <mariannazhukova@studen    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/07 17:27:58 by mariannazhu      ###   ########.fr       */
+/*   Updated: 2024/10/09 11:38:16 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,71 +44,67 @@ int invalid_char_check(char *line)
 	return (1);
 }
 
+
 void check_walls(char **map_copy, t_data *data)
 {
-	int		x;
+	int		y;
+	char	*trimmed_line;
 
-	x = 0;
-	while (is_space(map_copy[0][x]))
-		x++;
-	explore_borders(map_copy, data, x); // save x first point, where the loop stops	
-}
-
-void explore_borders(char **map_copy, t_data *data, int x)
-{
-
-	int y;
-
-	y = 0;
-	//down
-	while (map_copy[y] && map_copy[y][x])
+	y = 1;
+	while (y < data->map_lines)
 	{
-		// printf("curr line: %s,   || y = %d || x = %d\n", map_copy[y], y, x);
-		if (map_copy[y][x + 1] == '1')
-			x++;
-		else if (map_copy[y + 1][x] && map_copy[y + 1][x] == '1')
-			y++;
-		else if (x > 0 && map_copy[y][x - 1] == '1')
-			x--;
-		if (!is_valid_x(map_copy, x, y))
-			error_and_exit("Incorrect wall borders!");
+		trimmed_line = trim_spaces(map_copy[y]);
+		skip_h_gap(trimmed_line, y);
 		y++;
-
 	}
-	//up
-	y = data->map_lines - 1;
-	x = ft_strlen(map_copy[y]) - 1;
-	printf("loop2\n");
-	while (map_copy[y] && map_copy[y][x])
-	{
-		printf("curr line: %s,   || y = %d || x = %d\n", map_copy[y], y, x);
-		// if (y + 1 < data->map_lines && map_copy[y + 1][x] == '1')
-		// 		y++;
-		if (map_copy[y][x + 1] == '1')
-				x++;
-		if (y > 0 && map_copy[y - 1][x] == '1')
-				y--;
-		else if (x > 0 && map_copy[y][x - 1] == '1')
-				x--;
-		if (!is_valid_x(map_copy, x, y))
-			error_and_exit("Incorrect wall borders!");
-		y--;
-	}
-	
+	scan_vertically(map_copy, data);
 }
 
-int is_valid_x(char **map_copy, int x, int y)
+void scan_vertically(char **map_copy, t_data *data)
 {
-	printf("position of imposter: x: %d y: %d. Imposter itself: %c\n", x, y, map_copy[y][x]);
-	if ((y > 0 && (is_space(map_copy[y - 1][x]) || map_copy[y - 1][x] == '0')) &&
-        (map_copy[y][x + 1] && (is_space(map_copy[y][x + 1]) || map_copy[y][x + 1] == '0')) &&
-        (x > 0 && (is_space(map_copy[y][x - 1]) || map_copy[y][x - 1] == '0')))
+	int	y;
+	int	x;
+	
+	x = 1;
+	y = 1;
+	while (y < data->map_lines -1)
 	{
-		return 0;
+		x = 1;
+		while (map_copy[y][x])
+		{
+			if (is_space(map_copy[y][x]))
+			{
+				if ((!is_space(map_copy[y - 1][x]) || map_copy[y - 1][x] != '1') && 
+					(!is_space(map_copy[y + 1][x]) || map_copy[y + 1][x] != '1'))
+				{
+					printf("vertical. x: %d, y: %d\n", x, y);
+					error_and_exit("Incorrect_wall!");
+				}
+			}
+			x++;
+		}
+		y++;
 	}
-	return 1;
 }
 
+void skip_h_gap(char *map_line, int y)
+{
+	int	x;
+
+	x = 1;
+	while (map_line[x] && (x < (int)ft_strlen(map_line)))
+	{
+		if(is_space(map_line[x]))
+		{
+			if ((!is_space(map_line[x - 1]) || map_line[x - 1] != '1') && (!is_space(map_line[x + 1]) || map_line[x + 1] != '1'))
+			{
+				printf("horizontal. x: %d, y: %d\n", x, y);
+				error_and_exit("Incorrect_wall!");
+			}
+		}	
+		x++;
+	}
+}
 
 void check_parsed_data(t_env *env, t_map *map)
 {
