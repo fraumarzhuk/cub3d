@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 UNAME_S := $(shell uname -s)
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 MINILIBX_TGZ_NAME = MiniLibX.tgz
 ifeq ($(UNAME_S), Linux)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26192/minilibx-linux.tgz

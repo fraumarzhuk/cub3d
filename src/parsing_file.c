@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/02 17:11:44 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:01:10 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,35 @@ int	parse_line(t_map **map, t_data *data)
 
 void	save_textures(t_map *map, t_data *data)
 {	
+	int map_detected;
+	
+	map_detected = 0;
 	while (map && map->line)
 	{
 		if (is_map_line(map->line))
 			break ;
 		map->line = trim_spaces(map->line);
-		//printf("cur_line: %s\n", map->line);
-		if (!(ft_strncmp(map->line, "NO", 2)))
-			data->north = get_texture(map->line, "NO");
-		else if (!(ft_strncmp(map->line, "SO", 2)))
-			data->south = get_texture(map->line, "SO");
-		else if (!(ft_strncmp(map->line, "WE", 2)))
-			data->west = get_texture(map->line, "WE");
-		else if (!(ft_strncmp(map->line, "EA", 2)))
-			data->east = get_texture(map->line, "EA");
-		else if (map->line[0] == 'F' || map->line[0] == 'C')
-				save_floor_and_ceiling(map->line, data);
+		choose_texture(map->line, data, map_detected);
 		map = map->next;
 	}
 	save_map_lines(map, data);
+	map_detected = 1;
+}
+void choose_texture(char *map_line, t_data *data, int map_detected)
+{
+	
+		if (map_detected == 1)
+			error_and_exit("Map_first!");
+		if (!(ft_strncmp(map_line, "NO", 2)))
+			data->north = get_texture(map_line, "NO");
+		else if (!(ft_strncmp(map_line, "SO", 2)))
+			data->south = get_texture(map_line, "SO");
+		else if (!(ft_strncmp(map_line, "WE", 2)))
+			data->west = get_texture(map_line, "WE");
+		else if (!(ft_strncmp(map_line, "EA", 2)))
+			data->east = get_texture(map_line, "EA");
+		else if (map_line[0] == 'F' || map_line[0] == 'C')
+				save_floor_and_ceiling(map_line, data);
 }
 
 char	*get_texture(char *line, char *p_name)
