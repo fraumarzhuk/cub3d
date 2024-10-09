@@ -6,7 +6,7 @@
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:23 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/09/28 03:17:23 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/10/09 02:21:08 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@
 # endif
 
 /*3D. Calculates the distance between two points*/
-float	get_distance3(float *pos1, float *pos2);
+double	get_distance3(double *pos1, double *pos2);
 
 /*2D. Calculates the distance between two points*/
-float	get_distance2(float *pos1, float *pos2);
+double	get_distance2(double *pos1, double *pos2);
 
 /*3D. calculates the new position for a specific distance and direction*/
-void	get_new_pos3(float *pos, float dir[2], float dist, float *new_pos);
+void	get_new_pos3(double *pos, double dir[2], double dist, double *new_pos);
 
 /*2D. calculates the new position for a specific distance and direction*/
-void	get_new_pos2(float *pos, float dir[2], float dist, float *new_pos);
+void	get_new_pos2(double *pos, double dir[2], double dist, double *new_pos);
 
 /*3D. Calculates the distance to the next wall.
 A wall is a plane where either x, y or z is a whole number*/
-float	distance_to_wall(float *pos, float dir[2]);
+double	distance_to_border(double *pos, double dir[2]);
 
 /*3D. Calculates the next pos touching a wall.
 A wall is a plane where either x, y or z is a whole number*/
-void	to_wall(float *pos, float dir[2], float *new_pos);
+void	to_border(double *pos, double dir[2], double *new_pos);
 
 /*Converts a degree value into a radian*/
-float	degrees_to_radians(float degrees);
+double	degrees_to_radians(double degrees);
 #endif

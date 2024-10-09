@@ -6,7 +6,7 @@
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:37 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/09/28 03:17:37 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/10/07 02:24:46 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 // calculates the distance between two points in 3D or 2D
 
-// float* = [float x (L R), float y (height), float z (U D)]
-float	get_distance3(float *pos1, float *pos2)
+// double* = [double x (L R), double y (height), double z (U D)]
+double	get_distance3(double *pos1, double *pos2)
 {
-	float	dx;
-	float	dy;
-	float	dz;
-	float	distance;
+	double	dx;
+	double	dy;
+	double	dz;
+	double	distance;
 
 	dx = pos2[0] - pos1[0];
 	dy = pos2[1] - pos1[1];
-	dz = pos2[2] - pos2[2];
+	dz = pos2[2] - pos1[2];
 	distance = sqrt(dx * dx + dy * dy + dz * dz);
 	return (distance);
 }
 
-// float * = [float x (L R), float y (U D)]
-float	get_distance2(float *pos1, float *pos2)
+// double * = [double x (L R), double y (U D)]
+double	get_distance2(double *pos1, double *pos2)
 {
-	float	dx;
-	float	dy;
-	float	distance;
+	double	dx;
+	double	dy;
+	double	distance;
 
 	dx = pos1[0] - pos2[0];
 	dy = pos1[1] - pos2[1];

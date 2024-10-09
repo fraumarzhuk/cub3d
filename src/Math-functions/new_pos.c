@@ -6,7 +6,7 @@
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:34 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/09/28 03:17:34 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/10/07 00:25:05 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 // calculates the new position for a
 // specific distance and direction for 2D and 3D
 
-// float * = [float x (L R), float y (height), float z (U D)]
-void	get_new_pos3(float *pos, float dir[2], float dist, float *new_pos)
+// double * = [double x (L R), double y (height), double z (U D)]
+void	get_new_pos3(double *pos, double dir[2], double dist, double *new_pos)
 {
-	float	hor_rad;
-	float	ver_rad;
-	float	dx;
-	float	dy;
-	float	dz;
+	double	hor_rad;
+	double	ver_rad;
+	double	dx;
+	double	dy;
+	double	dz;
 
 	hor_rad = degrees_to_radians(dir[0]);
 	ver_rad = degrees_to_radians(dir[1]);
@@ -34,12 +34,12 @@ void	get_new_pos3(float *pos, float dir[2], float dist, float *new_pos)
 	new_pos[2] = pos[2] + dz;
 }
 
-// float * = [float x (L R), float y (U D)]
-void	get_new_pos2(float *pos, float dir[2], float dist, float *new_pos)
+// double * = [double x (L R), double y (U D)]
+void	get_new_pos2(double *pos, double dir[2], double dist, double *new_pos)
 {
-	float	hor_rad;
-	float	dx;
-	float	dy;
+	double	hor_rad;
+	double	dx;
+	double	dy;
 
 	hor_rad = degrees_to_radians(dir[0]);
 	dx = dist * cos(hor_rad);
