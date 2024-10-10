@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 14:42:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:04:37 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	map_init(t_env *env)
 	save_textures(map, env->data);
 	save_map_end(map);
 	save_map_copy(env->data, &map);
-	map_checks(env->data->map_copy, env->data);
+	map_checks(env->data->map_copy, env);
 	check_parsed_data(env, map);
 	return (1);
 }

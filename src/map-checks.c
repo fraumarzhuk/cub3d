@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 14:13:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:10:15 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,38 @@
 //is last(inside map_checks()
 //check walls
 
-void map_checks(char **map_copy, t_data *data) //pass data->map_copy
+void map_checks(char **map_copy, t_env *env) //pass data->map_copy
 {
 	int	i;
 
 	i = 0;
-	(void) data;
 	while (map_copy[i])
 	{
-		invalid_char_check(map_copy[i]);
+		invalid_char_check(map_copy[i], env->player);
 		i++;
 	}
-	check_walls(map_copy, data);
-	check_rgb(data);
+	check_walls(map_copy, env->data);
+	check_rgb(env->data);
+	if (!env->player->orientation)
+		error_and_exit("No player found.");
 }
 
-int invalid_char_check(char *line)
+int invalid_char_check(char *line, t_player *player)
 {
 	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (!is_space(line[i]) && line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != '0' && line[i] != '1')
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 		{
-			//printf("char: %c\n", line[i]);
-			error_and_exit("Incorrect characters inside map!");
+			if (!player->orientation)
+				player->orientation = line[i];
+			else
+				error_and_exit("Too many players.");
 		}
+		if (!is_space(line[i]) && line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W' && line[i] != '0' && line[i] != '1')
+			error_and_exit("Incorrect characters inside map!");
 		i++;
 	}
 	return (1);

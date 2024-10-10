@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 14:33:04 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:04:18 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void	init_env(t_env *env)
 	env->data->south = NULL;
 	env->data->west = NULL;
 	env->data->east = NULL;
+	env->player->position = NULL;
+	env->player->orientation = 0;
+	env->player->sprite = NULL;
 	//env->data->map_copy = NULL;
 }
 

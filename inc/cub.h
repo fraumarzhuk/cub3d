@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 15:55:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:05:16 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	save_map_end(t_map *map);
 void	save_map_lines(t_map *map, t_data *data);
 
 //map-checks
-void	map_checks(char **map_copy, t_data *data);
-int		invalid_char_check(char *line);
+void	map_checks(char **map_copy, t_env *env);
+int		invalid_char_check(char *line, t_player *player);
 void	check_parsed_data(t_env *env, t_map *map);
 void	check_rgb(t_data *data);
 

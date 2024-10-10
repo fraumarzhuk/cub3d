@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 14:34:53 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:22:08 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,15 @@ char	*get_texture(char *line, char *p_name)
 {
 	char	*texture;
 	
-	texture = ft_strtrim(line, p_name);
+	texture = line;
+	if (ft_strlen(p_name) == 2)
+		texture+=2;
+	else
+		texture++;
 	if (!is_space(texture[0]))
 		error_and_exit("Incorrect texture format");
 	texture = trim_spaces(texture);
-	//printf("texture %s: %s\n", p_name, texture);
+	printf("texture %s: %s\n", p_name, texture);
 	if (!texture)
 		error_and_exit("Incorrect map!");
 	return (texture);
