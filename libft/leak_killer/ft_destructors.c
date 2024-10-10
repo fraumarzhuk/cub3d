@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:21:19 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/09/25 10:03:42 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:41:26 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_free(void *ptr)
 	t_allocs	*lst;
 	t_allocs	*tmp;
 
-	if(ptr == NULL)
+	if (ptr == NULL)
 		return ;
 	lst = ft_allocs(NULL);
 	tmp = NULL;

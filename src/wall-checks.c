@@ -6,14 +6,13 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 13:52:58 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:43:39 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-
-void check_walls(char **map_copy, t_data *data)
+void	check_walls(char **map_copy, t_data *data)
 {
 	int		y;
 	char	*trimmed_line;
@@ -24,13 +23,13 @@ void check_walls(char **map_copy, t_data *data)
 	while (y < data->map_lines - 1 && map_copy[y])
 	{
 		trimmed_line = trim_spaces(map_copy[y]);
-		skip_h_gap(trimmed_line, y);
+		skip_h_gap(trimmed_line);
 		y++;
 	}
 	scan_vertically(map_copy, data);
 }
 
-void scan_vertically(char **map_copy, t_data *data)
+void	scan_vertically(char **map_copy, t_data *data)
 {
 	int	y;
 	int	x;
@@ -45,8 +44,9 @@ void scan_vertically(char **map_copy, t_data *data)
 			{
 				if (y == 0 && !is_wall_or_space(map_copy[y + 1][x]))
 					error_and_exit("Incorrect_wall!");
-				else if ((y > 0 && !is_wall_or_space(map_copy[y - 1][x])) || 
-						 (y + 1 < data->map_lines && !is_wall_or_space(map_copy[y + 1][x])))
+				else if ((y > 0 && !is_wall_or_space(map_copy[y - 1][x]))
+						|| (y + 1 < data->map_lines
+						&& !is_wall_or_space(map_copy[y + 1][x])))
 				{
 					printf("vertical. x: %d, y: %d\n", x, y);
 					error_and_exit("Incorrect_wall!");
@@ -58,20 +58,18 @@ void scan_vertically(char **map_copy, t_data *data)
 	}
 }
 
-void skip_h_gap(char *map_line, int y)
+void	skip_h_gap(char *map_line)
 {
-	int x;
+	int	x;
 
 	x = 1;
 	while (x < (int)ft_strlen(map_line) - 1)
 	{
 		if (is_space(map_line[x]))
 		{
-			if ((!is_wall_or_space(map_line[x - 1]) || !is_wall_or_space(map_line[x + 1])))
-			{
-				printf("horizontal. x: %d, y: %d\n", x, y);
+			if ((!is_wall_or_space(map_line[x - 1])
+					|| !is_wall_or_space(map_line[x + 1])))
 				error_and_exit("Incorrect_wall!");
-			}
 		}
 		x++;
 	}

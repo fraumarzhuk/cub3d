@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 22:58:37 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/10/02 10:04:47 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:40:07 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ftt_strjoin(char const *s1, char const *s2);
 char	*ftt_strrchr(const char *s, int c);
 size_t	ftt_strlen(const char *s);
 char	*ftt_strdup(const char *s1);
-void    *ftt_calloc(int count, int size);
+void	*ftt_calloc(int count, int size);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/09 14:42:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:44:51 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	map_init(t_env *env)
 {
 	t_map	*map;
-	
+
 	env->data->line_count = 0;
 	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
@@ -30,15 +30,15 @@ int	map_init(t_env *env)
 	save_textures(map, env->data);
 	save_map_end(map);
 	save_map_copy(env->data, &map);
-	map_checks(env->data->map_copy, env->data);
-	check_parsed_data(env, map);
+	map_checks(env->data->map_copy, env);
+	//check_parsed_data(env, map);
 	return (1);
 }
 
-void save_map_end(t_map *map)
+void	save_map_end(t_map *map)
 {
 	t_map	*temp;
-	
+
 	temp = map;
 	while (temp && temp->next && temp->line && temp->next->line)
 		temp = temp->next;
@@ -48,32 +48,29 @@ void save_map_end(t_map *map)
 		temp->last_line = true;
 }
 
-
-int is_map_line(char *line)
+int	is_map_line(char *line)
 {
 	char	*trimmed_line;
 	int		len;
 	bool	start;
 	bool	end;
-	
+
 	start = false;
 	end = false;
-	//CHANGE TO THIS AFTER FIXINMG AND CHECK:
 	trimmed_line = trim_spaces(line);
-	// trimmed_line = ft_strtrim(line, " ");
 	if (trimmed_line[0] == '1')
-			start = true;
+		start = true;
 	len = ft_strlen(trimmed_line);
 	if (trimmed_line[len - 1] == '1')
-			end = true;
+		end = true;
 	return (start && end);
 }
 
-void save_map_copy(t_data *data, t_map **map)
+void	save_map_copy(t_data *data, t_map **map)
 {
 	int		i;
 	t_map	*temp;
-	
+
 	i = 0;
 	data->map_copy = (char **)ft_calloc(data->true_lines + 1, sizeof(char *));
 	if (!data->map_copy)
@@ -83,12 +80,11 @@ void save_map_copy(t_data *data, t_map **map)
 	temp = *map;
 	while (temp && temp->line)
 	{
-		//printf("Current line: %s\n", temp->line);
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
 		data->map_copy[i] = ft_strdup(temp->line);
 		if (temp->last_line)
-			break;
+			break ;
 		temp = temp->next;
 		i++;
 	}
@@ -98,7 +94,7 @@ void save_map_copy(t_data *data, t_map **map)
 
 void	save_map_lines(t_map *map, t_data *data)
 {
-	t_map *temp;
+	t_map	*temp;
 
 	temp = map;
 	while (temp && temp->line)
@@ -112,9 +108,3 @@ void	save_map_lines(t_map *map, t_data *data)
 		temp = temp->next;
 	}
 }
-
-
-//TODO:
-//1. run check walls and other checks on copy of 2d map_copy;
-//2. For the textures add check for spaces
-//new branch
