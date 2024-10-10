@@ -6,19 +6,20 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 15:05:16 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:43:34 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/time.h>
-
 #ifndef CUB_H
-#define CUB_H
+# define CUB_H
+
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/time.h>
+
 # ifdef __APPLE__
 #  include "../minilibx_opengl_20191021/mlx.h"
 // #  include "key_macos.h"
@@ -26,12 +27,10 @@
 #  include "../minilibx-linux/mlx.h"
 # endif // __linux__
 
-
-#define N 78
-#define S 83
-#define E 69
-#define W 87
-
+# define N 78
+# define S 83
+# define E 69
+# define W 87
 
 typedef struct map
 {
@@ -51,9 +50,9 @@ typedef struct s_rgb
 
 typedef struct s_pos
 {
-	double x;
-	double y;
-} t_pos;
+	double	x;
+	double	y;
+}	t_pos;
 
 typedef struct s_player
 {
@@ -65,19 +64,18 @@ typedef struct s_player
 typedef struct s_data
 {
 	int		fd;
-	char 	**map_copy;
+	char	**map_copy;
 	int		line_count;
 	int		map_lines;
 	int		true_lines;
-	char 	*north;
-	char 	*south;
-	char 	*west;
-	char 	*east;
-	char 	*pic_ceiling;
-	char 	*pic_floor;
-	t_rgb 	*ceiling;
-	t_rgb 	*floor;
-	
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	char	*pic_ceiling;
+	char	*pic_floor;
+	t_rgb	*ceiling;
+	t_rgb	*floor;
 }	t_data;
 
 typedef struct s_img
@@ -86,25 +84,25 @@ typedef struct s_img
 	char	*addr;
 	int		img_width;
 	int		img_height;
-} t_img;
+}	t_img;
 
 typedef struct s_env
 {
-	t_data 		*data;
-	t_img 		*img;
-	t_player 	*player;
+	t_data		*data;
+	t_img		*img;
+	t_player	*player;
 }	t_env;
-
-
 
 //parsing_file:
 void	file_validation(char *argv, t_env *env);
 int		parse_line(t_map **map, t_data *data);
+
+//textures
 void	save_textures(t_map *map, t_data *data);
 t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
 char	*get_texture(char *line, char *p_name);
-void choose_texture(char *map_line, t_data *data, int map_not_first);
+void	choose_texture(char *map_line, t_data *data, int map_not_first);
 //add a function to test if rgbs are correct and try opening files(textures);
 //maybe create a separate file for textures and rgb, for norm and readability
 
@@ -124,7 +122,7 @@ void	check_rgb(t_data *data);
 //wall-checks
 void	check_walls(char **map_copy, t_data *data);
 void	scan_vertically(char **map_copy, t_data *data);
-void	skip_h_gap(char *map_line, int y);
+void	skip_h_gap(char *map_line);
 int		is_wall_or_space(char c);
 void	check_first_last_line(char *map_line);
 
@@ -132,20 +130,8 @@ void	check_first_last_line(char *map_line);
 void	error_and_exit(char *str);
 void	init_env(t_env *env);
 
-
-
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
 // void p_movement(char *Coords, void *key_pressed);
 // void m_movement(char *Coords, void *mouse_moved);
-
-	//name_check(format)
-	//open check
-	//copy_map to 2d_array
-	//check_walls
-	//check_lines
-	
-//check_walls();
-//check_map_lines();
-	//check for characters that are no N,S,E or W
 
 #endif
