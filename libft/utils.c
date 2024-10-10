@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:47:06 by mariannazhu       #+#    #+#             */
-/*   Updated: 2024/10/09 13:40:21 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:40:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,18 @@ char	*trim_spaces(char *str)
 {
 	char	*end;
 
-	while (is_space((unsigned char)*str)) str++;
-
+	while (is_space((unsigned char)*str))
+		str++;
 	if (*str == 0)
-		return str;
+		return (str);
 	end = str + ft_strlen(str) - 1;
 	while (end > str && is_space((unsigned char)*end))
 		end--;
 	*(end + 1) = '\0';
-
 	return (str);
 }
 
-int is_space(char c)
+int	is_space(char c)
 {
 	return (c == ' ' || c == '\v' || c == '\f' || c == '\r' || c == '\t');
 }
