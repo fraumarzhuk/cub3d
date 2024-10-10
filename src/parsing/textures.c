@@ -6,11 +6,11 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:33:23 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 15:45:19 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:09:07 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../../inc/cub.h"
 
 void	save_textures(t_map *map, t_data *data)
 {
