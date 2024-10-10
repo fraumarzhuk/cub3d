@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 10:13:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 17:11:49 by mzhukova         ###   ########.fr       */
+/*   Created: 2024/10/10 16:36:20 by mzhukova          #+#    #+#             */
+/*   Updated: 2024/10/10 16:36:47 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../../inc/cub.h"
 
-int	main(int argc, char **argv)
+int	key_press(int keycode, t_env *env)
 {
-	t_env	*env;
-
-	ft_alloc_init();
-	env = (t_env *)ft_malloc(sizeof(t_env));
-	init_env(env);
-	if (argc != 2)
-		return (printf("No map is provided\n"));
-	else
+	if (keycode == 65307)
 	{
-		file_validation(argv[1], env);
-		//init_mlx(env);
+		mlx_destroy_window(env->mlx, env->mlx_win);
+		ft_destructor();
+		exit(1);
 	}
-	ft_destructor();
 	return (0);
 }

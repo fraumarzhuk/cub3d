@@ -17,6 +17,7 @@ SRCS =	src/main.c \
 		src/parsing/parsing_map.c \
 		src/parsing/textures.c \
 		src/parsing/wall-checks.c \
+		src/rendering/init_window.c \
 		src/parsing/map-checks.c \
 		src/utils.c
 

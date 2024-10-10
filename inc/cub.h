@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 15:43:34 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:42:11 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define S 83
 # define E 69
 # define W 87
+
+
 
 typedef struct map
 {
@@ -88,6 +90,8 @@ typedef struct s_img
 
 typedef struct s_env
 {
+	void		*mlx;
+	void		*mlx_win;
 	t_data		*data;
 	t_img		*img;
 	t_player	*player;
@@ -130,6 +134,9 @@ void	check_first_last_line(char *map_line);
 void	error_and_exit(char *str);
 void	init_env(t_env *env);
 
+
+//rendering
+void init_mlx(t_env *env);
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
 // void p_movement(char *Coords, void *key_pressed);
 // void m_movement(char *Coords, void *mouse_moved);

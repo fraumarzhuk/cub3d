@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 15:37:26 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:16:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,43 +41,43 @@ void	init_env(t_env *env)
 	env->player->sprite = NULL;
 }
 
-// void	check_parsed_data(t_env *env, t_map *map)
-// {
-// 	printf("PARSED MAP FROM LINKED LIST:\n\n");
-// 	t_map *temp;
-// 	temp = map;
-// 	while (temp)
-// 	{
-// 		printf("%s\n", temp->line);
-// 		temp = temp->next;
-// 	}
-// 	printf("**************************\n");
-// 	printf("PARSED MAP FROM 2D array:\n\n");
-// 	int i = 0;
-// 	while (env->data->map_copy[i])
-// 	{
-// 		printf("%s\n", env->data->map_copy[i]);
-// 		i++;
-// 	}
-// 	printf("**************************\n");
-// 	printf("PARSED TEXTURES:\n\n");
-// 	printf("NO: %s\n", env->data->north);
-// 	printf("SO: %s\n", env->data->south);
-// 	printf("WE: %s\n", env->data->east);
-// 	printf("EA: %s\n", env->data->west);
-// 	if (env->data->pic_ceiling && env->data->pic_floor)
-// 	{
-// 		printf("WE: %s\n", env->data->pic_ceiling);
-// 		printf("EA: %s\n", env->data->pic_floor);
-// 	}
-// 	printf("**************************\n");
-// 	if (env->data->ceiling && env->data->floor)
-// 	{		
-// 		printf("RGB TEXTURES (F and C):\n\n");
-// 		printf("floor rgb: %d, %d, %d\n", env->data->floor->r,
-				//env->data->floor->g, env->data->floor->b);
-// 		printf("ceiling rgb: %d, %d, %d\n", env->data->ceiling->r,
-				//env->data->ceiling->g, env->data->ceiling->b);
-// 	}
-// 	printf("map_lines: %d\n", env->data->true_lines);
-// }
+void	check_parsed_data(t_env *env, t_map *map)
+{
+	printf("PARSED MAP FROM LINKED LIST:\n\n");
+	t_map *temp;
+	temp = map;
+	while (temp)
+	{
+		printf("%s\n", temp->line);
+		temp = temp->next;
+	}
+	printf("**************************\n");
+	printf("PARSED MAP FROM 2D array:\n\n");
+	int i = 0;
+	while (env->data->map_copy[i])
+	{
+		printf("%s\n", env->data->map_copy[i]);
+		i++;
+	}
+	printf("**************************\n");
+	printf("PARSED TEXTURES:\n\n");
+	printf("NO: %s\n", env->data->north);
+	printf("SO: %s\n", env->data->south);
+	printf("WE: %s\n", env->data->east);
+	printf("EA: %s\n", env->data->west);
+	if (env->data->pic_ceiling && env->data->pic_floor)
+	{
+		printf("WE: %s\n", env->data->pic_ceiling);
+		printf("EA: %s\n", env->data->pic_floor);
+	}
+	printf("**************************\n");
+	if (env->data->ceiling && env->data->floor)
+	{		
+		printf("RGB TEXTURES (F and C):\n\n");
+		printf("floor rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m, \e[1;34m%d\e[0m\n", env->data->floor->r,
+				env->data->floor->g, env->data->floor->b);
+		printf("ceiling rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m, \e[1;34m%d\e[0m\n", env->data->ceiling->r,
+				env->data->ceiling->g, env->data->ceiling->b);
+	}
+	printf("map_lines: %d\n", env->data->true_lines);
+}

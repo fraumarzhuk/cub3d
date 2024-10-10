@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 16:09:11 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:21:22 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ void	scan_vertically(char **map_copy, t_data *data)
 			if (is_space(map_copy[y][x]))
 			{
 				if (y == 0 && !is_wall_or_space(map_copy[y + 1][x]))
-					error_and_exit("Incorrect_wall!");
-				else if ((y > 0 && !is_wall_or_space(map_copy[y - 1][x]))
-						|| (y + 1 < data->map_lines
-						&& !is_wall_or_space(map_copy[y + 1][x])))
+					error_and_exit("Incorrect_wall1!");
+				else if ((y > 0 && !is_wall_or_space(map_copy[y - 1][x])) || (y + 1 < data->map_lines && !is_wall_or_space(map_copy[y + 1][x])))
 				{
 					printf("vertical. x: %d, y: %d\n", x, y);
-					error_and_exit("Incorrect_wall!");
+					error_and_exit("Incorrect_wall2!");
 				}
 			}
 			x++;
@@ -69,7 +67,7 @@ void	skip_h_gap(char *map_line)
 		{
 			if ((!is_wall_or_space(map_line[x - 1])
 					|| !is_wall_or_space(map_line[x + 1])))
-				error_and_exit("Incorrect_wall!");
+				error_and_exit("Incorrect_wall3!");
 		}
 		x++;
 	}
