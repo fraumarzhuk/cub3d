@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 17:39:43 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:02:53 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,9 @@ void	scan_vertically(char **map_copy, t_data *data);
 void	skip_h_gap(char *map_line);
 int		is_wall_or_space(char c);
 void	check_first_last_line(char *map_line);
+int		is_map_char(char c);
+void	check_lonely_zero(char **map_copy, int x, int y);
+void	check_vertical(char **map_copy, int y, int x);
 
 //utils:
 void	error_and_exit(char *str);
