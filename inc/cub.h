@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 17:42:11 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:22:13 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 # include <sys/time.h>
 
 # ifdef __APPLE__
-#  include "../minilibx_opengl_20191021/mlx.h"
+# include "../minilibx_opengl_20191021/mlx.h"
+# define ESC 65307
 // #  include "key_macos.h"
+
 # elif __linux__
-#  include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
+# define ESC 65307
 # endif // __linux__
 
 # define N 78
@@ -133,6 +136,11 @@ void	check_first_last_line(char *map_line);
 //utils:
 void	error_and_exit(char *str);
 void	init_env(t_env *env);
+
+//events
+int		key_press(int keycode, t_env *env);
+int		destroy(t_env *env);
+
 
 
 //rendering
