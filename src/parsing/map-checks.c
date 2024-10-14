@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 17:21:05 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:40:53 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	invalid_char_check(char *line, t_player *player)
 		if (!is_space(line[i]) && line[i] != 'N' && line[i] != 'S'
 			&& line[i] != 'E' && line[i] != 'W'
 			&& line[i] != '0' && line[i] != '1')
-			error_and_exit("Incorrect characters inside map!");
+				error_and_exit("Incorrect character inside map!");
 		i++;
 	}
 	return (1);
@@ -84,4 +84,26 @@ void	check_rgb(t_data *data)
 			|| data->floor->b > 255)
 			error_and_exit("No correct data for floor provided.");
 	}
+}
+
+void tabs_to_spaces(char *map_line)
+{
+	int		tab_count;
+	char	*new_line;
+	int		i;
+
+	tab_count = 0;
+	i = 0;
+	while (map_line[i])
+	{
+		if (map_line[i] == '\t')
+			tab_count++;
+		i++;
+	}
+	new_line = ft_malloc(i + tab_count * 3 + 1);
+	if (!new_line)
+		error_and_exit("Memory allocation failed.");
+	copy_spaces(map_line, new_line);
+	ft_strlcpy(map_line, new_line, ft_strlen(map_line));
+	ft_free(new_line);
 }

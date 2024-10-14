@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 17:11:44 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:24:08 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	save_map_copy(t_data *data, t_map **map)
 	{
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
+		tabs_to_spaces(temp->line);
 		data->map_copy[i] = ft_strdup(temp->line);
 		if (temp->last_line)
 			break ;

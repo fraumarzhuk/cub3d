@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 14:22:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:39:43 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	map_checks(char **map_copy, t_env *env);
 int		invalid_char_check(char *line, t_player *player);
 void	check_parsed_data(t_env *env, t_map *map);
 void	check_rgb(t_data *data);
+void	tabs_to_spaces(char *map_line);
 
 //wall-checks
 void	check_walls(char **map_copy, t_data *data);
@@ -136,6 +137,7 @@ void	check_first_last_line(char *map_line);
 //utils:
 void	error_and_exit(char *str);
 void	init_env(t_env *env);
+void	copy_spaces(char *map_line, char *new_line);
 
 //events
 int		key_press(int keycode, t_env *env);

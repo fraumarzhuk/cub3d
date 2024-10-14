@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 18:16:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:41:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,29 @@ void	init_env(t_env *env)
 	env->player->position = NULL;
 	env->player->orientation = 0;
 	env->player->sprite = NULL;
+}
+
+void copy_spaces(char *map_line, char *new_line)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	j = 0;
+	while (map_line[i])
+	{
+		if (map_line[i] == '\t')
+		{
+			new_line[j++] = ' ';
+			new_line[j++] = ' ';
+			new_line[j++] = ' ';
+			new_line[j++] = ' ';
+		}
+		else
+			new_line[j++] = map_line[i];
+		i++;
+	}
+	new_line[j] = '\0';
 }
 
 void	check_parsed_data(t_env *env, t_map *map)
