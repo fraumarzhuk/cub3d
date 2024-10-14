@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 14:50:36 by mzhukova         ###   ########.fr       */
+/*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
+/*   Updated: 2024/10/14 14:52:23 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
 
-void init_mlx(t_env *env)
+void render_minimap()
 {
-	env->mlx = mlx_init();
-	env->mlx_win = mlx_new_window(env->mlx, 1000, 1000, "Cub 3D");
-	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
-	mlx_key_hook(env->mlx_win, key_press, env);
-	mlx_loop(env->mlx);
+	//actual map_height
+	//actual map_width
+	//minimap height(how much to render)
+	//minimap width (how much to render)
+	//player position (env->player->pos->x)
+	//mypixelput or structures?
+
+// ?? get the longest line len from the map; 
+	//1. create an image on top of window of certain size
+	//2. make a background of an image
 }
