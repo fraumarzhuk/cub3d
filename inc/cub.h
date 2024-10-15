@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 19:02:53 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:42:36 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include <string.h>
 
 # ifdef __APPLE__
 # include "../minilibx_opengl_20191021/mlx.h"
