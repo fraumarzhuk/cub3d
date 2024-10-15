@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/15 15:42:36 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:27:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
 char	*get_texture(char *line, char *p_name);
 void	choose_texture(char *map_line, t_data *data, int map_not_first);
+void	check_rgb_num(char *str);
 //add a function to test if rgbs are correct and try opening files(textures);
 //maybe create a separate file for textures and rgb, for norm and readability
 
