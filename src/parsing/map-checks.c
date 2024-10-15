@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 18:42:37 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:28:50 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	map_checks(char **map_copy, t_env *env) //pass data->map_copy
 		invalid_char_check(map_copy[i], env->player);
 		i++;
 	}
+	if (!env->data->east || !env->data->north || !env->data->west || !env->data->south)
+		error_and_exit("No wall textures saved!");
 	check_walls(map_copy, env->data);
 	check_rgb(env->data);
 	if (!env->player->orientation)
