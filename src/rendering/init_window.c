@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 10:13:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 11:53:56 by mzhukova         ###   ########.fr       */
+/*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
+/*   Updated: 2024/10/14 14:50:36 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../../inc/cub.h"
 
-int	main(int argc, char **argv)
+void init_mlx(t_env *env)
 {
-	t_env	*env;
-
-	ft_alloc_init();
-	env = (t_env *)ft_malloc(sizeof(t_env));
-	init_env(env);
-	if (argc != 2)
-		return (printf("No map is provided\n"));
-	file_validation(argv[1], env);
-	init_mlx(env);
-	ft_destructor();
-	return (0);
+	env->mlx = mlx_init();
+	env->mlx_win = mlx_new_window(env->mlx, 1000, 1000, "Cub 3D");
+	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
+	mlx_key_hook(env->mlx_win, key_press, env);
+	mlx_loop(env->mlx);
 }

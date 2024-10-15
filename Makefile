@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 UNAME_S := $(shell uname -s)
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 MINILIBX_TGZ_NAME = MiniLibX.tgz
 ifeq ($(UNAME_S), Linux)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26192/minilibx-linux.tgz
@@ -13,11 +13,14 @@ else ifeq ($(UNAME_S), Darwin)
 	MINILIBX_DIR = ./minilibx_opengl_20191021
 endif
 SRCS =	src/main.c \
-		src/parsing_file.c \
-		src/parsing_map.c \
-		src/textures.c \
-		src/wall-checks.c \
-		src/map-checks.c \
+		src/parsing/parsing_file.c \
+		src/parsing/parsing_map.c \
+		src/parsing/textures.c \
+		src/parsing/wall-checks.c \
+		src/parsing/map-checks.c \
+		src/rendering/init_window.c \
+		src/rendering/mini_map.c \
+		src/rendering/events.c \
 		src/utils.c
 
 OBJS = $(SRCS:.c=.o)

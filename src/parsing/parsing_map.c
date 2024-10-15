@@ -6,11 +6,11 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/10 15:44:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:43:31 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../../inc/cub.h"
 
 int	map_init(t_env *env)
 {
@@ -31,7 +31,7 @@ int	map_init(t_env *env)
 	save_map_end(map);
 	save_map_copy(env->data, &map);
 	map_checks(env->data->map_copy, env);
-	//check_parsed_data(env, map);
+	check_parsed_data(env, map);
 	return (1);
 }
 
@@ -82,6 +82,7 @@ void	save_map_copy(t_data *data, t_map **map)
 	{
 		if (!temp->is_map && !temp->last_line)
 			error_and_exit("Empty line in the middle of the map!");
+		tabs_to_spaces(temp->line);
 		data->map_copy[i] = ft_strdup(temp->line);
 		if (temp->last_line)
 			break ;
