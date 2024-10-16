@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:33:23 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/15 16:46:02 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:52:45 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,21 @@ void	choose_texture(char *map_line, t_data *data, int map_detected)
 	if (map_detected == 1)
 		error_and_exit("Map_first!");
 	if (!(ft_strncmp(map_line, "NO", 2)))
-		data->north = get_texture(map_line, "NO");
+		data->north = get_texture(map_line, "NO", false);
 	else if (!(ft_strncmp(map_line, "SO", 2)))
-		data->south = get_texture(map_line, "SO");
+		data->south = get_texture(map_line, "SO", false);
 	else if (!(ft_strncmp(map_line, "WE", 2)))
-		data->west = get_texture(map_line, "WE");
+		data->west = get_texture(map_line, "WE", false);
 	else if (!(ft_strncmp(map_line, "EA", 2)))
-		data->east = get_texture(map_line, "EA");
+		data->east = get_texture(map_line, "EA", false);
 	else if (map_line[0] == 'F' || map_line[0] == 'C')
 		save_floor_and_ceiling(map_line, data);
 }
 
-char	*get_texture(char *line, char *p_name)
+char	*get_texture(char *line, char *p_name, bool is_rgb)
 {
 	char	*texture;
+	int		fd;
 
 	texture = line;
 	if (ft_strlen(p_name) == 2)
@@ -59,6 +60,9 @@ char	*get_texture(char *line, char *p_name)
 	texture = trim_spaces(texture);
 	if (!texture)
 		error_and_exit("Incorrect map!");
+	fd = open(texture, O_RDONLY);
+	if (!is_rgb && (fd < 0 || read(fd, 0, 0) < 0))
+		error_and_exit("Incorrect texture provided");
 	return (texture);
 }
 
@@ -67,16 +71,16 @@ void	save_floor_and_ceiling(char *line, t_data *data)
 	if (ft_strchr(line, ','))
 	{
 		if (line[0] == 'F')
-			data->floor = save_rgb(get_texture(line, "F"));
+			data->floor = save_rgb(get_texture(line, "F", true));
 		else if (line[0] == 'C')
-			data->ceiling = save_rgb(get_texture(line, "C"));
+			data->ceiling = save_rgb(get_texture(line, "C", true));
 	}
 	else
 	{
 		if (line[0] == 'F')
-			data->pic_floor = get_texture(line, "F");
+			data->pic_floor = get_texture(line, "F", false);
 		else if (line[0] == 'C')
-			data->pic_ceiling = get_texture(line, "F");
+			data->pic_ceiling = get_texture(line, "F", false);
 	}
 }
 

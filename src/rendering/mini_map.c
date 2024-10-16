@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 14:52:23 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:49:24 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,13 @@ void render_minimap()
 	//1. create an image on top of window of certain size
 	//2. make a background of an image
 }
+
+
+//--render minimap
+//-create a player as an triangle
+//-- first make key events so it works with the arrow keys, later add mouse movements
+
+//movements:
+//if left arrow -- turn left
+//if right arrow -- turn right
+// N - 0, E - 90, W -90(270?), S - 180

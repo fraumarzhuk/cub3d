@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/15 16:27:44 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:51:38 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # define S 83
 # define E 69
 # define W 87
+# define mini_m_h 200
+# define mini_m_w 400
+# define BPP sizeof(int32_t)
 
 
 
@@ -71,6 +74,7 @@ typedef struct s_data
 {
 	int		fd;
 	char	**map_copy;
+	int		map_len;
 	int		line_count;
 	int		map_lines;
 	int		true_lines;
@@ -88,8 +92,8 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		img_width;
-	int		img_height;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_env
@@ -109,7 +113,7 @@ int		parse_line(t_map **map, t_data *data);
 void	save_textures(t_map *map, t_data *data);
 t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
-char	*get_texture(char *line, char *p_name);
+char	*get_texture(char *line, char *p_name, bool is_rgb);
 void	choose_texture(char *map_line, t_data *data, int map_not_first);
 void	check_rgb_num(char *str);
 //add a function to test if rgbs are correct and try opening files(textures);
@@ -136,7 +140,6 @@ void	skip_h_gap(char *map_line);
 int		is_wall_or_space(char c);
 void	check_first_last_line(char *map_line);
 int		is_map_char(char c);
-void	check_lonely_zero(char **map_copy, int x, int y);
 void	check_vertical(char **map_copy, int y, int x);
 
 //utils:
@@ -152,6 +155,8 @@ int		destroy(t_env *env);
 
 //rendering
 void init_mlx(t_env *env);
+void init_minimap(t_img *img, t_data *data, t_env *env);
+void init_img(t_img *img);
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
 // void p_movement(char *Coords, void *key_pressed);
 // void m_movement(char *Coords, void *mouse_moved);

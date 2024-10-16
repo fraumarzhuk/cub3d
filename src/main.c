@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:13:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 11:53:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:33:09 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	env = (t_env *)ft_malloc(sizeof(t_env));
 	init_env(env);
 	if (argc != 2)
-		return (printf("No map is provided\n"));
+		error_and_exit("Incorrect amount of arguments\n");
 	file_validation(argv[1], env);
 	init_mlx(env);
 	ft_destructor();

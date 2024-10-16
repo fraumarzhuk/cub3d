@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 14:50:36 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:34:09 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,19 @@ void init_mlx(t_env *env)
 	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
 	mlx_key_hook(env->mlx_win, key_press, env);
 	mlx_loop(env->mlx);
+}
+void init_minimap(t_img *img, t_data *data, t_env *env)
+{
+	if (data->pic_floor)
+		img->img = mlx_xpm_file_to_image(env->mlx, data->pic_floor, &img->width, &img->height);
+	//if (data->floor);
+}
+
+void init_img(t_img *img)
+{
+	img->width = mini_m_w;
+	img->height = mini_m_h;
+	img->addr = NULL;
+	img->img = NULL;
+
 }

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 18:41:06 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:06:16 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_env(t_env *env)
 	env->player = (t_player *)ft_malloc(sizeof(t_player));
 	env->data->true_lines = 0;
 	env->data->map_lines = 0;
+	env->data->map_len = 0;
 	env->data->ceiling = NULL;
 	env->data->pic_ceiling = NULL;
 	env->data->pic_floor = NULL;
