@@ -6,11 +6,23 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 09:49:24 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:31:12 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
+
+void init_minimap(t_img *img, t_data *data, t_env *env)
+{
+	//background picture, dont forget to modify the h and w in header
+	img->img = mlx_xpm_file_to_image(env->mlx, data->pic_floor, &img->width, &img->height);
+	if (!img->img)
+		error_and_exit("failed to create the img");
+	mlx_put_image_to_window(env->mlx, env->mlx_win, img->img, 0, 0);
+	mlx_destroy_image(env->mlx, img->img);
+	draw_square(WIDTH / 2, HEIGHT / 2, 10, 0x00ff00, env);
+	//create background creation with just backgrond and mypixelput
+}
 
 void render_minimap()
 {

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 14:45:22 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:29:32 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ typedef struct s_player
 typedef struct s_data
 {
 	int		fd;
+	int		bpp;
+	char	*data; //rename??
+	int		endian;
+	int		size_line;
 	char	**map_copy;
 	int		map_len;
 	int		line_count;
@@ -156,13 +160,17 @@ int		key_press(int keycode, t_env *env);
 int		destroy(t_env *env);
 
 
+//******RENDERING******//
 
-//rendering
+//init window
 void	init_mlx(t_env *env);
-void	init_minimap(t_img *img, t_data *data, t_env *env);
-void	init_img(t_img *img);
+void	init_img(t_img *img, t_env *env);
 int		get_color(int r, int g, int b, int a);
+void	my_pixel_put(int x, int y, int color, t_env *env);
+void	draw_square(int x, int y, int size, int color, t_env *env);
 
+//minimap
+void	init_minimap(t_img *img, t_data *data, t_env *env);
 
 
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']

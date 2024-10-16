@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 10:10:09 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:27:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	check_walls(char **map_copy, t_data *data)
 		skip_h_gap(trimmed_line);
 		y++;
 	}
+	// printf("lennnnnnnnnnnnnnnnnnnnnnnnnnnn: %d\n", data->map_len);
 	scan_vertically(map_copy, data);
 }
 
