@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 13:03:41 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:45:22 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@
 # define S 83
 # define E 69
 # define W 87
-# define mini_m_h 200
-# define mini_m_w 400
-# define WIDTH 2000
-# define HEIGHT 2000
+# define mini_m_h 300
+# define mini_m_w 300
+# define WIDTH 1000
+# define HEIGHT 1000
 # define BPP sizeof(int32_t)
 
 

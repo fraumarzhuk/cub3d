@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 14:19:16 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:47:21 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ void init_mlx(t_env *env)
 void init_minimap(t_img *img, t_data *data, t_env *env)
 {
 	img->img = mlx_xpm_file_to_image(env->mlx, data->pic_floor, &img->width, &img->height);
-	if (img->img)
-		mlx_put_image_to_window(env->mlx, env->mlx_win, &img->img, img->width, img->height);
+	if (!img->img)
+		error_and_exit("failed to create the img");
+	mlx_put_image_to_window(env->mlx, env->mlx_win, img->img, 0, 0);
+	mlx_destroy_image(env->mlx, img->img);
 }
-
 void init_img(t_img *img)
 {
-	img->width = mini_m_w;
+	img->width = mini_m_h;
 	img->height = mini_m_h;
 	img->addr = NULL;
 	img->bpp = 0;
