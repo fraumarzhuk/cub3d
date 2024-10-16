@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 16:31:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:01:33 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ void init_mlx(t_env *env)
 	if (!env->mlx_win)
 		error_and_exit("Mlx failed");
 	init_img(env->img, env);
-	env->data->data = mlx_get_data_addr(env->img->img, &env->img->bpp, &env->data->size_line, &env->img->endian);
-	if (!env->data->data)
-		error_and_exit("Stupid mlx");
-	init_minimap(env->img, env->data, env);
+	// env->data->data = mlx_get_data_addr(env->img->img, &env->img->bpp, &env->data->size_line, &env->img->endian);
+	// if (!env->data->data)
+	// 	error_and_exit("Stupid mlx");
+	// init_minimap(env->img, env->data, env);
+	draw_square(WIDTH / 2, HEIGHT / 2, 10, 0x00ff00, env);
+
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
+	
 	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
 	mlx_key_hook(env->mlx_win, key_press, env);
 	mlx_loop(env->mlx);
@@ -33,14 +37,10 @@ void init_mlx(t_env *env)
 
 void init_img(t_img *img, t_env *env)
 {
-	img->width = mini_m_h;
-	img->height = mini_m_h;
-	img->bpp = 0;
-
-	img->img = mlx_new_image(env->mlx, img->width, img->height);
+	img->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
 	if (!img->img)
 		error_and_exit("Failed to create image");
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &env->data->size_line, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->width, &img->endian);
 	if (!img->addr)
 		error_and_exit("Failed to get image data address");
 }
@@ -48,16 +48,16 @@ void init_img(t_img *img, t_env *env)
 void	my_pixel_put(int x, int y, int color, t_env *env)
 {
 	int index;
+
+	
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
 
 	// printf("len: %d\n", env->data->map_len);
-	index = y * env->data->size_line + x * env->img->bpp / 8;
-	if(!env->data->data[index])
-		return ;
-	env->data->data[index] = color & 0xFF;
-	env->data->data[index + 1] = (color >> 8) & 0xFF;
-	env->data->data[index + 2] = (color >> 16) & 0xFF;
+	index = y * env->img->width + x * env->img->bpp / 8;
+	env->img->addr[index] = color & 0xFF;
+	env->img->addr[index + 1] = (color >> 8) & 0xFF;
+	env->img->addr[index + 2] = (color >> 16) & 0xFF;
 }
 
 
