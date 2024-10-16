@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 10:51:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:03:41 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define W 87
 # define mini_m_h 200
 # define mini_m_w 400
+# define WIDTH 2000
+# define HEIGHT 2000
 # define BPP sizeof(int32_t)
 
 
@@ -92,7 +94,9 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		width;
+	int		bpp;
+	int		endian;
+	int		width; // int size_line?
 	int		height;
 }	t_img;
 
@@ -154,9 +158,13 @@ int		destroy(t_env *env);
 
 
 //rendering
-void init_mlx(t_env *env);
-void init_minimap(t_img *img, t_data *data, t_env *env);
-void init_img(t_img *img);
+void	init_mlx(t_env *env);
+void	init_minimap(t_img *img, t_data *data, t_env *env);
+void	init_img(t_img *img);
+int		get_color(int r, int g, int b, int a);
+
+
+
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
 // void p_movement(char *Coords, void *key_pressed);
 // void m_movement(char *Coords, void *mouse_moved);

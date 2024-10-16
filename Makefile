@@ -1,4 +1,4 @@
-NAME = cub3D
+NAME = cub3d
 CC = cc
 UNAME_S := $(shell uname -s)
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
