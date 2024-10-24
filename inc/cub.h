@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 13:08:23 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:49:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ int		destroy(t_env *env);
 
 //player
 void	move_player(t_player *player);
+int		draw_loop(t_env *env);
 
 //******RENDERING******//
 
