@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 16:08:16 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:09:11 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@ void	init_env(t_env *env)
 	env->data->pic_ceiling = NULL;
 	env->data->pic_floor = NULL;
 	env->data->floor = NULL;
-	env->data->bpp = 0;
-	// env->data->data = NULL;
-	env->data->endian = 0;
 	env->data->north = NULL;
 	env->data->south = NULL;
 	env->data->west = NULL;
 	env->data->east = NULL;
-	env->player->position = NULL;
-	env->player->orientation = 0;
-	env->player->sprite = NULL;
+	init_player(env->player);
+}
+
+void init_player(t_player *player)
+{	
+	player->x = WIDTH /2;
+	player->y = HEIGHT /2;
+	player->orientation = 0;
+	player->sprite = NULL;	
 }
 
 void copy_spaces(char *map_line, char *new_line)
