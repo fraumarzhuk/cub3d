@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 16:26:12 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:19:32 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 //screen size
 # define WIDTH 1000
 # define HEIGHT 1000
+# define BLOCKH 40
+# define BLOCKW 40
 
 # define BPP sizeof(int32_t)
 #define PI 3.14159265359
@@ -200,6 +202,7 @@ void	draw_square(int x, int y, int size, int color, t_env *env);
 
 //minimap
 void	init_minimap(t_img *img, t_data *data, t_env *env);
+void	draw_map(t_env *env);
 
 
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']

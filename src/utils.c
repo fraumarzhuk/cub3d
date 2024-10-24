@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 13:09:11 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:32:23 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void copy_spaces(char *map_line, char *new_line)
 	j = 0;
 	while (map_line[i])
 	{
-		if (map_line[i] == '\t')
+		if (map_line[i] == '\t' || map_line[i] == '\v')
 		{
 			new_line[j++] = ' ';
 			new_line[j++] = ' ';

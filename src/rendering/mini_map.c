@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 12:44:33 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:19:50 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,33 @@ void init_minimap(t_img *img, t_data *data, t_env *env)
 	if (!img->img)
 		error_and_exit("failed to create the img");
 
-	draw_square(WIDTH / 2, HEIGHT / 2, 10, 0x00ff00, env);
+	draw_square(WIDTH / 2, HEIGHT / 2, 15, 0x00ff00, env);
 }
 
-void render_minimap()
+void draw_map(t_env *env)
 {
-	//actual map_height
-	//actual map_width
-	//minimap height(how much to render)
-	//minimap width (how much to render)
-	//player position (env->player->pos->x)
-	//mypixelput or structures?
+	// char **map;
 
-// ?? get the longest line len from the map; 
-	//1. create an image on top of window of certain size
-	//2. make a background of an image
+	// map = env->data->map_copy;
+	int color = 0x0c187c9;
+	for (int y = 0; env->data->map_copy[y]; y++)
+		for(int x = 0; env->data->map_copy[y][x]; x++)
+			if (env->data->map_copy[y][x] == '1')
+				draw_square(x * BLOCKW, y * BLOCKH, BLOCKH, color, env);
 }
+// void render_minimap()
+// {
+// 	//actual map_height
+// 	//actual map_width
+// 	//minimap height(how much to render)
+// 	//minimap width (how much to render)
+// 	//player position (env->player->pos->x)
+// 	//mypixelput or structures?
+
+// // ?? get the longest line len from the map; 
+// 	//1. create an image on top of window of certain size
+// 	//2. make a background of an image
+// }
 
 
 //--render minimap

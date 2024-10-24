@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 16:29:23 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:16:04 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int draw_loop(t_env *env)
 	move_player(player);
 	clear_image(env);
 	draw_square(player->x, player->y, 5, 0x00FF00, env);
+	draw_map(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	return (1);
 }

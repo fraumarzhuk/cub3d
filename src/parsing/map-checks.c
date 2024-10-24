@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 10:49:14 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:39:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void tabs_to_spaces(char *map_line)
 		error_and_exit("Memory allocation failed.");
 	copy_spaces(map_line, new_line);
 	map_line = ft_strdup(new_line);
+	// ft_strlcpy(map_line, new_line, ft_strlen(map_line));
 	ft_free(new_line);
 }
