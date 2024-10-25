@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 11:10:07 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:52:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	scan_vertically(char **map_copy, t_data *data)
 	while (y < data->map_lines)
 	{
 		x = 0;
-		printf("%s\n", map_copy[y]);
 		while (map_copy[y][x])
 		{
 			if (is_map_char(map_copy[y][x]))

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 10:45:23 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:13:14 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,29 @@ void draw_map(t_env *env)
 			if (env->data->map_copy[y][x] == '1')
 				draw_square(x * BLOCKW, y * BLOCKH, BLOCKH, color, env);
 }
+// void draw_map(t_env *env)
+// {
+// 	int color = 0x0c187c9;
+// 	int y = env->player->yc;
+// 	int y_view;
+// 	int x_view;
+	
+// 	y_view = (HEIGHT / 2 - BLOCKH / 2) / BLOCKH;
+// 	x_view = (WIDTH / 2 - BLOCKW / 2) / BLOCKW;
+// 	printf("x coord: %d, y coord %d\n", env->player->xc, env->player->yc);
+// 	printf("x view: %d y view: %d\n", x_view, y_view);
+// 	while (env->data->map_copy[y] && y <= y_view)
+// 	{
+// 		int x = env->player->xc;
+// 		while (env->data->map_copy[y][x] && x <= x_view)
+// 		{
+// 			if (env->data->map_copy[y][x] == '1')
+// 				draw_square(x * BLOCKW, y * BLOCKH, BLOCKH, color, env);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 // void render_minimap()
 // {
 // 	//actual map_height

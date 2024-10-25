@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 17:19:32 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:03:35 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ typedef struct s_player
 	char	*sprite;
 	double	x;
 	double	y;
+	int		xc;
+	int		yc;
 	
 	bool key_up;
 	bool key_down;
@@ -161,7 +163,7 @@ void	save_map_lines(t_map *map, t_data *data);
 
 //map-checks
 void	map_checks(char **map_copy, t_env *env);
-int		invalid_char_check(char *line, t_player *player);
+int		invalid_char_check(char *line, t_player *player, int y);
 void	check_parsed_data(t_env *env, t_map *map);
 void	check_rgb(t_data *data);
 void	tabs_to_spaces(char *map_line);
