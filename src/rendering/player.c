@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 15:38:43 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:03:08 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,26 @@
 
 void move_player(t_player *player, t_env *env)
 {
-	int	speed;
-	(void)env;
-	speed = 3;
+	int speed = 1;
+
+	double next_x = player->x;
+	double next_y = player->y;
+
 	if (player->key_up && player->y - speed >= 0)
-		player->y -= speed;
+		next_y -= speed;
 	if (player->key_down && player->y + speed < HEIGHT)
-		player->y += speed;
+		next_y += speed;
 	if (player->key_left && player->x - speed >= 0)
-		player->x -= speed;
+		next_x -= speed;
 	if (player->key_right && player->x + speed < WIDTH)
-		player->x += speed;
+		next_x += speed;
+	if (env->data->map_copy[(int)next_y / BLOCKH][(int)next_x / BLOCKW] != '1')
+	{
+		player->x = next_x;
+		player->y = next_y;
+	}
 }
+
 
 void clear_image(t_env *env)
 {
