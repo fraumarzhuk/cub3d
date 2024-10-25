@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 13:40:07 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:40:04 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,37 @@
 // 	draw_square(WIDTH / 2, HEIGHT / 2, 15, 0x00ff00, env);
 // }
 
+// void draw_map(t_env *env)
+// {
+// 	int color = 0x0c187c9;
+// 	for (int y = 0; env->data->map_copy[y]; y++)
+// 		for(int x = 0; env->data->map_copy[y][x]; x++)
+// 			if (env->data->map_copy[y][x] == '1')
+// 				draw_square(x * BLOCKW, y * BLOCKH, BLOCKH, color, env);
+// }
+
 void draw_map(t_env *env)
 {
 	int color = 0x0c187c9;
-	for (int y = 0; env->data->map_copy[y]; y++)
-		for(int x = 0; env->data->map_copy[y][x]; x++)
+
+	int player_x_block = env->player->x / BLOCKW;
+	int player_y_block = env->player->y / BLOCKH;
+
+	for (int y = 0; env->data->map_copy[y]; y++) {
+		for (int x = 0; env->data->map_copy[y][x]; x++) {
 			if (env->data->map_copy[y][x] == '1')
-				draw_square(x * BLOCKW, y * BLOCKH, BLOCKH, color, env);
+			{
+				int draw_x = (x - player_x_block + mini_v_w) * BLOCKW;
+				int draw_y = (y - player_y_block + mini_v_h) * BLOCKH;
+				if (draw_x >= 0 && draw_x < mini_m_w && draw_y >= 0 && draw_y < mini_m_h) {
+					draw_square(draw_x, draw_y, BLOCKH, color, env);
+				}
+			}
+		}
+	}
 }
+
+
 // void draw_map(t_env *env)
 // {
 // 	int color = 0x0c187c9;

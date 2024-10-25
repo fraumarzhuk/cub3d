@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 14:53:44 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:34:37 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define BLOCKH 50
 # define BLOCKW 50
 # define mini_p 10
+# define mini_v_h ((mini_m_h / 2) / BLOCKH)
+# define mini_v_w ((mini_m_w / 2) / BLOCKW)
 //screen size
 # define WIDTH 1000
 # define HEIGHT 1000
