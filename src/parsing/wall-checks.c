@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 16:27:58 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:10:07 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,18 @@ void	scan_vertically(char **map_copy, t_data *data)
 	while (y < data->map_lines)
 	{
 		x = 0;
+		printf("%s\n", map_copy[y]);
 		while (map_copy[y][x])
 		{
+			if (is_map_char(map_copy[y][x]))
+			{
+				if (!map_copy[y - 1][x] || !map_copy[y + 1][x])
+					error_and_exit("Incorrect wall!");
+				else if (map_copy[y - 1][x] && is_space(map_copy[y - 1][x]))
+					error_and_exit("Incorrect wall!");
+				else if (map_copy[y + 1][x] && is_space(map_copy[y + 1][x]))
+					error_and_exit("Incorrect wall!");
+			}
 			if (is_space(map_copy[y][x]))
 				check_vertical(map_copy, y, x);
 			x++;
@@ -78,7 +88,7 @@ int	is_wall_or_space(char c)
 
 int is_map_char(char c)
 {
-	return (c == '0' || c == 'N' || c == 'W' || c == 'E' || c == 's');
+	return (c == '0' || c == 'N' || c == 'W' || c == 'E' || c == 'S');
 }
 
 void check_vertical(char **map_copy, int y, int x)

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 17:19:50 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:45:23 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ void init_minimap(t_img *img, t_data *data, t_env *env)
 
 void draw_map(t_env *env)
 {
-	// char **map;
-
-	// map = env->data->map_copy;
 	int color = 0x0c187c9;
 	for (int y = 0; env->data->map_copy[y]; y++)
 		for(int x = 0; env->data->map_copy[y][x]; x++)
