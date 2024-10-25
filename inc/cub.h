@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 12:03:35 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:36:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ int		key_release(int keycode, t_env *env);
 int		destroy(t_env *env);
 
 //player
-void	move_player(t_player *player);
+void	move_player(t_player *player, t_env *env);
 int		draw_loop(t_env *env);
 void	clear_image(t_env *env);
 

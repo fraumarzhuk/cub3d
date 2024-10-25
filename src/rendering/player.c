@@ -6,24 +6,25 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 12:10:53 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:46:15 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
 
-void move_player(t_player *player)
+void move_player(t_player *player, t_env *env)
 {
 	int	speed;
 
 	speed = 5;
-	if (player->key_up)
+	(void)env;
+	if (player->key_up && player->y - speed >= 0)
 		player->y -= speed;
-	if (player->key_down)
+	if (player->key_down && player->y + speed < HEIGHT)
 		player->y += speed;
-	if (player->key_left)
+	if (player->key_left && player->x - speed >= 0)
 		player->x -= speed;
-	if (player->key_right)
+	if (player->key_right && player->x + speed < WIDTH)
 		player->x += speed;
 }
 
@@ -37,7 +38,7 @@ void clear_image(t_env *env)
 int draw_loop(t_env *env)
 {
 	t_player *player = env->player;
-	move_player(player);
+	move_player(player, env);
 	clear_image(env);
 	draw_square(player->x, player->y, 5, 0x00FF00, env);
 	draw_map(env);
