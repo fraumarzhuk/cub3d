@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/15 15:45:49 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:39:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	check_first_last_line(char *map_line)
 
 void	check_rgb(t_data *data)
 {
-	if ((!data->ceiling || !data->floor)
-		&& (!data->pic_ceiling || !data->pic_floor))
+	if ((!data->ceiling && !data->floor)
+		&& (!data->pic_ceiling && !data->pic_floor))
 		error_and_exit("No textures saved or map is not in the end.");
 	if (!data->pic_ceiling)
 	{
@@ -107,5 +107,6 @@ void tabs_to_spaces(char *map_line)
 		error_and_exit("Memory allocation failed.");
 	copy_spaces(map_line, new_line);
 	map_line = ft_strdup(new_line);
+	// ft_strlcpy(map_line, new_line, ft_strlen(map_line));
 	ft_free(new_line);
 }

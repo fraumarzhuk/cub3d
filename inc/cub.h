@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/15 16:27:44 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:19:32 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,28 @@
 # define ESC 65307
 # endif // __linux__
 
+//for parsing
 # define N 78
 # define S 83
 # define E 69
 # define W 87
 
+//keys
+# define WK 119
+# define AK 97
+# define SK 115
+# define DK 100
+//mini map size
+# define mini_m_h 300
+# define mini_m_w 300
+//screen size
+# define WIDTH 1000
+# define HEIGHT 1000
+# define BLOCKH 40
+# define BLOCKW 40
+
+# define BPP sizeof(int32_t)
+#define PI 3.14159265359
 
 
 typedef struct map
@@ -54,23 +71,41 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-typedef struct s_pos
-{
-	double	x;
-	double	y;
-}	t_pos;
+// typedef struct s_pos
+// {
+// 	double	x;
+// 	double	y;
+	
+// 	bool key_up;
+// 	bool key_down;
+// 	bool key_left;
+// 	bool key_right;
+	
+// }	t_pos;
 
 typedef struct s_player
 {
-	t_pos	*position;
+	// t_pos	*position;
 	int		orientation;
 	char	*sprite;
+	double	x;
+	double	y;
+	
+	bool key_up;
+	bool key_down;
+	bool key_left;
+	bool key_right;
 }	t_player;
 
 typedef struct s_data
 {
 	int		fd;
+	// int		bpp;
+	// char	*data; //rename??
+	// int		endian;
+	int		size_line;
 	char	**map_copy;
+	int		map_len;
 	int		line_count;
 	int		map_lines;
 	int		true_lines;
@@ -88,8 +123,10 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
-	int		img_width;
-	int		img_height;
+	int		bpp;
+	int		endian;
+	int		width; // int size_line?
+	int		height;
 }	t_img;
 
 typedef struct s_env
@@ -109,7 +146,7 @@ int		parse_line(t_map **map, t_data *data);
 void	save_textures(t_map *map, t_data *data);
 t_rgb	*save_rgb(char *line);
 void	save_floor_and_ceiling(char *line, t_data *data);
-char	*get_texture(char *line, char *p_name);
+char	*get_texture(char *line, char *p_name, bool is_rgb);
 void	choose_texture(char *map_line, t_data *data, int map_not_first);
 void	check_rgb_num(char *str);
 //add a function to test if rgbs are correct and try opening files(textures);
@@ -136,22 +173,38 @@ void	skip_h_gap(char *map_line);
 int		is_wall_or_space(char c);
 void	check_first_last_line(char *map_line);
 int		is_map_char(char c);
-void	check_lonely_zero(char **map_copy, int x, int y);
 void	check_vertical(char **map_copy, int y, int x);
 
 //utils:
 void	error_and_exit(char *str);
 void	init_env(t_env *env);
+void	init_player(t_player *player);
 void	copy_spaces(char *map_line, char *new_line);
 
 //events
 int		key_press(int keycode, t_env *env);
+int		key_release(int keycode, t_env *env);
 int		destroy(t_env *env);
 
+//player
+void	move_player(t_player *player);
+int		draw_loop(t_env *env);
+void	clear_image(t_env *env);
+
+//******RENDERING******//
+
+//init window
+void	init_mlx(t_env *env);
+void	init_img(t_img *img, t_env *env);
+int		get_color(int r, int g, int b, int a);
+void	my_pixel_put(int x, int y, int color, t_env *env);
+void	draw_square(int x, int y, int size, int color, t_env *env);
+
+//minimap
+void	init_minimap(t_img *img, t_data *data, t_env *env);
+void	draw_map(t_env *env);
 
 
-//rendering
-void init_mlx(t_env *env);
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
 // void p_movement(char *Coords, void *key_pressed);
 // void m_movement(char *Coords, void *mouse_moved);
