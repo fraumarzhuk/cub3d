@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 13:36:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:53:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@
 # define SK 115
 # define DK 100
 //mini map size
-# define mini_m_h 300
-# define mini_m_w 300
+# define mini_m_h 400
+# define mini_m_w 400
+# define BLOCKH 50
+# define BLOCKW 50
+# define mini_p 10
 //screen size
 # define WIDTH 1000
 # define HEIGHT 1000
-# define BLOCKH 40
-# define BLOCKW 40
+
 
 # define BPP sizeof(int32_t)
 #define PI 3.14159265359
