@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 17:39:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:49:59 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	map_checks(char **map_copy, t_env *env) //pass data->map_copy
 	i = 0;
 	while (map_copy[i])
 	{
-		invalid_char_check(map_copy[i], env->player);
+		invalid_char_check(map_copy[i], env->player, i);
 		i++;
 	}
 	if (!env->data->east || !env->data->north || !env->data->west || !env->data->south)
@@ -30,7 +30,7 @@ void	map_checks(char **map_copy, t_env *env) //pass data->map_copy
 		error_and_exit("No player found.");
 }
 
-int	invalid_char_check(char *line, t_player *player)
+int	invalid_char_check(char *line, t_player *player, int y)
 {
 	int	i;
 
@@ -41,7 +41,13 @@ int	invalid_char_check(char *line, t_player *player)
 			|| line[i] == 'E' || line[i] == 'W')
 		{
 			if (!player->orientation)
+			{
 				player->orientation = line[i];
+				player->xc = i;
+				player->yc = y;
+				player->x = player->xc * BLOCKW;
+                player->y = player->yc * BLOCKH;
+			}
 			else
 				error_and_exit("Too many players.");
 		}

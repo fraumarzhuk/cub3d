@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/24 17:19:32 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:31:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,20 @@
 # define AK 97
 # define SK 115
 # define DK 100
-//mini map size
-# define mini_m_h 300
-# define mini_m_w 300
+//mini map
+# define mini_m_h 400
+# define mini_m_w 400
+# define BLOCKH 50
+# define BLOCKW 50
+# define mini_p 8
+# define mini_v_h ((mini_m_h / 2) / BLOCKH)
+# define mini_v_w ((mini_m_w / 2) / BLOCKW)
+# define BLOCK_COL 0x0c187c9
+# define SPEED 1
 //screen size
 # define WIDTH 1000
 # define HEIGHT 1000
-# define BLOCKH 40
-# define BLOCKW 40
+
 
 # define BPP sizeof(int32_t)
 #define PI 3.14159265359
@@ -71,25 +77,14 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-// typedef struct s_pos
-// {
-// 	double	x;
-// 	double	y;
-	
-// 	bool key_up;
-// 	bool key_down;
-// 	bool key_left;
-// 	bool key_right;
-	
-// }	t_pos;
-
 typedef struct s_player
 {
-	// t_pos	*position;
 	int		orientation;
 	char	*sprite;
 	double	x;
 	double	y;
+	int		xc;
+	int		yc;
 	
 	bool key_up;
 	bool key_down;
@@ -161,7 +156,7 @@ void	save_map_lines(t_map *map, t_data *data);
 
 //map-checks
 void	map_checks(char **map_copy, t_env *env);
-int		invalid_char_check(char *line, t_player *player);
+int		invalid_char_check(char *line, t_player *player, int y);
 void	check_parsed_data(t_env *env, t_map *map);
 void	check_rgb(t_data *data);
 void	tabs_to_spaces(char *map_line);
@@ -187,7 +182,7 @@ int		key_release(int keycode, t_env *env);
 int		destroy(t_env *env);
 
 //player
-void	move_player(t_player *player);
+void	move_player(t_player *player, t_env *env);
 int		draw_loop(t_env *env);
 void	clear_image(t_env *env);
 
