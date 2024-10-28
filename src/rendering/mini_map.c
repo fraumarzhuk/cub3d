@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 12:25:25 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:02:10 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,29 @@
 
 void draw_map(t_env *env)
 {
-    double px_offset;
-    double py_offset;
-    int		x;
+	double px_offset;
+	double py_offset;
+	int		x;
 	int		y;
 	px_offset = env->player->x - (env->player->xc * BLOCKW);
 	py_offset = env->player->y - (env->player->yc * BLOCKH);
 	y = 0;
-    while(env->data->map_copy[y])
+	while(env->data->map_copy[y])
 	{
 		x = 0;
-        while (env->data->map_copy[y][x])
+		while (env->data->map_copy[y][x])
 		{
-            if (env->data->map_copy[y][x] == '1')
+			if (env->data->map_copy[y][x] == '1')
 			{
-                double block_world_x = x * BLOCKW;
-                double block_world_y = y * BLOCKH;
-                int draw_x = block_world_x - (env->player->xc * BLOCKW + px_offset) + mini_m_w / 2;
-                int draw_y = block_world_y - (env->player->yc * BLOCKH + py_offset) + mini_m_h / 2;
-                if (draw_x >= -BLOCKW && draw_x < mini_m_w && draw_y >= -BLOCKH && draw_y < mini_m_h)
-                    draw_square(draw_x, draw_y, BLOCKH, BLOCK_COL, env);
-            }
+				double block_world_x = x * BLOCKW;
+				double block_world_y = y * BLOCKH;
+				int draw_x = block_world_x - (env->player->xc * BLOCKW + px_offset) + mini_m_w / 2;
+				int draw_y = block_world_y - (env->player->yc * BLOCKH + py_offset) + mini_m_h / 2;
+				if (draw_x >= -BLOCKW && draw_x < mini_m_w && draw_y >= -BLOCKH && draw_y < mini_m_h)
+					draw_square(draw_x, draw_y, BLOCKH, BLOCK_COL, env);
+			}
 			x++;
-        }
+		}
 		y++;
-    }
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 12:27:05 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:50:53 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void move_player(t_player *player, t_env *env)
 	int speed = SPEED;
 	double next_x = player->x;
 	double next_y = player->y;
-
 	if (player->key_up && player->y - speed >= 0)
 		next_y -= speed;
 	if (player->key_down && player->y + speed < HEIGHT)
