@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:36:20 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 12:52:40 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:48:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	key_press(int keycode, t_env *env)
 		env->player->key_left = true;
 	if (keycode == DK)
 		env->player->key_right = true;
+	if (keycode == LEFT)
+		env->player->left_rotate = true;
+	if (keycode == RIGHT)
+		env->player->right_rotate = true;
 	return (0);
 }
 
@@ -47,6 +51,10 @@ int	key_release(int keycode, t_env *env)
 		env->player->key_left = false;
 	if (keycode == DK)
 		env->player->key_right = false;
+	if (keycode == LEFT)
+		env->player->left_rotate = false;
+	if (keycode == RIGHT)
+		env->player->right_rotate = false;
 	return (0);
 }
 

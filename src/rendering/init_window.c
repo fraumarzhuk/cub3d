@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 14:50:59 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:57:54 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void init_mlx(t_env *env)
 		error_and_exit("Mlx failed");
 	init_img(env->img, env);
 	draw_map(env);
-	draw_square(mini_m_w / 2, mini_m_h / 2, mini_p, 0x00ff00, env);
+	//draw_square(mini_m_w / 2, mini_m_h / 2, mini_p, 0x00ff00, env);
+	//draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
 	mlx_hook(env->mlx_win, 2, 1L<<0, key_press, env);

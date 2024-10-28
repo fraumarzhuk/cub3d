@@ -6,17 +6,11 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 14:21:48 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:46:05 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
-
-// void init_minimap(t_img *img, t_data *data, t_env *env)
-// {
-// 	draw_map(env);
-// 	draw_square(WIDTH / 2, HEIGHT / 2, 15, 0x00ff00, env);
-// }
 
 void draw_map(t_env *env)
 {

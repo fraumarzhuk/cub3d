@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 14:52:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:23:43 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void init_player(t_player *player)
 	player->x = mini_m_w /2;
 	player->y = mini_m_h /2;
 	player->orientation = 0;
-	player->sprite = NULL;	
+	player->sprite = NULL;
+	player->angle = PI / 2;
+	
 }
 
 void copy_spaces(char *map_line, char *new_line)

@@ -1,0 +1,4 @@
+Marianna:
+//Save textures into img;
+//Make ray cast on the map, w/o moving the map around for now.
+//Soft movements in minimap
