@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 15:34:37 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:27:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,16 @@
 # define AK 97
 # define SK 115
 # define DK 100
-//mini map size
+//mini map
 # define mini_m_h 400
 # define mini_m_w 400
 # define BLOCKH 50
 # define BLOCKW 50
-# define mini_p 10
+# define mini_p 7
 # define mini_v_h ((mini_m_h / 2) / BLOCKH)
 # define mini_v_w ((mini_m_w / 2) / BLOCKW)
+# define BLOCK_COL 0x0c187c9
+# define SPEED 1
 //screen size
 # define WIDTH 1000
 # define HEIGHT 1000
@@ -75,21 +77,8 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-// typedef struct s_pos
-// {
-// 	double	x;
-// 	double	y;
-	
-// 	bool key_up;
-// 	bool key_down;
-// 	bool key_left;
-// 	bool key_right;
-	
-// }	t_pos;
-
 typedef struct s_player
 {
-	// t_pos	*position;
 	int		orientation;
 	char	*sprite;
 	double	x;

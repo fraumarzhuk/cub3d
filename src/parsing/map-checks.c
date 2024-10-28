@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/25 12:03:18 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:49:59 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	invalid_char_check(char *line, t_player *player, int y)
 				player->orientation = line[i];
 				player->xc = i;
 				player->yc = y;
+				player->x = player->xc * BLOCKW;
+                player->y = player->yc * BLOCKH;
 			}
 			else
 				error_and_exit("Too many players.");
