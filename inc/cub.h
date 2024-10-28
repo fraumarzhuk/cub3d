@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 12:31:58 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:08:19 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@
 # define BLOCKH 50
 # define BLOCKW 50
 # define mini_p 8
-# define mini_v_h ((mini_m_h / 2) / BLOCKH)
-# define mini_v_w ((mini_m_w / 2) / BLOCKW)
+// # define mini_v_h ((mini_m_h / 2) / BLOCKH)
+// # define mini_v_w ((mini_m_w / 2) / BLOCKW)
 # define BLOCK_COL 0x0c187c9
+# define MINI_BORDER_C 0x0d76d56
 # define SPEED 1
 //screen size
 # define WIDTH 1000
@@ -198,6 +199,7 @@ void	draw_square(int x, int y, int size, int color, t_env *env);
 //minimap
 void	init_minimap(t_img *img, t_data *data, t_env *env);
 void	draw_map(t_env *env);
+void	draw_mini_border(t_env *env);
 
 
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']

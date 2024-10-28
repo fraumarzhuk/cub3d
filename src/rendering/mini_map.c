@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 14:02:10 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:21:48 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,25 @@ void draw_map(t_env *env)
 		}
 		y++;
 	}
+}
+
+void draw_mini_border(t_env *env)
+{
+	int x;
+	int	y;
+	x = 0;
+	y = 0;
+	while (x++ < mini_m_w)
+		my_pixel_put(x, y, MINI_BORDER_C, env);
+	x = 0;
+	while (y++ < mini_m_h)
+		my_pixel_put(x, y, MINI_BORDER_C, env);
+	y = mini_m_h - 1;
+	while (x++ < mini_m_w - 1)
+		my_pixel_put(x, y, MINI_BORDER_C, env);
+	x = mini_m_w - 1;
+	y = 0;
+	while (y++ < (mini_m_h - 1))
+		my_pixel_put(x, y, MINI_BORDER_C, env);
+	
 }

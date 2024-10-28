@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 12:50:53 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:08:57 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int draw_loop(t_env *env)
 	clear_image(env);
 	draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
 	draw_map(env);
+	draw_mini_border(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	return (1);
 }
