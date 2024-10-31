@@ -40,8 +40,6 @@ void	my_mlx_pixel_put(t_datax *data, int x, int y, int color)
 }
 
 
-
-
 int main (void)
 {
     t_vars vars;

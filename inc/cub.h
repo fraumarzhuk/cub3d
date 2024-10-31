@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 12:31:58 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/31 00:07:08 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_img
 	char	*addr;
 	int		bpp;
 	int		endian;
-	int		width; // int size_line?
+	int		width; // int size_line? (Would make more sense ~ Tobi)
 	int		height;
 }	t_img;
 

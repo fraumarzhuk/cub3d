@@ -6,7 +6,7 @@
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:23 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/10/09 02:21:08 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/10/28 15:13:31 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,7 @@ void	to_border(double *pos, double dir[2], double *new_pos);
 
 /*Converts a degree value into a radian*/
 double	degrees_to_radians(double degrees);
+
+/*Checks if a number is a whole number*/
+int		is_whole(double number);
 #endif
