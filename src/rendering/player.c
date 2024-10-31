@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 16:55:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:09:23 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ float new_angle(float angle, float angle_speed, bool left, bool right)
 
 void move_player(t_player *player, t_env *env)
 {
-
-
 	double next_x = player->x;
 	double next_y = player->y;
 	float angle_speed = 0.5;
@@ -37,31 +35,13 @@ void move_player(t_player *player, t_env *env)
 	player->angle = new_angle(player->angle, angle_speed, player->left_rotate, player->right_rotate);
 	
 	if (player->key_up && player->y - SPEED >= 0)
-	{
 		get_new_pos2(&next_x, &next_y, player->angle, SPEED);
-		// next_x -= cos_angle * SPEED;
-		// next_y -= sin_angle * SPEED;
-		
-	}
 	if (player->key_down && player->y + SPEED < HEIGHT)
-	{
 		get_new_pos2(&next_x, &next_y, player->angle + 180, SPEED);
-		// next_x += cos_angle * SPEED;
-        // next_y += sin_angle * SPEED;
-	}
 	if (player->key_left && player->x - SPEED >= 0)
-	{
 		get_new_pos2(&next_x, &next_y, player->angle - 90, SPEED);
-		// next_x -= sin_angle * SPEED;
-        // next_y += cos_angle * SPEED;
-	}
 	if (player->key_right && player->x + SPEED < WIDTH)
-	{
 		get_new_pos2(&next_x, &next_y, player->angle + 90, SPEED);
-		// next_x += sin_angle * SPEED;
-        // next_y -= cos_angle * speed;
-	}
-	
 	int next_matrix_x = next_x / BLOCKW;
 	int next_matrix_y = next_y / BLOCKH;
 
@@ -89,19 +69,17 @@ int draw_loop(t_env *env)
 	t_player *player = env->player;
 	move_player(player, env);
 	clear_image(env);
-	draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
-	// draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
+	//draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
+	draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
 	draw_map(env);
 	draw_mini_border(env);
-	// float ray_x = player->x;
-	// float ray_y = player->y;
-	// while (!touch(ray_x, ray_y, env))
-	// {
-	// 	// printf("Ray x %f, ray y: %f\n", )
-	// 	my_pixel_put(ray_x, ray_y, MINI_BORDER_C, env);
-	// 	ray_x += player->angle;
-	// 	ray_y += player->angle;
-	// }
+	player->rayDirY = mini_m_h/2;
+	player->rayDirX = mini_m_h/2;
+	while ((unsigned)player->rayDirY < mini_m_h)
+	{
+		my_pixel_put(player->rayDirX, player->rayDirY, RAYCOLOR, env);
+		player->rayDirY -= 1;
+	}
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	return (1);
 }
@@ -144,3 +122,16 @@ void	draw_triangle(int size, int x, int y, int color, t_env *env)
 		i++;
 	}
 }
+
+// void cast_ray(t_player *player, t_env *env)
+// {
+	
+//     // for(int x = 0; x < mini_m_w; x++)
+//     // {
+//     //   double cameraX = 2 * x / (double)mini_m_w - 1;
+//     //   player->rayDirX = player->dirX + player->planeX * cameraX;
+//     //   player->rayDirY = player->dirY + player->planeY * cameraX;
+// 	//   my_pixel_put((int)player->rayDirX, (int)player->rayDirY, RAYCOLOR, env);
+// 	//   printf("cur ray location x: %f and y:%f\n", player->rayDirX, player->rayDirY);
+// 	// }
+// }
