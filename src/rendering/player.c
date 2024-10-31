@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/31 15:09:23 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/31 16:26:50 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,29 @@ int draw_loop(t_env *env)
 	t_player *player = env->player;
 	move_player(player, env);
 	clear_image(env);
-	//draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
-	draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
+	draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
+	// draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
 	draw_map(env);
 	draw_mini_border(env);
 	player->rayDirY = mini_m_h/2;
 	player->rayDirX = mini_m_h/2;
-	while ((unsigned)player->rayDirY < mini_m_h)
+	while ((unsigned)player->rayDirY < mini_m_h && (unsigned)player->rayDirX < mini_m_w)
+	// while (!touch(player->rayDirX, player->rayDirY, env))
 	{
+		player->rayDirX += cos(degrees_to_radians(player->angle));
+		player->rayDirY += sin(degrees_to_radians(player->angle));
 		my_pixel_put(player->rayDirX, player->rayDirY, RAYCOLOR, env);
-		player->rayDirY -= 1;
 	}
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	return (1);
 }
 
-bool touch(float px, float py, t_env *env)
+bool touch(double px, double py, t_env *env)
 {
     int x = px / BLOCKW;
     int y = py / BLOCKH;
-    if(env->data->map_copy[y][x] == '1')
+	printf("posx: %d, posy: %d\n", x, y);
+    if(env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
         return true;
     return false;
 }
@@ -122,16 +125,3 @@ void	draw_triangle(int size, int x, int y, int color, t_env *env)
 		i++;
 	}
 }
-
-// void cast_ray(t_player *player, t_env *env)
-// {
-	
-//     // for(int x = 0; x < mini_m_w; x++)
-//     // {
-//     //   double cameraX = 2 * x / (double)mini_m_w - 1;
-//     //   player->rayDirX = player->dirX + player->planeX * cameraX;
-//     //   player->rayDirY = player->dirY + player->planeY * cameraX;
-// 	//   my_pixel_put((int)player->rayDirX, (int)player->rayDirY, RAYCOLOR, env);
-// 	//   printf("cur ray location x: %f and y:%f\n", player->rayDirX, player->rayDirY);
-// 	// }
-// }

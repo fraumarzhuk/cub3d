@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/31 14:39:57 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:12:48 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ int		destroy(t_env *env);
 void	move_player(t_player *player, t_env *env);
 int		draw_loop(t_env *env);
 void	clear_image(t_env *env);
-bool	touch(float px, float py, t_env *env);
+bool	touch(double px, double py, t_env *env);
 void	draw_triangle(int size, int x, int y, int color, t_env *env);
 void	cast_ray(t_player *player, t_env *env);
 
