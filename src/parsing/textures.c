@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:33:23 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/16 10:52:45 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 15:14:25 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,10 @@ t_rgb	*save_rgb(char *line)
 	free_split(res);
 	return (rgb);
 }
-void check_rgb_num(char *str)
+void	check_rgb_num(char *str)
 {
 	int	i;
+
 	i = 0;
 	if (!str || ft_strlen(str) > 3)
 		error_and_exit("Incorrect rgb values");
