@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/01 15:00:25 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:01:05 by mzhukova         ###   ########.fr       */
+/*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
+/*   Updated: 2024/11/01 16:39:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,34 @@ bool	touch(double px, double py, t_env *env)
 		return (true);
 	return (false);
 }
+
+// void	cast_ray(t_player *player, t_env *env)
+// {
+// 	double	ray_pos[2];
+// 	double	ray_dir[2]; //pos touching a wall?
+// 	double	new_pos[2];
+// 	double	distance;
+// 	double	mm_ray_x;
+// 	double	mm_ray_y;
+
+// 	mm_ray_x = MINI_M_SIZE / 2;
+// 	mm_ray_y = MINI_M_SIZE / 2;
+// 	ray_pos[0] = player->x;
+// 	ray_pos[1] = player->y;
+// 	ray_dir[0] = cos(degrees_to_radians(player->angle)) * SPEED;
+// 	ray_dir[1] = sin(degrees_to_radians(player->angle)) * SPEED;
+
+// 	while (!touch(ray_pos[0], ray_pos[1], env))
+// 	{
+// 		distance = distance_to_border(ray_pos, ray_dir);
+// 		get_new_pos2(&ray_pos[0], &ray_pos[1], player->angle, distance);
+// 		ray_pos[0] = new_pos[0];
+// 		ray_pos[1] = new_pos[1];
+// 		mm_ray_x += new_pos[0];
+// 		mm_ray_y += new_pos[1];
+// 		my_pixel_put((int)mm_ray_x, (int)mm_ray_y, RAYCOLOR, env);
+// 	}
+// }
 
 void	cast_mini_ray(t_player *player, t_env *env)
 {

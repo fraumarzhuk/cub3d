@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:00:54 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:16:12 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	mini_draw_loop(t_env *env)
 	draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
 	draw_mini_map(env);
 	draw_mini_border(env);
-	cast_mini_ray(env->player, env);
+	//cast_mini_ray(env->player, env);
+	cast_ray(env->player,env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	return (1);
 }

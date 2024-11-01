@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:07:27 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:15:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ void	clear_image(t_env *env);
 //mini_raycasting
 void	cast_mini_ray(t_player *player, t_env *env);
 bool	touch(double px, double py, t_env *env);
+void	cast_ray(t_player *player, t_env *env);
 
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
 // void p_movement(char *Coords, void *key_pressed);
