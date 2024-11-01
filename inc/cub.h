@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/31 00:07:08 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/01 12:31:22 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define CUB_H
 
 # include "../libft/libft.h"
+# include "../src/Math-functions/xMath.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/time.h>
 # include <string.h>
-
+# include <math.h>
 # ifdef __APPLE__
 # include "../minilibx_opengl_20191021/mlx.h"
 # define ESC 65307
@@ -42,15 +43,21 @@
 # define AK 97
 # define SK 115
 # define DK 100
+# define UP 65362
+# define LEFT 65361
+# define DOWN 65364
+# define RIGHT 65363
 //mini map
 # define mini_m_h 400
 # define mini_m_w 400
 # define BLOCKH 50
 # define BLOCKW 50
-# define mini_p 8
-# define mini_v_h ((mini_m_h / 2) / BLOCKH)
-# define mini_v_w ((mini_m_w / 2) / BLOCKW)
+# define mini_p 12
+// # define mini_v_h ((mini_m_h / 2) / BLOCKH)
+// # define mini_v_w ((mini_m_w / 2) / BLOCKW)
 # define BLOCK_COL 0x0c187c9
+# define MINI_BORDER_C 0x0d76d56
+# define RAYCOLOR 0x0e3fd0b
 # define SPEED 1
 //screen size
 # define WIDTH 1000
@@ -83,13 +90,21 @@ typedef struct s_player
 	char	*sprite;
 	double	x;
 	double	y;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
 	int		xc;
 	int		yc;
+	float	angle;
 	
 	bool key_up;
 	bool key_down;
 	bool key_left;
 	bool key_right;
+
+	bool left_rotate;
+	bool right_rotate;
 }	t_player;
 
 typedef struct s_data
@@ -185,6 +200,9 @@ int		destroy(t_env *env);
 void	move_player(t_player *player, t_env *env);
 int		draw_loop(t_env *env);
 void	clear_image(t_env *env);
+bool	touch(double px, double py, t_env *env);
+void	draw_triangle(int size, int x, int y, int color, t_env *env);
+void	cast_mini_ray(t_player *player, t_env *env);
 
 //******RENDERING******//
 
@@ -198,6 +216,7 @@ void	draw_square(int x, int y, int size, int color, t_env *env);
 //minimap
 void	init_minimap(t_img *img, t_data *data, t_env *env);
 void	draw_map(t_env *env);
+void	draw_mini_border(t_env *env);
 
 
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']

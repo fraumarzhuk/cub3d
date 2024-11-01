@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xMath.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:23 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/10/28 15:13:31 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/01 12:30:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	get_distance2(double *pos1, double *pos2);
 void	get_new_pos3(double *pos, double dir[2], double dist, double *new_pos);
 
 /*2D. calculates the new position for a specific distance and direction*/
-void	get_new_pos2(double *pos, double dir[2], double dist, double *new_pos);
+void	get_new_pos2(double *x, double *y, double dir, double dist);
 
 /*3D. Calculates the distance to the next wall.
 A wall is a plane where either x, y or z is a whole number*/
