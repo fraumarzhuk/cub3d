@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 10:45:32 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 11:35:00 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void move_player(t_player *player, t_env *env)
 	double next_x = player->x;
 	double next_y = player->y;
 	float angle_speed = 0.5;
-	// float cos_angle = cos(player->angle);
-	// float sin_angle = sin(player->angle);
 	player->angle = new_angle(player->angle, angle_speed, player->left_rotate, player->right_rotate);
 	
 	if (player->key_up && player->y - SPEED >= 0)
@@ -54,58 +52,48 @@ void move_player(t_player *player, t_env *env)
 	}
 }
 
-/* void	get_new_pos2(double *pos, double dir[2], double dist, double *new_pos) */
-
-
 void clear_image(t_env *env)
 {
     for(int y = 0; y < HEIGHT; y++)
         for(int x = 0; x < WIDTH; x++)
             my_pixel_put(x, y, 0, env);
 }
-
 int draw_loop(t_env *env)
 {
 	t_player *player = env->player;
 	move_player(player, env);
 	clear_image(env);
-	//draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
-	draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
+	draw_triangle(mini_p, mini_m_w / 2, mini_m_h / 2, 0x00FF00, env);
 	draw_map(env);
 	draw_mini_border(env);
-	player->rayDirY = mini_m_h/2;
-	player->rayDirX = mini_m_h/2;
-	double ray_miniY = player->y;
+
+	player->rayDirX = mini_m_w / 2;
+	player->rayDirY = mini_m_h / 2;
 	double ray_miniX = player->x;
-	// while ((unsigned)player->rayDirY < mini_m_h && (unsigned)player->rayDirX < mini_m_w)
+	double ray_miniY = player->y;
+
 	while (!touch(ray_miniX, ray_miniY, env))
 	{
-		printf("here\n");
 		player->rayDirX += cos(degrees_to_radians(player->angle));
 		player->rayDirY += sin(degrees_to_radians(player->angle));
-		ray_miniY += cos(degrees_to_radians(player->angle));
-		ray_miniX += sin(degrees_to_radians(player->angle));
+		ray_miniX += cos(degrees_to_radians(player->angle)) * SPEED;
+		ray_miniY += sin(degrees_to_radians(player->angle)) * SPEED;
 		my_pixel_put(player->rayDirX, player->rayDirY, RAYCOLOR, env);
 	}
+
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	return (1);
 }
-
-bool touch(double px, double py, t_env *env)
+bool	touch(double px, double py, t_env *env)
 {
-    int x = px / BLOCKW;
-    int y = py / BLOCKH;
+	int x = px / BLOCKW;
+	int y = py / BLOCKH;
 	
-    printf("posx: %d, posy: %d\n", x, y);
-    if (env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
-        return true;
-
-    if(env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
-        return true;
-    return false;
+	printf("posx: %d, posy: %d\n", x, y);
+	if (env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
+		return (true);
+	return (false);
 }
-
-
 void	draw_triangle(int size, int x, int y, int color, t_env *env)
 {
 	int	i;
