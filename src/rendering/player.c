@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/31 16:26:50 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 10:45:32 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,22 @@ int draw_loop(t_env *env)
 	t_player *player = env->player;
 	move_player(player, env);
 	clear_image(env);
-	draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
-	// draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
+	//draw_square(mini_m_w/2, mini_m_h/2, mini_p, 0x00FF00, env);
+	draw_triangle(mini_p, mini_m_w/2, mini_m_h /2, 0x00FF00, env);
 	draw_map(env);
 	draw_mini_border(env);
 	player->rayDirY = mini_m_h/2;
 	player->rayDirX = mini_m_h/2;
-	while ((unsigned)player->rayDirY < mini_m_h && (unsigned)player->rayDirX < mini_m_w)
-	// while (!touch(player->rayDirX, player->rayDirY, env))
+	double ray_miniY = player->y;
+	double ray_miniX = player->x;
+	// while ((unsigned)player->rayDirY < mini_m_h && (unsigned)player->rayDirX < mini_m_w)
+	while (!touch(ray_miniX, ray_miniY, env))
 	{
+		printf("here\n");
 		player->rayDirX += cos(degrees_to_radians(player->angle));
 		player->rayDirY += sin(degrees_to_radians(player->angle));
+		ray_miniY += cos(degrees_to_radians(player->angle));
+		ray_miniX += sin(degrees_to_radians(player->angle));
 		my_pixel_put(player->rayDirX, player->rayDirY, RAYCOLOR, env);
 	}
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
@@ -90,7 +95,11 @@ bool touch(double px, double py, t_env *env)
 {
     int x = px / BLOCKW;
     int y = py / BLOCKH;
-	printf("posx: %d, posy: %d\n", x, y);
+	
+    printf("posx: %d, posy: %d\n", x, y);
+    if (env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
+        return true;
+
     if(env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
         return true;
     return false;
