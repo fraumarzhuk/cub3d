@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/28 14:33:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 15:09:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	map_checks(char **map_copy, t_env *env) //pass data->map_copy
 		invalid_char_check(map_copy[i], env->player, i);
 		i++;
 	}
-	if (!env->data->east || !env->data->north || !env->data->west || !env->data->south)
+	if (!env->data->east || !env->data->north
+		||!env->data->west || !env->data->south)
 		error_and_exit("No wall textures saved!");
 	check_walls(map_copy, env->data);
 	check_rgb(env->data);
@@ -46,7 +47,7 @@ int	invalid_char_check(char *line, t_player *player, int y)
 				player->xc = i;
 				player->yc = y;
 				player->x = player->xc * BLOCKW;
-                player->y = player->yc * BLOCKH;
+				player->y = player->yc * BLOCKH;
 			}
 			else
 				error_and_exit("Too many players.");
@@ -54,7 +55,7 @@ int	invalid_char_check(char *line, t_player *player, int y)
 		if (!is_space(line[i]) && line[i] != 'N' && line[i] != 'S'
 			&& line[i] != 'E' && line[i] != 'W'
 			&& line[i] != '0' && line[i] != '1')
-				error_and_exit("Incorrect character inside map!");
+			error_and_exit("Incorrect character inside map!");
 		i++;
 	}
 	return (1);
@@ -94,7 +95,7 @@ void	check_rgb(t_data *data)
 	}
 }
 
-void tabs_to_spaces(char *map_line)
+void	tabs_to_spaces(char *map_line)
 {
 	int		tab_count;
 	char	*new_line;
@@ -113,6 +114,5 @@ void tabs_to_spaces(char *map_line)
 		error_and_exit("Memory allocation failed.");
 	copy_spaces(map_line, new_line);
 	map_line = ft_strdup(new_line);
-	// ft_strlcpy(map_line, new_line, ft_strlen(map_line));
 	ft_free(new_line);
 }
