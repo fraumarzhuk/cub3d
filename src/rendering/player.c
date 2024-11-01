@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 11:35:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 12:00:06 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,42 @@ int draw_loop(t_env *env)
 	move_player(player, env);
 	clear_image(env);
 	draw_triangle(mini_p, mini_m_w / 2, mini_m_h / 2, 0x00FF00, env);
+	//draw_square(mini_m_w / 2, mini_m_h / 2, mini_p, 0x00FF00, env);
 	draw_map(env);
 	draw_mini_border(env);
-
-	player->rayDirX = mini_m_w / 2;
-	player->rayDirY = mini_m_h / 2;
-	double ray_miniX = player->x;
-	double ray_miniY = player->y;
-
-	while (!touch(ray_miniX, ray_miniY, env))
-	{
-		player->rayDirX += cos(degrees_to_radians(player->angle));
-		player->rayDirY += sin(degrees_to_radians(player->angle));
-		ray_miniX += cos(degrees_to_radians(player->angle)) * SPEED;
-		ray_miniY += sin(degrees_to_radians(player->angle)) * SPEED;
-		my_pixel_put(player->rayDirX, player->rayDirY, RAYCOLOR, env);
-	}
-
+	cast_mini_ray(player, env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
 	return (1);
 }
+
+void cast_mini_ray(t_player *player, t_env *env)
+{
+	double mm_rayX = mini_m_w / 2;
+	double mm_rayY = mini_m_h / 2;
+	player->dirX = player->x;
+	player->dirY = player->y;
+
+	while (!touch(player->dirX, player->dirY, env))
+	{
+		mm_rayX+= cos(degrees_to_radians(player->angle)) * SPEED;
+		mm_rayY += sin(degrees_to_radians(player->angle) * SPEED);
+		player->dirX+= cos(degrees_to_radians(player->angle)) * SPEED;
+		player->dirY += sin(degrees_to_radians(player->angle)) * SPEED;
+		my_pixel_put(mm_rayX, mm_rayY, RAYCOLOR, env);
+	}
+
+}
+
 bool	touch(double px, double py, t_env *env)
 {
 	int x = px / BLOCKW;
 	int y = py / BLOCKH;
 	
-	printf("posx: %d, posy: %d\n", x, y);
 	if (env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
 		return (true);
 	return (false);
 }
+
 void	draw_triangle(int size, int x, int y, int color, t_env *env)
 {
 	int	i;

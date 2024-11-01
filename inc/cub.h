@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/31 15:12:48 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/01 11:51:27 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ typedef struct s_player
 	double	dirY;
 	double	planeX;
 	double	planeY;
-	double	rayDirX;
-	double	rayDirY;
 	int		xc;
 	int		yc;
 	float	angle;
@@ -204,7 +202,7 @@ int		draw_loop(t_env *env);
 void	clear_image(t_env *env);
 bool	touch(double px, double py, t_env *env);
 void	draw_triangle(int size, int x, int y, int color, t_env *env);
-void	cast_ray(t_player *player, t_env *env);
+void	cast_mini_ray(t_player *player, t_env *env);
 
 //******RENDERING******//
 
