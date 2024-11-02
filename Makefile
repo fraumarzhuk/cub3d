@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 UNAME_S := $(shell uname -s)
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -lm #-fsanitize=address
 MINILIBX_TGZ_NAME = MiniLibX.tgz
 ifeq ($(UNAME_S), Linux)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26192/minilibx-linux.tgz
@@ -12,13 +12,31 @@ else ifeq ($(UNAME_S), Darwin)
 	FLAGS_MINILIBX = -Lmlx -framework OpenGL -framework AppKit
 	MINILIBX_DIR = ./minilibx_opengl_20191021
 endif
-SRCS =	src/Tobi/main.c \
+SRCST =	src/Tobi/main.c \
 		src/Math-functions/to_border.c \
 		src/Math-functions/radians_utils.c \
 		src/Math-functions/is_whole.c \
 		src/Math-functions/distance.c \
 		src/Math-functions/new_pos.c
 		
+SRCS =	src/main.c \
+		src/parsing/parsing_file.c \
+		src/parsing/parsing_map.c \
+		src/parsing/textures.c \
+		src/parsing/wall-checks.c \
+		src/parsing/map-checks.c \
+		src/rendering/init_window.c \
+		src/rendering/mini_map.c \
+		src/rendering/player.c \
+		src/rendering/mini_raycasting.c \
+		src/rendering/events.c \
+		src/rendering/render_utils.c \
+		src/Math-functions/distance.c \
+		src/Math-functions/new_pos.c \
+		src/Math-functions/radians_utils.c \
+		src/Math-functions/to_border.c \
+		src/utils.c
+
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
