@@ -6,7 +6,7 @@
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:23 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/10/28 15:13:31 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/02 00:13:13 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,7 @@ double	degrees_to_radians(double degrees);
 
 /*Checks if a number is a whole number*/
 int		is_whole(double number);
+
+/*Checks if a number is a whole number, with a specific tolerance range*/
+int	is_whole_t(double number, double tolerance);
 #endif

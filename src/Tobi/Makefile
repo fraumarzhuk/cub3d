@@ -12,7 +12,12 @@ else ifeq ($(UNAME_S), Darwin)
 	FLAGS_MINILIBX = -Lmlx -framework OpenGL -framework AppKit
 	MINILIBX_DIR = ../../minilibx_opengl_20191021
 endif
-SRCS =	main.c 
+SRCS =	main.c \
+		../Math-functions/to_border.c \
+		../Math-functions/radians_utils.c \
+		../Math-functions/is_whole.c \
+		../Math-functions/distance.c \
+		../Math-functions/new_pos.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ../../libft

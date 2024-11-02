@@ -26,3 +26,7 @@ get_pixel_color(double *pos, double *xy, char **map, struct Entities)
     return(color); 
 }
 
+000 001
+100 101
+010 011
+110 111

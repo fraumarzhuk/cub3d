@@ -1,15 +1,15 @@
 #include "../../inc/cub.h"
 #include "../Math-functions/xMath.h"
 
-#define Window_Length 1920
-#define Window_Height 1080
+#define Window_Length 2000
+#define Window_Height 1000
 #define xFOV 60
 #define yFOV 60
 // IW = Initial Window (Camera)
-#define IW_Height 0.1
+#define IW_Height 0.2
 #define IW_Length 0.1
 
-#define Ceiling 0x007777FF
+#define Ceiling 0x0087CEEB
 #define Floor 0x00666666
 #define NO 0x00FF0000
 #define SO 0x0000FF00
@@ -19,9 +19,19 @@
 typedef struct s_datax
 {
 	char	**map_copy;
+	int		map_size;
 	void	*mlx;
 	void	*win;
 }			t_datax;
+
+typedef struct s_imgx
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}			t_imgx;
 
 int	grab_pixel_color(double *w_pos, t_datax *data, int negative)
 {
@@ -29,27 +39,36 @@ int	grab_pixel_color(double *w_pos, t_datax *data, int negative)
 		return (Floor);
 	if (w_pos[1] == 1)
 		return (Ceiling);
-	if (is_whole(w_pos[0]) && negative)
+	if (is_whole_t(w_pos[0], 1e-5) && negative)
 		return (NO);
-	if (is_whole(w_pos[2]) && negative)
+	if (is_whole_t(w_pos[0], 1e-5) && !negative)
 		return (SO);
-	if (is_whole(w_pos[0]) && !negative)
+	if ((is_whole_t(w_pos[2], 0.00001) || (double)(int)w_pos[2]==w_pos[2]) && negative)
 		return (WE);
-	if (is_whole(w_pos[2]) && !negative)
+	if (is_whole_t(w_pos[2], 1e-5) && !negative)
 		return (EA);
+	/*printf("w_pos[2] = %f\n", w_pos[2]);
+	int result = is_whole_t(w_pos[2], 0.00001);
+	printf("result = %d\n", result);*/
+	
+	if (!data)
+		return (0x00000000);
+	//printf("Error: w_pos: (%f, %f, %f), Test: %d \n", w_pos[0], w_pos[1], w_pos[2], (double)(int)w_pos[2]==w_pos[2]);
+	if((((int)floor(10 * w_pos[0])%2) + ((int)floor(10 * w_pos[1])%2) + ((int)floor(10 * w_pos[2])%2)) % 2 == 0)
+		return(0x00FF55BB);
 	return (0x00000000);
 }
 
-int	is_wall_negative(double dirx, double *w_pos)
+int	is_wall_negative(double dirx, double diry, double *w_pos)
 {
 	if (is_whole(w_pos[0])) // x
 	{
-		if (dirx >= 0 && <= 180)
+		if (dirx >= 90 && dirx < 270)
 			return (0);
 	}
 	if (is_whole(w_pos[2])) // z
 	{
-		if (dirx >= 90 && <= 270)
+		if (dirx >= 0 && dirx < 180)
 			return (0);
 	}
 	if (is_whole(w_pos[1])) // y
@@ -57,24 +76,51 @@ int	is_wall_negative(double dirx, double *w_pos)
 	return (1);
 }
 
-void	get_wall_pos(double *pos, double dirx, double diry, char **map,
+int	is_touching_wall(t_datax *data, double *pos)
+{
+	double	x;
+	double	z;
+
+	x = pos[0];
+	z = pos[2];
+	// printf("x: %f, z: %f\n", x, z);
+	if (z >= data->map_size || z < 1)
+		return (-1);
+	if (ft_strlen(data->map_copy[(int)floor(z)]) < floor(x) + 1 || x < 0)
+		return (-1);
+	if (is_whole(x))
+	{
+		if (data->map_copy[(int)floor(z)][(int)x] == '1'
+			|| data->map_copy[(int)ceil(z)][(int)x] == '1')
+			return (1);
+	}
+	else if (is_whole(z))
+	{
+		if (data->map_copy[(int)z][(int)floor(x)] == '1'
+			|| data->map_copy[(int)z][(int)ceil(x)] == '1')
+			return (1);
+	}
+	return (0);
+}
+
+void	get_wall_pos(double *pos, double dirx, double diry, t_datax *data,
 		double *w_pos)
 {
 	double	*new_pos;
 	double	dir[2];
 	double	step;
 
-	new_pos = ft_malloc(4 * sizeof(double));
+	new_pos = malloc(4 * sizeof(double));
 	new_pos[0] = pos[0];
 	new_pos[1] = pos[1];
 	new_pos[2] = pos[2];
 	dir[0] = dirx;
 	dir[1] = diry;
-	step = 0.01;
+	step = 0.001;
 	while (1)
 	{
 		to_border(new_pos, dir, w_pos);
-		if (map[(int)w_pos[0]][(int)w_pos[2]] == 1 || is_whole(w_pos[1]))
+		if (is_touching_wall(data, w_pos) != 0 || is_whole(w_pos[1]))
 			break ;
 		else
 			get_new_pos3(new_pos, dir, step, new_pos);
@@ -88,11 +134,12 @@ int	get_pixel_color(double *pos, double dirx, double diry, t_datax *data)
 	int		negative;
 	int		color;
 
-	w_pos = ft_malloc(4 * sizeof(double));
-	get_wall_pos(pos, dirx, diry, t_datax->map_copy, w_pos);
-	negative = is_wall_negative(dirx, w_pos);
+	w_pos = malloc(4 * sizeof(double));
+	get_wall_pos(pos, dirx, diry, data, w_pos);
+	negative = is_wall_negative(dirx, diry, w_pos);
 	color = grab_pixel_color(w_pos, data, negative);
 	free(w_pos);
+	return (color);
 }
 
 void	new_pos(double *pos, double *dir, double distx, double disty)
@@ -100,37 +147,34 @@ void	new_pos(double *pos, double *dir, double distx, double disty)
 	dir[0] = dir[0] + 90 * (0 <= distx) - 90 * (0 > distx);
 	get_new_pos3(pos, dir, distx, pos);
 	dir[0] = dir[0] - 90 * (0 <= distx) + 90 * (0 > distx);
-	dir[1] = dir[1] + 90 * (0 <= disty) - 90 * (0 > disty);
-	get_new_pos3(pos, dir, disty, pos);
-	dir[1] = dir[1] - 90 * (0 <= disty) + 90 * (0 > disty);
+	if(disty != 0)
+		return;
+	//dir[1] = dir[1] + 90 * (0 <= disty) - 90 * (0 > disty);
+	//get_new_pos3(pos, dir, disty, pos);
+	//dir[1] = dir[1] - 90 * (0 <= disty) + 90 * (0 > disty);
 }
 
-void	my_mlx_pixel_put(t_datax *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_imgx *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-t_img	Make_frame(double *pos, double *dir, t_datax *data)
+t_imgx	Make_frame(double *pos, double *dir, t_datax *data)
 {
 	int		i;
 	int		j;
-	int		dirx;
-	int		diry;
-	t_img	frame;
-	double	ydirection_step;
-	double	current_direction;
-		double current_pos[3];
-	double	position_step;
-	double	direction_offset;
+	double	dirx;
+	double	diry;
+	t_imgx	frame;
 
 	new_pos(pos, dir, -(IW_Length / 2), -(IW_Height / 2));
 	dirx = dir[0] - (xFOV / 2);
-	diry = dir[1] - (yFOV / 2);
+	diry = dir[1] + (yFOV / 2);
 	frame.img = mlx_new_image(data->mlx, Window_Length, Window_Height);
-	frame.addr = mlx_get_data_addr(frame.img, &frame.bpp, &frame.size_line,
+	frame.addr = mlx_get_data_addr(frame.img, &frame.bpp, &frame.line_length,
 		&frame.endian);
 	j = 0;
 	while (j < Window_Height)
@@ -138,13 +182,14 @@ t_img	Make_frame(double *pos, double *dir, t_datax *data)
 		i = 0;
 		while (i < Window_Length)
 		{
-			new_pos(pos, dir, (IW_Length / Window_Length), 0);
-			my_mlx_pixel_put(&frame, i, j, get_pixel_color(pos, dirx + i * (xFOV
-						/ Window_Length), diry + j * (yFOV / Window_Height),
-					map, data));
+			//new_pos(pos, dir, (IW_Length / Window_Length), 0);
+			//printf("Creating pixel: %d: x:%f y:%f z:%f, dir: %f, %f\n", i + Window_Length * (j + 1), pos[0], pos[1], pos[2], dirx + i * (xFOV/(double) Window_Length), diry + j * ((double)yFOV / Window_Height));
+			my_mlx_pixel_put(&frame, i, j, get_pixel_color(pos, dirx + i * (xFOV/(double) Window_Length), diry - j *  (yFOV/(double) Window_Height), data));
+			// dirx + i * (xFOV/ Window_Length), diry + j * (yFOV
+			// / Window_Height),
 			i++;
 		}
-		new_pos(pos, dir, -IW_Length, (IW_Height / Window_Height));
+		//new_pos(pos, dir, -IW_Length, 0); //(IW_Height / Window_Height));
 		j++;
 	}
 	return (frame);
@@ -175,35 +220,33 @@ t_img	Make_frame(double *pos, double *dir, t_datax *data)
 
 int	main(int argc, char **argv)
 {
-	int *pos;
-	int *dir;
-	char *map_parts[] = {"111111111111111111111111111111111",
-		"111111111000000000110000000000001",
-		"111111111011000001110000000000001",
-		"111111111001000000000000000000001",
-		"111111111011000001110000000000001",
-		"100000000011000001110111111111111", "11110111111111011100000010001",
-		"11110111111111011101010010001", "11000000110101011100000010001",
-		"10000000000000001100000010001", "10000000000000001101010010001",
-		"11000001110101011111011110N0111", "11110111 1110101 101111010001",
-		"11111111 1111111 111111111111"};
+	double *pos;
+	double *dir;
+	char *map_parts[] = {"111", "101", "111", NULL};
 	t_datax data;
 
 	if (argc != 6)
 		return (printf("Incorrect amount of arguments\n"), 1);
 	data.map_copy = map_parts;
+	data.map_size = 0;
+	while (data.map_copy[data.map_size])
+		data.map_size++;
+	data.map_size--;
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, Window_Length, Window_Height, "Cub3D");
-	pos = malloc(4 * sizeof(int));
-	dir = malloc(3 * sizeof(int));
+	pos = malloc(4 * sizeof(double));
+	dir = malloc(3 * sizeof(double));
 	pos[0] = strtod(argv[1], NULL);
 	pos[1] = strtod(argv[2], NULL);
 	pos[2] = strtod(argv[3], NULL);
 	dir[0] = strtod(argv[4], NULL);
 	dir[1] = strtod(argv[5], NULL);
-	t_img frame;
-	frame = Make_frame(double *pos, double *dir, t_datax *data);
+	t_imgx frame;
+	printf("Starting...\n");
+	//printf("Pixel color: 0x%08X\n", get_pixel_color(pos, dir[0], dir[1], &data));
+	frame = Make_frame(pos, dir, &data);
 	mlx_put_image_to_window(data.mlx, data.win, frame.img, 0, 0);
+	printf("Done.\n");
 	mlx_loop(data.mlx);
 	return (0);
 }

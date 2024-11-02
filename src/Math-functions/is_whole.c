@@ -2,7 +2,10 @@
 
 int	is_whole(double number)
 {
-	if (floor(number) == number)
-		return (1);
-	return (0);
+	return (floor(number) == number);
+}
+
+int	is_whole_t(double number, double tolerance)
+{
+	return (floor(number) + tolerance >= number && floor(number) - tolerance <= number);
 }
