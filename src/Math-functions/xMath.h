@@ -6,7 +6,11 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:23 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/10/28 16:31:20 by mzhukova         ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2024/11/02 00:13:13 by tlaukat          ###   ########.fr       */
+=======
+/*   Updated: 2024/11/01 12:30:02 by mzhukova         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +43,10 @@ void	to_border(double *pos, double dir[2], double *new_pos);
 
 /*Converts a degree value into a radian*/
 double	degrees_to_radians(double degrees);
+
+/*Checks if a number is a whole number*/
+int		is_whole(double number);
+
+/*Checks if a number is a whole number, with a specific tolerance range*/
+int	is_whole_t(double number, double tolerance);
 #endif

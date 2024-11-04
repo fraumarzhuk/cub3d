@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 16:15:44 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:51:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_img
 	char	*addr;
 	int		bpp;
 	int		endian;
-	int		width; // int size_line?
+	int		width; // int size_line? (Would make more sense ~ Tobi)
 	int		height;
 }	t_img;
 

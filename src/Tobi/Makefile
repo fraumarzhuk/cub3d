@@ -1,48 +1,36 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 UNAME_S := $(shell uname -s)
-CFLAGS = -Wall -Wextra -Werror -g -lm #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 MINILIBX_TGZ_NAME = MiniLibX.tgz
 ifeq ($(UNAME_S), Linux)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26192/minilibx-linux.tgz
 	FLAGS_MINILIBX = -I/usr/include -Imlx_linux -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-	MINILIBX_DIR = ./minilibx-linux
+	MINILIBX_DIR = ../../minilibx-linux
 else ifeq ($(UNAME_S), Darwin)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26193/minilibx_opengl.tgz
 	FLAGS_MINILIBX = -Lmlx -framework OpenGL -framework AppKit
-	MINILIBX_DIR = ./minilibx_opengl_20191021
+	MINILIBX_DIR = ../../minilibx_opengl_20191021
 endif
-SRCST =	src/Tobi/main.c \
-		src/Math-functions/to_border.c \
-		src/Math-functions/radians_utils.c \
-		src/Math-functions/is_whole.c \
-		src/Math-functions/distance.c \
-		src/Math-functions/new_pos.c
-		
-SRCS =	src/main.c \
-		src/parsing/parsing_file.c \
-		src/parsing/parsing_map.c \
-		src/parsing/textures.c \
-		src/parsing/wall-checks.c \
-		src/parsing/map-checks.c \
-		src/rendering/init_window.c \
-		src/rendering/mini_map.c \
-		src/rendering/player.c \
-		src/rendering/mini_raycasting.c \
-		src/rendering/events.c \
-		src/rendering/render_utils.c \
-		src/Math-functions/distance.c \
-		src/Math-functions/new_pos.c \
-		src/Math-functions/radians_utils.c \
-		src/Math-functions/to_border.c \
-		src/utils.c
+SRCS =	main.c \
+		../Math-functions/to_border.c \
+		../Math-functions/radians_utils.c \
+		../Math-functions/is_whole.c \
+		../Math-functions/distance.c \
+		../Math-functions/new_pos.c
 
 OBJS = $(SRCS:.c=.o)
-LIBFT_DIR = ./libft
+LIBFT_DIR = ../../libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MINILIBX = $(MINILIBX_DIR)/libmlx.a
 
 all: $(MINILIBX_DIR) $(MINILIBX) $(LIBFT) $(NAME)
+
+test: $(MINILIBX_DIR) $(MINILIBX) $(LIBFT) test2
+	
+test2:
+	rm -f test
+	$(CC) $(CFLAGS) tests.c $(FLAGS_MINILIBX) $(LIBFT) $(MINILIBX) -o test
 
 $(MINILIBX_DIR):
 	@echo "Downloading MiniLibX for $(UNAME_S) from $(LIB_URL)"
