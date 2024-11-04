@@ -5,8 +5,8 @@ NO  ./textures/wall.xpm
 WE ./textures/bg.xpm
 EA ./textures/bg.xpm
 
-F ./textures/bg.xpm
-C 250, 0, 3
+F ./textures/bg_pink_50.xpm
+C 250, 20, 3
 
 
      111111111111111111111

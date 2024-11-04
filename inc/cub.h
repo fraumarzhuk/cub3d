@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/04 12:58:49 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:49:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@
 //screen size
 # define WIDTH 1000
 # define HEIGHT 1000
+
+//walls
+#define TILE_S 50
 
 # define PI 3.14159265359
 
@@ -135,6 +138,12 @@ typedef struct s_env
 	void		*mlx_win;
 	t_data		*data;
 	t_img		*img;
+	t_img		*floor;
+	t_img		*ceiling;
+	t_img 		*north_wall;
+	t_img 		*south_wall;
+	t_img 		*east_wall;
+	t_img 		*west_wall;
 	t_player	*player;
 }	t_env;
 
@@ -180,6 +189,7 @@ void	error_and_exit(char *str);
 void	init_env(t_env *env);
 void	init_player(t_player *player);
 void	copy_spaces(char *map_line, char *new_line);
+void	init_textures(t_env *env);
 
 //******RENDERING******//
 //events
@@ -195,7 +205,8 @@ void	draw_triangle(int size, int x, int y, int color, t_env *env);
 void	init_mlx(t_env *env);
 void	init_minim_img(t_img *img, t_env *env);
 void	draw_square(int x, int y, int size, int color, t_env *env);
-
+void	init_texture_img(t_env *env);
+void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
 //minimap
 int		mini_draw_loop(t_env *env);
 void	draw_mini_map(t_env *env);
@@ -205,8 +216,8 @@ void	draw_mini_border(t_env *env);
 
 //render_utils
 int		get_color(int r, int g, int b, int a);
-void	my_pixel_put(int x, int y, int color, t_env *env);
-void	clear_image(t_env *env);
+void				my_pixel_put(int x, int y, int color, t_env *env);
+void				clear_image(t_env *env);
 
 //mini_raycasting
 void	cast_mini_ray(t_player *player, t_env *env);

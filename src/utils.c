@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/04 13:22:26 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:51:03 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_env(t_env *env)
 	env->data->west = NULL;
 	env->data->east = NULL;
 	init_player(env->player);
+	init_textures(env);
 }
 
 void	init_player(t_player *player)
@@ -57,6 +58,15 @@ void	init_player(t_player *player)
 	player->key_up = false;
 	player->right_rotate = false;
 	player->left_rotate = false;
+}
+void init_textures(t_env *env)
+{
+	env->floor = (t_img *)ft_malloc(sizeof(t_img));
+	env->ceiling = (t_img *)ft_malloc(sizeof(t_img));
+	env->north_wall = (t_img *)ft_malloc(sizeof(t_img));
+	env->south_wall = (t_img *)ft_malloc(sizeof(t_img));
+	env->east_wall = (t_img *)ft_malloc(sizeof(t_img));
+	env->west_wall = (t_img *)ft_malloc(sizeof(t_img));
 }
 
 void	copy_spaces(char *map_line, char *new_line)
