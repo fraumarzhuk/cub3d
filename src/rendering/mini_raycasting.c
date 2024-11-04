@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/04 12:55:32 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:18:25 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,40 @@ bool	touch(double px, double py, t_env *env)
 	return (false);
 }
 
+
+void	cast_mini_ray(t_player *player, t_env *env)
+{
+
+	float	angle;
+	int		i;
+	angle = player->angle;
+	i = 0;
+	//printf("cur angle: %f\n", player->angle);
+	draw_line(player->x, player->y, angle, env);
+	while (i++ < 30)
+	{
+		draw_line(player->x, player->y, angle - i, env);
+		draw_line(player->x, player->y, angle + i , env);
+	}
+
+}
+
+void draw_line(double px, double py, float angle, t_env *env)
+{
+	double	mm_ray_x;
+	double	mm_ray_y;
+
+	mm_ray_x = MINI_M_SIZE / 2;
+	mm_ray_y = MINI_M_SIZE / 2;
+	while (!touch(px, py, env))
+	{
+		mm_ray_x += cos(degrees_to_radians(angle)) * SPEED;
+		mm_ray_y += sin(degrees_to_radians(angle) * SPEED);
+		px += cos(degrees_to_radians(angle)) * SPEED;
+		py += sin(degrees_to_radians(angle)) * SPEED;
+		my_pixel_put(mm_ray_x, mm_ray_y, RAYCOLOR, env);
+	}
+}
 // void	cast_ray(t_player *player, t_env *env)
 // {
 // 	double	ray_pos[2];
@@ -51,37 +85,3 @@ bool	touch(double px, double py, t_env *env)
 // 		my_pixel_put((int)mm_ray_x, (int)mm_ray_y, RAYCOLOR, env);
 // 	}
 // }
-
-void	cast_mini_ray(t_player *player, t_env *env)
-{
-
-	float	angle;
-	int		i;
-	angle = player->angle;
-	i = 0;
-	//printf("cur angle: %f\n", player->angle);
-	while (i++ < 30)
-	{
-		draw_line(player->x, player->y, angle - i, env);
-		draw_line(player->x, player->y, angle, env);
-		draw_line(player->x, player->y, angle + i , env);
-	}
-
-}
-
-void draw_line(double px, double py, float angle, t_env *env)
-{
-	double	mm_ray_x;
-	double	mm_ray_y;
-
-	mm_ray_x = MINI_M_SIZE / 2;
-	mm_ray_y = MINI_M_SIZE / 2;
-	while (!touch(px, py, env))
-	{
-		mm_ray_x += cos(degrees_to_radians(angle)) * SPEED;
-		mm_ray_y += sin(degrees_to_radians(angle) * SPEED);
-		px += cos(degrees_to_radians(angle)) * SPEED;
-		py += sin(degrees_to_radians(angle)) * SPEED;
-		my_pixel_put(mm_ray_x, mm_ray_y, RAYCOLOR, env);
-	}
-}

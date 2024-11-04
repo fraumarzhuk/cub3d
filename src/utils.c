@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:12:53 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:22:26 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ void	init_player(t_player *player)
 	player->orientation = 0;
 	player->sprite = NULL;
 	player->angle = -90;
+	player->key_right = false;
+	player->key_left = false;
+	player->key_down = false;
+	player->key_up = false;
+	player->right_rotate = false;
+	player->left_rotate = false;
 }
 
 void	copy_spaces(char *map_line, char *new_line)
