@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/04 17:55:11 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:11:16 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ void	init_mlx(t_env *env)
 	env->mlx_win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "Cub 3D");
 	if (!env->mlx_win)
 		error_and_exit("Mlx failed");
-	init_minim_img(env->img, env);
+	init_minim_img(env->mini_map, env);
 	init_texture_img(env);
 	draw_mini_map(env);
-	mlx_put_image_to_window(env->mlx, env->mlx_win, env->img->img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->mini_map->img, 0, 0);
 	//test tile
-	//mlx_put_image_to_window(env->mlx, env->mlx_win, env->floor->img, WIDTH /2, HEIGHT /2);
-	//test rgb
-	mlx_put_image_to_window(env->mlx, env->mlx_win, env->ceiling->img, WIDTH /2, HEIGHT /2);
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->floor->img, WIDTH /2, HEIGHT /2);
 	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
 	mlx_hook(env->mlx_win, 2, 1L << 0, key_press, env);
 	mlx_hook(env->mlx_win, 3, 1L << 1, key_release, env);

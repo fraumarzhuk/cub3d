@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/04 17:49:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:10:48 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct s_env
 	void		*mlx;
 	void		*mlx_win;
 	t_data		*data;
-	t_img		*img;
+	t_img		*mini_map;
 	t_img		*floor;
 	t_img		*ceiling;
 	t_img 		*north_wall;
