@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/06 13:10:48 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:25:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_env
 	void		*mlx;
 	void		*mlx_win;
 	t_data		*data;
+	t_img		*canvas;
 	t_img		*mini_map;
 	t_img		*floor;
 	t_img		*ceiling;
@@ -215,15 +216,23 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset,
 void	draw_mini_border(t_env *env);
 
 //render_utils
-int		get_color(int r, int g, int b, int a);
-void				my_pixel_put(int x, int y, int color, t_env *env);
-void				clear_image(t_env *env);
+int					get_color(int r, int g, int b, int a);
+void				mm_pixel_put(int x, int y, int color, t_env *env);
+void				my_pixel_put(int x, int y, int color, t_img *img);
+void				clear_image(t_img *img);
+void				kurwa_check_canvas(t_img *img);
+void				clear_mm_image(t_img *img);
 
 //mini_raycasting
 void	cast_mini_ray(t_player *player, t_env *env);
 bool	touch(double px, double py, t_env *env);
 // void	cast_ray(t_player *player, t_env *env);
 void	draw_line(double px, double py, float angle, t_env *env);
+
+//init_canvas
+void	init_canvas_img(t_img *canvas, t_env *env);
+void	render_minimap_on_canvas(t_env *env);
+void	put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y);
 
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
 // void p_movement(char *Coords, void *key_pressed);

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/06 13:12:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:27:48 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	mini_draw_loop(t_env *env)
 {
+	clear_mm_image(env->mini_map);
 	move_player(env->player, env);
-	clear_image(env);
 	draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
 	draw_mini_map(env);
 	draw_mini_border(env);
 	cast_mini_ray(env->player, env);
-	//cast_ray(env->player,env);
-	mlx_put_image_to_window(env->mlx, env->mlx_win, env->mini_map->img, 0, 0);
+	render_minimap_on_canvas(env);
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
 	return (1);
 }
 
@@ -72,15 +72,15 @@ void	draw_mini_border(t_env *env)
 	x = 0;
 	y = 0;
 	while (x++ < MINI_M_SIZE)
-		my_pixel_put(x, y, MINI_BORDER_C, env);
+		mm_pixel_put(x, y, MINI_BORDER_C, env);
 	x = 0;
 	while (y++ < MINI_M_SIZE)
-		my_pixel_put(x, y, MINI_BORDER_C, env);
+		mm_pixel_put(x, y, MINI_BORDER_C, env);
 	y = MINI_M_SIZE - 1;
 	while (x++ < MINI_M_SIZE - 1)
-		my_pixel_put(x, y, MINI_BORDER_C, env);
+		mm_pixel_put(x, y, MINI_BORDER_C, env);
 	x = MINI_M_SIZE - 1;
 	y = 0;
 	while (y++ < (MINI_M_SIZE - 1))
-		my_pixel_put(x, y, MINI_BORDER_C, env);
+		mm_pixel_put(x, y, MINI_BORDER_C, env);
 }

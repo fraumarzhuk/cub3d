@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/04 13:18:25 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:16:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void draw_line(double px, double py, float angle, t_env *env)
 		mm_ray_y += sin(degrees_to_radians(angle) * SPEED);
 		px += cos(degrees_to_radians(angle)) * SPEED;
 		py += sin(degrees_to_radians(angle)) * SPEED;
-		my_pixel_put(mm_ray_x, mm_ray_y, RAYCOLOR, env);
+		mm_pixel_put(mm_ray_x, mm_ray_y, RAYCOLOR, env);
 	}
 }
 // void	cast_ray(t_player *player, t_env *env)
@@ -82,6 +82,6 @@ void draw_line(double px, double py, float angle, t_env *env)
 // 		ray_pos[1] = new_pos[1];
 // 		mm_ray_x += new_pos[0];
 // 		mm_ray_y += new_pos[1];
-// 		my_pixel_put((int)mm_ray_x, (int)mm_ray_y, RAYCOLOR, env);
+// 		mm_pixel_put((int)mm_ray_x, (int)mm_ray_y, RAYCOLOR, env);
 // 	}
 // }

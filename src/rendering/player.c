@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:04:12 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:16:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	draw_triangle(int size, int x, int y, int color, t_env *env)
 		j = start_x;
 		while (j <= end_x)
 		{
-			my_pixel_put(j, y + i, color, env);
+			mm_pixel_put(j, y + i, color, env);
 			j++;
 		}
 		i++;

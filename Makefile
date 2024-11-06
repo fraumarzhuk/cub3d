@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 UNAME_S := $(shell uname -s)
-CFLAGS = -Wall -Wextra -Werror -g -lm #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -lm -fsanitize=address
 MINILIBX_TGZ_NAME = MiniLibX.tgz
 ifeq ($(UNAME_S), Linux)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26192/minilibx-linux.tgz
@@ -26,6 +26,7 @@ SRCS =	src/main.c \
 		src/parsing/wall-checks.c \
 		src/parsing/map-checks.c \
 		src/rendering/init_window.c \
+		src/rendering/init_canvas.c \
 		src/rendering/mini_map.c \
 		src/rendering/player.c \
 		src/rendering/mini_raycasting.c \
