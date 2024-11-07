@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 13:59:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 13:15:00 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:24:27 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,34 +48,16 @@ int	get_color(int r, int g, int b, int a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void	clear_image(t_img *img)
+void	clear_image(t_img *img, int width, int height)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	while (y < HEIGHT)
+	while (y < height)
 	{
 		x = 0;
-		while (x < WIDTH)
-		{
-			my_pixel_put(x, y, 0, img);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	clear_mm_image(t_img *img)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < MINI_M_SIZE)
-	{
-		x = 0;
-		while (x < MINI_M_SIZE)
+		while (x < width)
 		{
 			my_pixel_put(x, y, 0, img);
 			x++;

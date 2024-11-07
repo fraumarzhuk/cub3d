@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 13:18:50 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:25:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	mini_draw_loop(t_env *env)
 {
-	clear_mm_image(env->mini_map);
+	clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
 	move_player(env->player, env);
 	draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
 	draw_mini_map(env);
