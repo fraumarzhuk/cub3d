@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/06 17:21:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:19:14 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ void	init_mlx(t_env *env)
 		error_and_exit("Mlx failed");
 	init_canvas_img(env->canvas, env);
 	init_minim_img(env->mini_map, env);
-	//init_texture_img(env);
-
+	init_texture_img(env);
 	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
 	mlx_hook(env->mlx_win, 2, 1L << 0, key_press, env);
 	mlx_hook(env->mlx_win, 3, 1L << 1, key_release, env);
 	mlx_loop_hook(env->mlx, mini_draw_loop, env);
-	mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
 	mlx_loop(env->mlx);
 }
 
@@ -38,9 +36,11 @@ void	init_minim_img(t_img *img, t_env *env)
 	if (!img->img)
 		error_and_exit("Failed to create image");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp,
-			&img->width, &img->endian);
+			&img->size_line, &img->endian);
 	if (!img->addr)
 		error_and_exit("Failed to get image data address");
+	img->width = MINI_M_SIZE;
+    img->height = MINI_M_SIZE;
 }
 void init_texture_img(t_env *env)
 {

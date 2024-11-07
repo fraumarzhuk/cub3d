@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/06 17:25:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:15:09 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ typedef struct s_img
 	char	*addr;
 	int		bpp;
 	int		endian;
-	int		width; // int size_line? (Would make more sense ~ Tobi)
+	int		size_line;
+	int		width;
 	int		height;
 }	t_img;
 
@@ -220,7 +221,6 @@ int					get_color(int r, int g, int b, int a);
 void				mm_pixel_put(int x, int y, int color, t_env *env);
 void				my_pixel_put(int x, int y, int color, t_img *img);
 void				clear_image(t_img *img);
-void				kurwa_check_canvas(t_img *img);
 void				clear_mm_image(t_img *img);
 
 //mini_raycasting
