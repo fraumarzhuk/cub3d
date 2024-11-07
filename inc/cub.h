@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 13:26:49 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:39:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	char	*data;
 	int		bpp;
 	int		endian;
 	int		size_line;
@@ -209,6 +210,7 @@ void	init_minim_img(t_img *img, t_env *env);
 void	draw_square(int x, int y, int size, int color, t_env *env);
 void	init_texture_img(t_env *env);
 void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
+void	init_xpm_texture(t_img *img, t_env *env, char *path);
 //minimap
 int		mini_draw_loop(t_env *env);
 void	draw_mini_map(t_env *env);

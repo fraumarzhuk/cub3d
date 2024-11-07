@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/06 14:09:05 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:26:04 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_env(t_env *env)
 {
 	env->data = (t_data *)ft_malloc(sizeof(t_data));
 	env->data->ceiling = (t_rgb *)ft_malloc(sizeof(t_rgb));
+	env->ceiling = (t_img *)ft_malloc(sizeof(t_img));
+	env->floor = (t_img *)ft_malloc(sizeof(t_img));
 	env->data->floor = (t_rgb *)ft_malloc(sizeof(t_rgb));
 	env->mini_map = (t_img *)ft_malloc(sizeof(t_img));
 	env->canvas = (t_img *)ft_malloc(sizeof(t_img));

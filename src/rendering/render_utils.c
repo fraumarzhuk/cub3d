@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 13:59:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 13:24:27 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:57:03 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void my_pixel_put(int x, int y, int color, t_img *img)
         dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
         *(unsigned int *)dst = color;
     }
-	//int	index;
+	// int	index;
 
 	// if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 	// 	return ;

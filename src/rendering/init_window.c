@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 13:19:14 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:42:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,34 @@ void	init_minim_img(t_img *img, t_env *env)
 }
 void init_texture_img(t_env *env)
 {
-	int size;
-	size = TILE_S;
 	if (env->data->pic_floor)
-		env->floor->img = mlx_xpm_file_to_image(env->mlx, env->data->pic_floor, &size, &size);
+		init_xpm_texture(env->floor, env, env->data->pic_floor);
 	else if (env->data->floor)
 		printf("Create img and put rgb color pixels\n");
 	if (env->data->pic_ceiling)
-		env->ceiling->img = mlx_xpm_file_to_image(env->mlx, env->data->pic_ceiling, &size, &size);
+		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
 		printf("Create img and put rgb color pixels\n");
-	env->north_wall->img = mlx_xpm_file_to_image(env->mlx, env->data->north, &size, &size);
-	env->south_wall->img = mlx_xpm_file_to_image(env->mlx, env->data->south, &size, &size);
-	env->east_wall->img = mlx_xpm_file_to_image(env->mlx, env->data->east, &size, &size);
-	env->west_wall->img = mlx_xpm_file_to_image(env->mlx, env->data->west, &size, &size);
+	init_xpm_texture(env->north_wall, env, env->data->north);
+	init_xpm_texture(env->south_wall, env, env->data->south);
+	init_xpm_texture(env->east_wall, env, env->data->east);
+	init_xpm_texture(env->west_wall, env, env->data->west);
 }
+void init_xpm_texture(t_img *img, t_env *env, char *path)
+{
+	int	height;
+	int	width;
+	img->img = mlx_xpm_file_to_image(env->mlx, path, &width, &height);
+	if (!img->img)
+		error_and_exit("Failed to load floor image");
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+	if (!img->addr)
+		error_and_exit("Failed to get image data address");
+	img->width = width;
+	img->height = height;
+}
+
+
 // void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 // {
 // 	int size;

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:48:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 13:24:51 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:30:40 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void render_minimap_on_canvas(t_env *env)
 	clear_image(env->canvas, WIDTH, HEIGHT);
 	int offset_x = WIDTH - MINI_M_SIZE;
 	int offset_y = HEIGHT - MINI_M_SIZE;
+	put_image_to_image(env->floor, env->canvas, 0, 0);
 	put_image_to_image(env->mini_map, env->canvas, offset_x, offset_y);
 }
 
@@ -46,7 +47,7 @@ void put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y)
 	while (y < src->height)
 	{
 		x = 0;
-		while (x < src->width)
+		while (src->addr && dst->addr && x < src->width)
 		{
 			src_pixel = src->addr + (y * src->size_line + x * (src->bpp / 8));
 			int dst_x = x + offset_x;
@@ -61,4 +62,3 @@ void put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y)
 		y++;
 	}
 }
-
