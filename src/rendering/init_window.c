@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 15:42:42 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:54:45 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void init_texture_img(t_env *env)
 	if (env->data->pic_ceiling)
 		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
-		printf("Create img and put rgb color pixels\n");
+		init_rgb_texture(env->ceiling, env->data->ceiling, env);
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);
@@ -72,27 +72,27 @@ void init_xpm_texture(t_img *img, t_env *env, char *path)
 }
 
 
-// void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
-// {
-// 	int size;
+void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
+{
+	int size;
 
-// 	size = TILE_S;
-// 	int m_color;
-// 	texture->img = mlx_new_image(env->mlx, TILE_S, TILE_S);
-// 	if (!texture->img)
-// 		error_and_exit("Failed to create image");
-// 	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
-// 			&texture->width, &texture->endian);
-// 	if (!texture->addr)
-// 		error_and_exit("Failed to get image data address");
-// 	m_color = (color->r << 16) | (color->g << 8) | color->b;
-// 	printf("color: %i\n", m_color);
-// 	for (int y = 0; y < TILE_S; y++)
-// 	{
-// 		for (int x = 0; x < TILE_S; x++)
-// 			mm_pixel_put(x, y, RAYCOLOR, env);
-// 	}
-// }
+	size = TILE_S;
+	int m_color;
+	texture->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
+	if (!texture->img)
+		error_and_exit("Failed to create image");
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
+			&texture->size_line, &texture->endian);
+	if (!texture->addr)
+		error_and_exit("Failed to get image data address");
+	m_color = (color->r << 16) | (color->g << 8) | color->b;
+	printf("color: %i\n", m_color);
+	for (int y = 0; y < HEIGHT / 2; y++)
+	{
+		for (int x = 0; x < WIDTH / 2; x++)
+			my_pixel_put(x, y, RAYCOLOR, texture);
+	}
+}
 
 void	draw_square(int x, int y, int size, int color, t_env *env)
 {
