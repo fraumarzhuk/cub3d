@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 14:26:04 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:32:46 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	init_player(t_player *player)
 	player->key_up = false;
 	player->right_rotate = false;
 	player->left_rotate = false;
+	player->render_move = true;
+	player->counter = 0;
 }
 void init_textures(t_env *env)
 {

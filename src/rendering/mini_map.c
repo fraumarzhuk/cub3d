@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 16:20:08 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:33:39 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	mini_draw_loop(t_env *env)
 {
-	clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
+	//clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
 	clear_image(env->canvas, WIDTH, HEIGHT);
 	move_player(env->player, env);
-	draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
+	// draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
 	draw_mini_map(env);
-	draw_mini_border(env);
-	cast_mini_ray(env->player, env);
+	//draw_mini_border(env);
+	//cast_mini_ray(env->player, env);
 	render_minimap_on_canvas(env);
 	//put_image_to_image(env->floor, env->canvas, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
@@ -33,6 +33,10 @@ void	draw_mini_map(t_env *env)
 	double	py_offset;
 	int		y;
 
+	if (!env->player->render_move)
+		return ;
+	clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
+	draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
 	px_offset = env->player->x - (env->player->xc * BLOCKW);
 	py_offset = env->player->y - (env->player->yc * BLOCKH);
 	y = 0;
@@ -41,6 +45,11 @@ void	draw_mini_map(t_env *env)
 		calculate_draw_xy(env, y, px_offset, py_offset);
 		y++;
 	}
+	draw_mini_border(env);
+	cast_mini_ray(env->player, env);
+	env->player->counter++;
+	printf("rendered minimap: %d\n", env->player->counter);
+	env->player->render_move = false;
 }
 
 void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)

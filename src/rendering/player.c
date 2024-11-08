@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/06 13:16:02 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:39:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,26 @@ void	move_player(t_player *player, t_env *env)
 
 	next_x = player->x;
 	next_y = player->y;
-	player->angle = new_angle(player->angle, ANGLE_SPEED,
-			player->left_rotate, player->right_rotate);
-	if (player->key_up && player->y - SPEED >= 0)
-		get_new_pos2(&next_x, &next_y, player->angle, SPEED);
-	if (player->key_down && player->y + SPEED < HEIGHT)
-		get_new_pos2(&next_x, &next_y, player->angle + 180, SPEED);
-	if (player->key_left && player->x - SPEED >= 0)
-		get_new_pos2(&next_x, &next_y, player->angle - 90, SPEED);
-	if (player->key_right && player->x + SPEED < WIDTH)
-		get_new_pos2(&next_x, &next_y, player->angle + 90, SPEED);
-	if (env->data->map_copy[(int)next_y / BLOCKH][(int)next_x / BLOCKW] != '1')
+	if (player->key_up || player->key_down || player->key_left || player->key_right || player->right_rotate || player->left_rotate)
 	{
-		player->x = next_x;
-		player->y = next_y;
-		player->xc = (int)next_x / BLOCKW;
-		player->yc = (int)next_y / BLOCKH;
+		player->render_move = true;
+		player->angle = new_angle(player->angle, ANGLE_SPEED,
+			player->left_rotate, player->right_rotate);
+		if (player->key_up && player->y - SPEED >= 0)
+			get_new_pos2(&next_x, &next_y, player->angle, SPEED);
+		if (player->key_down && player->y + SPEED < HEIGHT)
+			get_new_pos2(&next_x, &next_y, player->angle + 180, SPEED);
+		if (player->key_left && player->x - SPEED >= 0)
+			get_new_pos2(&next_x, &next_y, player->angle - 90, SPEED);
+		if (player->key_right && player->x + SPEED < WIDTH)
+			get_new_pos2(&next_x, &next_y, player->angle + 90, SPEED);
+		if (env->data->map_copy[(int)next_y / BLOCKH][(int)next_x / BLOCKW] != '1')
+		{
+			player->x = next_x;
+			player->y = next_y;
+			player->xc = (int)next_x / BLOCKW;
+			player->yc = (int)next_y / BLOCKH;
+		}
 	}
 }
 

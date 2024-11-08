@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/06 13:16:02 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:37:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	cast_mini_ray(t_player *player, t_env *env)
 	int		i;
 	angle = player->angle;
 	i = 0;
-	//printf("cur angle: %f\n", player->angle);
 	draw_line(player->x, player->y, angle, env);
 	while (i++ < 30)
 	{

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/07 16:26:54 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:32:50 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ typedef struct s_player
 	bool	key_right;
 	bool	left_rotate;
 	bool	right_rotate;
+	bool	render_move;
+	int		counter;
 }	t_player;
 
 typedef struct s_data
