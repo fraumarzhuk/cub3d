@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 11:33:39 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:04:35 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	mini_draw_loop(t_env *env)
 	draw_mini_map(env);
 	//draw_mini_border(env);
 	//cast_mini_ray(env->player, env);
+	//render things: sep function:
 	render_minimap_on_canvas(env);
 	//put_image_to_image(env->floor, env->canvas, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 15:33:23 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:14:25 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 13:02:09 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ t_rgb	*save_rgb(char *line)
 	if (!rgb || !res)
 		error_and_exit("Malloc failed!");
 	check_rgb_num(res[0]);
-	rgb->r = ft_atoi(ft_strdup(res[0]));
+	rgb->r = ft_atoi(trim_spaces(res[0]));
 	check_rgb_num(res[1]);
-	rgb->g = ft_atoi(ft_strdup(res[1]));
+	rgb->g = ft_atoi(trim_spaces(res[1]));
 	check_rgb_num(res[2]);
-	rgb->b = ft_atoi(ft_strdup(res[2]));
+	rgb->b = ft_atoi(trim_spaces(res[2]));
 	free_split(res);
 	return (rgb);
 }
@@ -107,12 +107,13 @@ void	check_rgb_num(char *str)
 	int	i;
 
 	i = 0;
+	str = trim_spaces(str);
 	if (!str || ft_strlen(str) > 3)
 		error_and_exit("Incorrect rgb values");
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && !is_space(str[i]))
-			error_and_exit("Incorrect rgb values");
+			error_and_exit("Incorrect rgb values1");
 		i++;
 	}
 }

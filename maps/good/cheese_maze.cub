@@ -6,7 +6,7 @@ WE ./textures/bg.xpm
 EA ./textures/bg.xpm
 
 F ./textures/bg_pink_50.xpm
-C 250, 20, 3
+C 200, 210, 30
 
 
      111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 11:30:38 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:56:21 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,19 @@ void init_texture_img(t_env *env)
 	if (env->data->pic_floor)
 		init_xpm_texture(env->floor, env, env->data->pic_floor);
 	else if (env->data->floor)
-		printf("Create img and put rgb color pixels\n");
+		init_rgb_texture(env->floor, env->data->floor, env);
 	if (env->data->pic_ceiling)
 		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
 		init_rgb_texture(env->ceiling, env->data->ceiling, env);
+	put_image_to_image(env->floor, env->canvas, 0, HEIGHT / 2);
+	put_image_to_image(env->ceiling, env->canvas, 0, HEIGHT / 2);
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);
 	init_xpm_texture(env->west_wall, env, env->data->west);
 }
+
 void init_xpm_texture(t_img *img, t_env *env, char *path)
 {
 	int	height;
@@ -86,11 +89,12 @@ void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 	if (!texture->addr)
 		error_and_exit("Failed to get image data address");
 	m_color = (color->r << 16) | (color->g << 8) | color->b;
-	printf("color: %i\n", m_color);
+	texture->width = WIDTH;
+	texture->height = HEIGHT / 2;
 	for (int y = 0; y < HEIGHT / 2; y++)
 	{
-		for (int x = 0; x < WIDTH / 2; x++)
-			my_pixel_put(x, y, RAYCOLOR, texture);
+		for (int x = 0; x < WIDTH; x++)
+			my_pixel_put(x, y, m_color, texture);
 	}
 }
 
