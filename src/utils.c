@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:06:32 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 11:32:46 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:16:42 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	init_player(t_player *player)
 	player->left_rotate = false;
 	player->render_move = true;
 	player->counter = 0;
+	player->mm_p_height = (int)(MINI_P * sin((80) * PI / 180.0));
 }
 void init_textures(t_env *env)
 {

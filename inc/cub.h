@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 11:32:50 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:15:13 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@
 # define DOWN 65364
 # define RIGHT 65363
 //mini map
-# define MINI_M_SIZE 400
+# define MINI_M_SIZE 300
 # define BLOCKH 50
 # define BLOCKW 50
 # define MINI_P 12
 # define BLOCK_COL 0x0c187c9
 # define MINI_BORDER_C 0x0d76d56
-# define RAYCOLOR 0x0e3fd0b
+# define RAYCOLOR 0x0FFF9BF
 # define SPEED 1
 # define ANGLE_SPEED 0.5
 //screen size
@@ -95,6 +95,7 @@ typedef struct s_player
 	int		xc;
 	int		yc;
 	float	angle;
+	int		mm_p_height;
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
@@ -225,7 +226,6 @@ int					get_color(int r, int g, int b, int a);
 void				mm_pixel_put(int x, int y, int color, t_env *env);
 void				my_pixel_put(int x, int y, int color, t_img *img);
 void				clear_image(t_img *img, int width, int height);
-void				clear_mm_image(t_img *img);
 
 //mini_raycasting
 void	cast_mini_ray(t_player *player, t_env *env);
@@ -235,7 +235,7 @@ void	draw_line(double px, double py, float angle, t_env *env);
 
 //init_canvas
 void	init_canvas_img(t_img *canvas, t_env *env);
-void	render_minimap_on_canvas(t_env *env);
+void	render_images_on_canvas(t_env *env);
 void	put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y);
 
 // void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']

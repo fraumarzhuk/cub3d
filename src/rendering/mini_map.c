@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 13:04:35 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:26:00 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,11 @@
 
 int	mini_draw_loop(t_env *env)
 {
-	//clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
-	clear_image(env->canvas, WIDTH, HEIGHT);
+	//clear_image(env->canvas, WIDTH, HEIGHT);
 	move_player(env->player, env);
-	// draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
 	draw_mini_map(env);
-	//draw_mini_border(env);
-	//cast_mini_ray(env->player, env);
-	//render things: sep function:
-	render_minimap_on_canvas(env);
-	//put_image_to_image(env->floor, env->canvas, 0, 0);
-	mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
+	render_images_on_canvas(env);
+	// mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
 	return (1);
 }
 
@@ -50,7 +44,7 @@ void	draw_mini_map(t_env *env)
 	cast_mini_ray(env->player, env);
 	env->player->counter++;
 	printf("rendered minimap: %d\n", env->player->counter);
-	env->player->render_move = false;
+	//env->player->render_move = false;
 }
 
 void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
@@ -68,6 +62,8 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 				+ MINI_M_SIZE / 2;
 			draw_y = y * BLOCKH - (env->player->yc * BLOCKH + py_offset)
 				+ MINI_M_SIZE / 2;
+			// if (env->player->key_up)
+			// 	draw_y -= env->player->mm_p_height / 2;
 			if (draw_x >= -BLOCKW && draw_x < MINI_M_SIZE && draw_y
 				>= -BLOCKH && draw_y < MINI_M_SIZE)
 				draw_square(draw_x, draw_y, BLOCKH, BLOCK_COL, env);

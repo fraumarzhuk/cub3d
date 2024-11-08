@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:48:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 13:05:34 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:59:14 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ void	init_canvas_img(t_img *canvas, t_env *env)
     canvas->height = HEIGHT;
 }
 
-void render_minimap_on_canvas(t_env *env)
+void render_images_on_canvas(t_env *env)
 {
-
+	if (!env->player->render_move)
+		return ;
 	clear_image(env->canvas, WIDTH, HEIGHT);
 	int offset_x = WIDTH - MINI_M_SIZE;
 	int offset_y = HEIGHT - MINI_M_SIZE;
 	put_image_to_image(env->floor, env->canvas, 0, 0);
 	put_image_to_image(env->ceiling, env->canvas, 0, HEIGHT / 2);
 	put_image_to_image(env->mini_map, env->canvas, offset_x, offset_y);
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
+	env->player->render_move = false;
 }
 
 void put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y)
