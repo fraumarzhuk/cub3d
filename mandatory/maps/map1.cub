@@ -1,8 +1,8 @@
-SO  ./textures/bg.xpm
-NO  ./textures/wall.xpm
+SO  ./textures/brick_wall_1.xpm
+NO  ./textures/brick_wall_1.xpm
 
-WE ./textures/bg.xpm
-EA ./textures/bg.xpm
+WE ./textures/brick_wall_1.xpm
+EA ./textures/brick_wall_1.xpm
 
 C 253, 219, 187
 F 203, 157, 240
