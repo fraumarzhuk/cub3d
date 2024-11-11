@@ -3,4 +3,4 @@
 .vscode
 .minilibx_opengl_20191021
 .cub3d
-.libft/libft.a
+.libft.a
