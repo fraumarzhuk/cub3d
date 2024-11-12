@@ -1,8 +1,8 @@
-SO  ./textures/bg.xpm
-NO  ./textures/wall.xpm
+SO  ./textures/bier_probe.xpm
+NO  ./textures/bier_probe.xpm
 
-WE ./textures/bg.xpm
-EA ./textures/bg.xpm
+WE ./textures/bier_probe.xpm
+EA ./textures/bier_probe.xpm
 
 C 253, 219, 187
 F 203, 157, 240

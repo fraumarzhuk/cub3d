@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:24:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 12:56:21 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:32:29 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ void init_texture_img(t_env *env)
 		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
 		init_rgb_texture(env->ceiling, env->data->ceiling, env);
-	put_image_to_image(env->floor, env->canvas, 0, HEIGHT / 2);
-	put_image_to_image(env->ceiling, env->canvas, 0, HEIGHT / 2);
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);
 	init_xpm_texture(env->west_wall, env, env->data->west);
+	//put_image_to_image(env->floor, env->canvas, 0, HEIGHT / 2);
+	put_image_to_image(env->north_wall, env->canvas, 0, HEIGHT / 2);
+	//put_image_to_image(env->ceiling, env->canvas, 0, HEIGHT / 2);
 }
 
 void init_xpm_texture(t_img *img, t_env *env, char *path)
