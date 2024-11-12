@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:41:53 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/12 16:12:55 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:00:50 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int	mini_draw_loop(t_env *env)
 	//clear_image(env->canvas, WIDTH, HEIGHT);
 	move_player(env->player, env);
 	draw_mini_map(env);
+	double pos[3] = {env->player->x / BLOCKW, 0.5, env->player->y / BLOCKH};
+	//printf("pos: %lf, %lf, %lf, dir: %lf \n", pos[0], pos[1], pos[2],  env->player->angle);
+	Make_frame(env->scene_canvas, pos, - env->player->angle, env);
 	render_images_on_canvas(env);
-	// mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
+	//mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
 	return (1);
 }
 
@@ -43,7 +46,7 @@ void	draw_mini_map(t_env *env)
 	draw_mini_border(env);
 	cast_mini_ray(env->player, env);
 	env->player->counter++;
-	printf("rendered minimap: %d\n", env->player->counter);
+	//printf("rendered minimap: %d\n", env->player->counter);
 	//env->player->render_move = false;
 }
 

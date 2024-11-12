@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:12:38 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 16:15:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:56:02 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_data
 	int		fd;
 	int		size_line;
 	char	**map_copy;
+	double frame_dist;
 	int		map_len;
 	int		line_count;
 	int		map_lines;
@@ -143,6 +144,7 @@ typedef struct s_env
 	void		*mlx_win;
 	t_data		*data;
 	t_img		*canvas;
+	t_img		*scene_canvas;
 	t_img		*mini_map;
 	t_img		*floor;
 	t_img		*ceiling;
@@ -198,6 +200,8 @@ void	copy_spaces(char *map_line, char *new_line);
 void	init_textures(t_env *env);
 
 //******RENDERING******//
+//raycasting
+void	Make_frame(t_img *frame, double *pos, double dir, t_env *env);
 //events
 int		key_press(int keycode, t_env *env);
 int		key_release(int keycode, t_env *env);
