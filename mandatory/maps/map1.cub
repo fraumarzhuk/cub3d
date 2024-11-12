@@ -1,8 +1,8 @@
-SO  ./textures/deutschland_1.xpm
-NO  ./textures/deutschland_1.xpm
+SO  ./textures/bier_probe.xpm
+NO  ./textures/bier_probe.xpm
 
-WE ./textures/deutschland_1.xpm
-EA ./textures/deutschland_1.xpm
+WE ./textures/bier_probe.xpm
+EA ./textures/bier_probe.xpm
 
 C 253, 219, 187
 F 203, 157, 240
