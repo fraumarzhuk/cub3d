@@ -7,5 +7,5 @@ int	is_whole(double number)
 
 int	is_whole_t(double number, double tolerance)
 {
-	return (floor(number) + tolerance >= number && floor(number) - tolerance <= number);
+	return (round(number) + tolerance >= number && round(number) - tolerance <= number);
 }

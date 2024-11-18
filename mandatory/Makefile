@@ -60,7 +60,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(MINILIBX) $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) $(FLAGS_MINILIBX) $(LIBFT) $(MINILIBX) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS)  $(LIBFT) $(MINILIBX) $(FLAGS_MINILIBX) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

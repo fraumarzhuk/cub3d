@@ -78,9 +78,9 @@ void init_xpm_texture(t_img *img, t_env *env, char *path)
 
 void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 {
-	int size;
+	/*int size;
 
-	size = TILE_S;
+	size = TILE_S;*/
 	int m_color;
 	texture->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
 	if (!texture->img)

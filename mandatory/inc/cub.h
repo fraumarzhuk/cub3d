@@ -55,14 +55,20 @@
 # define BLOCK_COL 0x0c187c9
 # define MINI_BORDER_C 0x0d76d56
 # define RAYCOLOR 0x0FFF9BF
-# define SPEED 1
-# define ANGLE_SPEED 0.5
+# define SPEED 2
+# define ANGLE_SPEED 2
 //screen size
 # define WIDTH 1000
 # define HEIGHT 1000
 
 //walls
 #define TILE_S 50
+
+//raycasting
+#define xFOV 60
+#define yFOV 60
+#define FOV_Mod 60
+#define Render_Distance 10
 
 # define PI 3.14159265359
 
