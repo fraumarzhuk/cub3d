@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/10/14 18:38:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:27:32 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,13 @@ int	parse_line(t_map **map, t_data *data)
 		&& new_node->line[ft_strlen(new_node->line) - 1] == '\n')
 		new_node->line[ft_strlen(new_node->line) - 1] = '\0';
 	return (1);
+}
+
+void	set_player_pos(t_player *player, int x, int y, char orient)
+{
+	player->orientation = orient;
+	player->xc = x;
+	player->yc = y;
+	player->x = player->xc * BLOCKW;
+	player->y = player->yc * BLOCKH;
 }

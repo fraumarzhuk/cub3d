@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/19 15:15:24 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:29:18 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,35 +87,4 @@ void	check_rgb(t_data *data)
 			|| data->floor->b > 255)
 			error_and_exit("No correct data for floor provided.");
 	}
-}
-
-void	tabs_to_spaces(char *map_line)
-{
-	int		tab_count;
-	char	*new_line;
-	int		i;
-
-	tab_count = 0;
-	i = 0;
-	while (map_line[i])
-	{
-		if (map_line[i] == '\t')
-			tab_count++;
-		i++;
-	}
-	new_line = ft_malloc(i + tab_count * 3 + 1);
-	if (!new_line)
-		error_and_exit("Memory allocation failed.");
-	copy_spaces(map_line, new_line);
-	map_line = ft_strdup(new_line);
-	ft_free(new_line);
-}
-
-void set_player_pos(t_player *player, int x, int y, char orient)
-{
-	player->orientation = orient;
-	player->xc = x;
-	player->yc = y;
-	player->x = player->xc * BLOCKW;
-	player->y = player->yc * BLOCKH;
 }

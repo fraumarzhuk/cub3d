@@ -102,19 +102,3 @@ t_rgb	*save_rgb(char *line)
 	free_split(res);
 	return (rgb);
 }
-
-void	check_rgb_num(char *str)
-{
-	int	i;
-
-	i = 0;
-	str = trim_spaces(str);
-	if (!str || ft_strlen(str) > 3)
-		error_and_exit("Incorrect rgb values");
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]) && !is_space(str[i]))
-			error_and_exit("Incorrect rgb values1");
-		i++;
-	}
-}
