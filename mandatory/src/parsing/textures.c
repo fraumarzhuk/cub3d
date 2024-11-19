@@ -102,6 +102,7 @@ t_rgb	*save_rgb(char *line)
 	free_split(res);
 	return (rgb);
 }
+
 void	check_rgb_num(char *str)
 {
 	int	i;

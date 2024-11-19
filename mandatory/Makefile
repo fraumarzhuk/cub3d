@@ -27,9 +27,7 @@ SRCS =	src/main.c \
 		src/parsing/map-checks.c \
 		src/rendering/init_window.c \
 		src/rendering/init_canvas.c \
-		src/rendering/mini_map.c \
 		src/rendering/player.c \
-		src/rendering/mini_raycasting.c \
 		src/rendering/events.c \
 		src/rendering/render_utils.c \
 		src/Math-functions/distance.c \

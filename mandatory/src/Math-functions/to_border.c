@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_border.c                                          :+:      :+:    :+:   */
+/*   to_border.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:29 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/10/09 02:20:34 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/19 15:09:37 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ double	distance_to_border(double *pos, double dir[2])
 	set_dist(pos[1], d[1], &(dist[1]));
 	set_dist(pos[2], d[2], &(dist[2]));
 	dist_to_border = fmin(dist[0] / fabs(d[0]), fmin(dist[1] / fabs(d[1]),
-			dist[2] / fabs(d[2])));
+				dist[2] / fabs(d[2])));
 	return (dist_to_border);
 }
 

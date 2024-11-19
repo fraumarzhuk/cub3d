@@ -188,6 +188,7 @@ int		invalid_char_check(char *line, t_player *player, int y);
 void	check_parsed_data(t_env *env, t_map *map);
 void	check_rgb(t_data *data);
 void	tabs_to_spaces(char *map_line);
+void	set_player_pos(t_player *player, int x, int y, char orient);
 
 //wall-checks
 void	check_walls(char **map_copy, t_data *data);
@@ -225,7 +226,7 @@ void	init_texture_img(t_env *env);
 void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
 void	init_xpm_texture(t_img *img, t_env *env, char *path);
 //minimap
-int		mini_draw_loop(t_env *env);
+int		draw_loop(t_env *env);
 void	draw_mini_map(t_env *env);
 void	calculate_draw_xy(t_env *env, int y, double px_offset,
 			double py_offset);

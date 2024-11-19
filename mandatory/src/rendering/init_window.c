@@ -22,27 +22,14 @@ void	init_mlx(t_env *env)
 		error_and_exit("Mlx failed");
 	init_canvas_img(env->canvas, env);
 	init_canvas_img(env->scene_canvas, env);
-	init_minim_img(env->mini_map, env);
 	init_texture_img(env);
 	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
 	mlx_hook(env->mlx_win, 2, 1L << 0, key_press, env);
 	mlx_hook(env->mlx_win, 3, 1L << 1, key_release, env);
-	mlx_loop_hook(env->mlx, mini_draw_loop, env);
+	mlx_loop_hook(env->mlx, draw_loop, env);
 	mlx_loop(env->mlx);
 }
 
-void	init_minim_img(t_img *img, t_env *env)
-{
-	img->img = mlx_new_image(env->mlx, MINI_M_SIZE, MINI_M_SIZE);
-	if (!img->img)
-		error_and_exit("Failed to create image");
-	img->addr = mlx_get_data_addr(img->img, &img->bpp,
-			&img->size_line, &img->endian);
-	if (!img->addr)
-		error_and_exit("Failed to get image data address");
-	img->width = MINI_M_SIZE;
-    img->height = MINI_M_SIZE;
-}
 void init_texture_img(t_env *env)
 {
 	if (env->data->pic_floor)
@@ -53,8 +40,6 @@ void init_texture_img(t_env *env)
 		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
 		init_rgb_texture(env->ceiling, env->data->ceiling, env);
-	// put_image_to_image(env->floor, env->canvas, 0, HEIGHT / 2);
-	// put_image_to_image(env->ceiling, env->canvas, 0, HEIGHT / 2);
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);
@@ -78,9 +63,6 @@ void init_xpm_texture(t_img *img, t_env *env, char *path)
 
 void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 {
-	/*int size;
-
-	size = TILE_S;*/
 	int m_color;
 	texture->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
 	if (!texture->img)
@@ -99,20 +81,29 @@ void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 	}
 }
 
-void	draw_square(int x, int y, int size, int color, t_env *env)
-{
-	int	i;
+// void	draw_square(int x, int y, int size, int color, t_env *env)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < size)
-		mm_pixel_put(x + i++, y, color, env);
-	i = 0;
-	while (i < size)
-		mm_pixel_put(x, y + i++, color, env);
-	i = 0;
-	while (i < size)
-		mm_pixel_put(x + size, y + i++, color, env);
-	i = 0;
-	while (i < size)
-		mm_pixel_put(x + i++, y + size, color, env);
+// 	i = 0;
+// 	while (i < size)
+// 		mm_pixel_put(x + i++, y, color, env);
+// 	i = 0;
+// 	while (i < size)
+// 		mm_pixel_put(x, y + i++, color, env);
+// 	i = 0;
+// 	while (i < size)
+// 		mm_pixel_put(x + size, y + i++, color, env);
+// 	i = 0;
+// 	while (i < size)
+// 		mm_pixel_put(x + i++, y + size, color, env);
+// }
+
+int	draw_loop(t_env *env)
+{
+	move_player(env->player, env);
+	double pos[3] = {env->player->x / BLOCKW, 0.5, env->player->y / BLOCKH};
+	Make_frame(env->scene_canvas, pos, env->player->angle, env);
+	render_images_on_canvas(env);
+	return (1);
 }

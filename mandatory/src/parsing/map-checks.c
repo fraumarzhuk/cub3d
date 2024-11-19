@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:09:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:15:24 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,7 @@ int	invalid_char_check(char *line, t_player *player, int y)
 			|| line[i] == 'E' || line[i] == 'W')
 		{
 			if (!player->orientation)
-			{
-				player->orientation = line[i];
-				player->xc = i;
-				player->yc = y;
-				player->x = player->xc * BLOCKW;
-				player->y = player->yc * BLOCKH;
-			}
+				set_player_pos(player, i, y, line[i]);
 			else
 				error_and_exit("Too many players.");
 		}
@@ -115,4 +109,13 @@ void	tabs_to_spaces(char *map_line)
 	copy_spaces(map_line, new_line);
 	map_line = ft_strdup(new_line);
 	ft_free(new_line);
+}
+
+void set_player_pos(t_player *player, int x, int y, char orient)
+{
+	player->orientation = orient;
+	player->xc = x;
+	player->yc = y;
+	player->x = player->xc * BLOCKW;
+	player->y = player->yc * BLOCKH;
 }
