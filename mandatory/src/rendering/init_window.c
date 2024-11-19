@@ -30,7 +30,7 @@ void	init_mlx(t_env *env)
 	mlx_loop(env->mlx);
 }
 
-void init_texture_img(t_env *env)
+void	init_texture_img(t_env *env)
 {
 	if (env->data->pic_floor)
 		init_xpm_texture(env->floor, env, env->data->pic_floor);
@@ -46,24 +46,28 @@ void init_texture_img(t_env *env)
 	init_xpm_texture(env->west_wall, env, env->data->west);
 }
 
-void init_xpm_texture(t_img *img, t_env *env, char *path)
+void	init_xpm_texture(t_img *img, t_env *env, char *path)
 {
 	int	height;
 	int	width;
+
 	img->img = mlx_xpm_file_to_image(env->mlx, path, &width, &height);
 	if (!img->img)
 		error_and_exit("Failed to load floor image");
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->size_line, &img->endian);
 	if (!img->addr)
 		error_and_exit("Failed to get image data address");
 	img->width = width;
 	img->height = height;
 }
 
-
-void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
+void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 {
-	int m_color;
+	int	m_color;
+	int	y;
+	int	x;
+
 	texture->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
 	if (!texture->img)
 		error_and_exit("Failed to create image");
@@ -74,35 +78,27 @@ void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 	m_color = (color->r << 16) | (color->g << 8) | color->b;
 	texture->width = WIDTH;
 	texture->height = HEIGHT / 2;
-	for (int y = 0; y < HEIGHT / 2; y++)
+	y = 0;
+	while (y < HEIGHT / 2)
 	{
-		for (int x = 0; x < WIDTH; x++)
+		x = 0;
+		while (x < WIDTH)
+		{
 			my_pixel_put(x, y, m_color, texture);
+			x++;
+		}
+		y++;
 	}
 }
 
-// void	draw_square(int x, int y, int size, int color, t_env *env)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < size)
-// 		mm_pixel_put(x + i++, y, color, env);
-// 	i = 0;
-// 	while (i < size)
-// 		mm_pixel_put(x, y + i++, color, env);
-// 	i = 0;
-// 	while (i < size)
-// 		mm_pixel_put(x + size, y + i++, color, env);
-// 	i = 0;
-// 	while (i < size)
-// 		mm_pixel_put(x + i++, y + size, color, env);
-// }
-
 int	draw_loop(t_env *env)
 {
+	double	pos[3];
+
 	move_player(env->player, env);
-	double pos[3] = {env->player->x / BLOCKW, 0.5, env->player->y / BLOCKH};
+	pos[0] = env->player->x / BLOCKW;
+	pos[1] = 0.5;
+	pos[2] = env->player->y / BLOCKH;
 	Make_frame(env->scene_canvas, pos, env->player->angle, env);
 	render_images_on_canvas(env);
 	return (1);

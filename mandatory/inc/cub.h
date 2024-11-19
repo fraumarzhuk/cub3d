@@ -142,6 +142,8 @@ typedef struct s_img
 	int		size_line;
 	int		width;
 	int		height;
+	char 	*src_pixel;
+	char	*dst_pixel;	
 }	t_img;
 
 typedef struct s_env
@@ -217,6 +219,7 @@ int		destroy(t_env *env);
 float	new_angle(float angle, float angle_speed, bool left, bool right);
 void	move_player(t_player *player, t_env *env);
 void	draw_triangle(int size, int x, int y, int color, t_env *env);
+void	move_player_position(t_player *player, double next_x, double next_y);
 
 //init window
 void	init_mlx(t_env *env);
