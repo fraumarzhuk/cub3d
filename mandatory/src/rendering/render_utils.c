@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 13:59:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/19 15:05:53 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:54:41 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	mm_pixel_put(int x, int y, int color, t_env *env)
 	env->mini_map->addr[index + 2] = (color >> 16) & 0xFF;
 }
 
-void my_pixel_put(int x, int y, int color, t_img *img)
+void	my_pixel_put(int x, int y, int color, t_img *img)
 {
-    char *dst;
+	char	*dst;
 
 	if (x <= WIDTH && y <= HEIGHT && x > 0 && y > 0)
-    {
-        dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
-        *(unsigned int *)dst = color;
-    }
+	{
+		dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
 int	get_color(int r, int g, int b, int a)

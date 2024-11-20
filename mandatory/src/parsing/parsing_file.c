@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:56:59 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/19 18:02:02 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/20 12:52:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ int	parse_line(t_map **map, t_data *data)
 	return (1);
 }
 
-void set_player_pos(t_player *player, int x, int y, char orient)
+void	set_player_pos(t_player *player, int x, int y, char orient)
 {
 	player->orientation = orient;
-	if(orient == 'N')
+	if (orient == 'N')
 		player->angle = -90;
-	else if(orient == 'S')
+	else if (orient == 'S')
 		player->angle = 90;
-	else if(orient == 'E')
+	else if (orient == 'E')
 		player->angle = 0;
-	else if(orient == 'W')
+	else if (orient == 'W')
 		player->angle = 180;
 	player->xc = x;
 	player->yc = y;

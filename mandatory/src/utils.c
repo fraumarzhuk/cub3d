@@ -26,7 +26,6 @@ void	init_env(t_env *env)
 	env->ceiling = (t_img *)ft_malloc(sizeof(t_img));
 	env->floor = (t_img *)ft_malloc(sizeof(t_img));
 	env->data->floor = (t_rgb *)ft_malloc(sizeof(t_rgb));
-	env->mini_map = (t_img *)ft_malloc(sizeof(t_img));
 	env->canvas = (t_img *)ft_malloc(sizeof(t_img));
 	env->scene_canvas = (t_img *)ft_malloc(sizeof(t_img));
 	env->player = (t_player *)ft_malloc(sizeof(t_player));
@@ -66,7 +65,8 @@ void	init_player(t_player *player)
 	player->counter = 0;
 	player->mm_p_height = (int)(MINI_P * sin((80) * PI / 180.0));
 }
-void init_textures(t_env *env)
+
+void	init_textures(t_env *env)
 {
 	env->floor = (t_img *)ft_malloc(sizeof(t_img));
 	env->ceiling = (t_img *)ft_malloc(sizeof(t_img));
@@ -132,9 +132,11 @@ void	copy_spaces(char *map_line, char *new_line)
 // 	if (env->data->ceiling && env->data->floor)
 // 	{		
 // 		printf("RGB TEXTURES (F and C):\n\n");
-// 		printf("floor rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m, \e[1;34m%d\e[0m\n", env->data->floor->r,
+// 		printf("floor rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m,
+	//\e[1;34m%d\e[0m\n", env->data->floor->r,
 // 				env->data->floor->g, env->data->floor->b);
-// 		printf("ceiling rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m, \e[1;34m%d\e[0m\n", env->data->ceiling->r,
+// 		printf("ceiling rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m,
+	//\e[1;34m%d\e[0m\n", env->data->ceiling->r,
 // 				env->data->ceiling->g, env->data->ceiling->b);
 // 	}
 // 	printf("map_lines: %d\n", env->data->true_lines);

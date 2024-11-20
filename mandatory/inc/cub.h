@@ -218,22 +218,15 @@ int		destroy(t_env *env);
 //player
 float	new_angle(float angle, float angle_speed, bool left, bool right);
 void	move_player(t_player *player, t_env *env);
-void	draw_triangle(int size, int x, int y, int color, t_env *env);
 void	move_player_position(t_player *player, double next_x, double next_y);
+void	set_new_coords(t_player *player, double next_x, double next_y);
 
 //init window
 void	init_mlx(t_env *env);
-void	init_minim_img(t_img *img, t_env *env);
-void	draw_square(int x, int y, int size, int color, t_env *env);
+int		draw_loop(t_env *env);
 void	init_texture_img(t_env *env);
 void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
 void	init_xpm_texture(t_img *img, t_env *env, char *path);
-//minimap
-int		draw_loop(t_env *env);
-void	draw_mini_map(t_env *env);
-void	calculate_draw_xy(t_env *env, int y, double px_offset,
-			double py_offset);
-void	draw_mini_border(t_env *env);
 
 //render_utils
 int					get_color(int r, int g, int b, int a);
@@ -241,19 +234,9 @@ void				mm_pixel_put(int x, int y, int color, t_env *env);
 void				my_pixel_put(int x, int y, int color, t_img *img);
 void				clear_image(t_img *img, int width, int height);
 
-//mini_raycasting
-void	cast_mini_ray(t_player *player, t_env *env);
-bool	touch(double px, double py, t_env *env);
-// void	cast_ray(t_player *player, t_env *env);
-void	draw_line(double px, double py, float angle, t_env *env);
 
 //init_canvas
 void	init_canvas_img(t_img *canvas, t_env *env);
 void	render_images_on_canvas(t_env *env);
-void	put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y);
-
-// void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
-// void p_movement(char *Coords, void *key_pressed);
-// void m_movement(char *Coords, void *mouse_moved);
 
 #endif
