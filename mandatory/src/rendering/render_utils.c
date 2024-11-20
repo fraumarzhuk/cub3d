@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 13:59:06 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/08 13:23:19 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:26:16 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,15 @@ void	mm_pixel_put(int x, int y, int color, t_env *env)
 	env->mini_map->addr[index + 2] = (color >> 16) & 0xFF;
 }
 
-void my_pixel_put(int x, int y, int color, t_img *img)
+void	my_pixel_put(int x, int y, int color, t_img *img)
 {
-    char *dst;
+	char	*dst;
 
 	if (x <= WIDTH && y <= HEIGHT && x > 0 && y > 0)
-    {
-        dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
-        *(unsigned int *)dst = color;
-    }
-	// int	index;
-
-	// if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
-	// 	return ;
-	// index = y * img->width + x * (img->bpp / 8);
-	// img->addr[index] = color & 0xFF;
-	// img->addr[index + 1] = (color >> 8) & 0xFF;
-	// img->addr[index + 2] = (color >> 16) & 0xFF;
+	{
+		dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
+		*(unsigned int *)dst = color;
+	}
 }
 
 int	get_color(int r, int g, int b, int a)

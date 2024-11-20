@@ -23,13 +23,13 @@
 # include <string.h>
 # include <math.h>
 # ifdef __APPLE__
-# include "../minilibx_opengl_20191021/mlx.h"
-# define ESC 53
+#  include "../minilibx_opengl_20191021/mlx.h"
+#  define ESC 53
 // #  include "key_macos.h"
 
 # elif __linux__
-# include "../minilibx-linux/mlx.h"
-# define ESC 65307
+#  include "../minilibx-linux/mlx.h"
+#  define ESC 65307
 # endif // __linux__
 
 //for parsing
@@ -62,13 +62,13 @@
 # define HEIGHT 1000
 
 //walls
-#define TILE_S 50
+# define TILE_S 50
 
 //raycasting
-#define xFOV 60
-#define yFOV 60
-#define FOV_Mod 60
-#define Render_Distance 10
+# define xFOV 60
+# define yFOV 60
+# define FOV_Mod 60
+# define Render_Distance 10
 
 # define PI 3.14159265359
 
@@ -117,7 +117,7 @@ typedef struct s_data
 	int		fd;
 	int		size_line;
 	char	**map_copy;
-	double frame_dist;
+	double	frame_dist;
 	int		map_len;
 	int		line_count;
 	int		map_lines;
@@ -142,6 +142,8 @@ typedef struct s_img
 	int		size_line;
 	int		width;
 	int		height;
+	char	*src_pixel;
+	char	*dst_pixel;	
 }	t_img;
 
 typedef struct s_env
@@ -154,48 +156,50 @@ typedef struct s_env
 	t_img		*mini_map;
 	t_img		*floor;
 	t_img		*ceiling;
-	t_img 		*north_wall;
-	t_img 		*south_wall;
-	t_img 		*east_wall;
-	t_img 		*west_wall;
+	t_img		*north_wall;
+	t_img		*south_wall;
+	t_img		*east_wall;
+	t_img		*west_wall;
 	t_player	*player;
 }	t_env;
+
+//******PARSING******//
+
+//map_checks
+void	map_checks(char **map_copy, t_env *env);
+int		invalid_char_check(char *line, t_player *player, int y);
+void	check_first_last_line(char *map_line);
+void	check_rgb(t_data *data);
 
 //parsing_file:
 void	file_validation(char *argv, t_env *env);
 int		parse_line(t_map **map, t_data *data);
-
-//textures
-void	save_textures(t_map *map, t_data *data);
-t_rgb	*save_rgb(char *line);
-void	save_floor_and_ceiling(char *line, t_data *data);
-char	*get_texture(char *line, char *p_name, bool is_rgb);
-void	choose_texture(char *map_line, t_data *data, int map_not_first);
-void	check_rgb_num(char *str);
-//add a function to test if rgbs are correct and try opening files(textures);
-//maybe create a separate file for textures and rgb, for norm and readability
+void	set_player_pos(t_player *player, int x, int y, char orient);
 
 //parsing_map:
 int		map_init(t_env *env);
-void	save_map_copy(t_data *data, t_map **map);
-int		is_map_line(char *line);
 void	save_map_end(t_map *map);
+int		is_map_line(char *line);
+void	save_map_copy(t_data *data, t_map **map);
 void	save_map_lines(t_map *map, t_data *data);
 
-//map-checks
-void	map_checks(char **map_copy, t_env *env);
-int		invalid_char_check(char *line, t_player *player, int y);
-void	check_parsed_data(t_env *env, t_map *map);
-void	check_rgb(t_data *data);
+//parsing_utils
+int		is_wall_or_space(char c);
+int		is_map_char(char c);
 void	tabs_to_spaces(char *map_line);
+void	check_rgb_num(char *str);
+
+//textures
+void	save_textures(t_map *map, t_data *data);
+void	choose_texture(char *map_line, t_data *data, int map_not_first);
+char	*get_texture(char *line, char *p_name, bool is_rgb);
+void	save_floor_and_ceiling(char *line, t_data *data);
+t_rgb	*save_rgb(char *line);
 
 //wall-checks
 void	check_walls(char **map_copy, t_data *data);
 void	scan_vertically(char **map_copy, t_data *data);
 void	skip_h_gap(char *map_line);
-int		is_wall_or_space(char c);
-void	check_first_last_line(char *map_line);
-int		is_map_char(char c);
 void	check_vertical(char **map_copy, int y, int x);
 
 //utils:
@@ -206,50 +210,51 @@ void	copy_spaces(char *map_line, char *new_line);
 void	init_textures(t_env *env);
 
 //******RENDERING******//
-//raycasting
-void	Make_frame(t_img *frame, double *pos, double dir, t_env *env);
+
 //events
 int		key_press(int keycode, t_env *env);
 int		key_release(int keycode, t_env *env);
 int		destroy(t_env *env);
-//player
-float	new_angle(float angle, float angle_speed, bool left, bool right);
-void	move_player(t_player *player, t_env *env);
-void	draw_triangle(int size, int x, int y, int color, t_env *env);
-
-//init window
-void	init_mlx(t_env *env);
-void	init_minim_img(t_img *img, t_env *env);
-void	draw_square(int x, int y, int size, int color, t_env *env);
-void	init_texture_img(t_env *env);
-void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
-void	init_xpm_texture(t_img *img, t_env *env, char *path);
-//minimap
-int		mini_draw_loop(t_env *env);
-void	draw_mini_map(t_env *env);
-void	calculate_draw_xy(t_env *env, int y, double px_offset,
-			double py_offset);
-void	draw_mini_border(t_env *env);
-
-//render_utils
-int					get_color(int r, int g, int b, int a);
-void				mm_pixel_put(int x, int y, int color, t_env *env);
-void				my_pixel_put(int x, int y, int color, t_img *img);
-void				clear_image(t_img *img, int width, int height);
-
-//mini_raycasting
-void	cast_mini_ray(t_player *player, t_env *env);
-bool	touch(double px, double py, t_env *env);
-// void	cast_ray(t_player *player, t_env *env);
-void	draw_line(double px, double py, float angle, t_env *env);
 
 //init_canvas
 void	init_canvas_img(t_img *canvas, t_env *env);
 void	render_images_on_canvas(t_env *env);
 void	put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y);
 
-// void create_Frame(int *Coords, ...);  //Cords=[x][y][z][x'][y'][z']
-// void p_movement(char *Coords, void *key_pressed);
-// void m_movement(char *Coords, void *mouse_moved);
+//init window
+void	init_mlx(t_env *env);
+void	init_minim_img(t_img *img, t_env *env);
+void	init_texture_img(t_env *env);
+void	init_xpm_texture(t_img *img, t_env *env, char *path);
+void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
+void	draw_square(int x, int y, int size, int color, t_env *env);
+
+//mini_map
+int		mini_draw_loop(t_env *env);
+void	draw_mini_map(t_env *env);
+void	calculate_draw_xy(t_env *env, int y, double px_offset,
+			double py_offset);
+void	draw_mini_border(t_env *env);
+
+//mini_raycasting
+bool	touch(double px, double py, t_env *env);
+void	cast_mini_ray(t_player *player, t_env *env);
+void	draw_line(double px, double py, float angle, t_env *env);
+
+//player
+float	new_angle(float angle, float angle_speed, bool left, bool right);
+void	move_player(t_player *player, t_env *env);
+void	move_player(t_player *player, t_env *env);
+void	set_new_coords(t_player *player, double next_x, double next_y);
+void	draw_triangle(int size, int x, int y, int color, t_env *env);
+
+//raycasting
+void	Make_frame(t_img *frame, double *pos, double dir, t_env *env);
+
+//render_utils
+void	mm_pixel_put(int x, int y, int color, t_env *env);
+void	my_pixel_put(int x, int y, int color, t_img *img);
+int		get_color(int r, int g, int b, int a);
+void	clear_image(t_img *img, int width, int height);
 
 #endif

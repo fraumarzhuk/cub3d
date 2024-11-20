@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 15:14:15 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:28:27 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ void	scan_vertically(char **map_copy, t_data *data)
 			if (is_map_char(map_copy[y][x]))
 			{
 				if (!map_copy[y - 1][x] || !map_copy[y + 1][x])
-				{
-					printf("cur wall: %s\n", map_copy[y]);
 					error_and_exit("Incorrect wall1!");
-				}
 				else if (map_copy[y - 1][x] && is_space(map_copy[y - 1][x]))
 					error_and_exit("Incorrect wall2!");
 				else if (map_copy[y + 1][x] && is_space(map_copy[y + 1][x]))
@@ -80,16 +77,6 @@ void	skip_h_gap(char *map_line)
 		}
 		x++;
 	}
-}
-
-int	is_wall_or_space(char c)
-{
-	return (c == '1' || is_space(c));
-}
-
-int	is_map_char(char c)
-{
-	return (c == '0' || c == 'N' || c == 'W' || c == 'E' || c == 'S');
 }
 
 void	check_vertical(char **map_copy, int y, int x)

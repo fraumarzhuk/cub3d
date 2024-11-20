@@ -25,7 +25,7 @@ void	init_canvas_img(t_img *canvas, t_env *env)
     canvas->height = HEIGHT;
 }
 
-void render_images_on_canvas(t_env *env)
+void	render_images_on_canvas(t_env *env)
 {
 	if (!env->player->render_move)
 		return ;

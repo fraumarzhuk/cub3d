@@ -41,9 +41,10 @@ void	init_minim_img(t_img *img, t_env *env)
 	if (!img->addr)
 		error_and_exit("Failed to get image data address");
 	img->width = MINI_M_SIZE;
-    img->height = MINI_M_SIZE;
+	img->height = MINI_M_SIZE;
 }
-void init_texture_img(t_env *env)
+
+void	init_texture_img(t_env *env)
 {
 	if (env->data->pic_floor)
 		init_xpm_texture(env->floor, env, env->data->pic_floor);
@@ -53,22 +54,22 @@ void init_texture_img(t_env *env)
 		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
 		init_rgb_texture(env->ceiling, env->data->ceiling, env);
-	// put_image_to_image(env->floor, env->canvas, 0, HEIGHT / 2);
-	// put_image_to_image(env->ceiling, env->canvas, 0, HEIGHT / 2);
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);
 	init_xpm_texture(env->west_wall, env, env->data->west);
 }
 
-void init_xpm_texture(t_img *img, t_env *env, char *path)
+void	init_xpm_texture(t_img *img, t_env *env, char *path)
 {
 	int	height;
 	int	width;
+
 	img->img = mlx_xpm_file_to_image(env->mlx, path, &width, &height);
 	if (!img->img)
 		error_and_exit("Failed to load floor image");
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->size_line, &img->endian);
 	if (!img->addr)
 		error_and_exit("Failed to get image data address");
 	img->width = width;
@@ -76,12 +77,10 @@ void init_xpm_texture(t_img *img, t_env *env, char *path)
 }
 
 
-void init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
+void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 {
-	/*int size;
+	int	m_color;
 
-	size = TILE_S;*/
-	int m_color;
 	texture->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
 	if (!texture->img)
 		error_and_exit("Failed to create image");
