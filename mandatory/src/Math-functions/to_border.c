@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   to_border.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:29 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/11/19 15:09:37 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:50:11 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_d(double hor_rad, double ver_rad, double d[3])
 {
-	d[0] = cos(ver_rad) * cos(hor_rad);
+	d[0] = cos((double)ver_rad) * cos(hor_rad);
 	d[1] = sin(ver_rad);
 	d[2] = cos(ver_rad) * sin(hor_rad);
 }
@@ -44,7 +44,7 @@ double	distance_to_border(double *pos, double dir[2])
 	set_dist(pos[1], d[1], &(dist[1]));
 	set_dist(pos[2], d[2], &(dist[2]));
 	dist_to_border = fmin(dist[0] / fabs(d[0]), fmin(dist[1] / fabs(d[1]),
-				dist[2] / fabs(d[2])));
+			dist[2] / fabs(d[2])));
 	return (dist_to_border);
 }
 

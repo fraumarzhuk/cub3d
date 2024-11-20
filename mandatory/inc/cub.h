@@ -15,13 +15,13 @@
 
 # include "../libft/libft.h"
 # include "../src/Math-functions/xMath.h"
+# include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <sys/time.h>
 # include <string.h>
-# include <math.h>
+# include <sys/time.h>
+# include <unistd.h>
 # ifdef __APPLE__
 #  include "../minilibx_opengl_20191021/mlx.h"
 #  define ESC 53
@@ -32,13 +32,13 @@
 #  define ESC 65307
 # endif // __linux__
 
-//for parsing
+// for parsing
 # define N 78
 # define S 83
 # define E 69
 # define W 87
 
-//keys
+// keys
 # define WK 119
 # define AK 97
 # define SK 115
@@ -47,7 +47,7 @@
 # define LEFT 65361
 # define DOWN 65364
 # define RIGHT 65363
-//mini map
+// mini map
 # define MINI_M_SIZE 300
 # define BLOCKH 50
 # define BLOCKW 50
@@ -57,14 +57,14 @@
 # define RAYCOLOR 0x0FFF9BF
 # define SPEED 2
 # define ANGLE_SPEED 2
-//screen size
+// screen size
 # define WIDTH 1000
 # define HEIGHT 1000
 
-//walls
+// walls
 # define TILE_S 50
 
-//raycasting
+// raycasting
 # define xFOV 60
 # define yFOV 60
 # define FOV_Mod 60
@@ -79,72 +79,72 @@ typedef struct map
 	bool		last_line;
 	struct map	*next;
 	struct map	*prev;
-}	t_map;
+}				t_map;
 
 typedef struct s_rgb
 {
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb;
+	int			r;
+	int			g;
+	int			b;
+}				t_rgb;
 
 typedef struct s_player
 {
-	int		orientation;
-	char	*sprite;
-	double	x;
-	double	y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	int		xc;
-	int		yc;
-	float	angle;
-	int		mm_p_height;
-	bool	key_up;
-	bool	key_down;
-	bool	key_left;
-	bool	key_right;
-	bool	left_rotate;
-	bool	right_rotate;
-	bool	render_move;
-	int		counter;
-}	t_player;
+	int			orientation;
+	char		*sprite;
+	double		x;
+	double		y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	int			xc;
+	int			yc;
+	float		angle;
+	int			mm_p_height;
+	bool		key_up;
+	bool		key_down;
+	bool		key_left;
+	bool		key_right;
+	bool		left_rotate;
+	bool		right_rotate;
+	bool		render_move;
+	int			counter;
+}				t_player;
 
 typedef struct s_data
 {
-	int		fd;
-	int		size_line;
-	char	**map_copy;
-	double	frame_dist;
-	int		map_len;
-	int		line_count;
-	int		map_lines;
-	int		true_lines;
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	char	*pic_ceiling;
-	char	*pic_floor;
-	t_rgb	*ceiling;
-	t_rgb	*floor;
-}	t_data;
+	int			fd;
+	int			size_line;
+	char		**map_copy;
+	double		frame_dist;
+	int			map_len;
+	int			line_count;
+	int			map_lines;
+	int			true_lines;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
+	char		*pic_ceiling;
+	char		*pic_floor;
+	t_rgb		*ceiling;
+	t_rgb		*floor;
+}				t_data;
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	char	*data;
-	int		bpp;
-	int		endian;
-	int		size_line;
-	int		width;
-	int		height;
-	char	*src_pixel;
-	char	*dst_pixel;	
-}	t_img;
+	void		*img;
+	char		*addr;
+	char		*data;
+	int			bpp;
+	int			endian;
+	int			size_line;
+	int			width;
+	int			height;
+	char		*src_pixel;
+	char		*dst_pixel;
+}				t_img;
 
 typedef struct s_env
 {
@@ -161,84 +161,85 @@ typedef struct s_env
 	t_img		*east_wall;
 	t_img		*west_wall;
 	t_player	*player;
-}	t_env;
+}				t_env;
 
 //******PARSING******//
 
-//map_checks
-void	map_checks(char **map_copy, t_env *env);
-int		invalid_char_check(char *line, t_player *player, int y);
-void	check_first_last_line(char *map_line);
-void	check_rgb(t_data *data);
+// map_checks
+void			map_checks(char **map_copy, t_env *env);
+int				invalid_char_check(char *line, t_player *player, int y);
+void			check_first_last_line(char *map_line);
+void			check_rgb(t_data *data);
 
-//parsing_file:
-void	file_validation(char *argv, t_env *env);
-int		parse_line(t_map **map, t_data *data);
-void	set_player_pos(t_player *player, int x, int y, char orient);
+// parsing_file:
+void			file_validation(char *argv, t_env *env);
+int				parse_line(t_map **map, t_data *data);
+void			set_player_pos(t_player *player, int x, int y, char orient);
 
-//parsing_map:
-int		map_init(t_env *env);
-void	save_map_end(t_map *map);
-int		is_map_line(char *line);
-void	save_map_copy(t_data *data, t_map **map);
-void	save_map_lines(t_map *map, t_data *data);
+// parsing_map:
+int				map_init(t_env *env);
+void			save_map_end(t_map *map);
+int				is_map_line(char *line);
+void			save_map_copy(t_data *data, t_map **map);
+void			save_map_lines(t_map *map, t_data *data);
 
-//parsing_utils
-int		is_wall_or_space(char c);
-int		is_map_char(char c);
-void	tabs_to_spaces(char *map_line);
-void	check_rgb_num(char *str);
+// parsing_utils
+int				is_wall_or_space(char c);
+int				is_map_char(char c);
+void			tabs_to_spaces(char *map_line);
+void			check_rgb_num(char *str);
 
-//textures
-void	save_textures(t_map *map, t_data *data);
-void	choose_texture(char *map_line, t_data *data, int map_not_first);
-char	*get_texture(char *line, char *p_name, bool is_rgb);
-void	save_floor_and_ceiling(char *line, t_data *data);
-t_rgb	*save_rgb(char *line);
+// textures
+void			save_textures(t_map *map, t_data *data);
+void			choose_texture(char *map_line, t_data *data, int map_not_first);
+char			*get_texture(char *line, char *p_name, bool is_rgb);
+void			save_floor_and_ceiling(char *line, t_data *data);
+t_rgb			*save_rgb(char *line);
 
-//wall-checks
-void	check_walls(char **map_copy, t_data *data);
-void	scan_vertically(char **map_copy, t_data *data);
-void	skip_h_gap(char *map_line);
-void	check_vertical(char **map_copy, int y, int x);
+// wall-checks
+void			check_walls(char **map_copy, t_data *data);
+void			scan_vertically(char **map_copy, t_data *data);
+void			skip_h_gap(char *map_line);
+void			check_vertical(char **map_copy, int y, int x);
 
-//utils:
-void	error_and_exit(char *str);
-void	init_env(t_env *env);
-void	init_player(t_player *player);
-void	copy_spaces(char *map_line, char *new_line);
-void	init_textures(t_env *env);
+// utils:
+void			error_and_exit(char *str);
+void			init_env(t_env *env);
+void			init_player(t_player *player);
+void			copy_spaces(char *map_line, char *new_line);
+void			init_textures(t_env *env);
 
 //******RENDERING******//
 
-//events
-int		key_press(int keycode, t_env *env);
-int		key_release(int keycode, t_env *env);
-int		destroy(t_env *env);
+// events
+int				key_press(int keycode, t_env *env);
+int				key_release(int keycode, t_env *env);
+int				destroy(t_env *env);
 
-//init_canvas
-void	init_canvas_img(t_img *canvas, t_env *env);
-void	render_images_on_canvas(t_env *env);
+// init_canvas
+void			init_canvas_img(t_img *canvas, t_env *env);
+void			render_images_on_canvas(t_env *env);
 
-//init window
-void	init_mlx(t_env *env);
-void	init_texture_img(t_env *env);
-void	init_xpm_texture(t_img *img, t_env *env, char *path);
-void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
-int		draw_loop(t_env *env);
+// init window
+void			init_mlx(t_env *env);
+void			init_texture_img(t_env *env);
+void			init_xpm_texture(t_img *img, t_env *env, char *path);
+void			init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
+int				draw_loop(t_env *env);
 
-//player
-float	new_angle(float angle, float angle_speed, bool left, bool right);
-void	move_player(t_player *player, t_env *env);
-void	set_new_coords(t_player *player, double next_x, double next_y);
+// player
+float			new_angle(float angle, float angle_speed, bool left,
+					bool right);
+void			move_player(t_player *player, t_env *env);
+void			set_new_coords(t_player *player, double next_x, double next_y);
 
-//raycasting
-void	Make_frame(t_img *frame, double *pos, double dir, t_env *env);
+// raycasting
+void			Make_frame(t_img *frame, double *pos, double dir, t_env *env);
 
-//render_utils
-int		get_color(int r, int g, int b, int a);
-void	mm_pixel_put(int x, int y, int color, t_env *env);
-void	my_pixel_put(int x, int y, int color, t_img *img);
-void	clear_image(t_img *img, int width, int height);
+// render_utils
+int				get_color(int r, int g, int b, int a);
+void			mm_pixel_put(int x, int y, int color, t_env *env);
+void			my_pixel_put(int x, int y, int color, t_img *img);
+void			clear_image(t_img *img, int width, int height);
 
 #endif

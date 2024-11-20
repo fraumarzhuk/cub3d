@@ -21,6 +21,18 @@
 #define WE 0x000000FF
 #define EA 0x00FFFF00*/
 
+typedef struct s_raycast
+{
+	double	pos[3];
+	double	dirx;
+	double	wall_pos[3];
+	double	new_pos[3];
+	double	dir[2];
+	double	frame_dist;
+	double	wall_height;
+	int		i;
+}			t_raycast;
+
 int	get_image_pixel(t_img *img, double x, double y)
 {
 	int	nx;
@@ -56,8 +68,7 @@ void	put_bg(t_img *frame, int i, t_env *env)
 	}
 }
 
-void	key_image_onto_walls(t_img *frame, t_img *image, int i, double w_pos,
-		int wall_height)
+void	img_to_wall(t_img *frame, t_img *image, t_raycast *rc, double w_pos)
 {
 	int		j;
 	double	image_top;
@@ -65,11 +76,11 @@ void	key_image_onto_walls(t_img *frame, t_img *image, int i, double w_pos,
 	int		pixel_color;
 	int		height;
 
-	height = fmax(0, HEIGHT / 2 - wall_height / 2);
+	height = fmax(0, HEIGHT / 2 - rc->wall_height / 2);
 	if (height)
 		image_top = 0;
 	else
-		image_top = (wall_height - HEIGHT) / (2.0 * wall_height);
+		image_top = (rc->wall_height - HEIGHT) / (2.0 * rc->wall_height);
 	image_height = 1 - image_top * 2;
 	j = height;
 	while (j < HEIGHT - height && j < HEIGHT)
@@ -77,7 +88,7 @@ void	key_image_onto_walls(t_img *frame, t_img *image, int i, double w_pos,
 		pixel_color = get_image_pixel(image, (double)w_pos - (int)w_pos, ((j
 					- height) / (double)(HEIGHT - 2 * height)) * image_height
 			+ image_top);
-		my_mlx_pixel_put(frame, i, j, pixel_color);
+		my_mlx_pixel_put(frame, rc->i, j, pixel_color);
 		j++;
 	}
 }
