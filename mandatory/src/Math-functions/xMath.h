@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:23 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/11/19 15:09:55 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:33:20 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ double	distance_to_border(double *pos, double dir[2]);
 
 /*3D. Calculates the next pos touching a wall.
 A wall is a plane where either x, y or z is a whole number*/
-void	to_border(double *pos, double dir[2], double *new_pos);
+void	to_border(double *pos, double dir, double *new_pos);
 
 /*Converts a degree value into a radian*/
 double	degrees_to_radians(double degrees);

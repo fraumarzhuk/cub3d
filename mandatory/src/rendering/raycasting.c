@@ -26,7 +26,7 @@ void	set_raycast(t_raycast *rc, double *pos)
 
 void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 {
-	put_bg(frame, rc->i, env);
+	put_bg(frame, WIDTH-rc->i, env);
 	if (rc->frame_dist < 0)
 		rc->frame_dist *= -1;
 	if (!(fabs(rc->frame_dist) < 1e-6))
@@ -67,7 +67,7 @@ int	is_touching_wall(t_data *data, double *pos, double *new_pos)
 	return (0);
 }
 
-int	get_Wall_dist(t_raycast *rc, t_env *env)
+int	get_Wall_dist(t_raycast *rc, double dirx, t_env *env)
 {
 	double	step;
 	double	distance;
@@ -76,7 +76,7 @@ int	get_Wall_dist(t_raycast *rc, t_env *env)
 	distance = 0;
 	while (1)
 	{
-		to_border(rc->new_pos, rc->dir, rc->new_pos);
+		to_border(rc->new_pos, dirx, rc->new_pos);
 		if (is_touching_wall(env->data, rc->pos, rc->new_pos) != 0)
 			break ;
 		get_new_pos3(rc->new_pos, rc->dir, step, rc->new_pos);
@@ -85,7 +85,7 @@ int	get_Wall_dist(t_raycast *rc, t_env *env)
 			return (0);
 	}
 	if (is_whole_t(rc->new_pos[0], 1e-6) && is_whole_t(rc->new_pos[2], 1e-6))
-		return (rc->dir[0] += 1e-6, get_Wall_dist(rc, env));
+		return (get_Wall_dist(rc,dirx +1e-6,env));
 	distance = get_distance3(rc->pos, rc->new_pos);
 	rc->frame_dist = distance;
 	rc->wall_pos[0] = rc->new_pos[0];
@@ -108,9 +108,9 @@ void	Make_frame(t_img *frame, double *pos, double dir, t_env *env)
 		set_raycast(rc, pos);
 		while (rc->dirx < 0)
 			rc->dirx += 360;
-		while (rc->dirx >= 360)
+		while (rc->dirx > 360)
 			rc->dirx -= 360;
-		if (get_Wall_dist(rc, env))
+		if (get_Wall_dist(rc, rc->dirx ,env))
 		{
 			rc->frame_dist *= cos(degrees_to_radians(rc->dirx - dir));
 			put_wall_slice(frame, rc, env);

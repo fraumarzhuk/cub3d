@@ -88,7 +88,7 @@ void	img_to_wall(t_img *frame, t_img *image, t_raycast *rc, double w_pos)
 		pixel_color = get_image_pixel(image, (double)w_pos - (int)w_pos, ((j
 					- height) / (double)(HEIGHT - 2 * height)) * image_height
 			+ image_top);
-		my_mlx_pixel_put(frame, rc->i, j, pixel_color);
+		my_mlx_pixel_put(frame, WIDTH - rc->i, j, pixel_color);
 		j++;
 	}
 }

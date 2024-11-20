@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   to_border.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:29 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/11/20 15:50:11 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/20 17:37:52 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xMath.h"
+#include <stdio.h>
 
 void	set_d(double hor_rad, double ver_rad, double d[3])
 {
-	d[0] = cos((double)ver_rad) * cos(hor_rad);
-	d[1] = sin(ver_rad);
-	d[2] = cos(ver_rad) * sin(hor_rad);
+	hor_rad += 0;
+	d[0] = 1 * cos(hor_rad);
+	d[1] = 0;
+	d[2] = 1 * sin(hor_rad);
+	(void) ver_rad;
 }
 
 void	set_dist(double pos, double d, double *dist)
@@ -29,7 +32,7 @@ void	set_dist(double pos, double d, double *dist)
 		*dist = INFINITY;
 }
 
-double	distance_to_border(double *pos, double dir[2])
+double	distance_to_border(double *pos, double *xdir)
 {
 	double	hor_rad;
 	double	ver_rad;
@@ -37,9 +40,9 @@ double	distance_to_border(double *pos, double dir[2])
 	double	dist[3];
 	double	dist_to_border;
 
-	hor_rad = degrees_to_radians(dir[0]);
-	ver_rad = degrees_to_radians(dir[1]);
-	set_d(hor_rad, ver_rad, d);
+	hor_rad = (double)degrees_to_radians(xdir[0]);
+	ver_rad = (double)degrees_to_radians(xdir[1]);
+	set_d((double)hor_rad, (double)ver_rad, d);
 	set_dist(pos[0], d[0], &(dist[0]));
 	set_dist(pos[1], d[1], &(dist[1]));
 	set_dist(pos[2], d[2], &(dist[2]));
@@ -48,10 +51,14 @@ double	distance_to_border(double *pos, double dir[2])
 	return (dist_to_border);
 }
 
-void	to_border(double *pos, double dir[2], double *new_pos)
+void	to_border(double *pos, double dir, double *new_pos)
 {
 	double	dist;
+	double xdir[2];
+	//printf("%lf\n", dir);
 
-	dist = distance_to_border(pos, dir);
-	get_new_pos3(pos, dir, dist, new_pos);
+	xdir[0]=dir;
+	xdir[1]=0.0;
+	dist = distance_to_border(pos, xdir);
+	get_new_pos3(pos, xdir, dist, new_pos);
 }
