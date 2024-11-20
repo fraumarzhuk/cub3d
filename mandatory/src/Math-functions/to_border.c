@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:29 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/11/20 17:37:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:16:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 void	set_d(double hor_rad, double ver_rad, double d[3])
 {
-	hor_rad += 0;
-	d[0] = 1 * cos(hor_rad);
+	d[0] = 1 * (double)cosf((float)hor_rad);
 	d[1] = 0;
-	d[2] = 1 * sin(hor_rad);
+	d[2] = 1 * (double)sinf((float)hor_rad);
 	(void) ver_rad;
 }
 
