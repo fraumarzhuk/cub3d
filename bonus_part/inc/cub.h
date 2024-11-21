@@ -231,7 +231,7 @@ int		destroy(t_env *env);
 //init_canvas
 void	init_canvas_img(t_img *canvas, t_env *env);
 void	render_images_on_canvas(t_env *env);
-void	put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y);
+// void	put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y);
 
 //init window
 void	init_mlx(t_env *env);
