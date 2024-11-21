@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting_image_handler.c"
+#include "../../inc/cub.h"
 
 void	set_raycast(t_raycast *rc, double *pos)
 {
@@ -34,8 +34,8 @@ void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 	if (rc->frame_dist < 0)
 		rc->frame_dist *= -1;
 	if (!(fabs(rc->frame_dist) < 1e-6))
-		rc->wall_height = (HEIGHT / rc->frame_dist) * (FOV_Mod / ((double)yFOV
-				* 2) * M_PI / 2.0);
+		rc->wall_height = (HEIGHT / rc->frame_dist) * (FOV_MOD / ((double)Y_FOV
+					* 2) * M_PI / 2.0);
 	else
 		rc->wall_height = HEIGHT;
 	if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
@@ -65,13 +65,13 @@ int	is_touching_wall(t_data *data, double *pos, double *new_pos)
 	if (is_whole_t(new_pos[2], 1e-6))
 	{
 		if (data->map_copy[(int)round(new_pos[2])
-			- (pos[2] > new_pos[2])][(int)floor(new_pos[0])] == '1')
+				- (pos[2] > new_pos[2])][(int)floor(new_pos[0])] == '1')
 			return (1);
 	}
 	return (0);
 }
 
-int	get_Wall_dist(t_raycast *rc, t_env *env)
+int	get_wall_dist(t_raycast *rc, t_env *env)
 {
 	double	step;
 	double	distance;
@@ -86,11 +86,11 @@ int	get_Wall_dist(t_raycast *rc, t_env *env)
 			break ;
 		get_new_pos3(rc->new_pos, rc->dir, step, rc->new_pos);
 		distance = get_distance3(rc->pos, rc->new_pos);
-		if (Render_Distance - distance < 0)
+		if (RENDER_DISTANCE - distance < 0)
 			return (0);
 	}
 	if (is_whole_t(rc->new_pos[0], 1e-6) && is_whole_t(rc->new_pos[2], 1e-6))
-		return (rc->dirx += 0.1, get_Wall_dist(rc, env));
+		return (rc->dirx += 0.1, get_wall_dist(rc, env));
 	distance = get_distance3(rc->pos, rc->new_pos);
 	rc->frame_dist = distance;
 	rc->wall_pos[0] = rc->new_pos[0];
@@ -98,12 +98,12 @@ int	get_Wall_dist(t_raycast *rc, t_env *env)
 	return (1);
 }
 
-void	Make_frame(t_img *frame, double *pos, double dir, t_env *env)
+void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 {
 	t_raycast	*rc;
 
 	rc = ft_malloc(sizeof(t_raycast));
-	rc->dirx = dir - xFOV / 2;
+	rc->dirx = dir - X_FOV / 2;
 	rc->wall_pos[0] = 0;
 	rc->wall_pos[1] = 0;
 	rc->wall_pos[2] = 0;
@@ -111,12 +111,13 @@ void	Make_frame(t_img *frame, double *pos, double dir, t_env *env)
 	while (rc->i < WIDTH)
 	{
 		set_raycast(rc, pos);
-		if (get_Wall_dist(rc, env))
+		if (get_wall_dist(rc, env))
 		{
 			rc->frame_dist *= cos(degrees_to_radians(rc->dirx - dir));
 			put_wall_slice(frame, rc, env);
 			rc->dirx = atan2(WIDTH / 2 - (rc->i - 0.5), (int)((WIDTH / 2)
-					/ tan(M_PI / 180 * (xFOV / 2)))) * (180.0 / M_PI) + dir;
+						/ tan(M_PI / 180 * (X_FOV / 2))))
+				* (180.0 / M_PI) + dir;
 		}
 		rc->i++;
 	}

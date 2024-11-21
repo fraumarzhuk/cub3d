@@ -99,7 +99,7 @@ int	draw_loop(t_env *env)
 	pos[0] = env->player->x / BLOCKW;
 	pos[1] = 0.5;
 	pos[2] = env->player->y / BLOCKH;
-	Make_frame(env->scene_canvas, pos, env->player->angle, env);
+	make_frame(env->scene_canvas, pos, env->player->angle, env);
 	render_images_on_canvas(env);
 	return (1);
 }

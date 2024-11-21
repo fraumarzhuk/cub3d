@@ -71,5 +71,6 @@ char	*trim_spaces(char *str)
 
 int	is_space(char c)
 {
-	return (c == ' ' || c == '\v' || c == '\f' || c == '\r' || c == '\t'  || c == '\n');
+	return (c == ' ' || c == '\v' || c == '\f'
+		||c == '\r' || c == '\t' || c == '\n');
 }

@@ -36,6 +36,7 @@ SRCS =	src/main.c \
 		src/Math-functions/radians_utils.c \
 		src/Math-functions/to_border.c \
 		src/Math-functions/is_whole.c \
+		src/rendering/raycasting_image_handler.c \
 		src/rendering/raycasting.c \
 		src/utils.c
 
