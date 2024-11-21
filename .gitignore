@@ -2,5 +2,6 @@
 .idea
 .vscode
 .minilibx_opengl_20191021
-
+.minilibx_linux
+.cub3d
 .libft.a
