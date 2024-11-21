@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:36:20 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 14:03:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:32:39 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,39 @@ int	destroy(t_env *env)
 		mlx_destroy_display(env->mlx);
 	ft_destructor();
 	exit(0);
+}
+void	rotate_with_mouse(t_env *env, int x, int y)
+{
+	int			dx;
+	int			dy;
+
+	dx = x - WIDTH / 2;
+	dy = y - HEIGHT / 2;
+	if (env->player->mouse_on)
+	{
+		env->player->angle += dx * MOUSE_SENS;
+		if (env->player->angle > 2 * PI)
+			env->player->angle -= 2 * PI;
+		if (env->player->angle < 0)
+			env->player->angle += 2 * PI;
+		env->player->right_rotate = true;
+		env->player->left_rotate = true;
+	}
+	else
+	{
+		env->player->right_rotate = false;
+		env->player->left_rotate = false;
+	}
+	mlx_mouse_move(env->mlx, env->mlx_win, WIDTH / 2, HEIGHT / 2);
+}
+int mouse_hook(int button, int x, int y, t_env *env)
+{
+	if (button == 1)
+	{
+		env->player->mouse_on = true;
+		rotate_with_mouse(env, x, y);
+	}
+	else if (button == 0)
+		env->player->mouse_on = false;
+	return (0);
 }

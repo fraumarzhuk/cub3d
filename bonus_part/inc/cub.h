@@ -47,6 +47,8 @@
 # define LEFT 65361
 # define DOWN 65364
 # define RIGHT 65363
+//mouse
+#define MOUSE_SENS 0.002
 //mini map
 # define MINI_M_SIZE 300
 # define BLOCKH 50
@@ -102,6 +104,7 @@ typedef struct s_player
 	int		yc;
 	float	angle;
 	int		mm_p_height;
+	bool	mouse_on;
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
@@ -227,6 +230,8 @@ void	init_textures(t_env *env);
 int		key_press(int keycode, t_env *env);
 int		key_release(int keycode, t_env *env);
 int		destroy(t_env *env);
+void	rotate_with_mouse(t_env *env, int x, int y);
+int		mouse_hook(int button, int x, int y, t_env *env);
 
 //init_canvas
 void	init_canvas_img(t_img *canvas, t_env *env);
