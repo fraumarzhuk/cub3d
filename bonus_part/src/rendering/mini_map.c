@@ -19,7 +19,7 @@ int	mini_draw_loop(t_env *env)
 	//draw_mini_map(env);
 	double pos[3] = {env->player->x / BLOCKW, 0.5, env->player->y / BLOCKH};
 	//printf("pos: %lf, %lf, %lf, dir: %lf \n", pos[0], pos[1], pos[2],  env->player->angle);
-	Make_frame(env->scene_canvas, pos, env->player->angle, env);
+	make_frame(env->scene_canvas, pos, env->player->angle, env);
 	
 	render_images_on_canvas(env);
 	//mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);

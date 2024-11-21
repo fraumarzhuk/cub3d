@@ -10,35 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting_image_handler.c"
+#include "../../inc/cub.h"
 
-void	put_wall_slice(t_img *frame, int i, double *pos, double *wall_pos,
-		t_env *env)
+void	set_raycast(t_raycast *rc, double *pos)
 {
-	double	wall_height;
+	while (rc->dirx < 0)
+		rc->dirx += 360;
+	while (rc->dirx > 360)
+		rc->dirx -= 360;
+	rc->dir[0] = rc->dirx;
+	rc->dir[1] = 0.0;
+	rc->pos[0] = pos[0];
+	rc->pos[1] = pos[1];
+	rc->pos[2] = pos[2];
+	rc->new_pos[0] = pos[0];
+	rc->new_pos[1] = pos[1];
+	rc->new_pos[2] = pos[2];
+}
 
-	put_bg(frame, i, env);
-	if (env->data->frame_dist < 0)
-		env->data->frame_dist *= -1;
-	if (!(fabs(env->data->frame_dist) < 1e-6))
-		wall_height = (HEIGHT / env->data->frame_dist) * (FOV_Mod
-			/ ((double)yFOV * 2) * M_PI / 2.0);
+void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
+{
+	put_bg(frame, WIDTH - rc->i, env);
+	if (rc->frame_dist < 0)
+		rc->frame_dist *= -1;
+	if (!(fabs(rc->frame_dist) < 1e-6))
+		rc->wall_height = (HEIGHT / rc->frame_dist) * (FOV_MOD / ((double)Y_FOV
+					* 2) * M_PI / 2.0);
 	else
-		wall_height = HEIGHT;
-	if (is_whole_t(wall_pos[0], 1e-6) && wall_pos[0] >= pos[0])
-		key_image_onto_walls(frame, env->west_wall, i, ceil(wall_pos[1])
-			- wall_pos[1], wall_height);
-	else if (is_whole_t(wall_pos[0], 1e-6) && wall_pos[0] <= pos[0])
-		key_image_onto_walls(frame, env->east_wall, i, wall_pos[1],
-			wall_height);
-	else if (is_whole_t(wall_pos[1], 1e-6) && wall_pos[1] <= pos[2])
-		key_image_onto_walls(frame, env->south_wall, i, ceil(wall_pos[0])
-			- wall_pos[0], wall_height);
-	else if (is_whole_t(wall_pos[1], 1e-6) && wall_pos[1] >= pos[2])
-		key_image_onto_walls(frame, env->north_wall, i, wall_pos[0],
-			wall_height);
+		rc->wall_height = HEIGHT;
+	if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
+		img_to_wall(frame, env->west_wall, rc, ceil(rc->wall_pos[1])
+			- rc->wall_pos[1]);
+	else if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] <= rc->pos[0])
+		img_to_wall(frame, env->east_wall, rc, rc->wall_pos[1]);
+	else if (is_whole_t(rc->wall_pos[1], 1e-6) && rc->wall_pos[1] <= rc->pos[2])
+		img_to_wall(frame, env->south_wall, rc, ceil(rc->wall_pos[0])
+			- rc->wall_pos[0]);
+	else if (is_whole_t(rc->wall_pos[1], 1e-6) && rc->wall_pos[1] >= rc->pos[2])
+		img_to_wall(frame, env->north_wall, rc, rc->wall_pos[0]);
 	else
-		printf("%lf, %lf\n", wall_pos[0], wall_pos[1]);
+		printf("Error at: %lf, %lf\n", rc->wall_pos[0], rc->wall_pos[1]);
 }
 
 int	is_touching_wall(t_data *data, double *pos, double *new_pos)
@@ -54,63 +65,61 @@ int	is_touching_wall(t_data *data, double *pos, double *new_pos)
 	if (is_whole_t(new_pos[2], 1e-6))
 	{
 		if (data->map_copy[(int)round(new_pos[2])
-			- (pos[2] > new_pos[2])][(int)floor(new_pos[0])] == '1')
+				- (pos[2] > new_pos[2])][(int)floor(new_pos[0])] == '1')
 			return (1);
 	}
 	return (0);
 }
 
-int	get_Wall_dist(double *pos, double dirx, double *wall_pos, t_env *env)
+int	get_wall_dist(t_raycast *rc, t_env *env)
 {
-	double	new_pos[3] = {pos[0], pos[1], pos[2]};
-	double	dir[2] = {dirx, 0.0};
 	double	step;
 	double	distance;
-	
+
+	set_raycast(rc, rc->pos);
 	step = 1e-6;
 	distance = 0;
 	while (1)
 	{
-		to_border(new_pos, dir, new_pos);
-		if (is_touching_wall(env->data, pos, new_pos) != 0)
+		to_border(rc->new_pos, rc->dir, rc->new_pos);
+		if (is_touching_wall(env->data, rc->pos, rc->new_pos) != 0)
 			break ;
-		get_new_pos3(new_pos, dir, step, new_pos);
-		distance = get_distance3(pos, new_pos);
-		if (Render_Distance - distance < 0)
+		get_new_pos3(rc->new_pos, rc->dir, step, rc->new_pos);
+		distance = get_distance3(rc->pos, rc->new_pos);
+		if (RENDER_DISTANCE - distance < 0)
 			return (0);
 	}
-	if (is_whole_t(new_pos[0], 1e-6) && is_whole_t(new_pos[2], 1e-6))
-		return (get_Wall_dist(pos, dirx + 1e-6, wall_pos, env));
-	distance = get_distance3(pos, new_pos);
-	env->data->frame_dist = distance;
-	wall_pos[0] = new_pos[0];
-	wall_pos[1] = new_pos[2];
+	if (is_whole_t(rc->new_pos[0], 1e-6) && is_whole_t(rc->new_pos[2], 1e-6))
+		return (rc->dirx += 0.1, get_wall_dist(rc, env));
+	distance = get_distance3(rc->pos, rc->new_pos);
+	rc->frame_dist = distance;
+	rc->wall_pos[0] = rc->new_pos[0];
+	rc->wall_pos[1] = rc->new_pos[2];
 	return (1);
 }
 
-void	Make_frame(t_img *frame, double *pos, double dir, t_env *env)
+void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 {
-	int		i;
-	double	*wall_pos;
-	double	dirx;
+	t_raycast	*rc;
 
-	i = 0;
-	wall_pos = ft_malloc(2 * sizeof(double));
-	dirx = dir - xFOV / 2;
-	while (i < WIDTH)
+	rc = ft_malloc(sizeof(t_raycast));
+	rc->dirx = dir - X_FOV / 2;
+	rc->wall_pos[0] = 0;
+	rc->wall_pos[1] = 0;
+	rc->wall_pos[2] = 0;
+	rc->i = 0;
+	while (rc->i < WIDTH)
 	{
-		while (dirx < 0)
-			dirx += 360;
-		while (dirx >= 360)
-			dirx -= 360;
-		if (get_Wall_dist(pos, dirx, wall_pos, env))
+		set_raycast(rc, pos);
+		if (get_wall_dist(rc, env))
 		{
-			env->data->frame_dist *= cos(degrees_to_radians(dirx - dir));
-			put_wall_slice(frame, WIDTH - i, pos, wall_pos, env);
-			dirx = atan2(WIDTH / 2 - (i - 0.5), (int)((WIDTH / 2) / tan(M_PI
-						/ 180 * (xFOV / 2)))) * (180.0 / M_PI) + dir;
+			rc->frame_dist *= cos(degrees_to_radians(rc->dirx - dir));
+			put_wall_slice(frame, rc, env);
+			rc->dirx = atan2(WIDTH / 2 - (rc->i - 0.5), (int)((WIDTH / 2)
+						/ tan(M_PI / 180 * (X_FOV / 2))))
+				* (180.0 / M_PI) + dir;
 		}
-		i++;
+		rc->i++;
 	}
-	ft_free(wall_pos);
+	ft_free(rc);
 }

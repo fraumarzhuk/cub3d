@@ -33,6 +33,7 @@ SRCS =	src/main.c \
 		src/rendering/mini_raycasting.c \
 		src/rendering/events.c \
 		src/rendering/render_utils.c \
+		src/rendering/raycasting_image_handler.c \
 		src/Math-functions/distance.c \
 		src/Math-functions/new_pos.c \
 		src/Math-functions/radians_utils.c \

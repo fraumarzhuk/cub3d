@@ -3,8 +3,8 @@
 
 #define Window_Length 2000
 #define Window_Height 1000
-#define xFOV 60
-#define yFOV 60
+#define X_FOV 60
+#define Y_FOV 60
 // IW = Initial Window (Camera)
 #define IW_Height 0.05
 #define IW_Length 0.05
@@ -184,8 +184,8 @@ t_imgx	Make_frame(double *pos, double *dir, t_datax *data)
 	t_imgx	frame;
 
 	new_pos(pos, dir, -(IW_Length / 2), -(IW_Height / 2));
-	dirx = dir[0] - (xFOV / 2);
-	diry = dir[1] + (yFOV / 2);
+	dirx = dir[0] - (X_FOV / 2);
+	diry = dir[1] + (Y_FOV / 2);
 	frame.img = mlx_new_image(data->mlx, Window_Length, Window_Height);
 	frame.addr = mlx_get_data_addr(frame.img, &frame.bpp, &frame.line_length,
 		&frame.endian);
@@ -196,9 +196,9 @@ t_imgx	Make_frame(double *pos, double *dir, t_datax *data)
 		while (i < Window_Length)
 		{
 			new_pos(pos, dir, (IW_Length / Window_Length), 0);
-			//printf("Creating pixel: %d: x:%f y:%f z:%f, dir: %f, %f\n", i + Window_Length * (j + 1), pos[0], pos[1], pos[2], dirx + i * (xFOV/(double) Window_Length), diry + j * ((double)yFOV / Window_Height));
-			my_mlx_pixel_put(&frame, i, j, get_pixel_color(pos, dirx + i * (xFOV/(double) Window_Length), diry - j *  (yFOV/(double) Window_Height), data));
-			// dirx + i * (xFOV/ Window_Length), diry + j * (yFOV
+			//printf("Creating pixel: %d: x:%f y:%f z:%f, dir: %f, %f\n", i + Window_Length * (j + 1), pos[0], pos[1], pos[2], dirx + i * (X_FOV/(double) Window_Length), diry + j * ((double)Y_FOV / Window_Height));
+			my_mlx_pixel_put(&frame, i, j, get_pixel_color(pos, dirx + i * (X_FOV/(double) Window_Length), diry - j *  (Y_FOV/(double) Window_Height), data));
+			// dirx + i * (X_FOV/ Window_Length), diry + j * (Y_FOV
 			// / Window_Height),
 			i++;
 		}
@@ -207,10 +207,10 @@ t_imgx	Make_frame(double *pos, double *dir, t_datax *data)
 	}
 	return (frame);
 	/*double xdirection_step;
-	xdirection_step = xFOV / Window_Length;
-	ydirection_step = yFOV / Window_Height;
-	dir [0] = dir[0] - (xFOV / 2);
-	dir [1] = dir[1] - (yFOV / 2);
+	xdirection_step = X_FOV / Window_Length;
+	ydirection_step = Y_FOV / Window_Height;
+	dir [0] = dir[0] - (X_FOV / 2);
+	dir [1] = dir[1] - (Y_FOV / 2);
 	pos*/
 	/*double direction_step = FOV / Window_Length;
 	current_direction = dir[0] - (FOV / 2);

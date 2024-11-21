@@ -65,10 +65,10 @@
 # define TILE_S 50
 
 //raycasting
-# define xFOV 60
-# define yFOV 60
-# define FOV_Mod 60
-# define Render_Distance 10
+# define X_FOV 60
+# define Y_FOV 60
+# define FOV_MOD 60
+# define RENDER_DISTANCE 10
 
 # define PI 3.14159265359
 
@@ -163,6 +163,18 @@ typedef struct s_env
 	t_player	*player;
 }	t_env;
 
+typedef struct s_raycast
+{
+	double	pos[3];
+	double	dirx;
+	double	wall_pos[3];
+	double	new_pos[3];
+	double	dir[2];
+	double	frame_dist;
+	double	wall_height;
+	int		i;
+}			t_raycast;
+
 //******PARSING******//
 
 //map_checks
@@ -248,8 +260,19 @@ void	move_player(t_player *player, t_env *env);
 void	set_new_coords(t_player *player, double next_x, double next_y);
 void	draw_triangle(int size, int x, int y, int color, t_env *env);
 
-//raycasting
-void	Make_frame(t_img *frame, double *pos, double dir, t_env *env);
+//raycasting_image_handler
+int				get_image_pixel(t_img *img, double x, double y);
+void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void			put_bg(t_img *frame, int i, t_env *env);
+void			img_to_wall(t_img *frame, t_img *image,
+					t_raycast *rc, double w_pos);
+
+// raycasting
+void			set_raycast(t_raycast *rc, double *pos);
+void			put_wall_slice(t_img *frame, t_raycast *rc, t_env *env);
+int				is_touching_wall(t_data *data, double *pos, double *new_pos);
+int				get_wall_dist(t_raycast *rc, t_env *env);
+void			make_frame(t_img *frame, double *pos, double dir, t_env *env);
 
 //render_utils
 void	mm_pixel_put(int x, int y, int color, t_env *env);
