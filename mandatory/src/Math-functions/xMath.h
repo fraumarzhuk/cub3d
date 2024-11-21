@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xMath.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:23 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/11/20 17:33:20 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/21 01:13:33 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	get_new_pos2(double *x, double *y, double dir, double dist);
 
 /*3D. Calculates the distance to the next wall.
 A wall is a plane where either x, y or z is a whole number*/
-double	distance_to_border(double *pos, double dir[2]);
+double	distance_to_border(double *pos, double *dir);
 
 /*3D. Calculates the next pos touching a wall.
 A wall is a plane where either x, y or z is a whole number*/
-void	to_border(double *pos, double dir, double *new_pos);
+void	to_border(double *pos, double *dir, double *new_pos);
 
 /*Converts a degree value into a radian*/
 double	degrees_to_radians(double degrees);
