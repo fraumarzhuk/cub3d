@@ -232,6 +232,7 @@ int		key_release(int keycode, t_env *env);
 int		destroy(t_env *env);
 void	rotate_with_mouse(t_env *env, int x, int y);
 int		mouse_hook(int button, int x, int y, t_env *env);
+int		mouse_move_hook(int x, int y, t_env *env);
 
 //init_canvas
 void	init_canvas_img(t_img *canvas, t_env *env);

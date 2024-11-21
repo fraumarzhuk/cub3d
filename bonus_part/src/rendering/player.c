@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/20 15:24:45 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:45:16 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	move_player(t_player *player, t_env *env)
 	next_x = player->x;
 	next_y = player->y;
 	if (player->key_up || player->key_down || player->key_left
-		|| player->key_right || player->right_rotate || player->left_rotate)
+		|| player->key_right || player->right_rotate || player->left_rotate || player->mouse_on)
 	{
 		player->angle = new_angle(player->angle, ANGLE_SPEED,
 				player->left_rotate, player->right_rotate);

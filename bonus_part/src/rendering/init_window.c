@@ -25,6 +25,7 @@ void	init_mlx(t_env *env)
 	init_minim_img(env->mini_map, env);
 	init_texture_img(env);
 	mlx_mouse_hook(env->mlx_win, mouse_hook, env);
+    mlx_hook(env->mlx_win, 6, (1L << 6), mouse_move_hook, env);
 	mlx_hook(env->mlx_win, 17, 1L << 17, destroy, env);
 	mlx_hook(env->mlx_win, 2, 1L << 0, key_press, env);
 	mlx_hook(env->mlx_win, 3, 1L << 1, key_release, env);
