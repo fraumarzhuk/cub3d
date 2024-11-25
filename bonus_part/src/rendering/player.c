@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/25 15:07:59 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:51:26 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,24 @@ void	move_player(t_player *player, t_env *env)
 			get_new_pos2(&next_x, &next_y, player->angle + 90, SPEED);
 		if (env->data->map_copy[(int)next_y
 				/ BLOCKH][(int)next_x / BLOCKW] != '1')
-			set_new_coords(player, next_x, next_y);
+			set_new_coords(env, next_x, next_y);
+
 	}
 }
 
-void	set_new_coords(t_player *player, double next_x, double next_y)
+void	set_new_coords(t_env *env, double next_x, double next_y)
 {
-	player->x = next_x;
-	player->y = next_y;
-	player->xc = (int)next_x / BLOCKW;
-	player->yc = (int)next_y / BLOCKH;
-	player->render_move = true;
+	if (env->data->map_copy[(int)(next_y / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
+		env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
+		env->data->map_copy[(int)(next_y / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1' &&
+		env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1')
+	{
+		env->player->x = next_x;
+		env->player->y = next_y;
+		env->player->xc = (int)next_x / BLOCKW;
+		env->player->yc = (int)next_y / BLOCKH;
+		env->player->render_move = true;
+	}
 }
 
 void	draw_triangle(int size, int x, int y, int color, t_env *env)

@@ -53,7 +53,7 @@
 # define MINI_M_SIZE 300
 # define BLOCKH 50
 # define BLOCKW 50
-# define MINI_P 12
+# define MINI_P 6
 # define BLOCK_COL 0x0c187c9
 # define MINI_BORDER_C 0x0d76d56
 # define RAYCOLOR 0x0FFF9BF
@@ -263,7 +263,7 @@ void	draw_line(double px, double py, float angle, t_env *env);
 float	new_angle(float angle, float angle_speed, bool left, bool right);
 void	move_player(t_player *player, t_env *env);
 void	move_player(t_player *player, t_env *env);
-void	set_new_coords(t_player *player, double next_x, double next_y);
+void	set_new_coords(t_env *env, double next_x, double next_y);
 void	draw_triangle(int size, int x, int y, int color, t_env *env);
 
 //raycasting_image_handler

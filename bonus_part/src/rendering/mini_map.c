@@ -32,7 +32,9 @@ void	draw_mini_map(t_env *env)
 	if (!env->player->render_move)
 		return ;
 	clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
-	draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
+	//draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
+	// draw_square(MINI_M_SIZE / 2 - (MINI_P / 4), MINI_M_SIZE / 2 - (MINI_P / 4), MINI_P/2, 0x00FF00, env);
+	draw_square(MINI_M_SIZE / 2, MINI_M_SIZE / 2, MINI_P, 0x00FF00, env);
 	px_offset = env->player->x - (env->player->xc * BLOCKW);
 	py_offset = env->player->y - (env->player->yc * BLOCKH);
 	y = 0;
@@ -61,8 +63,6 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 				+ MINI_M_SIZE / 2;
 			draw_y = y * BLOCKH - (env->player->yc * BLOCKH + py_offset)
 				+ MINI_M_SIZE / 2;
-			// if (env->player->key_up)
-			// 	draw_y -= env->player->mm_p_height / 2;
 			if (draw_x >= -BLOCKW && draw_x < MINI_M_SIZE && draw_y
 				>= -BLOCKH && draw_y < MINI_M_SIZE)
 				draw_square(draw_x, draw_y, BLOCKH, BLOCK_COL, env);
