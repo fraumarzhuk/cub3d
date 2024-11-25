@@ -6,7 +6,7 @@
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:13:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/20 15:49:15 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/25 23:32:42 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	main(int argc, char **argv)
 		error_and_exit("Incorrect amount of arguments\n");
 	file_validation(argv[1], env);
 	init_mlx(env);
-	ft_destructor();
+	destroy(env);
 	return (0);
 }

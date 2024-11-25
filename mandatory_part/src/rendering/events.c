@@ -3,23 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:36:20 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/01 14:03:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/26 00:04:21 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
 
+void	ft_free_images(t_env *env)
+{
+	if (env->canvas->img)
+		mlx_destroy_image(env->mlx, env->canvas->img);
+	if (env->scene_canvas->img)
+		mlx_destroy_image(env->mlx, env->scene_canvas->img);
+	if (env->ceiling->img)
+	{
+		mlx_destroy_image(env->mlx, env->ceiling->img);
+		mlx_destroy_image(env->mlx, env->floor->img);
+		mlx_destroy_image(env->mlx, env->north_wall->img);
+		mlx_destroy_image(env->mlx, env->south_wall->img);
+		mlx_destroy_image(env->mlx, env->west_wall->img);
+		mlx_destroy_image(env->mlx, env->east_wall->img);
+	}
+}
+
 int	key_press(int keycode, t_env *env)
 {
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(env->mlx, env->mlx_win);
-		ft_destructor();
-		exit(0);
-	}
+		destroy(env);
 	if (keycode == WK)
 		env->player->key_up = true;
 	if (keycode == SK)
@@ -60,10 +73,14 @@ int	key_release(int keycode, t_env *env)
 
 int	destroy(t_env *env)
 {
+	ft_free_images(env);
 	if (env->mlx_win)
 		mlx_destroy_window(env->mlx, env->mlx_win);
 	if (env->mlx)
+	{
 		mlx_destroy_display(env->mlx);
+		free(env->mlx);
+	}
 	ft_destructor();
 	exit(0);
 }
