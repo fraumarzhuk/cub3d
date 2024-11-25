@@ -48,7 +48,7 @@
 # define DOWN 65364
 # define RIGHT 65363
 //mouse
-#define MOUSE_SENS 0.002
+#define MOUSE_SENS 0.001
 //mini map
 # define MINI_M_SIZE 300
 # define BLOCKH 50
