@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/21 17:33:40 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:57:28 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	draw_line(double px, double py, float angle, t_env *env)
 	double	mm_ray_x;
 	double	mm_ray_y;
 
-	mm_ray_x = MINI_M_SIZE / 2;
-	mm_ray_y = MINI_M_SIZE / 2;
-	while (!touch(px, py, env))
+	mm_ray_x = MINI_M_SIZE / 2 + MINI_P / 2;
+	mm_ray_y = MINI_M_SIZE / 2 + MINI_P / 2;
+	while (!touch(px + MINI_P / 2, py + MINI_P / 2, env))
 	{
 		mm_ray_x += cos(degrees_to_radians(angle));
 		mm_ray_y += sin(degrees_to_radians(angle));
