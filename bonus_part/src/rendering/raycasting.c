@@ -30,12 +30,15 @@ void	set_raycast(t_raycast *rc, double *pos)
 
 void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 {
-	put_bg(frame, WIDTH - rc->i, env);
+	if (env->data->pic_ceiling && env->data->pic_floor)
+		put_bg_slice(frame, WIDTH - rc->i, env);
+	else
+		put_bg(frame, WIDTH - rc->i, env);
 	if (rc->frame_dist < 0)
 		rc->frame_dist *= -1;
 	if (!(fabs(rc->frame_dist) < 1e-6))
 		rc->wall_height = (HEIGHT / rc->frame_dist) * (FOV_MOD / ((double)Y_FOV
-					* 2) * M_PI / 2.0);
+				* 2) * M_PI / 2.0);
 	else
 		rc->wall_height = HEIGHT;
 	if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
@@ -65,7 +68,7 @@ int	is_touching_wall(t_data *data, double *pos, double *new_pos)
 	if (is_whole_t(new_pos[2], 1e-6))
 	{
 		if (data->map_copy[(int)round(new_pos[2])
-				- (pos[2] > new_pos[2])][(int)floor(new_pos[0])] == '1')
+			- (pos[2] > new_pos[2])][(int)floor(new_pos[0])] == '1')
 			return (1);
 	}
 	return (0);
@@ -100,7 +103,7 @@ int	get_wall_dist(t_raycast *rc, t_env *env)
 
 void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 {
-	t_raycast	*rc;
+	t_raycast *rc;
 
 	rc = ft_malloc(sizeof(t_raycast));
 	rc->dirx = dir - X_FOV / 2;
@@ -116,8 +119,7 @@ void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 			rc->frame_dist *= cos(degrees_to_radians(rc->dirx - dir));
 			put_wall_slice(frame, rc, env);
 			rc->dirx = atan2(WIDTH / 2 - (rc->i - 0.5), (int)((WIDTH / 2)
-						/ tan(M_PI / 180 * (X_FOV / 2))))
-				* (180.0 / M_PI) + dir;
+					/ tan(M_PI / 180 * (X_FOV / 2)))) * (180.0 / M_PI) + dir;
 		}
 		rc->i++;
 	}

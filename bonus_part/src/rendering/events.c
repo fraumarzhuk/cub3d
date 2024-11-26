@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:31:11 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/25 15:34:21 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:21:47 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ int	destroy(t_env *env)
 void	rotate_with_mouse(t_env *env, int x, int y)
 {
 	int dx;
-	int dy;
 
 	dx = x - WIDTH / 2;
-	dy = y - HEIGHT / 2;
 	if (env->player->mouse_on)
 	{
 		mlx_mouse_show(env->mlx, env->mlx_win);

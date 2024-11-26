@@ -12,6 +12,25 @@
 
 #include "../../inc/cub.h"
 
+void	put_bg_slice(t_img *frame, int i, t_env *env)
+{
+	int	j;
+
+	j = 0;
+	while (j < HEIGHT / 2)
+	{
+		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->ceiling, i / (double)WIDTH, j
+				/ (double)(HEIGHT / 2)));
+		j++;
+	}
+	while (j < HEIGHT)
+	{
+		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->floor, i / (double)WIDTH, (j
+					- HEIGHT / 2) / (double)(HEIGHT / 2)));
+		j++;
+	}
+}
+
 int	get_image_pixel(t_img *img, double x, double y)
 {
 	int	nx;
@@ -35,25 +54,28 @@ void	put_bg(t_img *frame, int i, t_env *env)
 	int	j;
 
 	j = 0;
-	while (j < HEIGHT)
+	if (env->data->floor->r && env->data->ceiling->r)
 	{
-		if (j < HEIGHT / 2)
-			my_mlx_pixel_put(frame, i, j, env->data->floor->r * 0x10000
-				+ env->data->floor->g * 0x100 + env->data->floor->b);
-		else
-			my_mlx_pixel_put(frame, i, j, env->data->ceiling->r * 0x10000
-				+ env->data->ceiling->g * 0x100 + env->data->ceiling->b);
-		j++;
+		while (j < HEIGHT)
+		{
+			if (j < HEIGHT / 2)
+				my_mlx_pixel_put(frame, i, j, env->data->floor->r * 0x10000
+					+ env->data->floor->g * 0x100 + env->data->floor->b);
+			else
+				my_mlx_pixel_put(frame, i, j, env->data->ceiling->r * 0x10000
+					+ env->data->ceiling->g * 0x100 + env->data->ceiling->b);
+			j++;
+		}
 	}
 }
 
 void	img_to_wall(t_img *frame, t_img *image, t_raycast *rc, double w_pos)
 {
-	int		j;
-	double	image_top;
-	double	image_height;
-	int		pixel_color;
-	int		height;
+	int j;
+	double image_top;
+	double image_height;
+	int pixel_color;
+	int height;
 
 	height = fmax(0, HEIGHT / 2 - rc->wall_height / 2);
 	if (height)
@@ -65,8 +87,8 @@ void	img_to_wall(t_img *frame, t_img *image, t_raycast *rc, double w_pos)
 	while (j < HEIGHT - height && j < HEIGHT)
 	{
 		pixel_color = get_image_pixel(image, (double)w_pos - (int)w_pos, ((j
-						- height) / (double)(HEIGHT - 2 * height))
-				* image_height + image_top);
+					- height) / (double)(HEIGHT - 2 * height)) * image_height
+			+ image_top);
 		my_mlx_pixel_put(frame, WIDTH - rc->i, j, pixel_color);
 		j++;
 	}
