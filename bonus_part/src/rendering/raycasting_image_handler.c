@@ -12,21 +12,21 @@
 
 #include "../../inc/cub.h"
 
-void	put_bg_slice(t_img *frame, int i, t_env *env)
+void	put_bg_slice(t_img *frame, int i, double dir, t_env *env)
 {
 	int	j;
 
 	j = 0;
 	while (j < HEIGHT / 2)
 	{
-		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->ceiling, i / (double)WIDTH, j
-				/ (double)(HEIGHT / 2)));
+		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->ceiling, dir / 360.0,
+				j / (double)(HEIGHT / 2)));
 		j++;
 	}
 	while (j < HEIGHT)
 	{
-		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->floor, i / (double)WIDTH, (j
-					- HEIGHT / 2) / (double)(HEIGHT / 2)));
+		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->floor, i
+				/ (double)WIDTH, (j - HEIGHT / 2) / (double)(HEIGHT / 2)));
 		j++;
 	}
 }

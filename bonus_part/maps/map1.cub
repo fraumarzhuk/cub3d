@@ -4,8 +4,8 @@ NO  ./textures/deutschland_2.xpm
 WE ./textures/deutschland_3.xpm
 EA ./textures/deutschland_bier_4.xpm
 
-C 253, 219, 187
-F 203, 157, 240
+C ./textures/Sky.xpm
+F ./textures/deutschland_3.xpm
 
 
      111111111111111111111

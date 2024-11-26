@@ -269,7 +269,7 @@ void			set_new_coords(t_env *env, double next_x, double next_y);
 void			draw_triangle(int size, int x, int y, int color, t_env *env);
 
 // raycasting_image_handler
-void			put_bg_slice(t_img *frame, int i, t_env *env);
+void			put_bg_slice(t_img *frame, int i, double dir, t_env *env);
 int				get_image_pixel(t_img *img, double x, double y);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void			put_bg(t_img *frame, int i, t_env *env);

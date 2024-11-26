@@ -31,7 +31,7 @@ void	set_raycast(t_raycast *rc, double *pos)
 void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 {
 	if (env->data->pic_ceiling && env->data->pic_floor)
-		put_bg_slice(frame, WIDTH - rc->i, env);
+		put_bg_slice(frame, WIDTH - rc->i, *rc->dir, env);
 	else
 		put_bg(frame, WIDTH - rc->i, env);
 	if (rc->frame_dist < 0)
