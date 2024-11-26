@@ -57,6 +57,9 @@
 # define RAYCOLOR 0x0FFF9BF
 # define SPEED 2
 # define ANGLE_SPEED 2
+# define NO_WC 1
+# define ONLY_MVS 0
+
 // screen size
 # define WIDTH 1000
 # define HEIGHT 1000
@@ -165,15 +168,15 @@ typedef struct s_env
 
 typedef struct s_raycast
 {
-	double	pos[3];
-	double	dirx;
-	double	wall_pos[3];
-	double	new_pos[3];
-	double	dir[2];
-	double	frame_dist;
-	double	wall_height;
-	int		i;
-}			t_raycast;
+	double		pos[3];
+	double		dirx;
+	double		wall_pos[3];
+	double		new_pos[3];
+	double		dir[2];
+	double		frame_dist;
+	double		wall_height;
+	int			i;
+}				t_raycast;
 
 //******PARSING******//
 
@@ -245,12 +248,12 @@ float			new_angle(float angle, float angle_speed, bool left,
 void			move_player(t_player *player, t_env *env);
 void			set_new_coords(t_player *player, double next_x, double next_y);
 
-//raycasting_image_handler
+// raycasting_image_handler
 int				get_image_pixel(t_img *img, double x, double y);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void			put_bg(t_img *frame, int i, t_env *env);
-void			img_to_wall(t_img *frame, t_img *image,
-					t_raycast *rc, double w_pos);
+void			img_to_wall(t_img *frame, t_img *image, t_raycast *rc,
+					double w_pos);
 
 // raycasting
 void			set_raycast(t_raycast *rc, double *pos);

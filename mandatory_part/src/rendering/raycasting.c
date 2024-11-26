@@ -30,7 +30,6 @@ void	set_raycast(t_raycast *rc, double *pos)
 
 void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 {
-	put_bg(frame, WIDTH - rc->i, env);
 	if (rc->frame_dist < 0)
 		rc->frame_dist *= -1;
 	if (!(fabs(rc->frame_dist) < 1e-6))
@@ -111,6 +110,7 @@ void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 	while (rc->i < WIDTH)
 	{
 		set_raycast(rc, pos);
+		put_bg(frame, WIDTH - rc->i, env);
 		if (get_wall_dist(rc, env))
 		{
 			rc->frame_dist *= cos(degrees_to_radians(rc->dirx - dir));

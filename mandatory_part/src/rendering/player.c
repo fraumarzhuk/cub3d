@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/20 12:57:28 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/26 01:23:39 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	move_player(t_player *player, t_env *env)
 			get_new_pos2(&next_x, &next_y, player->angle - 90, SPEED);
 		if (player->key_right && player->x + SPEED < WIDTH)
 			get_new_pos2(&next_x, &next_y, player->angle + 90, SPEED);
-		if (env->data->map_copy[(int)next_y
-				/ BLOCKH][(int)next_x / BLOCKW] != '1')
+		if (env->data->map_copy[(int)next_y / BLOCKH][(int)next_x
+			/ BLOCKW] != '1' || NO_WC)
 			set_new_coords(player, next_x, next_y);
 	}
 }
