@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -g -lm #-fsanitize=address
 MINILIBX_TGZ_NAME = MiniLibX.tgz
 ifeq ($(UNAME_S), Linux)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26192/minilibx-linux.tgz
-	FLAGS_MINILIBX = -I/usr/include -Imlx_linux -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+	FLAGS_MINILIBX = -I/usr/include -Imlx_linux -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 	MINILIBX_DIR = ./minilibx-linux
 else ifeq ($(UNAME_S), Darwin)
 	LIB_URL = https://cdn.intra.42.fr/document/document/26193/minilibx_opengl.tgz

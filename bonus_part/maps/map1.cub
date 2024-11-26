@@ -3,8 +3,11 @@ NO  ./textures/deutschland_2.xpm
 
 WE ./textures/deutschland_3.xpm
 EA ./textures/deutschland_bier_4.xpm
+BE ./textures/bretzel_enjoyer/brezel_xpm_500.xpm
+HA ./textures/bretzel_enjoyer/enjoyer_xpm_500.xpm
+BR ./textures/bretzel_enjoyer/bier_xpm_500.xpm
 
-C ./textures/Sky.xpm
+C ./textures/sky.xpm
 F ./textures/deutschland_3.xpm
 
 

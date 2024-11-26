@@ -56,6 +56,9 @@ void	init_texture_img(t_env *env)
 		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
 		init_rgb_texture(env->ceiling, env->data->ceiling, env);
+	init_xpm_texture(env->enjoyer, env, env->data->enjoyer);
+	init_xpm_texture(env->enj_beer, env, env->data->beer);
+	init_xpm_texture(env->enj_brezel, env, env->data->brezel);
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);

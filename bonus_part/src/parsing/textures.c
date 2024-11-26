@@ -41,6 +41,12 @@ void	choose_texture(char *map_line, t_data *data, int map_detected)
 		data->west = get_texture(map_line, "WE", false);
 	else if (!(ft_strncmp(map_line, "EA", 2)))
 		data->east = get_texture(map_line, "EA", false);
+	else if (!(ft_strncmp(map_line, "BE", 2)))
+		data->beer = get_texture(map_line, "BE", false);
+	else if (!(ft_strncmp(map_line, "HA", 2)))
+		data->enjoyer = get_texture(map_line, "HA", false);
+	else if (!(ft_strncmp(map_line, "BR", 2)))
+		data->brezel = get_texture(map_line, "BR", false);
 	else if (map_line[0] == 'F' || map_line[0] == 'C')
 		save_floor_and_ceiling(map_line, data);
 }
@@ -51,6 +57,7 @@ char	*get_texture(char *line, char *p_name, bool is_rgb)
 	int		fd;
 
 	texture = line;
+	printf("cur texture: %s\n", line);
 	if (ft_strlen(p_name) == 2)
 		texture += 2;
 	else

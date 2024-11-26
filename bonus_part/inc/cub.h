@@ -131,6 +131,9 @@ typedef struct s_data
 	char		*east;
 	char		*pic_ceiling;
 	char		*pic_floor;
+	char		*enjoyer;
+	char		*beer;
+	char 		*brezel;
 	t_rgb		*ceiling;
 	t_rgb		*floor;
 }				t_data;
@@ -163,6 +166,9 @@ typedef struct s_env
 	t_img		*south_wall;
 	t_img		*east_wall;
 	t_img		*west_wall;
+	t_img		*enjoyer;
+	t_img		*enj_beer;
+	t_img		*enj_brezel;
 	t_player	*player;
 }				t_env;
 

@@ -41,6 +41,9 @@ void	init_env(t_env *env)
 	env->data->south = NULL;
 	env->data->west = NULL;
 	env->data->east = NULL;
+	env->data->enjoyer = NULL;
+	env->data->beer = NULL;
+	env->data->brezel = NULL;
 	init_player(env->player);
 	init_textures(env);
 }
@@ -73,6 +76,9 @@ void	init_textures(t_env *env)
 	env->north_wall = (t_img *)ft_malloc(sizeof(t_img));
 	env->south_wall = (t_img *)ft_malloc(sizeof(t_img));
 	env->east_wall = (t_img *)ft_malloc(sizeof(t_img));
+	env->enjoyer = (t_img *)ft_malloc(sizeof(t_img));
+	env->enj_beer = (t_img *)ft_malloc(sizeof(t_img));
+	env->enj_brezel = (t_img *)ft_malloc(sizeof(t_img));
 	env->west_wall = (t_img *)ft_malloc(sizeof(t_img));
 }
 
