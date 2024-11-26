@@ -39,10 +39,10 @@ void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 	else
 		rc->wall_height = HEIGHT;
 	if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
-		img_to_wall(frame, env->west_wall, rc, ceil(rc->wall_pos[1])
+		img_to_wall(frame, env->east_wall, rc, ceil(rc->wall_pos[1])
 			- rc->wall_pos[1]);
 	else if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] <= rc->pos[0])
-		img_to_wall(frame, env->east_wall, rc, rc->wall_pos[1]);
+		img_to_wall(frame, env->west_wall, rc, rc->wall_pos[1]);
 	else if (is_whole_t(rc->wall_pos[1], 1e-6) && rc->wall_pos[1] <= rc->pos[2])
 		img_to_wall(frame, env->south_wall, rc, ceil(rc->wall_pos[0])
 			- rc->wall_pos[0]);
