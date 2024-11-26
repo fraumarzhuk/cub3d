@@ -40,6 +40,8 @@ void	init_env(t_env *env)
 	env->data->south = NULL;
 	env->data->west = NULL;
 	env->data->east = NULL;
+	env->last_frame.tv_sec = 0;
+	env->last_frame.tv_usec = 0;
 	init_player(env->player);
 	init_textures(env);
 }
@@ -130,13 +132,13 @@ void	copy_spaces(char *map_line, char *new_line)
 // 	}
 // 	printf("**************************\n");
 // 	if (env->data->ceiling && env->data->floor)
-// 	{		
+// 	{
 // 		printf("RGB TEXTURES (F and C):\n\n");
 // 		printf("floor rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m,
-	//\e[1;34m%d\e[0m\n", env->data->floor->r,
+//\e[1;34m%d\e[0m\n", env->data->floor->r,
 // 				env->data->floor->g, env->data->floor->b);
 // 		printf("ceiling rgb: \e[1;31m %d\e[0m, \e[1;32m%d\e[0m,
-	//\e[1;34m%d\e[0m\n", env->data->ceiling->r,
+//\e[1;34m%d\e[0m\n", env->data->ceiling->r,
 // 				env->data->ceiling->g, env->data->ceiling->b);
 // 	}
 // 	printf("map_lines: %d\n", env->data->true_lines);
