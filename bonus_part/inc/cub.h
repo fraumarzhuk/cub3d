@@ -50,7 +50,7 @@
 // mouse
 # define MOUSE_SENS 0.002
 // mini map
-# define MINI_M_SIZE 300
+# define MINI_M_SIZE 200
 # define BLOCKH 50
 # define BLOCKW 50
 # define MINI_P 6
@@ -257,8 +257,7 @@ void			draw_square(int x, int y, int size, int color, t_env *env);
 // mini_map
 int				mini_draw_loop(t_env *env);
 void			draw_mini_map(t_env *env);
-void			calculate_draw_xy(t_env *env, int y, double px_offset,
-					double py_offset);
+void			calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset);
 void			draw_mini_border(t_env *env);
 
 // mini_raycasting

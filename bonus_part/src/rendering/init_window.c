@@ -103,6 +103,29 @@ void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 	}
 }
 
+void	init_enjoyer_texture(t_img *pattern_pic, t_img *player_pic, t_env *env)
+{
+	int	m_color;
+
+	player_pic->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
+	if (!player_pic->img)
+		error_and_exit("Failed to create image");
+	player_pic->addr = mlx_get_data_addr(player_pic->img, &player_pic->bpp,
+			&player_pic->size_line, &player_pic->endian);
+	if (!player_pic->addr)
+		error_and_exit("Failed to get image data address");
+	player_pic->width = 300;
+	player_pic->height = 300;
+	for (int y = 0; y < 300; y++)
+	{
+		for (int x = 0; x < 300; x++)
+		{
+			m_color = get_image_pixel(pattern_pic, x, y);
+			my_pixel_put(x, y, m_color, player_pic);
+		}
+	}
+}
+
 void	draw_square(int x, int y, int size, int color, t_env *env)
 {
 	int	i;

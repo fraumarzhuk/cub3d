@@ -38,6 +38,7 @@ void	render_images_on_canvas(t_env *env)
 	// put_image_to_image(env->mini_map, env->canvas, offset_x, offset_y);
 
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->scene_canvas->img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->enj_beer->img, WIDTH / 2 - 150, HEIGHT - 300);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->mini_map->img, offset_x, offset_y);
 	env->player->render_move = false;
 }
