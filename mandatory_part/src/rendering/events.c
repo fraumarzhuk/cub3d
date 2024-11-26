@@ -6,7 +6,7 @@
 /*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:36:20 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/26 00:04:21 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:15:23 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,7 @@ int	key_press(int keycode, t_env *env)
 int	key_release(int keycode, t_env *env)
 {
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(env->mlx, env->mlx_win);
-		ft_destructor();
-		exit(0);
-	}
+		destroy(env);
 	if (keycode == WK)
 		env->player->key_up = false;
 	if (keycode == SK)
