@@ -80,6 +80,7 @@ void	init_textures(t_env *env)
 	env->enj_beer = (t_img *)ft_malloc(sizeof(t_img));
 	env->enj_brezel = (t_img *)ft_malloc(sizeof(t_img));
 	env->west_wall = (t_img *)ft_malloc(sizeof(t_img));
+	env->player_pic = (t_img *)ft_malloc(sizeof(t_img));
 }
 
 void	copy_spaces(char *map_line, char *new_line)
