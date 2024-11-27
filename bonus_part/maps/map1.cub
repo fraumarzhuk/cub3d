@@ -8,7 +8,7 @@ HA ./textures/bretzel_enjoyer/enjoyer_xpm_500.xpm
 BR ./textures/bretzel_enjoyer/bier_xpm_300.xpm
 
 C ./textures/sky.xpm
-F ./textures/deutschland_3.xpm
+F 255, 105, 180
 
 
      111111111111111111111

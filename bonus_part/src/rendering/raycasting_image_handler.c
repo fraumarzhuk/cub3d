@@ -17,17 +17,23 @@ void	put_bg_slice(t_img *frame, int i, double dir, t_env *env)
 	int	j;
 
 	j = 0;
-	while (j < HEIGHT / 2)
+	if (env->ceiling)
 	{
-		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->ceiling, dir / 360.0,
-				j / (double)(HEIGHT / 2)));
-		j++;
+		while (j < HEIGHT / 2)
+		{
+			my_mlx_pixel_put(frame, i, j, get_image_pixel(env->ceiling, dir / 360.0,
+					j / (double)(HEIGHT / 2)));
+			j++;
+		}
 	}
-	while (j < HEIGHT)
+	if (env->floor)
 	{
-		my_mlx_pixel_put(frame, i, j, get_image_pixel(env->floor, i
-				/ (double)WIDTH, (j - HEIGHT / 2) / (double)(HEIGHT / 2)));
-		j++;
+		while (j < HEIGHT)
+		{
+			my_mlx_pixel_put(frame, i, j, get_image_pixel(env->floor, i
+					/ (double)WIDTH, (j - HEIGHT / 2) / (double)(HEIGHT / 2)));
+			j++;
+		}
 	}
 }
 
@@ -54,11 +60,11 @@ void	put_bg(t_img *frame, int i, t_env *env)
 	int	j;
 
 	j = 0;
-	if (env->data->floor->r && env->data->ceiling->r)
+	if (env->data->floor->r || env->data->ceiling->r)
 	{
 		while (j < HEIGHT)
 		{
-			if (j < HEIGHT / 2)
+			if (j < HEIGHT / 2 && env->data->floor)
 				my_mlx_pixel_put(frame, i, j, env->data->floor->r * 0x10000
 					+ env->data->floor->g * 0x100 + env->data->floor->b);
 			else
