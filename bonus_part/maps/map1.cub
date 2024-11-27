@@ -1,18 +1,18 @@
-SO  ./textures/deutschland_1.xpm
-NO  ./textures/deutschland_2.xpm
+SO  ./textures/bretzel_enjoyer/wall_black.xpm
+NO  ./textures/bretzel_enjoyer/wall_flag.xpm
+WE ./textures/bretzel_enjoyer/wall_red.xpm
+EA ./textures/bretzel_enjoyer/wall_yellow.xpm
 
-WE ./textures/deutschland_3.xpm
-EA ./textures/deutschland_bier_4.xpm
-BE ./textures/bretzel_enjoyer/brezel_xpm_300.xpm
-HA ./textures/bretzel_enjoyer/enjoyer_xpm_500.xpm
-BR ./textures/bretzel_enjoyer/bier_xpm_300.xpm
+BE ./textures/bretzel_enjoyer/holding_beer.xpm
+HA ./textures/bretzel_enjoyer/initial_pose.xpm
+BR ./textures/bretzel_enjoyer/holding_brezel.xpm
 
 BS 
 PS
 PF
 
 C ./textures/sky.xpm
-F 255, 105, 180
+F 0, 0, 0
 
 
      111111111111111111111
@@ -30,9 +30,9 @@ F 255, 105, 180
 111111101011111011101
 100000101000100010001
 101110101110101110111
-101000100P00100010101
+101000100000100010101
 101011111111111010101
-10001000P000000010001
+100010000000000010001
 101010111011111111101
 1010000111000000000N1
 11111111  11111111111
