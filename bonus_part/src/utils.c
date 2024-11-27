@@ -86,7 +86,7 @@ void	init_textures(t_env *env)
 	env->enj_beer = (t_img *)ft_malloc(sizeof(t_img));
 	env->enj_brezel = (t_img *)ft_malloc(sizeof(t_img));
 	env->west_wall = (t_img *)ft_malloc(sizeof(t_img));
-	env->player_pic = (t_img *)ft_malloc(sizeof(t_img));
+	// env->player_pic = (t_img *)ft_malloc(sizeof(t_img));
 	env->beer_shop = (t_img *)ft_malloc(sizeof(t_img));
 	env->brezel_shop = (t_img *)ft_malloc(sizeof(t_img));
 	env->pfand = (t_img *)ft_malloc(sizeof(t_img));

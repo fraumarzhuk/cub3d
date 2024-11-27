@@ -175,7 +175,7 @@ typedef struct s_env
 	t_img		*enjoyer;
 	t_img		*enj_beer;
 	t_img		*enj_brezel;
-	t_img		*player_pic;
+	// t_img		*player_pic;
 	t_img		*brezel_shop;
 	t_img		*beer_shop;
 	t_img		*pfand;
@@ -264,7 +264,7 @@ void			init_texture_img(t_env *env);
 void			init_xpm_texture(t_img *img, t_env *env, char *path);
 void			init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
 void			draw_square(int x, int y, int size, int color, t_env *env);
-void	init_enjoyer_texture(t_img *pattern_pic, t_img *player_pic, t_env *env);
+void			remove_green_bg(t_img *pattern_pic, t_env *env);
 
 // mini_map
 int				mini_draw_loop(t_env *env);
