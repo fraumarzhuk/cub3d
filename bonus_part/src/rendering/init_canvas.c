@@ -37,7 +37,7 @@ void	render_images_on_canvas(t_env *env)
 	// put_image_to_image(env->scene_canvas, env->canvas, 0, 0);
 	// put_image_to_image(env->mini_map, env->canvas, offset_x, offset_y);
 
-	put_image_to_image(env->enjoyer, env->scene_canvas, WIDTH / 2 - 150, HEIGHT - 500);
+	put_image_to_image(env->enjoyer, env->scene_canvas, WIDTH / 2 - 150, HEIGHT - 300);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->scene_canvas->img, 0, 0);
 	//mlx_put_image_to_window(env->mlx, env->mlx_win, env->player_pic->img, WIDTH / 2 - 150, HEIGHT - 300);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->mini_map->img, offset_x, offset_y);
@@ -50,7 +50,7 @@ void put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y)
     int y;
     char *src_pixel;
     char *dst_pixel;
-    // unsigned int color_to_skip = 0x97FF76;
+    unsigned int color_to_skip = 0x0034ff00;
 
     y = 0;
     while (y < src->height)
@@ -65,8 +65,7 @@ void put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y)
             if (dst_x >= 0 && dst_x < dst->width && dst_y >= 0 && dst_y < dst->height)
             {
                 unsigned int src_color = *(unsigned int *)src_pixel;
-
-                if (src_color != 0x97FF76 && src_color != 0x9AFF79 && src_color != 0x9CFF7A)
+                if (src_color != color_to_skip)
                 {
                     dst_pixel = dst->addr + (dst_y * dst->size_line + dst_x * (dst->bpp / 8));
                     *(unsigned int *)dst_pixel = src_color;
