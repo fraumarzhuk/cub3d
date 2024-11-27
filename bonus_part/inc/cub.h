@@ -125,6 +125,8 @@ typedef struct s_data
 	int			line_count;
 	int			map_lines;
 	int			true_lines;
+	int			pfand_available;
+	int			pfand_collected;
 	char		*north;
 	char		*south;
 	char		*west;
@@ -134,6 +136,9 @@ typedef struct s_data
 	char		*enjoyer;
 	char		*beer;
 	char 		*brezel;
+	char		*beer_shop;
+	char		*brezel_shop;
+	char		*pfand;
 	t_rgb		*ceiling;
 	t_rgb		*floor;
 }				t_data;
@@ -170,6 +175,9 @@ typedef struct s_env
 	t_img		*enj_beer;
 	t_img		*enj_brezel;
 	t_img		*player_pic;
+	t_img		*brezel_shop;
+	t_img		*beer_shop;
+	t_img		*pfand;
 	t_player	*player;
 }				t_env;
 
