@@ -47,6 +47,14 @@ void	choose_texture(char *map_line, t_data *data, int map_detected)
 		data->enjoyer = get_texture(map_line, "HA", false);
 	else if (!(ft_strncmp(map_line, "BR", 2)))
 		data->brezel = get_texture(map_line, "BR", false);
+	else if (!(ft_strncmp(map_line, "BS", 2)))
+		data->beer_shop = get_texture(map_line, "BR", false);
+	else if (!(ft_strncmp(map_line, "MS", 2)))
+		data->brezel_shop = get_texture(map_line, "BR", false);
+	else if (!(ft_strncmp(map_line, "P", 2)))
+		data->pfand = get_texture(map_line, "BR", false);
+	else if (!(ft_strncmp(map_line, "PA", 2)))
+		data->pfandautomat = get_texture(map_line, "BR", false);
 	else if (map_line[0] == 'F' || map_line[0] == 'C')
 		save_floor_and_ceiling(map_line, data);
 }

@@ -7,9 +7,10 @@ BE ./textures/bretzel_enjoyer/holding_beer.xpm
 HA ./textures/bretzel_enjoyer/initial_pose.xpm
 BR ./textures/bretzel_enjoyer/holding_brezel.xpm
 
-BS 
-PS
-PF
+BS ./textures/bretzel_enjoyer/beer_shop.xpm
+MS ./textures/bretzel_enjoyer/brezel_shop.xpm
+PA ./textures/bretzel_enjoyer/pfandautomat.xpm
+P ./textures/bretzel_enjoyer/pfand.xpm
 
 C ./textures/sky.xpm
 F 0, 0, 0

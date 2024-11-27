@@ -139,6 +139,7 @@ typedef struct s_data
 	char		*beer_shop;
 	char		*brezel_shop;
 	char		*pfand;
+	char		*pfandautomat;
 	t_rgb		*ceiling;
 	t_rgb		*floor;
 }				t_data;
@@ -178,6 +179,7 @@ typedef struct s_env
 	t_img		*brezel_shop;
 	t_img		*beer_shop;
 	t_img		*pfand;
+	t_img		*pfandautomat;
 	t_player	*player;
 }				t_env;
 

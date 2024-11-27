@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaeggi <chaeggi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:24:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/19 15:29:34 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:06:00 by chaeggi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	is_wall_or_space(char c)
 {
-	return (c == '1' || is_space(c));
+	//A - pfandAutomat
+	//B - Beer shop
+	//M - Brezelshop (dont ask me why pls, i dont have answer...)
+	return (c == '1' || c == 'B' || c == 'M' || c == 'A' || is_space(c));
 }
 
 int	is_map_char(char c)
 {
-	return (c == '0' || c == 'N' || c == 'W' || c == 'E' || c == 'S');
+	//P - pfand
+	return (c == '0' || c == 'N' || c == 'W' || c == 'E' || c == 'S' || c == 'P');
 }
 
 void	tabs_to_spaces(char *map_line)
