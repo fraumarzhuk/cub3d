@@ -1,11 +1,11 @@
-SO  ./textures/bretzel_enjoyer/wall_black.xpm
-NO  ./textures/bretzel_enjoyer/wall_flag.xpm
-WE ./textures/bretzel_enjoyer/wall_red.xpm
-EA ./textures/bretzel_enjoyer/wall_yellow.xpm
+SO  ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
+NO  ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
+WE ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
+EA ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
 
-BE ./textures/bretzel_enjoyer/holding_beer.xpm
-HA ./textures/bretzel_enjoyer/initial_pose.xpm
-BR ./textures/bretzel_enjoyer/holding_brezel.xpm
+BE ./textures/bretzel_enjoyer/compressed_test/holding_beer.xpm
+HA ./textures/bretzel_enjoyer/compressed_test/holding_beer.xpm
+BR ./textures/bretzel_enjoyer/compressed_test/holding_brezel.xpm
 
 BS ./textures/bretzel_enjoyer/beer_shop.xpm
 MS ./textures/bretzel_enjoyer/brezel_shop.xpm

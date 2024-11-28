@@ -44,6 +44,8 @@ int	get_image_pixel(t_img *img, double x, double y)
 
 	nx = (1 - x) * img->width;
 	ny = y * img->height;
+	    if (nx < 0 || nx >= img->width || ny < 0 || ny >= img->height)
+			return (0);
 	return (*(int *)(img->addr + 4 * nx + (4 * ny * img->width)));
 }
 
