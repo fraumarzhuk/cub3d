@@ -59,12 +59,12 @@ void	init_texture_img(t_env *env)
 	//printf("3\n");
 	init_xpm_texture(env->enjoyer, env, env->data->enjoyer);
 	//printf("2\n");
-	//init_xpm_texture(env->beer_shop, env, env->data->beer_shop);
+	init_xpm_texture(env->beer_shop, env, env->data->beer_shop);
 	//printf("1\n");
 	// init_xpm_texture(env->enj_beer, env, env->data->beer);
 	remove_green_bg(env->enjoyer, env);
-	printf("0\n");
-	// init_xpm_texture(env->enj_brezel, env, env->data->brezel);
+	//printf("0\n");
+	init_xpm_texture(env->enj_brezel, env, env->data->brezel);
 	// here will be all of the other images
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);

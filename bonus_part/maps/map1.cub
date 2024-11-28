@@ -1,15 +1,15 @@
 SO  ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
-NO  ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
-WE ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
-EA ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
+NO  ./textures/bretzel_enjoyer/compressed_test/wall_flag.xpm
+WE ./textures/bretzel_enjoyer/compressed_test/wall_red.xpm
+EA ./textures/bretzel_enjoyer/compressed_test/wall_yellow.xpm
 
 BE ./textures/bretzel_enjoyer/compressed_test/holding_beer.xpm
-HA ./textures/bretzel_enjoyer/compressed_test/holding_beer.xpm
+HA ./textures/bretzel_enjoyer/compressed_test/initial_pos.xpm
 BR ./textures/bretzel_enjoyer/compressed_test/holding_brezel.xpm
 
-BS ./textures/bretzel_enjoyer/beer_shop.xpm
-MS ./textures/bretzel_enjoyer/brezel_shop.xpm
-PA ./textures/bretzel_enjoyer/pfandautomat.xpm
+BS ./textures/bretzel_enjoyer/compressed_test/beer_shop.xpm
+MS ./textures/bretzel_enjoyer/compressed_test/brezel_shop.xpm
+PA ./textures/bretzel_enjoyer/compressed_test/pfandautomat.xpm
 P ./textures/bretzel_enjoyer/pfand.xpm
 
 C ./textures/sky.xpm

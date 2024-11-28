@@ -65,7 +65,7 @@ char	*get_texture(char *line, char *p_name, bool is_rgb)
 	int		fd;
 
 	texture = line;
-	printf("cur texture: %s\n", line);
+	//printf("cur texture: %s\n", line);
 	if (ft_strlen(p_name) == 2)
 		texture += 2;
 	else
