@@ -43,6 +43,8 @@
 # define AK 97
 # define SK 115
 # define DK 100
+# define BK 98
+# define MK 109
 # define UP 65362
 # define LEFT 65361
 # define DOWN 65364
@@ -73,6 +75,11 @@
 # define RENDER_DISTANCE 10
 
 # define PI 3.14159265359
+
+// player
+# define HANDS 0
+# define BEER 1
+# define BREZEL 2
 
 typedef struct map
 {
@@ -112,6 +119,7 @@ typedef struct s_player
 	bool		left_rotate;
 	bool		right_rotate;
 	bool		render_move;
+	int			player_pos;
 	int			counter;
 }				t_player;
 
@@ -258,6 +266,7 @@ int				mouse_move_hook(int x, int y, t_env *env);
 // init_canvas
 void			init_canvas_img(t_img *canvas, t_env *env);
 void			render_images_on_canvas(t_env *env);
+void			display_player_pos(t_env *env);
 void			put_image_to_image(t_img *src, t_img *dst, int offset_x,
 					int offset_y);
 

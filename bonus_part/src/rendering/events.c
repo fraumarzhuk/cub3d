@@ -32,6 +32,20 @@ int	key_press(int keycode, t_env *env)
 		env->player->left_rotate = true;
 	if (keycode == RIGHT)
 		env->player->right_rotate = true;
+	if (keycode == BK)
+	{
+		if (env->player->player_pos == BEER)
+			env->player->player_pos = HANDS;
+		else
+			env->player->player_pos = BEER;
+	}
+	if (keycode == MK)
+	{
+		if (env->player->player_pos == BREZEL)
+			env->player->player_pos = HANDS;
+		else
+		env->player->player_pos = BREZEL;
+	}
 	return (0);
 }
 

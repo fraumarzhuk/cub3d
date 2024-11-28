@@ -32,11 +32,22 @@ void	render_images_on_canvas(t_env *env)
 	clear_image(env->canvas, WIDTH, HEIGHT);
 	int offset_x = WIDTH - MINI_M_SIZE;
 	int offset_y = HEIGHT - MINI_M_SIZE;
-	put_image_to_image(env->enjoyer, env->scene_canvas, WIDTH / 2 - 250, HEIGHT - 500);
+	//put_image_to_image(env->enjoyer, env->scene_canvas, WIDTH / 2 - 250, HEIGHT - 500);
+	display_player_pos(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->scene_canvas->img, 0, 0);
 	//mlx_put_image_to_window(env->mlx, env->mlx_win, env->player_pic->img, WIDTH / 2 - 150, HEIGHT - 300);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->mini_map->img, offset_x, offset_y);
 	env->player->render_move = false;
+}
+
+void display_player_pos(t_env *env)
+{
+	if (env->player->player_pos == HANDS)
+		put_image_to_image(env->enjoyer, env->scene_canvas, WIDTH / 2 - 250, HEIGHT - 500);
+	else if (env->player->player_pos == BEER)
+		put_image_to_image(env->enj_beer, env->scene_canvas, WIDTH / 2 - 250, HEIGHT - 500);
+	else if (env->player->player_pos == BREZEL)
+		put_image_to_image(env->enj_brezel, env->scene_canvas, WIDTH / 2 - 250, HEIGHT - 500);
 }
 
 void put_image_to_image(t_img *src, t_img *dst, int offset_x, int offset_y)
