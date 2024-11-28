@@ -53,10 +53,11 @@
 # define MOUSE_SENS 0.002
 // mini map
 # define MINI_M_SIZE 200
-# define BLOCKH 30
-# define BLOCKW 30
+# define BLOCKH 20
+# define BLOCKW 20
 # define MINI_P 6
 # define BLOCK_COL 0x0c187c9
+# define A_BLOCK_COL 0x09ABF80
 # define MINI_BORDER_C 0x0d76d56
 # define RAYCOLOR 0x0FFF9BF
 # define SPEED 2

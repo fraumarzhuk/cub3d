@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/25 16:57:28 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:11:56 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	touch(double px, double py, t_env *env)
 
 	x = px / BLOCKW;
 	y = py / BLOCKH;
-	if (env->data->map_copy[y][x] && env->data->map_copy[y][x] == '1')
+	if (env->data->map_copy[y][x] && is_wall_mm(env->data->map_copy[y][x]))
 		return (true);
 	return (false);
 }

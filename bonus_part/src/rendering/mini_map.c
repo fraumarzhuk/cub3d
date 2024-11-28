@@ -57,7 +57,7 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 	x = 0;
 	while (env->data->map_copy[y][x])
 	{
-		if (env->data->map_copy[y][x] == '1')
+		if (env->data->map_copy[y][x] == '1' || env->data->map_copy[y][x] == 'A')
 		{
 			draw_x = x * BLOCKW -(env->player->xc * BLOCKW + px_offset)
 				+ MINI_M_SIZE / 2;
@@ -65,7 +65,12 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 				+ MINI_M_SIZE / 2;
 			if (draw_x >= -BLOCKW && draw_x < MINI_M_SIZE && draw_y
 				>= -BLOCKH && draw_y < MINI_M_SIZE)
-				draw_square(draw_x, draw_y, BLOCKH, BLOCK_COL, env);
+				{
+					if (env->data->map_copy[y][x] == 'A')
+						draw_square(draw_x, draw_y, BLOCKH, A_BLOCK_COL, env);
+					else
+						draw_square(draw_x, draw_y, BLOCKH, BLOCK_COL, env);
+				}
 		}
 		x++;
 	}
