@@ -64,11 +64,14 @@ void	init_texture_img(t_env *env)
 	init_xpm_texture(env->brezel_shop, env, env->data->brezel_shop);
 	init_xpm_texture(env->pfandautomat, env, env->data->pfandautomat);
 
-	 init_xpm_texture(env->enj_beer, env, env->data->beer);
+	init_xpm_texture(env->enj_beer, env, env->data->beer);
 	remove_green_bg(env->enj_beer, env);
 
 	init_xpm_texture(env->enj_brezel, env, env->data->brezel);
 	remove_green_bg(env->enj_brezel, env);
+
+	init_xpm_texture(env->pfand, env, env->data->pfand);
+	remove_green_bg(env->pfand, env);
 	// here will be all of the other images
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
@@ -83,7 +86,7 @@ void	init_xpm_texture(t_img *img, t_env *env, char *path)
 
 	img->img = mlx_xpm_file_to_image(env->mlx, path, &width, &height);
 	if (!img->img)
-		error_and_exit("Failed to load floor image");
+		error_and_exit("Failed to load xpm image");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
 		&img->endian);
 	if (!img->addr)

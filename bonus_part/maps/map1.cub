@@ -10,7 +10,7 @@ BR ./textures/bretzel_enjoyer/compressed_test/holding_brezel.xpm
 BS ./textures/bretzel_enjoyer/compressed_test/beer_shop.xpm
 MS ./textures/bretzel_enjoyer/compressed_test/brezel_shop.xpm
 PA ./textures/bretzel_enjoyer/compressed_test/pfandautomat.xpm
-P ./textures/bretzel_enjoyer/pfand.xpm
+P ./textures/bretzel_enjoyer/compressed_test/pfand.xpm
 
 C ./textures/sky.xpm
 F 0, 0, 0
@@ -28,11 +28,11 @@ F 0, 0, 0
 101010001010100010101111111111
 101110101011101010101
 100010101010001010001
-111111101011111011A01
+111111101011111011101
 100000101000100010001
 101110101110101110111
 101000100000100010101
-101011111111111010M01
+101011111111111010101
 100010000000000010001
 101010111011111111B01
 1010000111000000000N1
