@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map-checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:19:36 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/19 15:29:18 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/28 04:10:34 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ int	invalid_char_check(char *line, t_player *player, int y)
 		}
 		if (!is_space(line[i]) && line[i] != 'N' && line[i] != 'S'
 			&& line[i] != 'E' && line[i] != 'W'
-			&& line[i] != '0' && line[i] != '1')
+			&& line[i] != '0' && line[i] != '1'
+			&& line[i] != 'A' && line[i] != 'M'
+			&& line[i] != 'B' && line[i] != 'P')
 			error_and_exit("Incorrect character inside map!");
 		i++;
 	}

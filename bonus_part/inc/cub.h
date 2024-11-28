@@ -188,10 +188,14 @@ typedef struct s_raycast
 	double		pos[3];
 	double		dirx;
 	double		wall_pos[3];
+	double		f_w_pos;
 	double		new_pos[3];
 	double		dir[2];
 	double		frame_dist;
 	double		wall_height;
+	char		facing;
+	char		wall_char;
+	t_img		*wall_image;
 	int			i;
 }				t_raycast;
 
@@ -290,15 +294,19 @@ void			put_bg_slice(t_img *frame, int i, double dir, t_env *env);
 int				get_image_pixel(t_img *img, double x, double y);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void			put_bg(t_img *frame, int i, t_env *env);
-void			img_to_wall(t_img *frame, t_img *image, t_raycast *rc,
-					double w_pos);
+void			img_to_wall(t_img *frame, t_img *image, t_raycast *rc);
 
 // raycasting
 void			set_raycast(t_raycast *rc, double *pos);
 void			put_wall_slice(t_img *frame, t_raycast *rc, t_env *env);
-int				is_touching_wall(t_data *data, double *pos, double *new_pos);
+int				is_touching_wall(t_raycast *rc, t_data *data, double *pos, double *new_pos);
 int				get_wall_dist(t_raycast *rc, t_env *env);
 void			make_frame(t_img *frame, double *pos, double dir, t_env *env);
+
+// raycasting_utils
+int				is_wall(char c, t_raycast *rc);
+t_img			*get_wall_img(t_env *env, t_raycast *rc);
+char			get_facing(t_raycast *rc);
 
 // render_utils
 void			mm_pixel_put(int x, int y, int color, t_env *env);

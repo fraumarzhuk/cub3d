@@ -26,10 +26,15 @@ void	set_raycast(t_raycast *rc, double *pos)
 	rc->new_pos[0] = pos[0];
 	rc->new_pos[1] = pos[1];
 	rc->new_pos[2] = pos[2];
+	rc->facing = 0;
+	rc->wall_char = 0;
+	rc->wall_image = NULL;
 }
 
 void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 {
+	t_img	*image;
+
 	if (env->data->pic_ceiling || env->data->pic_floor)
 		put_bg_slice(frame, WIDTH - rc->i, *rc->dir, env);
 	else
@@ -41,7 +46,10 @@ void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 				* 2) * M_PI / 2.0);
 	else
 		rc->wall_height = HEIGHT;
-	if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
+	rc->facing = get_facing(rc);
+	image = get_wall_img(env, rc);
+	img_to_wall(frame, image, rc);
+	/*if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
 		img_to_wall(frame, env->west_wall, rc, ceil(rc->wall_pos[1])
 			- rc->wall_pos[1]);
 	else if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] <= rc->pos[0])
@@ -52,25 +60,23 @@ void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 	else if (is_whole_t(rc->wall_pos[1], 1e-6) && rc->wall_pos[1] >= rc->pos[2])
 		img_to_wall(frame, env->north_wall, rc, rc->wall_pos[0]);
 	else
-		printf("Error at: %lf, %lf\n", rc->wall_pos[0], rc->wall_pos[1]);
+		printf("Error at: %lf, %lf\n", rc->wall_pos[0], rc->wall_pos[1]);*/
 }
 
-int	is_touching_wall(t_data *data, double *pos, double *new_pos)
+int	is_touching_wall(t_raycast *rc, t_data *data, double *pos, double *np)
 {
-	if (new_pos[0] < 0.9 || new_pos[2] < 0.9 || new_pos[2] >= data->true_lines)
+	char	map_char;
+
+	if (np[0] < 0.9 || np[2] < 0.9 || np[2] >= data->true_lines)
 		return (0);
-	if (is_whole_t(new_pos[0], 1e-6))
-	{
-		if (data->map_copy[(int)floor(new_pos[2])][(int)round(new_pos[0])
-			- (pos[0] > new_pos[0])] == '1')
-			return (1);
-	}
-	if (is_whole_t(new_pos[2], 1e-6))
-	{
-		if (data->map_copy[(int)round(new_pos[2])
-			- (pos[2] > new_pos[2])][(int)floor(new_pos[0])] == '1')
-			return (1);
-	}
+	if (is_whole_t(np[0], 1e-6))
+		map_char = data->map_copy[(int)floor(np[2])][(int)round(np[0])
+			- (pos[0] > np[0])];
+	if (is_whole_t(np[2], 1e-6))
+		map_char = data->map_copy[(int)round(np[2])
+			- (pos[2] > np[2])][(int)floor(np[0])];
+	if (is_wall(map_char, rc))
+		return (1);
 	return (0);
 }
 
@@ -85,7 +91,7 @@ int	get_wall_dist(t_raycast *rc, t_env *env)
 	while (1)
 	{
 		to_border(rc->new_pos, rc->dir, rc->new_pos);
-		if (is_touching_wall(env->data, rc->pos, rc->new_pos) != 0)
+		if (is_touching_wall(rc, env->data, rc->pos, rc->new_pos) != 0)
 			break ;
 		get_new_pos3(rc->new_pos, rc->dir, step, rc->new_pos);
 		distance = get_distance3(rc->pos, rc->new_pos);

@@ -30,7 +30,7 @@ test: $(MINILIBX_DIR) $(MINILIBX) $(LIBFT) test2
 	
 test2:
 	rm -f test
-	$(CC) $(CFLAGS) tests.c $(FLAGS_MINILIBX) $(LIBFT) $(MINILIBX) -o test
+	$(CC) $(CFLAGS) tests.c  $(LIBFT) $(MINILIBX) $(FLAGS_MINILIBX) -o test
 
 $(MINILIBX_DIR):
 	@echo "Downloading MiniLibX for $(UNAME_S) from $(LIB_URL)"
