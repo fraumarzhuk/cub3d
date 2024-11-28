@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaeggi <chaeggi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:24:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/27 18:06:00 by chaeggi          ###   ########.fr       */
+/*   Updated: 2024/11/28 15:19:00 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ int	is_wall_or_space(char c)
 	//B - Beer shop
 	//M - Brezelshop (dont ask me why pls, i dont have answer...)
 	return (c == '1' || c == 'B' || c == 'M' || c == 'A' || is_space(c));
+}
+int is_wall_mm(char c)
+{
+	return (c == '1' || c == 'B' || c == 'M' || c == 'A');
 }
 
 int	is_map_char(char c)

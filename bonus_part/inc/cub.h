@@ -229,6 +229,7 @@ void			save_map_lines(t_map *map, t_data *data);
 
 // parsing_utils
 int				is_wall_or_space(char c);
+int 			is_wall_mm(char c);
 int				is_map_char(char c);
 void			tabs_to_spaces(char *map_line);
 void			check_rgb_num(char *str);

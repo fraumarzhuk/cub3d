@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/25 16:51:26 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:20:52 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ void	move_player(t_player *player, t_env *env)
 
 void	set_new_coords(t_env *env, double next_x, double next_y)
 {
-	if (env->data->map_copy[(int)(next_y / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
-		env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
-		env->data->map_copy[(int)(next_y / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1' &&
-		env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1')
+	// if (env->data->map_copy[(int)(next_y / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
+	// 	env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
+	// 	env->data->map_copy[(int)(next_y / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1' &&
+	// 	env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1')
+	if (!is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)][(int)(next_x / BLOCKW)] ) &&
+		!is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)(next_x / BLOCKW)]) &&
+		!is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)]) &&
+		!is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)]))
 	{
 		env->player->x = next_x;
 		env->player->y = next_y;
