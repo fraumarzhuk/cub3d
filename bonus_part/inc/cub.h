@@ -74,6 +74,7 @@
 # define Y_FOV 60
 # define FOV_MOD 60
 # define RENDER_DISTANCE 10
+# define REACH_DISTANCE 1
 
 # define PI 3.14159265359
 
@@ -84,245 +85,259 @@
 
 typedef struct map
 {
-	char		*line;
-	bool		is_map;
-	bool		last_line;
-	struct map	*next;
-	struct map	*prev;
-}				t_map;
+	char			*line;
+	bool			is_map;
+	bool			last_line;
+	struct map		*next;
+	struct map		*prev;
+}					t_map;
 
 typedef struct s_rgb
 {
-	int			r;
-	int			g;
-	int			b;
-}				t_rgb;
+	int				r;
+	int				g;
+	int				b;
+}					t_rgb;
 
 typedef struct s_player
 {
-	int			orientation;
-	char		*sprite;
-	double		x;
-	double		y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	int			xc;
-	int			yc;
-	float		angle;
-	int			mm_p_height;
-	bool		mouse_on;
-	bool		key_up;
-	bool		key_down;
-	bool		key_left;
-	bool		key_right;
-	bool		left_rotate;
-	bool		right_rotate;
-	bool		render_move;
-	int			player_pos;
-	int			counter;
-}				t_player;
+	int				orientation;
+	char			*sprite;
+	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	int				xc;
+	int				yc;
+	float			angle;
+	int				mm_p_height;
+	bool			mouse_on;
+	bool			key_up;
+	bool			key_down;
+	bool			key_left;
+	bool			key_right;
+	bool			left_rotate;
+	bool			right_rotate;
+	bool			render_move;
+	int				player_pos;
+	int				counter;
+}					t_player;
 
 typedef struct s_data
 {
-	int			fd;
-	int			size_line;
-	char		**map_copy;
-	double		frame_dist;
-	int			map_len;
-	int			line_count;
-	int			map_lines;
-	int			true_lines;
-	int			pfand_available;
-	int			pfand_collected;
-	char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-	char		*pic_ceiling;
-	char		*pic_floor;
-	char		*enjoyer;
-	char		*beer;
-	char 		*brezel;
-	char		*beer_shop;
-	char		*brezel_shop;
-	char		*pfand;
-	char		*pfandautomat;
-	t_rgb		*ceiling;
-	t_rgb		*floor;
-}				t_data;
+	int				fd;
+	int				size_line;
+	char			**map_copy;
+	double			frame_dist;
+	int				map_len;
+	int				line_count;
+	int				map_lines;
+	int				true_lines;
+	int				pfand_available;
+	int				pfand_collected;
+	char			looking_at;
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	char			*pic_ceiling;
+	char			*pic_floor;
+	char			*enjoyer;
+	char			*beer;
+	char			*brezel;
+	char			*beer_shop;
+	char			*brezel_shop;
+	char			*pfand;
+	char			*pfandautomat;
+	t_rgb			*ceiling;
+	t_rgb			*floor;
+}					t_data;
 
 typedef struct s_img
 {
-	void		*img;
-	char		*addr;
-	char		*data;
-	int			bpp;
-	int			endian;
-	int			size_line;
-	int			width;
-	int			height;
-	char		*src_pixel;
-	char		*dst_pixel;
-}				t_img;
+	void			*img;
+	char			*addr;
+	char			*data;
+	int				bpp;
+	int				endian;
+	int				size_line;
+	int				width;
+	int				height;
+	char			*src_pixel;
+	char			*dst_pixel;
+}					t_img;
 
 typedef struct s_env
 {
-	void		*mlx;
-	void		*mlx_win;
-	t_data		*data;
-	t_img		*canvas;
-	t_img		*scene_canvas;
-	t_img		*mini_map;
-	t_img		*floor;
-	t_img		*ceiling;
-	t_img		*north_wall;
-	t_img		*south_wall;
-	t_img		*east_wall;
-	t_img		*west_wall;
-	t_img		*enjoyer;
-	t_img		*enj_beer;
-	t_img		*enj_brezel;
+	void			*mlx;
+	void			*mlx_win;
+	t_data			*data;
+	t_img			*canvas;
+	t_img			*scene_canvas;
+	t_img			*mini_map;
+	t_img			*floor;
+	t_img			*ceiling;
+	t_img			*north_wall;
+	t_img			*south_wall;
+	t_img			*east_wall;
+	t_img			*west_wall;
+	t_img			*enjoyer;
+	t_img			*enj_beer;
+	t_img			*enj_brezel;
 	// t_img		*player_pic;
-	t_img		*brezel_shop;
-	t_img		*beer_shop;
-	t_img		*pfand;
-	t_img		*pfandautomat;
-	t_player	*player;
-}				t_env;
+	t_img			*brezel_shop;
+	t_img			*beer_shop;
+	t_img			*pfand;
+	t_img			*pfandautomat;
+	t_player		*player;
+}					t_env;
+
+typedef struct s_object
+{
+	struct s_object	*next;
+	double			dist;
+	double			pos;
+}					t_object;
 
 typedef struct s_raycast
 {
-	double		pos[3];
-	double		dirx;
-	double		wall_pos[3];
-	double		f_w_pos;
-	double		new_pos[3];
-	double		dir[2];
-	double		frame_dist;
-	double		wall_height;
-	char		facing;
-	char		wall_char;
-	t_img		*wall_image;
-	int			i;
-}				t_raycast;
+	double			pos[3];
+	double			dirx;
+	double			wall_pos[3];
+	double			f_w_pos;
+	double			new_pos[3];
+	double			dir[2];
+	double			frame_dist;
+	double			wall_height;
+	char			facing;
+	char			wall_char;
+	t_img			*wall_image;
+	t_object		*pfand;
+	int				i;
+}					t_raycast;
 
 //******PARSING******//
 
 // map_checks
-void			map_checks(char **map_copy, t_env *env);
-int				invalid_char_check(char *line, t_player *player, int y);
-void			check_first_last_line(char *map_line);
-void			check_rgb(t_data *data);
+void				map_checks(char **map_copy, t_env *env);
+int					invalid_char_check(char *line, t_player *player, int y);
+void				check_first_last_line(char *map_line);
+void				check_rgb(t_data *data);
 
 // parsing_file:
-void			file_validation(char *argv, t_env *env);
-int				parse_line(t_map **map, t_data *data);
-void			set_player_pos(t_player *player, int x, int y, char orient);
+void				file_validation(char *argv, t_env *env);
+int					parse_line(t_map **map, t_data *data);
+void				set_player_pos(t_player *player, int x, int y, char orient);
 
 // parsing_map:
-int				map_init(t_env *env);
-void			save_map_end(t_map *map);
-int				is_map_line(char *line);
-void			save_map_copy(t_data *data, t_map **map);
-void			save_map_lines(t_map *map, t_data *data);
+int					map_init(t_env *env);
+void				save_map_end(t_map *map);
+int					is_map_line(char *line);
+void				save_map_copy(t_data *data, t_map **map);
+void				save_map_lines(t_map *map, t_data *data);
 
 // parsing_utils
-int				is_wall_or_space(char c);
-int 			is_wall_mm(char c);
-int				is_map_char(char c);
-void			tabs_to_spaces(char *map_line);
-void			check_rgb_num(char *str);
+int					is_wall_or_space(char c);
+int					is_wall_mm(char c);
+int					is_map_char(char c);
+void				tabs_to_spaces(char *map_line);
+void				check_rgb_num(char *str);
 
 // textures
-void			save_textures(t_map *map, t_data *data);
-void			choose_texture(char *map_line, t_data *data, int map_not_first);
-char			*get_texture(char *line, char *p_name, bool is_rgb);
-void			save_floor_and_ceiling(char *line, t_data *data);
-t_rgb			*save_rgb(char *line);
+void				save_textures(t_map *map, t_data *data);
+void				choose_texture(char *map_line, t_data *data,
+						int map_not_first);
+char				*get_texture(char *line, char *p_name, bool is_rgb);
+void				save_floor_and_ceiling(char *line, t_data *data);
+t_rgb				*save_rgb(char *line);
 
 // wall-checks
-void			check_walls(char **map_copy, t_data *data);
-void			scan_vertically(char **map_copy, t_data *data);
-void			skip_h_gap(char *map_line);
-void			check_vertical(char **map_copy, int y, int x);
+void				check_walls(char **map_copy, t_data *data);
+void				scan_vertically(char **map_copy, t_data *data);
+void				skip_h_gap(char *map_line);
+void				check_vertical(char **map_copy, int y, int x);
 
 // utils:
-void			error_and_exit(char *str);
-void			init_env(t_env *env);
-void			init_player(t_player *player);
-void			copy_spaces(char *map_line, char *new_line);
-void			init_textures(t_env *env);
+void				error_and_exit(char *str);
+void				init_env(t_env *env);
+void				init_player(t_player *player);
+void				copy_spaces(char *map_line, char *new_line);
+void				init_textures(t_env *env);
 
 //******RENDERING******//
 
 // events
-int				key_press(int keycode, t_env *env);
-int				key_release(int keycode, t_env *env);
-int				destroy(t_env *env);
-void			rotate_with_mouse(t_env *env, int x, int y);
-int				mouse_hook(int button, int x, int y, t_env *env);
-int				mouse_move_hook(int x, int y, t_env *env);
+int					key_press(int keycode, t_env *env);
+int					key_release(int keycode, t_env *env);
+int					destroy(t_env *env);
+void				rotate_with_mouse(t_env *env, int x, int y);
+int					mouse_hook(int button, int x, int y, t_env *env);
+int					mouse_move_hook(int x, int y, t_env *env);
 
 // init_canvas
-void			init_canvas_img(t_img *canvas, t_env *env);
-void			render_images_on_canvas(t_env *env);
-void			display_player_pos(t_env *env);
-void			put_image_to_image(t_img *src, t_img *dst, int offset_x,
-					int offset_y);
+void				init_canvas_img(t_img *canvas, t_env *env);
+void				render_images_on_canvas(t_env *env);
+void				display_player_pos(t_env *env);
+void				put_image_to_image(t_img *src, t_img *dst, int offset_x,
+						int offset_y);
 
 // init window
-void			init_mlx(t_env *env);
-void			init_minim_img(t_img *img, t_env *env);
-void			init_texture_img(t_env *env);
-void			init_xpm_texture(t_img *img, t_env *env, char *path);
-void			init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
-void			draw_square(int x, int y, int size, int color, t_env *env);
-void			remove_green_bg(t_img *pattern_pic, t_env *env);
+void				init_mlx(t_env *env);
+void				init_minim_img(t_img *img, t_env *env);
+void				init_texture_img(t_env *env);
+void				init_xpm_texture(t_img *img, t_env *env, char *path);
+void				init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
+void				draw_square(int x, int y, int size, int color, t_env *env);
+void				remove_green_bg(t_img *pattern_pic, t_env *env);
 
 // mini_map
-int				mini_draw_loop(t_env *env);
-void			draw_mini_map(t_env *env);
-void			calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset);
-void			draw_mini_border(t_env *env);
+int					mini_draw_loop(t_env *env);
+void				draw_mini_map(t_env *env);
+void				calculate_draw_xy(t_env *env, int y, double px_offset,
+						double py_offset);
+void				draw_mini_border(t_env *env);
 
 // mini_raycasting
-bool			touch(double px, double py, t_env *env);
-void			cast_mini_ray(t_player *player, t_env *env);
-void			draw_line(double px, double py, float angle, t_env *env);
+bool				touch(double px, double py, t_env *env);
+void				cast_mini_ray(t_player *player, t_env *env);
+void				draw_line(double px, double py, float angle, t_env *env);
 
 // player
-float			new_angle(float angle, float angle_speed, bool left,
-					bool right);
-void			move_player(t_player *player, t_env *env);
-void			move_player(t_player *player, t_env *env);
-void			set_new_coords(t_env *env, double next_x, double next_y);
-void			draw_triangle(int size, int x, int y, int color, t_env *env);
+float				new_angle(float angle, float angle_speed, bool left,
+						bool right);
+void				move_player(t_player *player, t_env *env);
+void				move_player(t_player *player, t_env *env);
+void				set_new_coords(t_env *env, double next_x, double next_y);
+void				draw_triangle(int size, int x, int y, int color,
+						t_env *env);
 
 // raycasting_image_handler
-void			put_bg_slice(t_img *frame, int i, double dir, t_env *env);
-int				get_image_pixel(t_img *img, double x, double y);
-void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void			put_bg(t_img *frame, int i, t_env *env);
-void			img_to_wall(t_img *frame, t_img *image, t_raycast *rc);
+void				put_bg_slice(t_img *frame, int i, double dir, t_env *env);
+int					get_image_pixel(t_img *img, double x, double y);
+void				my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void				put_bg(t_img *frame, int i, t_env *env);
+void				img_to_wall(t_img *frame, t_img *image, t_raycast *rc);
 
 // raycasting
-void			set_raycast(t_raycast *rc, double *pos);
-void			put_wall_slice(t_img *frame, t_raycast *rc, t_env *env);
-int				is_touching_wall(t_raycast *rc, t_data *data, double *pos, double *new_pos);
-int				get_wall_dist(t_raycast *rc, t_env *env);
-void			make_frame(t_img *frame, double *pos, double dir, t_env *env);
+void				set_raycast(t_raycast *rc, double *pos);
+void				put_wall_slice(t_img *frame, t_raycast *rc, t_env *env);
+int					is_touching_wall(t_raycast *rc, t_data *data, double *pos,
+						double *new_pos);
+int					get_wall_dist(t_raycast *rc, t_env *env);
+void				make_frame(t_img *frame, double *pos, double dir,
+						t_env *env);
 
 // raycasting_utils
-int				is_wall(char c, t_raycast *rc);
-t_img			*get_wall_img(t_env *env, t_raycast *rc);
-char			get_facing(t_raycast *rc);
+int					is_wall(char c, t_raycast *rc);
+t_img				*get_wall_img(t_env *env, t_raycast *rc);
+char				get_facing(t_raycast *rc);
 
 // render_utils
-void			mm_pixel_put(int x, int y, int color, t_env *env);
-void			my_pixel_put(int x, int y, int color, t_img *img);
-int				get_color(int r, int g, int b, int a);
-void			clear_image(t_img *img, int width, int height);
+void				mm_pixel_put(int x, int y, int color, t_env *env);
+void				my_pixel_put(int x, int y, int color, t_img *img);
+int					get_color(int r, int g, int b, int a);
+void				clear_image(t_img *img, int width, int height);
 
 #endif

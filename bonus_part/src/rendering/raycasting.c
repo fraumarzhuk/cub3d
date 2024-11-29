@@ -35,6 +35,8 @@ void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 {
 	t_img	*image;
 
+	if (rc->i == (int)(WIDTH / 2) && rc->frame_dist <= REACH_DISTANCE)
+		env->data->looking_at = rc->wall_char;
 	if (env->data->pic_ceiling || env->data->pic_floor)
 		put_bg_slice(frame, WIDTH - rc->i, *rc->dir, env);
 	else
@@ -75,6 +77,8 @@ int	is_touching_wall(t_raycast *rc, t_data *data, double *pos, double *np)
 	if (is_whole_t(np[2], 1e-6))
 		map_char = data->map_copy[(int)round(np[2])
 			- (pos[2] > np[2])][(int)floor(np[0])];
+	/*if (map_char == 'P')
+		check_objects(rc);*/
 	if (is_wall(map_char, rc))
 		return (1);
 	return (0);
@@ -83,25 +87,23 @@ int	is_touching_wall(t_raycast *rc, t_data *data, double *pos, double *np)
 int	get_wall_dist(t_raycast *rc, t_env *env)
 {
 	double	step;
-	double	distance;
 
 	set_raycast(rc, rc->pos);
 	step = 1e-6;
-	distance = 0;
+	rc->frame_dist = 0;
 	while (1)
 	{
 		to_border(rc->new_pos, rc->dir, rc->new_pos);
 		if (is_touching_wall(rc, env->data, rc->pos, rc->new_pos) != 0)
 			break ;
 		get_new_pos3(rc->new_pos, rc->dir, step, rc->new_pos);
-		distance = get_distance3(rc->pos, rc->new_pos);
-		if (RENDER_DISTANCE - distance < 0)
+		rc->frame_dist = get_distance3(rc->pos, rc->new_pos);
+		if (RENDER_DISTANCE - rc->frame_dist < 0)
 			return (0);
 	}
 	if (is_whole_t(rc->new_pos[0], 1e-6) && is_whole_t(rc->new_pos[2], 1e-6))
 		return (rc->dirx += 0.1, get_wall_dist(rc, env));
-	distance = get_distance3(rc->pos, rc->new_pos);
-	rc->frame_dist = distance;
+	rc->frame_dist = get_distance3(rc->pos, rc->new_pos);
 	rc->wall_pos[0] = rc->new_pos[0];
 	rc->wall_pos[1] = rc->new_pos[2];
 	return (1);
@@ -109,7 +111,7 @@ int	get_wall_dist(t_raycast *rc, t_env *env)
 
 void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 {
-	t_raycast *rc;
+	t_raycast	*rc;
 
 	rc = ft_malloc(sizeof(t_raycast));
 	rc->dirx = dir - X_FOV / 2;
@@ -117,6 +119,7 @@ void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 	rc->wall_pos[1] = 0;
 	rc->wall_pos[2] = 0;
 	rc->i = 0;
+	env->data->looking_at = '1';
 	while (rc->i < WIDTH)
 	{
 		set_raycast(rc, pos);

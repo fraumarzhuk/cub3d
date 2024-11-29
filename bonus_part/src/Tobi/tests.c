@@ -32,6 +32,12 @@ int	closex(int keycode, t_vars *vars)
 	// printf("Keycode : %d\n", keycode);
 	if (keycode == 65307)
 		terminate(keycode, vars);
+	if (keycode == 109)
+		mlx_mouse_move(vars->mlx, vars->win, 1920 / 2, 1080 / 2);
+	if (keycode == 115)
+		mlx_mouse_show(vars->mlx, vars->win);
+	else if (keycode == 97)
+		mlx_mouse_hide(vars->mlx, vars->win);
 	return (0);
 }
 
@@ -69,6 +75,7 @@ int	main(void)
 				printf("%X\n", ((j) / 5) * 0x00000001);
 		}
 	}
+    mlx_mouse_move(vars.mlx, vars.win, 1920 / 2, 1080 / 2);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_put_image_to_window(vars.mlx, vars.win, imp_img.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L << 0, closex, &vars);
