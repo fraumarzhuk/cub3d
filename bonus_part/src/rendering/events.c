@@ -96,8 +96,8 @@ void	rotate_with_mouse(t_env *env, int x, int y)
 			env->player->angle -= 360;
 		if (env->player->angle < 0)
 			env->player->angle += 360;
-		/*env->player->right_rotate = false;
-		env->player->left_rotate = false;*/
+		env->player->right_rotate = true;
+		env->player->left_rotate = true;
 		// mlx_mouse_get_pos(env->mlx, env->mlx_win, &x, &y);
 		// if (x >= WIDTH || x < 0 || y >= HEIGHT || y < 0)
 		mlx_mouse_move(env->mlx, env->mlx_win, WIDTH / 2, HEIGHT / 2);
