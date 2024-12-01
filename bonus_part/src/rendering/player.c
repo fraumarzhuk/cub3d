@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/28 15:20:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:30:16 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	move_player(t_player *player, t_env *env)
 	next_x = player->x;
 	next_y = player->y;
 	if (player->key_up || player->key_down || player->key_left
-		|| player->key_right || player->right_rotate || player->left_rotate || player->mouse_on)
+		|| player->key_right || player->right_rotate || player->left_rotate)
 	{
-		player->angle = new_angle(player->angle, ANGLE_SPEED,
-				player->left_rotate, player->right_rotate);
+		if(player->right_rotate || player->left_rotate)
+			player->angle = new_angle(player->angle, ANGLE_SPEED,
+					player->left_rotate, player->right_rotate);
 		if (player->key_up && player->y - SPEED >= 0)
 			get_new_pos2(&next_x, &next_y, player->angle, SPEED);
 		if (player->key_down && player->y + SPEED < HEIGHT)

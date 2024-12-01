@@ -98,7 +98,6 @@ void	rotate_with_mouse(t_env *env, int x, int y)
 			env->player->angle += 360;
 		/*env->player->right_rotate = false;
 		env->player->left_rotate = false;*/
-		old_x = x;
 		// mlx_mouse_get_pos(env->mlx, env->mlx_win, &x, &y);
 		// if (x >= WIDTH || x < 0 || y >= HEIGHT || y < 0)
 		mlx_mouse_move(env->mlx, env->mlx_win, WIDTH / 2, HEIGHT / 2);
@@ -113,16 +112,16 @@ int	mouse_hook(int button, int x, int y, t_env *env)
 		env->player->mouse_on = !env->player->mouse_on;
 		if (env->player->mouse_on)
 		{
-			env->player->right_rotate = true;
-			env->player->left_rotate = true;
+			/*env->player->right_rotate = true;
+			env->player->left_rotate = true;*/
 			grab_mouse(env->mlx, env->mlx_win);
 			mlx_mouse_hide(env->mlx, env->mlx_win);
 			mlx_mouse_move(env->mlx, env->mlx_win, WIDTH / 2, HEIGHT / 2);
 		}
 		else
 		{
-			env->player->right_rotate = false;
-			env->player->left_rotate = false;
+			/*env->player->right_rotate = false;
+			env->player->left_rotate = false;*/
 			ungrab_mouse(env->mlx);
 			mlx_mouse_show(env->mlx, env->mlx_win);
 		}
