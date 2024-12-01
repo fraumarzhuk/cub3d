@@ -83,12 +83,9 @@ int	destroy(t_env *env)
 }
 void	rotate_with_mouse(t_env *env, int x, int y)
 {
-	static int	old_x;
 	int			dx;
 
-	if (!old_x)
-		old_x = WIDTH / 2;
-	dx = x - old_x;
+	dx = x - WIDTH / 2;
 	if (!y)
 		write(0, "y\n", 0);
 	if (env->player->mouse_on)
