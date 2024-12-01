@@ -50,7 +50,7 @@
 # define DOWN 65364
 # define RIGHT 65363
 // mouse
-# define MOUSE_SENS 0.002
+# define MOUSE_SENS 0.2
 // mini map
 # define MINI_M_SIZE 200
 # define BLOCKH 20
@@ -340,4 +340,7 @@ void				my_pixel_put(int x, int y, int color, t_img *img);
 int					get_color(int r, int g, int b, int a);
 void				clear_image(t_img *img, int width, int height);
 
+// Xmlx
+void				grab_mouse(void *xvar, void *win);
+void				ungrab_mouse(void *xvar);
 #endif

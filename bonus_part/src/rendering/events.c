@@ -44,7 +44,7 @@ int	key_press(int keycode, t_env *env)
 		if (env->player->player_pos == BREZEL)
 			env->player->player_pos = HANDS;
 		else
-		env->player->player_pos = BREZEL;
+			env->player->player_pos = BREZEL;
 	}
 	return (0);
 }
@@ -83,9 +83,14 @@ int	destroy(t_env *env)
 }
 void	rotate_with_mouse(t_env *env, int x, int y)
 {
-	int dx;
-
-	dx = x - WIDTH / 2;
+	static int	old_x;
+	int			dx;
+	
+	if(!old_x)
+		old_x = WIDTH / 2;
+	dx = x - old_x;
+	if (!y)
+		write(0, "y\n", 0);
 	if (env->player->mouse_on)
 	{
 		mlx_mouse_show(env->mlx, env->mlx_win);
@@ -94,11 +99,12 @@ void	rotate_with_mouse(t_env *env, int x, int y)
 			env->player->angle -= 360;
 		if (env->player->angle < 0)
 			env->player->angle += 360;
-		env->player->right_rotate = false;
-		env->player->left_rotate = false;
-		mlx_mouse_get_pos(env->mlx, env->mlx_win, &x, &y);
-		if (x >= WIDTH || x < 0 || y >= HEIGHT || y < 0)
-			mlx_mouse_move(env->mlx, env->mlx_win, WIDTH / 2, HEIGHT / 2);
+		/*env->player->right_rotate = false;
+		env->player->left_rotate = false;*/
+		old_x = x;
+		// mlx_mouse_get_pos(env->mlx, env->mlx_win, &x, &y);
+		// if (x >= WIDTH || x < 0 || y >= HEIGHT || y < 0)
+		//mlx_mouse_move(env->mlx, env->mlx_win, WIDTH / 2, HEIGHT / 2);
 	}
 }
 int	mouse_hook(int button, int x, int y, t_env *env)
@@ -110,11 +116,19 @@ int	mouse_hook(int button, int x, int y, t_env *env)
 		env->player->mouse_on = !env->player->mouse_on;
 		if (!env->player->mouse_on)
 		{
+			env->player->right_rotate = true;
+			env->player->left_rotate = true;
+			grab_mouse(env->mlx, env->mlx_win);
 			mlx_mouse_hide(env->mlx, env->mlx_win);
 			mlx_mouse_move(env->mlx, env->mlx_win, WIDTH / 2, HEIGHT / 2);
 		}
 		else
+		{
+			env->player->right_rotate = false;
+			env->player->left_rotate = false;
+			ungrab_mouse(env->mlx);
 			mlx_mouse_show(env->mlx, env->mlx_win);
+		}
 	}
 	return (0);
 }

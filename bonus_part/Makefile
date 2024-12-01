@@ -41,7 +41,8 @@ SRCS =	src/main.c \
 		src/Math-functions/radians_utils.c \
 		src/Math-functions/to_border.c \
 		src/Math-functions/is_whole.c \
-		src/utils.c
+		src/utils.c \
+		src/Xmlx.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ./libft
