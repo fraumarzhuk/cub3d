@@ -26,6 +26,7 @@ SRCS =	src/main.c \
 		src/parsing/wall-checks.c \
 		src/parsing/map-checks.c \
 		src/parsing/parsing_utils.c \
+		src/parsing/pfand_collect.c \
 		src/rendering/init_window.c \
 		src/rendering/init_canvas.c \
 		src/rendering/mini_map.c \

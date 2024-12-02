@@ -245,6 +245,9 @@ int					is_map_char(char c);
 void				tabs_to_spaces(char *map_line);
 void				check_rgb_num(char *str);
 
+//pfand_collect
+void				find_pfand_amount(t_data *data);
+
 // textures
 void				save_textures(t_map *map, t_data *data);
 void				choose_texture(char *map_line, t_data *data,

@@ -33,7 +33,7 @@ void	render_images_on_canvas(t_env *env)
 	int offset_x = WIDTH - MINI_M_SIZE;
 	int offset_y = HEIGHT - MINI_M_SIZE;
 
-	put_image_to_image(env->pfand, env->scene_canvas, WIDTH / 2, HEIGHT / 2);
+	//put_image_to_image(env->pfand, env->scene_canvas, WIDTH / 2, HEIGHT / 2);
 	display_player_pos(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->scene_canvas->img, 0, 0);
 	//mlx_put_image_to_window(env->mlx, env->mlx_win, env->player_pic->img, WIDTH / 2 - 150, HEIGHT - 300);

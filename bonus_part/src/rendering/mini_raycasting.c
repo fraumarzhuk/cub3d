@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/28 17:11:56 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:55:25 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@ bool	touch(double px, double py, t_env *env)
 void	cast_mini_ray(t_player *player, t_env *env)
 {
 	float	angle;
-	int		i;
+	double		i;
 
 	angle = player->angle;
 	i = 0;
 	draw_line(player->x, player->y, angle, env);
-	while (i++ < 30)
+	while (i < 30)
 	{
 		draw_line(player->x, player->y, angle - i, env);
 		draw_line(player->x, player->y, angle + i , env);
+		i += 0.5;
 	}
 
 }
