@@ -46,6 +46,7 @@
 # define BK 98
 # define MK 109
 # define UP 65362
+# define PK 112
 # define LEFT 65361
 # define DOWN 65364
 # define RIGHT 65363
@@ -135,7 +136,7 @@ typedef struct s_data
 	int				line_count;
 	int				map_lines;
 	int				true_lines;
-	int				pfand_available;
+	int				pfand_amount;
 	int				pfand_collected;
 	char			looking_at;
 	char			*north;
@@ -246,7 +247,9 @@ void				tabs_to_spaces(char *map_line);
 void				check_rgb_num(char *str);
 
 //pfand_collect
-void				find_pfand_amount(t_data *data);
+void				find_(t_data *data);
+void				collect_pfand(t_env *env);
+void				give_pfand_to_automat(t_env *env);
 
 // textures
 void				save_textures(t_map *map, t_data *data);

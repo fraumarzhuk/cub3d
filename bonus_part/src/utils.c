@@ -48,7 +48,7 @@ void	init_env(t_env *env)
 	env->data->beer_shop = NULL;
 	env->data->pfand = NULL;
 	env->data->pfandautomat = NULL;
-	env->data->pfand_available = 0;
+	env->data->pfand_amount = 0;
 	env->data->pfand_collected = 0;
 	init_player(env->player);
 	init_textures(env);
