@@ -13,7 +13,7 @@ PA ./textures/bretzel_enjoyer/compressed_test/pfandautomat.xpm
 P ./textures/bretzel_enjoyer/compressed_test/pfand.xpm
 
 C ./textures/sky.xpm
-F 0, 0, 0
+F ./textures/bretzel_enjoyer/compressed_test/floor_gray.xpm
 
 
      111111111111111111111
