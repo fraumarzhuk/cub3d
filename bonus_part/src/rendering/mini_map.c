@@ -57,7 +57,7 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 	x = 0;
 	while (env->data->map_copy[y][x])
 	{
-		if (env->data->map_copy[y][x] == '1' || env->data->map_copy[y][x] == 'A')
+		if (is_wall_mm(env->data->map_copy[y][x]))
 		{
 			draw_x = x * BLOCKW -(env->player->xc * BLOCKW + px_offset)
 				+ MINI_M_SIZE / 2;
