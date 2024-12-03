@@ -29,6 +29,7 @@ void	set_raycast(t_raycast *rc, double *pos)
 	rc->facing = 0;
 	rc->wall_char = 0;
 	rc->wall_image = NULL;
+	rc->pfand = NULL;
 }
 
 void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
@@ -51,6 +52,7 @@ void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 	rc->facing = get_facing(rc);
 	image = get_wall_img(env, rc);
 	img_to_wall(frame, image, rc);
+	print_object_slice(frame, rc, env);
 	/*if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
 		img_to_wall(frame, env->west_wall, rc, ceil(rc->wall_pos[1])
 			- rc->wall_pos[1]);
@@ -77,8 +79,8 @@ int	is_touching_wall(t_raycast *rc, t_data *data, double *pos, double *np)
 	if (is_whole_t(np[2], 1e-6))
 		map_char = data->map_copy[(int)round(np[2])
 			- (pos[2] > np[2])][(int)floor(np[0])];
-	/*if (map_char == 'P')
-		check_objects(rc);*/
+	if (map_char == 'P')
+		check_objects(rc);
 	if (is_wall(map_char, rc))
 		return (1);
 	return (0);

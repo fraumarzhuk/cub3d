@@ -76,6 +76,8 @@
 # define FOV_MOD 60
 # define RENDER_DISTANCE 10
 # define REACH_DISTANCE 1
+# define Object_Width 0.4
+# define Object_Min_dist 0.4 
 
 # define PI 3.14159265359
 
@@ -345,6 +347,12 @@ void				mm_pixel_put(int x, int y, int color, t_env *env);
 void				my_pixel_put(int x, int y, int color, t_img *img);
 int					get_color(int r, int g, int b, int a);
 void				clear_image(t_img *img, int width, int height);
+
+// raycasting objects
+void				find_intersection(t_raycast *rc, double *obj, double *intersect);
+void				check_objects(t_raycast *rc);
+void				print_object_slice(t_img *frame, t_raycast *rc, t_env *env);
+void				next_object(t_raycast *rc);
 
 // Xmlx
 void				grab_mouse(void *xvar, void *win);
