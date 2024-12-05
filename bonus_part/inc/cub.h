@@ -361,7 +361,7 @@ int					get_color(int r, int g, int b, int a);
 void				clear_image(t_img *img, int width, int height);
 
 // raycasting objects
-void				find_pfandamountintersection(t_raycast *rc, double *obj, double *intersect);
+void				find_intersection(t_raycast *rc, double *obj, double *intersect);
 void				check_objects(t_raycast *rc);
 void				print_object_slice(t_img *frame, t_raycast *rc, t_env *env);
 void				next_object(t_raycast *rc);
