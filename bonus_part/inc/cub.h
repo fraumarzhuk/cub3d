@@ -176,6 +176,7 @@ typedef struct s_env
 {
 	void			*mlx;
 	void			*mlx_win;
+	bool 			textures_loaded;
 	t_data			*data;
 	t_img			*canvas;
 	t_img			*scene_canvas;
@@ -194,6 +195,7 @@ typedef struct s_env
 	t_img			*beer_shop;
 	t_img			*pfand;
 	t_img			*pfandautomat;
+	t_img			*loading_screen;
 	t_player		*player;
 }					t_env;
 
@@ -295,6 +297,7 @@ void				put_image_to_image(t_img *src, t_img *dst, int offset_x,
 void				init_mlx(t_env *env);
 void				init_minim_img(t_img *img, t_env *env);
 void				init_texture_img(t_env *env);
+void				put_loading_screen(t_env *env);
 void				init_xpm_texture(t_img *img, t_env *env, char *path);
 void				init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
 void				draw_square(int x, int y, int size, int color, t_env *env);

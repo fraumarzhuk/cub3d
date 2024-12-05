@@ -22,6 +22,8 @@ void	init_mlx(t_env *env)
 		error_and_exit("Mlx failed");
 	init_canvas_img(env->canvas, env);
 	init_canvas_img(env->scene_canvas, env);
+	if (!env->textures_loaded)
+		put_loading_screen(env);
 	init_minim_img(env->mini_map, env);
 	init_texture_img(env);
 	mlx_mouse_hook(env->mlx_win, mouse_hook, env);
@@ -31,6 +33,20 @@ void	init_mlx(t_env *env)
 	mlx_hook(env->mlx_win, 3, 1L << 1, key_release, env);
 	mlx_loop_hook(env->mlx, mini_draw_loop, env);
 	mlx_loop(env->mlx);
+}
+
+void put_loading_screen(t_env *env)
+{
+	int		fd;
+	char	*texture;
+
+	texture =  "./textures/bretzel_enjoyer/compressed_test/loading.xpm";
+	fd = open(texture, O_RDONLY);
+	if ((fd < 0 || read(fd, 0, 0) < 0))
+		error_and_exit("Incorrect texture provided");
+	init_xpm_texture(env->loading_screen, env, texture);
+	if (!env->textures_loaded)
+		mlx_put_image_to_window(env->mlx, env->mlx_win, env->loading_screen->img, 300, 300);
 }
 
 void	init_minim_img(t_img *img, t_env *env)
@@ -77,6 +93,7 @@ void	init_texture_img(t_env *env)
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);
 	init_xpm_texture(env->west_wall, env, env->data->west);
+	env->textures_loaded = true;
 }
 
 void	init_xpm_texture(t_img *img, t_env *env, char *path)

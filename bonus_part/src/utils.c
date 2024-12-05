@@ -30,6 +30,7 @@ void	init_env(t_env *env)
 	env->canvas = (t_img *)ft_malloc(sizeof(t_img));
 	env->scene_canvas = (t_img *)ft_malloc(sizeof(t_img));
 	env->player = (t_player *)ft_malloc(sizeof(t_player));
+	env->textures_loaded = false;
 	env->data->true_lines = 0;
 	env->data->map_lines = 0;
 	env->data->map_len = 0;
@@ -92,6 +93,7 @@ void	init_textures(t_env *env)
 	env->brezel_shop = (t_img *)ft_malloc(sizeof(t_img));
 	env->pfand = (t_img *)ft_malloc(sizeof(t_img));
 	env->pfandautomat = (t_img *)ft_malloc(sizeof(t_img));
+	env->loading_screen = (t_img *)ft_malloc(sizeof(t_img));
 }
 
 void	copy_spaces(char *map_line, char *new_line)
