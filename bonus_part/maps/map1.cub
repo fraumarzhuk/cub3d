@@ -11,6 +11,8 @@ BS ./textures/bretzel_enjoyer/compressed_test/beer_shop.xpm
 MS ./textures/bretzel_enjoyer/compressed_test/brezel_shop.xpm
 PA ./textures/bretzel_enjoyer/compressed_test/pfandautomat.xpm
 P ./textures/bretzel_enjoyer/compressed_test/pfand.xpm
+PB ./textures/bretzel_enjoyer/compressed_test/bon.xpm
+LS ./textures/bretzel_enjoyer/compressed_test/loading.xpm
 
 C ./textures/sky.xpm
 F ./textures/bretzel_enjoyer/compressed_test/floor_gray.xpm

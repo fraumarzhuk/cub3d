@@ -37,14 +37,7 @@ void	init_mlx(t_env *env)
 
 void put_loading_screen(t_env *env)
 {
-	int		fd;
-	char	*texture;
-
-	texture =  "./textures/bretzel_enjoyer/compressed_test/loading.xpm";
-	fd = open(texture, O_RDONLY);
-	if ((fd < 0 || read(fd, 0, 0) < 0))
-		error_and_exit("Incorrect texture provided");
-	init_xpm_texture(env->loading_screen, env, texture);
+	init_xpm_texture(env->loading_screen, env, env->data->loading_screen);
 	if (!env->textures_loaded)
 		mlx_put_image_to_window(env->mlx, env->mlx_win, env->loading_screen->img, 300, 300);
 }

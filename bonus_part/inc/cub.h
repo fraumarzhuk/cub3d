@@ -154,6 +154,8 @@ typedef struct s_data
 	char			*brezel_shop;
 	char			*pfand;
 	char			*pfandautomat;
+	char			*loading_screen;
+	char			*pfandbon;
 	t_rgb			*ceiling;
 	t_rgb			*floor;
 }					t_data;
@@ -196,6 +198,7 @@ typedef struct s_env
 	t_img			*pfand;
 	t_img			*pfandautomat;
 	t_img			*loading_screen;
+	t_img			*pfandbon;
 	t_player		*player;
 }					t_env;
 

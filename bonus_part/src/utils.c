@@ -49,6 +49,8 @@ void	init_env(t_env *env)
 	env->data->beer_shop = NULL;
 	env->data->pfand = NULL;
 	env->data->pfandautomat = NULL;
+	env->data->loading_screen = NULL;
+	env->data->pfandbon = NULL;
 	env->data->pfand_amount = 0;
 	env->data->pfand_collected = 0;
 	init_player(env->player);
@@ -94,6 +96,7 @@ void	init_textures(t_env *env)
 	env->pfand = (t_img *)ft_malloc(sizeof(t_img));
 	env->pfandautomat = (t_img *)ft_malloc(sizeof(t_img));
 	env->loading_screen = (t_img *)ft_malloc(sizeof(t_img));
+	env->pfandbon = (t_img *)ft_malloc(sizeof(t_img));
 }
 
 void	copy_spaces(char *map_line, char *new_line)
