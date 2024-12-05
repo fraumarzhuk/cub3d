@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 13:09:30 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/11/19 15:28:27 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:49:57 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,16 @@ void	check_vertical(char **map_copy, int y, int x)
 		if (map_copy[y + 1][x] && !is_wall_or_space(map_copy[y + 1][x]))
 			error_and_exit("Incorrect wall4!");
 	}
+}
+
+void	save_wall_textures(char *map_line, t_data *data)
+{
+	if (!(ft_strncmp(map_line, "NO", 2)))
+		data->north = get_texture(map_line, "NO", false);
+	else if (!(ft_strncmp(map_line, "SO", 2)))
+		data->south = get_texture(map_line, "SO", false);
+	else if (!(ft_strncmp(map_line, "WE", 2)))
+		data->west = get_texture(map_line, "WE", false);
+	else if (!(ft_strncmp(map_line, "EA", 2)))
+		data->east = get_texture(map_line, "EA", false);
 }

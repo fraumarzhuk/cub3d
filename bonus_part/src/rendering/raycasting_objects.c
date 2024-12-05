@@ -45,7 +45,7 @@ void	print_object_slice(t_img *frame, t_raycast *rc, t_env *env)
 	}
 }
 
-void	find_intersection(t_raycast *rc, double *obj, double *intersect)
+void	find_pfandamountintersection(t_raycast *rc, double *obj, double *intersect)
 {
 	float	V1_x;
 	float	V1_y;
@@ -86,7 +86,7 @@ void	check_objects(t_raycast *rc)
 		obj[0] = floor(rc->new_pos[0]) + 0.5;
 		obj[1] = round(rc->new_pos[2]) + 0.5 - (rc->pos[2] > rc->new_pos[2]);
 	}
-	find_intersection(rc, obj, intersect);
+	find_pfandamountintersection(rc, obj, intersect);
 	if (get_distance2(obj, intersect) > Object_Width / 2)
 		return ;
 	pfand = ft_malloc(sizeof(t_object));

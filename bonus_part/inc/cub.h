@@ -254,7 +254,7 @@ void				tabs_to_spaces(char *map_line);
 void				check_rgb_num(char *str);
 
 //pfand_collect
-void				find_(t_data *data);
+void				find_pfandamount(t_data *data);
 void				collect_pfand(t_env *env);
 void				give_pfand_to_automat(t_env *env);
 
@@ -271,6 +271,7 @@ void				check_walls(char **map_copy, t_data *data);
 void				scan_vertically(char **map_copy, t_data *data);
 void				skip_h_gap(char *map_line);
 void				check_vertical(char **map_copy, int y, int x);
+void				save_wall_textures(char *map_line, t_data *data);
 
 // utils:
 void				error_and_exit(char *str);
@@ -355,7 +356,7 @@ int					get_color(int r, int g, int b, int a);
 void				clear_image(t_img *img, int width, int height);
 
 // raycasting objects
-void				find_intersection(t_raycast *rc, double *obj, double *intersect);
+void				find_pfandamountintersection(t_raycast *rc, double *obj, double *intersect);
 void				check_objects(t_raycast *rc);
 void				print_object_slice(t_img *frame, t_raycast *rc, t_env *env);
 void				next_object(t_raycast *rc);
