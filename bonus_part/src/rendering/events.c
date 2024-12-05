@@ -83,6 +83,7 @@ int	destroy(t_env *env)
 	ft_destructor();
 	exit(0);
 }
+
 void	rotate_with_mouse(t_env *env, int x, int y)
 {
 	int			dx;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/01 19:34:20 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:34:31 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ void	move_player(t_player *player, t_env *env)
 	next_x = player->x;
 	next_y = player->y;
 	if (player->key_up || player->key_down || player->key_left
-		|| player->key_right || player->right_rotate || player->left_rotate || player->mouse_on)
+		|| player->key_right || player->right_rotate
+		|| player->left_rotate || player->mouse_on)
 	{
-		if(player->right_rotate || player->left_rotate)
+		if (player->right_rotate || player->left_rotate)
 			player->angle = new_angle(player->angle, ANGLE_SPEED,
 					player->left_rotate, player->right_rotate);
 		if (player->key_up && player->y - SPEED >= 0)
@@ -55,14 +56,14 @@ void	move_player(t_player *player, t_env *env)
 
 void	set_new_coords(t_env *env, double next_x, double next_y)
 {
-	// if (env->data->map_copy[(int)(next_y / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
-	// 	env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)(next_x / BLOCKW)] != '1' &&
-	// 	env->data->map_copy[(int)(next_y / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1' &&
-	// 	env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)] != '1')
-	if (!is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)][(int)(next_x / BLOCKW)] ) &&
-		!is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)(next_x / BLOCKW)]) &&
-		!is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)]) &&
-		!is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)][(int)((next_x + MINI_P) / BLOCKW)]))
+	if (!is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)]
+		[(int)(next_x / BLOCKW)])
+		&& !is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)]
+		[(int)(next_x / BLOCKW)])
+		&& !is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)]
+		[(int)((next_x + MINI_P) / BLOCKW)]) &&
+		!is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)]
+		[(int)((next_x + MINI_P) / BLOCKW)]))
 	{
 		env->player->x = next_x;
 		env->player->y = next_y;
@@ -72,31 +73,31 @@ void	set_new_coords(t_env *env, double next_x, double next_y)
 	}
 }
 
-void	draw_triangle(int size, int x, int y, int color, t_env *env)
-{
-	int	i;
-	int	start_x;
-	int	end_x;
-	int	height;
-	int	j;
+// void	draw_triangle(int size, int x, int y, int color, t_env *env)
+// {
+// 	int	i;
+// 	int	start_x;
+// 	int	end_x;
+// 	int	height;
+// 	int	j;
 
-	i = 0;
-	start_x = 0;
-	end_x = 0;
-	height = 0;
-	j = 0;
-	y = y - size / 2;
-	height = (int)(size * sin((80) * PI / 180.0));
-	while (i < height)
-	{
-		start_x = x - (i * size) / height / 2;
-		end_x = x + (i * size) / height / 2;
-		j = start_x;
-		while (j <= end_x)
-		{
-			mm_pixel_put(j, y + i, color, env);
-			j++;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	start_x = 0;
+// 	end_x = 0;
+// 	height = 0;
+// 	j = 0;
+// 	y = y - size / 2;
+// 	height = (int)(size * sin((80) * PI / 180.0));
+// 	while (i < height)
+// 	{
+// 		start_x = x - (i * size) / height / 2;
+// 		end_x = x + (i * size) / height / 2;
+// 		j = start_x;
+// 		while (j <= end_x)
+// 		{
+// 			mm_pixel_put(j, y + i, color, env);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }

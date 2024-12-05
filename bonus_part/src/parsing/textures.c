@@ -33,15 +33,8 @@ void	choose_texture(char *map_line, t_data *data, int map_detected)
 {
 	if (map_detected == 1)
 		error_and_exit("Map_first!");
-	if (!(ft_strncmp(map_line, "NO", 2)))
-		data->north = get_texture(map_line, "NO", false);
-	else if (!(ft_strncmp(map_line, "SO", 2)))
-		data->south = get_texture(map_line, "SO", false);
-	else if (!(ft_strncmp(map_line, "WE", 2)))
-		data->west = get_texture(map_line, "WE", false);
-	else if (!(ft_strncmp(map_line, "EA", 2)))
-		data->east = get_texture(map_line, "EA", false);
-	else if (!(ft_strncmp(map_line, "BE", 2)))
+	save_wall_textures(map_line, data);
+	if (!(ft_strncmp(map_line, "BE", 2)))
 		data->beer = get_texture(map_line, "BE", false);
 	else if (!(ft_strncmp(map_line, "HA", 2)))
 		data->enjoyer = get_texture(map_line, "HA", false);
@@ -55,6 +48,10 @@ void	choose_texture(char *map_line, t_data *data, int map_detected)
 		data->pfand = get_texture(map_line, "BR", false);
 	else if (!(ft_strncmp(map_line, "PA", 2)))
 		data->pfandautomat = get_texture(map_line, "BR", false);
+	else if (!(ft_strncmp(map_line, "LS", 2)))
+		data->loading_screen = get_texture(map_line, "LS", false);
+	else if (!(ft_strncmp(map_line, "PB", 2)))
+		data->pfandbon = get_texture(map_line, "PB", false);
 	else if (map_line[0] == 'F' || map_line[0] == 'C' || map_line[0] == 'P')
 		save_floor_and_ceiling(map_line, data);
 }
@@ -65,7 +62,6 @@ char	*get_texture(char *line, char *p_name, bool is_rgb)
 	int		fd;
 
 	texture = line;
-	//printf("cur texture: %s\n", line);
 	if (ft_strlen(p_name) == 2)
 		texture += 2;
 	else

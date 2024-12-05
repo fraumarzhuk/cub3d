@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/02 15:55:25 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:14:03 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	touch(double px, double py, t_env *env)
 
 void	cast_mini_ray(t_player *player, t_env *env)
 {
-	float	angle;
+	float		angle;
 	double		i;
 
 	angle = player->angle;

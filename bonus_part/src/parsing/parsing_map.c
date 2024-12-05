@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/02 16:45:41 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:39:44 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	map_init(t_env *env)
 	save_map_end(map);
 	save_map_copy(env->data, &map);
 	map_checks(env->data->map_copy, env);
-	find_(env->data);
+	find_pfandamount(env->data);
 	return (1);
 }
 

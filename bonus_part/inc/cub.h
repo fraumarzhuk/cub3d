@@ -154,6 +154,8 @@ typedef struct s_data
 	char			*brezel_shop;
 	char			*pfand;
 	char			*pfandautomat;
+	char			*loading_screen;
+	char			*pfandbon;
 	t_rgb			*ceiling;
 	t_rgb			*floor;
 }					t_data;
@@ -176,6 +178,9 @@ typedef struct s_env
 {
 	void			*mlx;
 	void			*mlx_win;
+	bool 			textures_loaded;
+	int				draw_x;
+	int				draw_y;
 	t_data			*data;
 	t_img			*canvas;
 	t_img			*scene_canvas;
@@ -194,6 +199,8 @@ typedef struct s_env
 	t_img			*beer_shop;
 	t_img			*pfand;
 	t_img			*pfandautomat;
+	t_img			*loading_screen;
+	t_img			*pfandbon;
 	t_player		*player;
 }					t_env;
 
@@ -249,7 +256,7 @@ void				tabs_to_spaces(char *map_line);
 void				check_rgb_num(char *str);
 
 //pfand_collect
-void				find_(t_data *data);
+void				find_pfandamount(t_data *data);
 void				collect_pfand(t_env *env);
 void				give_pfand_to_automat(t_env *env);
 
@@ -266,6 +273,7 @@ void				check_walls(char **map_copy, t_data *data);
 void				scan_vertically(char **map_copy, t_data *data);
 void				skip_h_gap(char *map_line);
 void				check_vertical(char **map_copy, int y, int x);
+void				save_wall_textures(char *map_line, t_data *data);
 
 // utils:
 void				error_and_exit(char *str);
@@ -290,15 +298,19 @@ void				render_images_on_canvas(t_env *env);
 void				display_player_pos(t_env *env);
 void				put_image_to_image(t_img *src, t_img *dst, int offset_x,
 						int offset_y);
+int					is_correct_pixel(t_img *dst, char *src_pixel, int offs_x, int offs_y);
 
 // init window
 void				init_mlx(t_env *env);
 void				init_minim_img(t_img *img, t_env *env);
+void				put_loading_screen(t_env *env);
+void				draw_square(int size, int color, t_env *env);
+void				remove_green_bg(t_img *pattern_pic, t_env *env);
+
+//init_textures
 void				init_texture_img(t_env *env);
 void				init_xpm_texture(t_img *img, t_env *env, char *path);
 void				init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
-void				draw_square(int x, int y, int size, int color, t_env *env);
-void				remove_green_bg(t_img *pattern_pic, t_env *env);
 
 // mini_map
 int					mini_draw_loop(t_env *env);
