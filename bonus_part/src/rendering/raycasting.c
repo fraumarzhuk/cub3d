@@ -46,25 +46,13 @@ void	put_wall_slice(t_img *frame, t_raycast *rc, t_env *env)
 		rc->frame_dist *= -1;
 	if (!(fabs(rc->frame_dist) < 1e-6))
 		rc->wall_height = (HEIGHT / rc->frame_dist) * (FOV_MOD / ((double)Y_FOV
-				* 2) * M_PI / 2.0);
+					* 2) * M_PI / 2.0);
 	else
 		rc->wall_height = HEIGHT;
 	rc->facing = get_facing(rc);
 	image = get_wall_img(env, rc);
 	img_to_wall(frame, image, rc);
 	print_object_slice(frame, rc, env);
-	/*if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] >= rc->pos[0])
-		img_to_wall(frame, env->west_wall, rc, ceil(rc->wall_pos[1])
-			- rc->wall_pos[1]);
-	else if (is_whole_t(rc->wall_pos[0], 1e-6) && rc->wall_pos[0] <= rc->pos[0])
-		img_to_wall(frame, env->east_wall, rc, rc->wall_pos[1]);
-	else if (is_whole_t(rc->wall_pos[1], 1e-6) && rc->wall_pos[1] <= rc->pos[2])
-		img_to_wall(frame, env->south_wall, rc, ceil(rc->wall_pos[0])
-			- rc->wall_pos[0]);
-	else if (is_whole_t(rc->wall_pos[1], 1e-6) && rc->wall_pos[1] >= rc->pos[2])
-		img_to_wall(frame, env->north_wall, rc, rc->wall_pos[0]);
-	else
-		printf("Error at: %lf, %lf\n", rc->wall_pos[0], rc->wall_pos[1]);*/
 }
 
 int	is_touching_wall(t_raycast *rc, t_data *data, double *pos, double *np)
@@ -130,7 +118,8 @@ void	make_frame(t_img *frame, double *pos, double dir, t_env *env)
 			rc->frame_dist *= cos(degrees_to_radians(rc->dirx - dir));
 			put_wall_slice(frame, rc, env);
 			rc->dirx = atan2(WIDTH / 2 - (rc->i - 0.5), (int)((WIDTH / 2)
-					/ tan(M_PI / 180 * (X_FOV / 2)))) * (180.0 / M_PI) + dir;
+						/ tan(M_PI / 180 * (X_FOV / 2))))
+				* (180.0 / M_PI) + dir;
 		}
 		rc->i++;
 	}

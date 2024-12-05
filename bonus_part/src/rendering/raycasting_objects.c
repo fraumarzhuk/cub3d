@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting_objects.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 18:48:57 by tlaukat           #+#    #+#             */
+/*   Updated: 2024/12/05 18:48:57 by tlaukat          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub.h"
 
 void	next_object(t_raycast *rc)
@@ -20,23 +32,15 @@ void	print_object_slice(t_img *frame, t_raycast *rc, t_env *env)
 	while (rc->pfand)
 	{
 		object_height = (int)(Object_Width * env->pfand->height
-			/ env->pfand->width * HEIGHT / rc->pfand->dist);
-		y_bottom = ((HEIGHT / rc->pfand->dist) * (FOV_MOD / ((double)Y_FOV * 2)
-				* M_PI / 2.0));
+				/ env->pfand->width * HEIGHT / rc->pfand->dist);
+		y_bottom = HEIGHT / 2 + ((HEIGHT / rc->pfand->dist) * (FOV_MOD
+					/ ((double)Y_FOV * 2) * M_PI / 2.0)) / 2;
 		y = (int)fmin(HEIGHT, y_bottom);
 		y_top = y_bottom - object_height;
-		printf("Printing pfand from %d to %d at %d with dist: %f\n", y_top,
-			y_bottom, WIDTH - rc->i, rc->pfand->dist);
 		while (y >= 0 && y >= y_top)
 		{
-			// double compact_position = rc->pfand->pos / Object_Width + 0.5;
 			color = get_image_pixel(env->pfand, rc->pfand->pos / Object_Width
-				+ 0.5, (y - y_top) / (double)(object_height));
-			/*printf("Color calculation: rc->pfand->pos = %f, Object_Width = %f,
-				y = %d, y_bottom = %d, y_top = %d Result: %f, %f \n",
-				rc->pfand->pos, Object_Width, y, y_bottom, y_top,
-				(rc->pfand->pos + Object_Width / 2) / Object_Width, (y - y_top)
-				/ (double)(y_bottom - y_top));*/
+					+ 0.5, fmax(0, (y - y_top) / (double)(object_height)));
 			if (color != (int)0xFF000000)
 				my_mlx_pixel_put(frame, WIDTH - rc->i, y, color);
 			y--;
@@ -47,27 +51,21 @@ void	print_object_slice(t_img *frame, t_raycast *rc, t_env *env)
 
 void	find_intersection(t_raycast *rc, double *obj, double *intersect)
 {
-	float	V1_x;
-	float	V1_y;
-	float	V2_x;
-	float	V2_y;
+	double	dx1;
+	double	dy1;
+	double	dx2;
+	double	dy2;
 	double	t;
 
-	V1_x = cos(degrees_to_radians(rc->dirx));
-	V1_y = sin(degrees_to_radians(rc->dirx));
-	V2_x = cos(degrees_to_radians(rc->dirx + 90));
-	V2_y = sin(degrees_to_radians(rc->dirx + 90));
-	t = fabs((obj[0] - rc->new_pos[0] + 0.5) * V2_x + (obj[1] - rc->new_pos[2]
-			+ 0.5) * V2_y);
-	// t = (obj[0] - rc->new_pos[0]) * V2_x + (obj[1] - rc->new_pos[2]) * V2_y;
-	intersect[0] = rc->new_pos[0] + V1_x * t;
-	intersect[1] = rc->new_pos[2] + V1_y * t;
+	dx1 = cos(degrees_to_radians(rc->dirx));
+	dy1 = sin(degrees_to_radians(rc->dirx));
+	dx2 = cos(degrees_to_radians(rc->dirx + 90));
+	dy2 = sin(degrees_to_radians(rc->dirx + 90));
+	t = (obj[0] - rc->new_pos[0]) * dy2 - (obj[1] - rc->new_pos[2]) * dx2;
+	t /= dx1 * dy2 - dx2 * dy1;
+	intersect[0] = rc->new_pos[0] + t * dx1;
+	intersect[1] = rc->new_pos[2] + t * dy1;
 	intersect[2] = intersect[1];
-	/* intersect[0] = (rc->new_pos[0] * V2_y - rc->new_pos[2] * V2_x + obj[0]
-		* V1_y - obj[1] * V1_x) / (V1_x * V2_y - V1_y * V2_x);
-	intersect[1] = (rc->new_pos[2] * V2_x - rc->new_pos[0] * V2_y + obj[1]
-		* V1_x - obj[0] * V1_y) / (V1_x * V2_y - V1_y * V2_x);
-	*/
 }
 
 void	check_objects(t_raycast *rc)
@@ -90,9 +88,9 @@ void	check_objects(t_raycast *rc)
 	if (get_distance2(obj, intersect) > Object_Width / 2)
 		return ;
 	pfand = ft_malloc(sizeof(t_object));
-	pfand->pos = get_distance2(obj, intersect) * (-1
-		* (((intersect[0] <= obj[0]) - (intersect[0] == obj[0])
-				* (intersect[1] <= obj[1])) * (rc->dirx > 90)));
+	pfand->pos = get_distance2(obj, intersect) * (1 + (-2
+				* (((intersect[0] <= obj[0]) - (intersect[0] == obj[0])
+						* (intersect[1] <= obj[1])) * (rc->dirx > 90))));
 	intersect[1] = rc->pos[1];
 	pfand->dist = get_distance3(rc->pos, intersect);
 	pfand->next = rc->pfand;

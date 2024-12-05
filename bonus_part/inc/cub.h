@@ -74,9 +74,9 @@
 # define X_FOV 60
 # define Y_FOV 60
 # define FOV_MOD 60
-# define RENDER_DISTANCE 10
+# define RENDER_DISTANCE 1000
 # define REACH_DISTANCE 1
-# define Object_Width 0.4
+# define Object_Width 0.1
 # define Object_Min_dist 0.4 
 
 # define PI 3.14159265359

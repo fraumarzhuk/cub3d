@@ -42,10 +42,13 @@ int	get_image_pixel(t_img *img, double x, double y)
 	int	nx;
 	int	ny;
 
-	nx = (1 - x) * img->width;
-	ny = y * img->height;
-	    if (nx < 0 || nx >= img->width || ny < 0 || ny >= img->height)
-			return (0);
+	if (x < 0 || x > 1 || y < 0 || y > 1)
+		return (-1);
+	nx = (1 - x) * (img->width - 1);
+	ny = y * (img->height - 1);
+	if (nx < 0 || nx >= img->width || ny < 0 || ny >= img->height)
+		return (printf(" (nx,ny) = (%d,%d), image size = (%d,%d)\n", nx, ny,
+				img->width, img->height), -1);
 	return (*(int *)(img->addr + 4 * nx + (4 * ny * img->width)));
 }
 
@@ -79,11 +82,11 @@ void	put_bg(t_img *frame, int i, t_env *env)
 
 void	img_to_wall(t_img *frame, t_img *image, t_raycast *rc)
 {
-	int j;
-	double image_top;
-	double image_height;
-	int pixel_color;
-	int height;
+	int		j;
+	double	image_top;
+	double	image_height;
+	int		pixel_color;
+	int		height;
 
 	height = fmax(0, HEIGHT / 2 - rc->wall_height / 2);
 	if (height)
@@ -95,8 +98,9 @@ void	img_to_wall(t_img *frame, t_img *image, t_raycast *rc)
 	while (j < HEIGHT - height && j < HEIGHT)
 	{
 		pixel_color = get_image_pixel(image, (double)rc->f_w_pos
-			- (int)rc->f_w_pos, ((j - height) / (double)(HEIGHT - 2 * height))
-			* image_height + image_top);
+				- (int)rc->f_w_pos,
+				((j - height) / (double)(HEIGHT - 2 * height))
+				* image_height + image_top);
 		my_mlx_pixel_put(frame, WIDTH - rc->i, j, pixel_color);
 		j++;
 	}
