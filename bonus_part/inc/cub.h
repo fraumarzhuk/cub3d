@@ -179,6 +179,8 @@ typedef struct s_env
 	void			*mlx;
 	void			*mlx_win;
 	bool 			textures_loaded;
+	int				draw_x;
+	int				draw_y;
 	t_data			*data;
 	t_img			*canvas;
 	t_img			*scene_canvas;
@@ -296,16 +298,19 @@ void				render_images_on_canvas(t_env *env);
 void				display_player_pos(t_env *env);
 void				put_image_to_image(t_img *src, t_img *dst, int offset_x,
 						int offset_y);
+int					is_correct_pixel(t_img *dst, char *src_pixel, int offs_x, int offs_y);
 
 // init window
 void				init_mlx(t_env *env);
 void				init_minim_img(t_img *img, t_env *env);
-void				init_texture_img(t_env *env);
 void				put_loading_screen(t_env *env);
+void				draw_square(int size, int color, t_env *env);
+void				remove_green_bg(t_img *pattern_pic, t_env *env);
+
+//init_textures
+void				init_texture_img(t_env *env);
 void				init_xpm_texture(t_img *img, t_env *env, char *path);
 void				init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
-void				draw_square(int x, int y, int size, int color, t_env *env);
-void				remove_green_bg(t_img *pattern_pic, t_env *env);
 
 // mini_map
 int					mini_draw_loop(t_env *env);

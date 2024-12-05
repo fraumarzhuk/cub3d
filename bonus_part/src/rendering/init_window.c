@@ -35,11 +35,12 @@ void	init_mlx(t_env *env)
 	mlx_loop(env->mlx);
 }
 
-void put_loading_screen(t_env *env)
+void	put_loading_screen(t_env *env)
 {
 	init_xpm_texture(env->loading_screen, env, env->data->loading_screen);
 	if (!env->textures_loaded)
-		mlx_put_image_to_window(env->mlx, env->mlx_win, env->loading_screen->img, 300, 300);
+		mlx_put_image_to_window(env->mlx, env->mlx_win,
+			env->loading_screen->img, 300, 300);
 }
 
 void	init_minim_img(t_img *img, t_env *env)
@@ -48,82 +49,11 @@ void	init_minim_img(t_img *img, t_env *env)
 	if (!img->img)
 		error_and_exit("Failed to create image");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
-		&img->endian);
+			&img->endian);
 	if (!img->addr)
 		error_and_exit("Failed to get image data address");
 	img->width = MINI_M_SIZE;
 	img->height = MINI_M_SIZE;
-}
-
-void	init_texture_img(t_env *env)
-{
-	if (env->data->pic_floor)
-		init_xpm_texture(env->floor, env, env->data->pic_floor);
-	else if (env->data->floor)
-		init_rgb_texture(env->floor, env->data->floor, env);
-	if (env->data->pic_ceiling)
-		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
-	else if (env->data->ceiling)
-		init_rgb_texture(env->ceiling, env->data->ceiling, env);
-
-	init_xpm_texture(env->enjoyer, env, env->data->enjoyer);
-	remove_green_bg(env->enjoyer, env);
-
-	init_xpm_texture(env->beer_shop, env, env->data->beer_shop);
-	init_xpm_texture(env->brezel_shop, env, env->data->brezel_shop);
-	init_xpm_texture(env->pfandautomat, env, env->data->pfandautomat);
-
-	init_xpm_texture(env->enj_beer, env, env->data->beer);
-	remove_green_bg(env->enj_beer, env);
-
-	init_xpm_texture(env->enj_brezel, env, env->data->brezel);
-	remove_green_bg(env->enj_brezel, env);
-
-	init_xpm_texture(env->pfand, env, env->data->pfand);
-	remove_green_bg(env->pfand, env);
-	// here will be all of the other images
-	init_xpm_texture(env->north_wall, env, env->data->north);
-	init_xpm_texture(env->south_wall, env, env->data->south);
-	init_xpm_texture(env->east_wall, env, env->data->east);
-	init_xpm_texture(env->west_wall, env, env->data->west);
-	env->textures_loaded = true;
-}
-
-void	init_xpm_texture(t_img *img, t_env *env, char *path)
-{
-	int	height;
-	int	width;
-
-	img->img = mlx_xpm_file_to_image(env->mlx, path, &width, &height);
-	if (!img->img)
-		error_and_exit("Failed to load xpm image");
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
-		&img->endian);
-	if (!img->addr)
-		error_and_exit("Failed to get image data address");
-	img->width = width;
-	img->height = height;
-}
-
-void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
-{
-	int	m_color;
-
-	texture->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
-	if (!texture->img)
-		error_and_exit("Failed to create image");
-	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
-		&texture->size_line, &texture->endian);
-	if (!texture->addr)
-		error_and_exit("Failed to get image data address");
-	m_color = (color->r << 16) | (color->g << 8) | color->b;
-	texture->width = WIDTH;
-	texture->height = HEIGHT / 2;
-	for (int y = 0; y < HEIGHT / 2; y++)
-	{
-		for (int x = 0; x < WIDTH; x++)
-			my_pixel_put(x, y, m_color, texture);
-	}
 }
 
 void	remove_green_bg(t_img *pattern_pic, t_env *env)
@@ -135,7 +65,7 @@ void	remove_green_bg(t_img *pattern_pic, t_env *env)
 	if (!temp->img)
 		error_and_exit("Failed to create image");
 	temp->addr = mlx_get_data_addr(temp->img, &temp->bpp, &temp->size_line,
-		&temp->endian);
+			&temp->endian);
 	if (!temp->addr)
 		error_and_exit("Failed to get image data address");
 	temp->width = pattern_pic->width;
@@ -144,10 +74,14 @@ void	remove_green_bg(t_img *pattern_pic, t_env *env)
 	ft_free(temp);
 }
 
-void	draw_square(int x, int y, int size, int color, t_env *env)
+void	draw_square(int size, int color, t_env *env)
 {
 	int	i;
+	int	x;
+	int	y;
 
+	x = env->draw_x;
+	y = env->draw_y;
 	i = 0;
 	while (i < size)
 		mm_pixel_put(x + i++, y, color, env);

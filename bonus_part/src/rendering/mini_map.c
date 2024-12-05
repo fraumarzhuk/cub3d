@@ -14,12 +14,15 @@
 
 int	mini_draw_loop(t_env *env)
 {
+	double	pos[3];
+
 	move_player(env->player, env);
 	draw_mini_map(env);
-	double pos[3] = {env->player->x / BLOCKW, 0.5, env->player->y / BLOCKH};
+	pos[0] = env->player->x / BLOCKW;
+	pos[1] = 0.5;
+	pos[2] = env->player->y / BLOCKH;
 	make_frame(env->scene_canvas, pos, env->player->angle, env);
 	render_images_on_canvas(env);
-	//mlx_put_image_to_window(env->mlx, env->mlx_win, env->canvas->img, 0, 0);
 	return (1);
 }
 
@@ -32,9 +35,9 @@ void	draw_mini_map(t_env *env)
 	if (!env->player->render_move)
 		return ;
 	clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
-	//draw_triangle(MINI_P, MINI_M_SIZE / 2, MINI_M_SIZE / 2, 0x00FF00, env);
-	// draw_square(MINI_M_SIZE / 2 - (MINI_P / 4), MINI_M_SIZE / 2 - (MINI_P / 4), MINI_P/2, 0x00FF00, env);
-	draw_square(MINI_M_SIZE / 2, MINI_M_SIZE / 2, MINI_P, 0x00FF00, env);
+	env->draw_x = MINI_M_SIZE / 2;
+	env->draw_y = MINI_M_SIZE / 2;
+	draw_square(MINI_P, 0x00FF00, env);
 	px_offset = env->player->x - (env->player->xc * BLOCKW);
 	py_offset = env->player->y - (env->player->yc * BLOCKH);
 	y = 0;
@@ -50,8 +53,6 @@ void	draw_mini_map(t_env *env)
 
 void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 {
-	int	draw_x;
-	int	draw_y;
 	int	x;
 
 	x = 0;
@@ -59,18 +60,19 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 	{
 		if (is_wall_mm(env->data->map_copy[y][x]))
 		{
-			draw_x = x * BLOCKW -(env->player->xc * BLOCKW + px_offset)
+			env->draw_x = x * BLOCKW -(env->player->xc * BLOCKW + px_offset)
 				+ MINI_M_SIZE / 2;
-			draw_y = y * BLOCKH - (env->player->yc * BLOCKH + py_offset)
+			env->draw_y = y * BLOCKH - (env->player->yc * BLOCKH + py_offset)
 				+ MINI_M_SIZE / 2;
-			if (draw_x >= -BLOCKW && draw_x < MINI_M_SIZE && draw_y
-				>= -BLOCKH && draw_y < MINI_M_SIZE)
-				{
-					if (env->data->map_copy[y][x] == 'A')
-						draw_square(draw_x, draw_y, BLOCKH, A_BLOCK_COL, env);
-					else
-						draw_square(draw_x, draw_y, BLOCKH, BLOCK_COL, env);
-				}
+			if (env->draw_x >= -BLOCKW && env->draw_x
+				< MINI_M_SIZE && env->draw_y
+				>= -BLOCKH && env->draw_y < MINI_M_SIZE)
+			{
+				if (env->data->map_copy[y][x] == 'A')
+					draw_square(BLOCKH, A_BLOCK_COL, env);
+				else
+					draw_square(BLOCKH, BLOCK_COL, env);
+			}
 		}
 		x++;
 	}
