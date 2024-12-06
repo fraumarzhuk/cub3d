@@ -266,7 +266,7 @@ void				check_rgb_num(char *str);
 void				find_pfandamount(t_data *data);
 void				collect_pfand(t_env *env);
 void				give_pfand_to_automat(t_env *env);
-int					is_automat_around(int x, int y, char **map);
+int					is_char_around(int x, int y, char **map, char c);
 
 // textures
 void				save_textures(t_map *map, t_data *data);
