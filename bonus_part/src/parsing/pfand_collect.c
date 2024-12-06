@@ -6,7 +6,7 @@
 /*   By: chaeggi <chaeggi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/06 16:10:46 by chaeggi          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:11:29 by chaeggi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ void	give_pfand_to_automat(t_env *env)
 		env->player->display_bon = true;
 	}
 }
-
-
-
 
 int	is_automat_around(int x, int y, char **map)
 {

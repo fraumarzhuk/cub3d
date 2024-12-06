@@ -52,6 +52,8 @@ void	choose_texture(char *map_line, t_data *data, int map_detected)
 		data->loading_screen = get_texture(map_line, "LS", false);
 	else if (!(ft_strncmp(map_line, "PB", 2)))
 		data->pfandbon = get_texture(map_line, "PB", false);
+	else if (!(ft_strncmp(map_line, "RU", 2)))
+		data->rules = get_texture(map_line, "RU", false);
 	else if (map_line[0] == 'F' || map_line[0] == 'C' || map_line[0] == 'P')
 		save_floor_and_ceiling(map_line, data);
 }

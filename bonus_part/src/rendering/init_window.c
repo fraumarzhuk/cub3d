@@ -40,7 +40,7 @@ void	put_loading_screen(t_env *env)
 	init_xpm_texture(env->loading_screen, env, env->data->loading_screen);
 	if (!env->textures_loaded)
 		mlx_put_image_to_window(env->mlx, env->mlx_win,
-			env->loading_screen->img, 300, 300);
+			env->loading_screen->img, 0, 0);
 }
 
 void	init_minim_img(t_img *img, t_env *env)

@@ -51,6 +51,7 @@ void	init_env(t_env *env)
 	env->data->pfandautomat = NULL;
 	env->data->loading_screen = NULL;
 	env->data->pfandbon = NULL;
+	env->data->rules = NULL;
 	env->data->pfand_amount = 0;
 	env->data->pfand_collected = 0;
 	init_player(env->player);
@@ -80,6 +81,7 @@ void	init_player(t_player *player)
 	player->pfand_sum = 0;
 	player->mm_p_height = (int)(MINI_P * sin((80) * PI / 180.0));
 	player->player_pos = HANDS;
+	player->display_rules = false;
 }
 void	init_textures(t_env *env)
 {
@@ -99,6 +101,7 @@ void	init_textures(t_env *env)
 	env->pfandautomat = (t_img *)ft_malloc(sizeof(t_img));
 	env->loading_screen = (t_img *)ft_malloc(sizeof(t_img));
 	env->pfandbon = (t_img *)ft_malloc(sizeof(t_img));
+	env->rules = (t_img *)ft_malloc(sizeof(t_img));
 }
 
 void	copy_spaces(char *map_line, char *new_line)

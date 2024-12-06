@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chaeggi <chaeggi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:18:02 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/05 16:21:31 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:57:19 by chaeggi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	init_texture_img(t_env *env)
 	remove_green_bg(env->enj_brezel, env);
 	init_xpm_texture(env->pfand, env, env->data->pfand);
 	remove_green_bg(env->pfand, env);
+	init_xpm_texture(env->rules, env, env->data->rules);
+	remove_green_bg(env->rules, env);
 	init_xpm_texture(env->north_wall, env, env->data->north);
 	init_xpm_texture(env->south_wall, env, env->data->south);
 	init_xpm_texture(env->east_wall, env, env->data->east);

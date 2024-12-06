@@ -126,6 +126,7 @@ typedef struct s_player
 	bool			right_rotate;
 	bool			render_move;
 	bool			display_bon;
+	bool			display_rules;
 	int				player_pos;
 	int				counter;
 }					t_player;
@@ -158,6 +159,7 @@ typedef struct s_data
 	char			*pfandautomat;
 	char			*loading_screen;
 	char			*pfandbon;
+	char			*rules;
 	t_rgb			*ceiling;
 	t_rgb			*floor;
 }					t_data;
@@ -203,6 +205,7 @@ typedef struct s_env
 	t_img			*pfandautomat;
 	t_img			*loading_screen;
 	t_img			*pfandbon;
+	t_img			*rules;
 	t_player		*player;
 }					t_env;
 
