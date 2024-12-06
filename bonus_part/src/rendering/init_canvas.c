@@ -27,24 +27,30 @@ void	init_canvas_img(t_img *canvas, t_env *env)
 
 void	render_images_on_canvas(t_env *env)
 {
-	int	offset_x;
-	int	offset_y;
+    int	offset_x;
+    int	offset_y;
 
-	if (!env->player->render_move)
-		return ;
-	clear_image(env->canvas, WIDTH, HEIGHT);
-	offset_x = WIDTH - MINI_M_SIZE;
-	offset_y = HEIGHT - MINI_M_SIZE;
-	display_player_pos(env);
-	if (env->player->display_rules)
-		put_image_to_image(env->rules, env->scene_canvas, 250, 0);
-	mlx_put_image_to_window(env->mlx, env->mlx_win,
-		env->scene_canvas->img, 0, 0);
-	mlx_put_image_to_window(env->mlx, env->mlx_win,
-		env->mini_map->img, offset_x, offset_y);
-	// if (env->player->display_bon)
-	// 	mlx_string_put(env->mlx, env->mlx_win, 140, 140, BLOCK_COL, ft_itoa(env->player->pfand_sum));
-	env->player->render_move = false;
+    clear_image(env->canvas, WIDTH, HEIGHT);
+    offset_x = WIDTH - MINI_M_SIZE;
+    offset_y = HEIGHT - MINI_M_SIZE;
+    display_player_pos(env);
+    if (env->player->display_rules)
+        put_image_to_image(env->rules, env->scene_canvas, 250, 0);
+    mlx_put_image_to_window(env->mlx, env->mlx_win,
+        env->scene_canvas->img, 0, 0);
+    mlx_put_image_to_window(env->mlx, env->mlx_win,
+        env->mini_map->img, offset_x, offset_y);
+    if (env->player->display_bon)
+    {
+		char pfand_str[32];
+		snprintf(pfand_str, sizeof(pfand_str), "%.2f EURO", env->player->pfand_sum);
+		printf("Pfandbon: %s\n", pfand_str);
+		mlx_put_image_to_window(env->mlx, env->mlx_win, env->pfandbon->img, 0, 0);
+		mlx_set_font(env->mlx, env->mlx_win, "-adobe-helvetica-bold-i-normal--40-0-0-0-p-0-iso8859-15");
+		mlx_string_put(env->mlx, env->mlx_win, WIDTH / 2 - 100, HEIGHT / 2, 0x000000, pfand_str);
+		env->player->display_bon = false;
+    }
+    env->player->render_move = false;
 }
 
 void	display_player_pos(t_env *env)

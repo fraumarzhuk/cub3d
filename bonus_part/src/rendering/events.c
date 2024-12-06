@@ -53,7 +53,11 @@ int	key_press(int keycode, t_env *env)
 	if (keycode == PK)
 		collect_pfand(env);
 	if (keycode == XK)
+	{
 		give_pfand_to_automat(env);
+		env->player->display_bon = true;
+	}
+	env->player->render_move = true;
 	return (0);
 }
 
@@ -77,6 +81,8 @@ int	key_release(int keycode, t_env *env)
 		env->player->left_rotate = false;
 	if (keycode == RIGHT)
 		env->player->right_rotate = false;
+	if (keycode == XK)
+		env->player->display_bon = false;
 	return (0);
 }
 

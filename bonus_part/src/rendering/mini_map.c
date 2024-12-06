@@ -22,7 +22,8 @@ int	mini_draw_loop(t_env *env)
 	pos[1] = 0.5;
 	pos[2] = env->player->y / BLOCKH;
 	make_frame(env->scene_canvas, pos, env->player->angle, env);
-	render_images_on_canvas(env);
+	if (env->player->render_move)
+		render_images_on_canvas(env);
 	return (1);
 }
 
