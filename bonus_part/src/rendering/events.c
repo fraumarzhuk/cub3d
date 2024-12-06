@@ -46,6 +46,10 @@ int	key_press(int keycode, t_env *env)
 		else
 			env->player->player_pos = BREZEL;
 	}
+	if (keycode == HK)
+		env->player->player_pos = HIDEPLAYER;
+	if (keycode == SPACE)
+		env->player->display_rules = !env->player->display_rules;
 	if (keycode == PK)
 		collect_pfand(env);
 	if (keycode == XK)

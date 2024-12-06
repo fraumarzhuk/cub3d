@@ -50,6 +50,8 @@
 # define LEFT 65361
 # define DOWN 65364
 # define RIGHT 65363
+# define SPACE 32
+# define HK 104
 // mouse
 # define MOUSE_SENS 0.1
 // mini map
@@ -82,9 +84,10 @@
 # define PI 3.14159265359
 
 // player
-# define HANDS 0
-# define BEER 1
-# define BREZEL 2
+#define HIDEPLAYER 0
+# define HANDS 1
+# define BEER 2
+# define BREZEL 3
 
 typedef struct map
 {
@@ -198,7 +201,6 @@ typedef struct s_env
 	t_img			*enjoyer;
 	t_img			*enj_beer;
 	t_img			*enj_brezel;
-	// t_img		*player_pic;
 	t_img			*brezel_shop;
 	t_img			*beer_shop;
 	t_img			*pfand;
