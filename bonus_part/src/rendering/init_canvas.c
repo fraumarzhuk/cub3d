@@ -36,10 +36,14 @@ void	render_images_on_canvas(t_env *env)
 	offset_x = WIDTH - MINI_M_SIZE;
 	offset_y = HEIGHT - MINI_M_SIZE;
 	display_player_pos(env);
+	// if (env->player->display_bon)
+	// 	put_image_to_image(env->pfandbon, env->scene_canvas, 140, 140);
 	mlx_put_image_to_window(env->mlx, env->mlx_win,
 		env->scene_canvas->img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->mlx_win,
 		env->mini_map->img, offset_x, offset_y);
+	// if (env->player->display_bon)
+	// 	mlx_string_put(env->mlx, env->mlx_win, 140, 140, BLOCK_COL, ft_itoa(env->player->pfand_sum));
 	env->player->render_move = false;
 }
 

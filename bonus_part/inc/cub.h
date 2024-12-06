@@ -37,7 +37,6 @@
 # define S 83
 # define E 69
 # define W 87
-
 // keys
 # define WK 119
 # define AK 97
@@ -47,6 +46,7 @@
 # define MK 109
 # define UP 65362
 # define PK 112
+# define XK 120
 # define LEFT 65361
 # define DOWN 65364
 # define RIGHT 65363
@@ -116,6 +116,7 @@ typedef struct s_player
 	int				yc;
 	float			angle;
 	int				mm_p_height;
+	double			pfand_sum;
 	bool			mouse_on;
 	bool			key_up;
 	bool			key_down;
@@ -124,6 +125,7 @@ typedef struct s_player
 	bool			left_rotate;
 	bool			right_rotate;
 	bool			render_move;
+	bool			display_bon;
 	int				player_pos;
 	int				counter;
 }					t_player;
@@ -259,6 +261,7 @@ void				check_rgb_num(char *str);
 void				find_pfandamount(t_data *data);
 void				collect_pfand(t_env *env);
 void				give_pfand_to_automat(t_env *env);
+int					is_automat_around(int x, int y, char **map);
 
 // textures
 void				save_textures(t_map *map, t_data *data);

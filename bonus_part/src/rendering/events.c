@@ -48,6 +48,8 @@ int	key_press(int keycode, t_env *env)
 	}
 	if (keycode == PK)
 		collect_pfand(env);
+	if (keycode == XK)
+		give_pfand_to_automat(env);
 	return (0);
 }
 

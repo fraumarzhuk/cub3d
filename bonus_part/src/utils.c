@@ -75,7 +75,9 @@ void	init_player(t_player *player)
 	player->right_rotate = false;
 	player->left_rotate = false;
 	player->render_move = true;
+	player->display_bon = false;
 	player->counter = 0;
+	player->pfand_sum = 0;
 	player->mm_p_height = (int)(MINI_P * sin((80) * PI / 180.0));
 	player->player_pos = HANDS;
 }
