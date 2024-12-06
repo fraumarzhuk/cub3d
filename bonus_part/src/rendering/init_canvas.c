@@ -41,15 +41,7 @@ void	render_images_on_canvas(t_env *env)
     mlx_put_image_to_window(env->mlx, env->mlx_win,
         env->mini_map->img, offset_x, offset_y);
     if (env->player->display_bon)
-    {
-		char pfand_str[32];
-		snprintf(pfand_str, sizeof(pfand_str), "%.2f EURO", env->player->pfand_sum);
-		printf("Pfandbon: %s\n", pfand_str);
-		mlx_put_image_to_window(env->mlx, env->mlx_win, env->pfandbon->img, 0, 0);
-		mlx_set_font(env->mlx, env->mlx_win, "-adobe-helvetica-bold-i-normal--40-0-0-0-p-0-iso8859-15");
-		mlx_string_put(env->mlx, env->mlx_win, WIDTH / 2 - 100, HEIGHT / 2, 0x000000, pfand_str);
-		env->player->display_bon = false;
-    }
+		display_pfandbon(env);
     env->player->render_move = false;
 }
 

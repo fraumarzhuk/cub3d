@@ -6,7 +6,7 @@
 /*   By: chaeggi <chaeggi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/06 17:57:54 by chaeggi          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:04:14 by chaeggi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,15 @@ void	collect_pfand(t_env *env)
 }
 void	give_pfand_to_automat(t_env *env)
 {
-	int		x, y;
-	// char	pfand_str[32];
-
+	int		x;
+	int		y;
 	x = env->player->xc;
 	y = env->player->yc;
-	if (is_char_around(x, y, env->data->map_copy, 'A'))
+	if (is_char_around(x, y, env->data->map_copy, 'A') && env->data->pfand_collected > 0)
 	{
 		env->player->pfand_sum = round(env->data->pfand_collected * 0.08 * 100) / 100;
 		env->data->pfand_amount -= env->data->pfand_collected;
-		// snprintf(pfand_str, sizeof(pfand_str), "%.2f EURO", env->player->pfand_sum);
-		// printf("Pfandbon: %s\n", pfand_str);
-		// mlx_put_image_to_window(env->mlx, env->mlx_win, env->pfandbon->img, 0, 0);
-		// mlx_set_font(env->mlx, env->mlx_win, "-adobe-helvetica-bold-i-normal--40-0-0-0-p-0-iso8859-15");
-		// mlx_string_put(env->mlx, env->mlx_win, WIDTH / 2 - 100, HEIGHT / 2, 0x000000, pfand_str);
 		env->data->pfand_collected = 0;
-		//env->player->display_bon = true;
 	}
 }
 
@@ -90,4 +83,14 @@ int	is_char_around(int x, int y, char **map, char c)
 		return (1);
 	else
 		return (0);
+}
+void display_pfandbon(t_env *env)
+{
+	char pfand_str[32];
+	snprintf(pfand_str, sizeof(pfand_str), "%.2f EURO", env->player->pfand_sum);
+	printf("Pfandbon: %s\n", pfand_str);
+	mlx_put_image_to_window(env->mlx, env->mlx_win, env->pfandbon->img, 0, 0);
+	mlx_set_font(env->mlx, env->mlx_win, "-adobe-helvetica-bold-i-normal--40-0-0-0-p-0-iso8859-15");
+	mlx_string_put(env->mlx, env->mlx_win, WIDTH / 2 - 100, HEIGHT / 2, 0x000000, pfand_str);
+	env->player->display_bon = false;
 }
