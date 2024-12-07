@@ -32,6 +32,7 @@ SRCS =	src/main.c \
 		src/rendering/mini_map.c \
 		src/rendering/player.c \
 		src/rendering/mini_raycasting.c \
+		src/rendering/mouse.c \
 		src/rendering/events.c \
 		src/rendering/render_utils.c \
 		src/rendering/raycasting_image_handler.c \
@@ -45,6 +46,7 @@ SRCS =	src/main.c \
 		src/Math-functions/to_border.c \
 		src/Math-functions/is_whole.c \
 		src/utils.c \
+		src/init_env.c \
 		src/Xmlx.c
 
 OBJS = $(SRCS:.c=.o)

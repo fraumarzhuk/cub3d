@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 01:38:58 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:17:55 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	cast_mini_ray(t_player *player, t_env *env)
 	{
 		draw_line(player->x, player->y, angle - i, env);
 		draw_line(player->x, player->y, angle + i, env);
-		i += 0.5;
+		i += 1;
 	}
 }
 

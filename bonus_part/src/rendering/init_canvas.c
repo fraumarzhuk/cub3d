@@ -27,22 +27,23 @@ void	init_canvas_img(t_img *canvas, t_env *env)
 
 void	render_images_on_canvas(t_env *env)
 {
-    int	offset_x;
-    int	offset_y;
+	int	offset_x;
+	int	offset_y;
 
-    clear_image(env->canvas, WIDTH, HEIGHT);
-    offset_x = WIDTH - MINI_M_SIZE;
-    offset_y = HEIGHT - MINI_M_SIZE;
-    display_player_pos(env);
-    if (env->player->display_rules)
-        put_image_to_image(env->rules, env->scene_canvas, 250, 0);
-    mlx_put_image_to_window(env->mlx, env->mlx_win,
-        env->scene_canvas->img, 0, 0);
-    mlx_put_image_to_window(env->mlx, env->mlx_win,
-        env->mini_map->img, offset_x, offset_y);
-    if (env->player->display_bon)
+	clear_image(env->canvas, WIDTH, HEIGHT);
+	offset_x = WIDTH - MINI_M_SIZE;
+	offset_y = HEIGHT - MINI_M_SIZE;
+	
+	display_player_pos(env);
+	if (env->player->display_rules)
+		put_image_to_image(env->rules, env->scene_canvas, 250, 0);
+	mlx_put_image_to_window(env->mlx, env->mlx_win,
+		env->scene_canvas->img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->mlx_win,
+		env->mini_map->img, offset_x, offset_y);
+	if (env->player->display_bon)
 		display_pfandbon(env);
-    env->player->render_move = false;
+	env->player->render_move = false;
 }
 
 void	display_player_pos(t_env *env)

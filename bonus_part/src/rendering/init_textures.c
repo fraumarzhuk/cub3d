@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chaeggi <chaeggi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:18:02 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/06 16:57:19 by chaeggi          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:06:01 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,22 @@ void	init_texture_img(t_env *env)
 		init_xpm_texture(env->ceiling, env, env->data->pic_ceiling);
 	else if (env->data->ceiling)
 		init_rgb_texture(env->ceiling, env->data->ceiling, env);
-	init_xpm_texture(env->enjoyer, env, env->data->enjoyer);
-	remove_green_bg(env->enjoyer, env);
 	init_xpm_texture(env->beer_shop, env, env->data->beer_shop);
 	init_xpm_texture(env->brezel_shop, env, env->data->brezel_shop);
 	init_xpm_texture(env->pfandautomat, env, env->data->pfandautomat);
+	init_xpm_texture(env->north_wall, env, env->data->north);
+	init_xpm_texture(env->south_wall, env, env->data->south);
+	init_xpm_texture(env->east_wall, env, env->data->east);
+	init_xpm_texture(env->west_wall, env, env->data->west);
+	init_xpm_texture(env->pfandbon, env, env->data->pfandbon);
+	init_nobg_texture_img(env);
+	env->textures_loaded = true;
+}
+
+void	init_nobg_texture_img(t_env *env)
+{
+	init_xpm_texture(env->enjoyer, env, env->data->enjoyer);
+	remove_green_bg(env->enjoyer, env);
 	init_xpm_texture(env->enj_beer, env, env->data->beer);
 	remove_green_bg(env->enj_beer, env);
 	init_xpm_texture(env->enj_brezel, env, env->data->brezel);
@@ -35,12 +46,6 @@ void	init_texture_img(t_env *env)
 	remove_green_bg(env->pfand, env);
 	init_xpm_texture(env->rules, env, env->data->rules);
 	remove_green_bg(env->rules, env);
-	init_xpm_texture(env->north_wall, env, env->data->north);
-	init_xpm_texture(env->south_wall, env, env->data->south);
-	init_xpm_texture(env->east_wall, env, env->data->east);
-	init_xpm_texture(env->west_wall, env, env->data->west);
-	init_xpm_texture(env->pfandbon, env, env->data->pfandbon);
-	env->textures_loaded = true;
 }
 
 void	init_xpm_texture(t_img *img, t_env *env, char *path)

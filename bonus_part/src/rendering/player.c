@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 01:44:38 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/07 16:23:58 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	move_player(t_player *player, t_env *env)
 
 	next_x = player->x;
 	next_y = player->y;
-	if (player->key_up || player->key_down || player->key_left
+	if ((player->key_up || player->key_down || player->key_left
 		|| player->key_right || player->right_rotate || player->left_rotate
-		|| player->mouse_on)
+		|| player->mouse_on) && !player->display_bon)
 	{
 		if ((player->right_rotate || player->left_rotate) && !player->no_rotate)
 			player->angle = new_angle(player->angle, ANGLE_SPEED,

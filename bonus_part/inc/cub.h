@@ -272,7 +272,6 @@ void				check_rgb_num(char *str);
 void				find_pfandamount(t_data *data);
 void				collect_pfand(t_env *env);
 void				give_pfand_to_automat(t_env *env);
-int					is_char_around(int x, int y, char **map, char c);
 void				display_pfandbon(t_env *env);
 int					is_pfand_around(int x, int y, char **map, t_player *player);
 
@@ -302,8 +301,11 @@ void				init_textures(t_env *env);
 
 // events
 int					key_press(int keycode, t_env *env);
+void				toggle_pictures(int keycode, t_env *env);
 int					key_release(int keycode, t_env *env);
 int					destroy(t_env *env);
+
+// mouse
 void				rotate_with_mouse(t_env *env, int x, int y);
 int					mouse_hook(int button, int x, int y, t_env *env);
 int					mouse_move_hook(int x, int y, t_env *env);
@@ -325,6 +327,7 @@ void				remove_green_bg(t_img *pattern_pic, t_env *env);
 
 //init_textures
 void				init_texture_img(t_env *env);
+void				init_nobg_texture_img(t_env *env);
 void				init_xpm_texture(t_img *img, t_env *env, char *path);
 void				init_rgb_texture(t_img *texture, t_rgb *color, t_env *env);
 
@@ -383,6 +386,8 @@ void				check_objects(t_raycast *rc);
 void				print_object_slice(t_img *frame, t_raycast *rc, t_env *env);
 void				next_object(t_raycast *rc);
 
+void				init_data(t_data *data);
+void				ft_free_images(t_env *env);
 // Xmlx
 void				grab_mouse(void *xvar, void *win);
 void				ungrab_mouse(void *xvar);
