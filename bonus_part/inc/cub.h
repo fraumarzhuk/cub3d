@@ -85,7 +85,7 @@
 
 // player
 # define SLIDING_SPEED 0.1
-# define HIDEPLAYER 1
+# define HIDEPLAYER 0
 # define HANDS 1
 # define BEER 2
 # define BREZEL 3
