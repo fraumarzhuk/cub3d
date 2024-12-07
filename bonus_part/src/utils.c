@@ -56,5 +56,16 @@ void	ft_free_images(t_env *env)
 		mlx_destroy_image(env->mlx, env->south_wall->img);
 		mlx_destroy_image(env->mlx, env->west_wall->img);
 		mlx_destroy_image(env->mlx, env->east_wall->img);
+		mlx_destroy_image(env->mlx, env->mini_map->img);
+		mlx_destroy_image(env->mlx, env->enjoyer->img);
+		mlx_destroy_image(env->mlx, env->enj_beer->img);
+		mlx_destroy_image(env->mlx, env->enj_brezel->img);
+		mlx_destroy_image(env->mlx, env->brezel_shop->img);
+		mlx_destroy_image(env->mlx, env->beer_shop->img);
+		mlx_destroy_image(env->mlx, env->pfand->img);
+		mlx_destroy_image(env->mlx, env->pfandautomat->img);
+		mlx_destroy_image(env->mlx, env->loading_screen->img);
+		mlx_destroy_image(env->mlx, env->pfandbon->img);
+		mlx_destroy_image(env->mlx, env->rules->img);
 	}
 }

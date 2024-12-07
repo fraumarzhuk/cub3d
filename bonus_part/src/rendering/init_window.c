@@ -71,6 +71,7 @@ void	remove_green_bg(t_img *pattern_pic, t_env *env)
 	temp->width = pattern_pic->width;
 	temp->height = pattern_pic->height;
 	put_image_to_image(pattern_pic, temp, 0, 0);
+	mlx_destroy_image(env->mlx, temp->img);
 	ft_free(temp);
 }
 
