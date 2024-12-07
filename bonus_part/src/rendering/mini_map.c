@@ -22,8 +22,8 @@ int	mini_draw_loop(t_env *env)
 	pos[1] = 0.5;
 	pos[2] = env->player->y / BLOCKH;
 	make_frame(env->scene_canvas, pos, env->player->angle, env);
-	if (env->player->render_move)
-		render_images_on_canvas(env);
+	//if (env->player->render_move)
+	render_images_on_canvas(env);
 	return (1);
 }
 
@@ -36,8 +36,8 @@ void	draw_mini_map(t_env *env)
 	if (!env->player->render_move)
 		return ;
 	clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
-	env->draw_x = MINI_M_SIZE / 2;
-	env->draw_y = MINI_M_SIZE / 2;
+	env->draw_x = (MINI_M_SIZE - MINI_P) / 2;
+	env->draw_y = (MINI_M_SIZE - MINI_P) / 2;
 	draw_square(MINI_P, 0x00FF00, env);
 	px_offset = env->player->x - (env->player->xc * BLOCKW);
 	py_offset = env->player->y - (env->player->yc * BLOCKH);

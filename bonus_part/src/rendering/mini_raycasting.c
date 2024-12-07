@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/05 16:14:03 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/07 01:38:58 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ bool	touch(double px, double py, t_env *env)
 	return (false);
 }
 
-
 void	cast_mini_ray(t_player *player, t_env *env)
 {
 	float		angle;
@@ -36,10 +35,9 @@ void	cast_mini_ray(t_player *player, t_env *env)
 	while (i < 30)
 	{
 		draw_line(player->x, player->y, angle - i, env);
-		draw_line(player->x, player->y, angle + i , env);
+		draw_line(player->x, player->y, angle + i, env);
 		i += 0.5;
 	}
-
 }
 
 void	draw_line(double px, double py, float angle, t_env *env)
@@ -47,9 +45,9 @@ void	draw_line(double px, double py, float angle, t_env *env)
 	double	mm_ray_x;
 	double	mm_ray_y;
 
-	mm_ray_x = MINI_M_SIZE / 2 + MINI_P / 2;
-	mm_ray_y = MINI_M_SIZE / 2 + MINI_P / 2;
-	while (!touch(px + MINI_P / 2, py + MINI_P / 2, env))
+	mm_ray_x = MINI_M_SIZE / 2;
+	mm_ray_y = MINI_M_SIZE / 2;
+	while (!touch(px, py, env))
 	{
 		mm_ray_x += cos(degrees_to_radians(angle));
 		mm_ray_y += sin(degrees_to_radians(angle));

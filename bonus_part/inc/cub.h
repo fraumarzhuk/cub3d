@@ -84,7 +84,8 @@
 # define PI 3.14159265359
 
 // player
-#define HIDEPLAYER 0
+# define SLIDING_SPEED 0.1
+# define HIDEPLAYER 1
 # define HANDS 1
 # define BEER 2
 # define BREZEL 3
@@ -115,6 +116,9 @@ typedef struct s_player
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
+	int 			touches_h_wall;
+	int				touches_v_wall;
+	bool 			no_rotate;
 	int				xc;
 	int				yc;
 	float			angle;
@@ -334,6 +338,7 @@ void				cast_mini_ray(t_player *player, t_env *env);
 void				draw_line(double px, double py, float angle, t_env *env);
 
 // player
+void 				wall_slide(t_player *player, t_env *env, double next_x, double next_y);
 float				new_angle(float angle, float angle_speed, bool left,
 						bool right);
 void				move_player(t_player *player, t_env *env);

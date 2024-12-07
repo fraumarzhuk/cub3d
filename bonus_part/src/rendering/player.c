@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/05 16:34:31 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/07 01:44:38 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	move_player(t_player *player, t_env *env)
 	next_x = player->x;
 	next_y = player->y;
 	if (player->key_up || player->key_down || player->key_left
-		|| player->key_right || player->right_rotate
-		|| player->left_rotate || player->mouse_on)
+		|| player->key_right || player->right_rotate || player->left_rotate
+		|| player->mouse_on)
 	{
-		if (player->right_rotate || player->left_rotate)
+		if ((player->right_rotate || player->left_rotate) && !player->no_rotate)
 			player->angle = new_angle(player->angle, ANGLE_SPEED,
 					player->left_rotate, player->right_rotate);
 		if (player->key_up && player->y - SPEED >= 0)
@@ -47,23 +47,23 @@ void	move_player(t_player *player, t_env *env)
 			get_new_pos2(&next_x, &next_y, player->angle - 90, SPEED);
 		if (player->key_right && player->x + SPEED < WIDTH)
 			get_new_pos2(&next_x, &next_y, player->angle + 90, SPEED);
-		if (env->data->map_copy[(int)next_y
-				/ BLOCKH][(int)next_x / BLOCKW] != '1')
-			set_new_coords(env, next_x, next_y);
-
+		env->player->no_rotate = false;
+		wall_slide(player, env, next_x, next_y);
 	}
 }
 
 void	set_new_coords(t_env *env, double next_x, double next_y)
 {
-	if (!is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)]
-		[(int)(next_x / BLOCKW)])
-		&& !is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)]
-		[(int)(next_x / BLOCKW)])
-		&& !is_wall_mm(env->data->map_copy[(int)(next_y / BLOCKH)]
-		[(int)((next_x + MINI_P) / BLOCKW)]) &&
-		!is_wall_mm(env->data->map_copy[(int)((next_y + MINI_P) / BLOCKH)]
-		[(int)((next_x + MINI_P) / BLOCKW)]))
+	if ((!is_wall_or_space(env->data->map_copy[(int)((next_y + MINI_P / 2.0)
+					/ (double)BLOCKH)][(int)(next_x / (double)BLOCKW)])) &&
+		(!is_wall_or_space(env->data->map_copy[(int)((next_y - MINI_P / 2)
+					/ (double)BLOCKH)][(int)(next_x / (double)BLOCKW)])) &&
+		(!is_wall_or_space(env->data->map_copy[(int)(floor(next_y
+					/ (double)BLOCKH))][(int)floor((next_x + MINI_P / 2)
+					/ (double)BLOCKW)])) &&
+		(!is_wall_or_space(env->data->map_copy[(int)(floor(next_y
+					/ (double)BLOCKH))][(int)floor((next_x - MINI_P
+					/ 2) / (double)BLOCKW)])))
 	{
 		env->player->x = next_x;
 		env->player->y = next_y;
@@ -71,6 +71,33 @@ void	set_new_coords(t_env *env, double next_x, double next_y)
 		env->player->yc = (int)next_y / BLOCKH;
 		env->player->render_move = true;
 	}
+}
+
+void	wall_slide(t_player *player, t_env *env, double next_x, double next_y)
+{
+	env->player->touches_h_wall = 0;
+	env->player->touches_v_wall = 0;
+	if (is_wall_or_space(env->data->map_copy[(int)(next_y
+				/ (int)BLOCKH)][(int)((next_x + MINI_P / 2.0) / (int)BLOCKW)]))
+		env->player->touches_h_wall = 1;
+	if (is_wall_or_space(env->data->map_copy[(int)(next_y
+				/ (int)BLOCKH)][(int)((next_x - MINI_P / 2.0) / (int)BLOCKW)]))
+		env->player->touches_h_wall = -1;
+	if (is_wall_or_space(env->data->map_copy[(int)((next_y + MINI_P / 2.0)
+				/ (int)BLOCKH)][(int)(next_x / (int)BLOCKW)]))
+		env->player->touches_v_wall = 1;
+	if (is_wall_or_space(env->data->map_copy[(int)((next_y - MINI_P / 2.0)
+				/ (int)BLOCKH)][(int)(next_x / (int)BLOCKW)]))
+		env->player->touches_v_wall = -1;
+	set_new_coords(env, next_x, next_y);
+	if (env->player->touches_h_wall == 0 && env->player->touches_v_wall == 0)
+		return ;
+	env->player->x -= SLIDING_SPEED * env->player->touches_h_wall;
+	env->player->y -= SLIDING_SPEED * env->player->touches_v_wall;
+	env->player->xc = (int)env->player->x / BLOCKW;
+	env->player->yc = (int)env->player->y / BLOCKH;
+	env->player->no_rotate = true;
+	move_player(player, env);
 }
 
 // void	draw_triangle(int size, int x, int y, int color, t_env *env)
