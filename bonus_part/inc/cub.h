@@ -116,6 +116,8 @@ typedef struct s_player
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
+	int				p_x;
+	int				p_y;
 	int 			touches_h_wall;
 	int				touches_v_wall;
 	bool 			no_rotate;
@@ -272,6 +274,7 @@ void				collect_pfand(t_env *env);
 void				give_pfand_to_automat(t_env *env);
 int					is_char_around(int x, int y, char **map, char c);
 void				display_pfandbon(t_env *env);
+int					is_pfand_around(int x, int y, char **map, t_player *player);
 
 // textures
 void				save_textures(t_map *map, t_data *data);

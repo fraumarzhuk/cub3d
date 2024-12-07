@@ -82,6 +82,8 @@ void	init_player(t_player *player)
 	player->mm_p_height = (int)(MINI_P * sin((80) * PI / 180.0));
 	player->player_pos = HANDS;
 	player->display_rules = false;
+	player->p_x = 0;
+	player->p_y = 0;
 }
 void	init_textures(t_env *env)
 {
