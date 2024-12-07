@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:08:50 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 15:11:35 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/07 16:49:28 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	init_player(t_player *player)
 	player->mm_p_height = (int)(MINI_P * sin((80) * PI / 180.0));
 	player->player_pos = HANDS;
 	player->display_rules = false;
+	player->mouse_on = false;
+	player->no_rotate = false;
 	player->p_x = 0;
 	player->p_y = 0;
 }

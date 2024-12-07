@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 16:36:52 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/07 17:31:13 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ bool	touch(double px, double py, t_env *env)
 
 	x = px / BLOCKW;
 	y = py / BLOCKH;
+	if (!env->data->map_copy[y][x])
+		return (true);
 	if (env->data->map_copy[y][x]
 		&& is_wall_or_space(env->data->map_copy[y][x]))
 		return (true);
@@ -37,7 +39,7 @@ void	cast_mini_ray(t_player *player, t_env *env)
 	{
 		draw_line(player->x, player->y, angle - i, env);
 		draw_line(player->x, player->y, angle + i, env);
-		i += 1;
+		i += 0.5;
 	}
 }
 
