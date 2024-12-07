@@ -6,7 +6,7 @@
 /*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 14:37:39 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/07 14:40:30 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	give_pfand_to_automat(t_env *env)
 	y = env->player->yc;
 	if (is_char_around(x, y, env->data->map_copy, 'A') && env->data->pfand_collected > 0)
 	{
-		env->player->pfand_sum = round(env->data->pfand_collected * 0.08 * 100) / 100;
+		env->player->pfand_sum += round(env->data->pfand_collected * 0.08 * 100) / 100;
 		env->data->pfand_amount -= env->data->pfand_collected;
 		env->data->pfand_collected = 0;
 	}
