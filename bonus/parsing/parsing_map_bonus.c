@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*   parsing_map_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:02:14 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/09 17:22:46 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/09 21:13:09 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	save_map_copy(t_data *data, t_map **map)
 		temp = temp->next;
 		i++;
 	}
+	if (!data->map_copy[0])
+		error_and_exit("No map provided");
 	data->map_copy[++i] = NULL;
 	data->map_lines = data->true_lines;
 }

@@ -37,7 +37,7 @@ void	put_bg(t_img *frame, int i, t_env *env)
 	j = 0;
 	while (j < HEIGHT)
 	{
-		if (j < HEIGHT / 2)
+		if (j > HEIGHT / 2)
 			my_mlx_pixel_put(frame, i, j, env->data->floor->r * 0x10000
 				+ env->data->floor->g * 0x100 + env->data->floor->b);
 		else

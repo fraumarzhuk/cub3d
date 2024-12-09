@@ -58,7 +58,7 @@
 # define RAYCOLOR 0x0FFF9BF
 
 // settings
-# define SPEED 2
+# define SPEED 0.6
 # define ANGLE_SPEED 2
 # define NO_WC 0
 # define ONLY_MVS 0
