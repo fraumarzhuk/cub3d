@@ -1,0 +1,45 @@
+SO  ./textures/bretzel_enjoyer/compressed_test/wall_black.xpm
+NO  ./textures/bretzel_enjoyer/compressed_test/wall_flag.xpm
+WE ./textures/bretzel_enjoyer/compressed_test/wall_red.xpm
+EA ./textures/bretzel_enjoyer/compressed_test/wall_yellow.xpm
+
+BE ./textures/bretzel_enjoyer/compressed_test/holding_beer.xpm
+HA ./textures/bretzel_enjoyer/compressed_test/initial_pos.xpm
+BR ./textures/bretzel_enjoyer/compressed_test/holding_brezel.xpm
+
+BS ./textures/bretzel_enjoyer/compressed_test/beer_shop.xpm
+MS ./textures/bretzel_enjoyer/compressed_test/brezel_shop.xpm
+PA ./textures/bretzel_enjoyer/compressed_test/pfandautomat.xpm
+P ./textures/bretzel_enjoyer/compressed_test/pfand.xpm
+PB ./textures/bretzel_enjoyer/compressed_test/bon.xpm
+LS ./textures/bretzel_enjoyer/compressed_test/loading_1.xpm
+RU ./textures/bretzel_enjoyer/compressed_test/rules.xpm
+
+C ./textures/sky.xpm
+F ./textures/bretzel_enjoyer/compressed_test/floor_gray.xpm
+
+
+     111111111111111111111
+     10100000100000000001
+111110101000111100011111
+10001010001000010001
+111010101111101011101
+100000101000101000001
+101111101011101111111
+101000001010100000101111111111
+1010B1111010111110101  1000001
+101010001010100010101111111111
+101110101011101010101
+100010101010001010001
+11111110101111101M101
+100000101000100010001
+101110101110B011101A1
+101000100000100010101
+10101111111M111010MP1
+10001PPPPPPPPPPP10001
+101010111001111111B01
+10100001110P00000P0N1
+11111111  11111111111
+1
+		1
+11111111
