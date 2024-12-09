@@ -60,7 +60,7 @@
 // settings
 # define SPEED 2
 # define ANGLE_SPEED 2
-# define NO_WC 1
+# define NO_WC 0
 # define ONLY_MVS 0
 # define FPS 60
 
