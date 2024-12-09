@@ -55,7 +55,7 @@ void	init_xpm_texture(t_img *img, t_env *env, char *path)
 	if (!img->img)
 		error_and_exit("Failed to load floor image");
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line,
-		&img->endian);
+			&img->endian);
 	if (!img->addr)
 		error_and_exit("Failed to get image data address");
 	img->width = width;
@@ -72,7 +72,7 @@ void	init_rgb_texture(t_img *texture, t_rgb *color, t_env *env)
 	if (!texture->img)
 		error_and_exit("Failed to create image");
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bpp,
-		&texture->size_line, &texture->endian);
+			&texture->size_line, &texture->endian);
 	if (!texture->addr)
 		error_and_exit("Failed to get image data address");
 	m_color = (color->r << 16) | (color->g << 8) | color->b;
