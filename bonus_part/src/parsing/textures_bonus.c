@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 void	save_textures(t_map *map, t_data *data)
 {

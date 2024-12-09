@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 int	key_press(int keycode, t_env *env)
 {

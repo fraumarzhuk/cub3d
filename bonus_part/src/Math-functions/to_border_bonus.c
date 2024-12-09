@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_border.c                                        :+:      :+:    :+:   */
+/*   to_border_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:29 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/12/07 15:52:12 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:22:18 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xMath.h"
+#include "xMath_bonus.h"
 
 void	set_d(double hor_rad, double ver_rad, double d[3])
 {

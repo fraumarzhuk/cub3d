@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 16:10:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 17:31:13 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:23:33 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 bool	touch(double px, double py, t_env *env)
 {

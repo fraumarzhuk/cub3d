@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:24:08 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/05 14:38:48 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:22:50 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 int	is_wall_or_space(char c)
 {

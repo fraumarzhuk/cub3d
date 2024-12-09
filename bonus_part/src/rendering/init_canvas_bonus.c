@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 void	init_canvas_img(t_img *canvas, t_env *env)
 {

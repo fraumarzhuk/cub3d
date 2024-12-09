@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xMath.h"
+#include "xMath_bonus.h"
 
 int	is_whole(double number)
 {

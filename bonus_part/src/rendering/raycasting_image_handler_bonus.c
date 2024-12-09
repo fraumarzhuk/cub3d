@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 void	put_bg_slice(t_img *frame, int i, double dir, t_env *env)
 {

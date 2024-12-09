@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_pos.c                                          :+:      :+:    :+:   */
+/*   new_pos_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 03:17:34 by tlaukat           #+#    #+#             */
-/*   Updated: 2024/10/28 16:31:09 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:22:07 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xMath.h"
+#include "xMath_bonus.h"
 
 // calculates the new position for a
 // specific distance and direction for 2D and 3D

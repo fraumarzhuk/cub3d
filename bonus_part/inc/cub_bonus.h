@@ -14,7 +14,7 @@
 # define CUB_H
 
 # include "../libft/libft.h"
-# include "../src/Math-functions/xMath.h"
+# include "../src/Math-functions/xMath_bonus.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>

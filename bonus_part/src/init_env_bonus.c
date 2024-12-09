@@ -6,11 +6,11 @@
 /*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:08:50 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/09 16:57:15 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/09 17:23:58 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/cub_bonus.h"
 
 void	init_env(t_env *env)
 {

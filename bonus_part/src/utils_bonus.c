@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
+#include "../inc/cub_bonus.h"
 
 void	error_and_exit(char *str)
 {

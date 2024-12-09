@@ -13,43 +13,43 @@ else ifeq ($(UNAME_S), Darwin)
 	MINILIBX_DIR = ./minilibx_opengl_20191021
 endif
 SRCST =	src/Tobi/main.c \
-		src/Math-functions/to_border.c \
-		src/Math-functions/radians_utils.c \
-		src/Math-functions/is_whole.c \
-		src/Math-functions/distance.c \
-		src/Math-functions/new_pos.c
+		src/Math-functions/to_border_bonus.c \
+		src/Math-functions/radians_utils_bonus.c \
+		src/Math-functions/is_whole_bonus.c \
+		src/Math-functions/distance_bonus.c \
+		src/Math-functions/new_pos_bonus.c
 		
-SRCS =	src/main.c \
-		src/parsing/parsing_file.c \
-		src/parsing/parsing_map.c \
-		src/parsing/textures.c \
-		src/parsing/wall-checks.c \
-		src/parsing/map-checks.c \
-		src/parsing/parsing_utils.c \
-		src/parsing/pfand_collect.c \
-		src/rendering/init_window.c \
-		src/rendering/init_canvas.c \
-		src/rendering/mini_map.c \
-		src/rendering/player.c \
-		src/rendering/mini_raycasting.c \
-		src/rendering/mouse.c \
-		src/rendering/events.c \
-		src/rendering/render_utils.c \
-		src/rendering/raycasting_image_handler.c \
-		src/rendering/raycasting.c \
-		src/rendering/raycasting_utils.c \
-		src/rendering/raycasting_objects.c \
-		src/rendering/init_textures.c \
-		src/rendering/shops.c \
-		src/rendering/ui.c \
-		src/Math-functions/distance.c \
-		src/Math-functions/new_pos.c \
-		src/Math-functions/radians_utils.c \
-		src/Math-functions/to_border.c \
-		src/Math-functions/is_whole.c \
-		src/utils.c \
-		src/init_env.c \
-		src/Xmlx.c
+SRCS =	src/main_bonus.c \
+		src/parsing/parsing_file_bonus.c \
+		src/parsing/parsing_map_bonus.c \
+		src/parsing/textures_bonus.c \
+		src/parsing/wall-checks_bonus.c \
+		src/parsing/map-checks_bonus.c \
+		src/parsing/parsing_utils_bonus.c \
+		src/parsing/pfand_collect_bonus.c \
+		src/rendering/init_window_bonus.c \
+		src/rendering/init_canvas_bonus.c \
+		src/rendering/mini_map_bonus.c \
+		src/rendering/player_bonus.c \
+		src/rendering/mini_raycasting_bonus.c \
+		src/rendering/mouse_bonus.c \
+		src/rendering/events_bonus.c \
+		src/rendering/render_utils_bonus.c \
+		src/rendering/raycasting_image_handler_bonus.c \
+		src/rendering/raycasting_bonus.c \
+		src/rendering/raycasting_utils_bonus.c \
+		src/rendering/raycasting_objects_bonus.c \
+		src/rendering/init_textures_bonus.c \
+		src/rendering/shops_bonus.c \
+		src/rendering/ui_bonus.c \
+		src/Math-functions/distance_bonus.c \
+		src/Math-functions/new_pos_bonus.c \
+		src/Math-functions/radians_utils_bonus.c \
+		src/Math-functions/to_border_bonus.c \
+		src/Math-functions/is_whole_bonus.c \
+		src/utils_bonus.c \
+		src/init_env_bonus.c \
+		src/Xmlx_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = ./libft

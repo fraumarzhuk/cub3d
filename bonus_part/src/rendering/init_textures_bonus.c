@@ -6,11 +6,11 @@
 /*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:18:02 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/09 17:15:56 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/09 17:23:33 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 void	remove_green_bg(t_img *pattern_pic, t_env *env)
 {

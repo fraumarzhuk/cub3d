@@ -6,11 +6,11 @@
 /*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/09 16:55:47 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/09 17:22:57 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub.h"
+#include "../../inc/cub_bonus.h"
 
 void	find_pfandamount(t_data *data)
 {
