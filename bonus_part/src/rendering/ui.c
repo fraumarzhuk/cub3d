@@ -105,7 +105,7 @@ void	draw_ui(t_env *env, t_img *canvas, int mode)
 	if (UI_TEXT == 0 || env->player->display_bon == 1)
 		return ;
 	mlx_set_font(env->mlx, env->mlx_win,
-		"-mutt-clearlyu-medium-r-normal--17-120-100-100-p-123-iso10646-1");
+		"-misc-fixed-bold-r-normal--40-0-100-100-c-0-iso10646-1");
 	if (mode == 0)
 		put_ui_bg(canvas);
 	else

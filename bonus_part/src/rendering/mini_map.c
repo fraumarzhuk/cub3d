@@ -99,7 +99,7 @@ void	draw_mini_border(t_env *env)
 		mm_pixel_put(x, y, MINI_BORDER_C, env);
 }
 
-void draw_mini_map_walls(t_env *env, char position)
+void	draw_mini_map_walls(t_env *env, char position)
 {
 	int	color;
 
