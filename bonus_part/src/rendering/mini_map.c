@@ -111,6 +111,6 @@ void draw_mini_map_walls(t_env *env, char position)
 		color = MS_BLOCK_COL;
 	else
 		color = BLOCK_COL;
-	draw_square(BLOCKH, color, env);
-	draw_filled_square(BLOCKH, BLOCK_COL, env);
+	draw_filled_square(BLOCKH, color, env);
+	draw_square(BLOCKH, 0x000000, env);
 }

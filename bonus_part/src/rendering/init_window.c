@@ -104,8 +104,8 @@ void draw_filled_square(int size, int color, t_env *env)
 	int	y;
 	int	j;
 
-	x = env->draw_x - 1;
-	y = env->draw_y - 1;
+	x = env->draw_x;
+	y = env->draw_y;
 	i = 0;
 	while (i < size)
 	{
