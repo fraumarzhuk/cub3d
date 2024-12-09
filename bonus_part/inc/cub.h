@@ -62,6 +62,8 @@
 # define MINI_P 6
 # define BLOCK_COL 0x0c187c9
 # define A_BLOCK_COL 0x09ABF80
+# define BS_BLOCK_COL 0x0AB4459
+# define MS_BLOCK_COL 0x0F29F58
 # define MINI_BORDER_C 0x0d76d56
 # define RAYCOLOR 0x0FFF9BF
 # define SPEED 2
@@ -418,4 +420,6 @@ void				draw_ui(t_env *env, t_img *canvas, int mode);
 void				grab_mouse(void *xvar, void *win);
 void				ungrab_mouse(void *xvar);
 unsigned int		get_screen_color(void *xvar, void *win, int x, int y);
+void				draw_filled_square(int size, int color, t_env *env);
+void				draw_mini_map_walls(t_env *env, char position);
 #endif

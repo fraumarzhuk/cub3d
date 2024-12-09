@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pfand_collect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/09 01:10:24 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/09 14:16:24 by mzhukova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	display_pfandbon(t_env *env)
 	printf("Pfandbon: %s\n", pfand_str);
 	mlx_put_image_to_window(env->mlx, env->mlx_win, env->pfandbon->img, 0, 0);
 	mlx_set_font(env->mlx, env->mlx_win,
-		"-misc-fixed-bold-r-normal--40-0-100-100-c-0-iso10646-1");
+		"-mutt-clearlyu-medium-r-normal--17-120-100-100-p-123-iso10646-1");
 	mlx_string_put(env->mlx, env->mlx_win,
 		WIDTH / 2 - 100, HEIGHT / 2, 0x000000, pfand_str);
 }

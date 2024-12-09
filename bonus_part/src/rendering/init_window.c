@@ -96,3 +96,25 @@ void	draw_square(int size, int color, t_env *env)
 	while (i < size)
 		mm_pixel_put(x + i++, y + size, color, env);
 }
+
+void draw_filled_square(int size, int color, t_env *env)
+{
+	int	i;
+	int	x;
+	int	y;
+	int	j;
+
+	x = env->draw_x - 1;
+	y = env->draw_y - 1;
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			mm_pixel_put(x + j, y + i, color, env);
+			j++;
+		}
+		i++;
+	}
+}

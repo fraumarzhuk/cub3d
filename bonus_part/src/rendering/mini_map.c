@@ -39,9 +39,10 @@ void	draw_mini_map(t_env *env)
 	clear_image(env->mini_map, MINI_M_SIZE, MINI_M_SIZE);
 	env->draw_x = (MINI_M_SIZE - MINI_P) / 2;
 	env->draw_y = (MINI_M_SIZE - MINI_P) / 2;
-	draw_square(MINI_P, 0x00FF00, env);
 	px_offset = env->player->x - (env->player->xc * BLOCKW);
 	py_offset = env->player->y - (env->player->yc * BLOCKH);
+	draw_square(MINI_P, 0x00FF00, env);
+	cast_mini_ray(env->player, env);
 	y = 0;
 	while (env->data->map_copy[y])
 	{
@@ -49,7 +50,6 @@ void	draw_mini_map(t_env *env)
 		y++;
 	}
 	draw_mini_border(env);
-	cast_mini_ray(env->player, env);
 	env->player->counter++;
 }
 
@@ -70,10 +70,8 @@ void	calculate_draw_xy(t_env *env, int y, double px_offset, double py_offset)
 				< MINI_M_SIZE && env->draw_y
 				>= -BLOCKH && env->draw_y < MINI_M_SIZE)
 			{
-				if (env->data->map_copy[y][x] == 'A')
-					draw_square(BLOCKH, A_BLOCK_COL, env);
-				else
-					draw_square(BLOCKH, BLOCK_COL, env);
+				if (is_wall_mm(env->data->map_copy[y][x]))
+					draw_mini_map_walls(env, env->data->map_copy[y][x]);
 			}
 		}
 		x++;
@@ -99,4 +97,20 @@ void	draw_mini_border(t_env *env)
 	y = 0;
 	while (y++ < (MINI_M_SIZE - 1))
 		mm_pixel_put(x, y, MINI_BORDER_C, env);
+}
+
+void draw_mini_map_walls(t_env *env, char position)
+{
+	int	color;
+
+	if (position == 'A')
+		color = A_BLOCK_COL;
+	else if (position == 'B')
+		color = BS_BLOCK_COL;
+	else if (position == 'M')
+		color = MS_BLOCK_COL;
+	else
+		color = BLOCK_COL;
+	draw_square(BLOCKH, color, env);
+	draw_filled_square(BLOCKH, BLOCK_COL, env);
 }
