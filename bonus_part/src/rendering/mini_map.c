@@ -15,16 +15,22 @@
 int	mini_draw_loop(t_env *env)
 {
 	double	pos[3];
+	struct timeval	now;
 
-	move_player(env->player, env);
-	draw_mini_map(env);
-	pos[0] = env->player->x / BLOCKW;
-	pos[1] = 0.5;
-	pos[2] = env->player->y / BLOCKH;
-	make_frame(env->scene_canvas, pos, env->player->angle, env);
-	draw_ui(env, env->scene_canvas, 1);
-	if (env->player->render_move)
-		render_images_on_canvas(env);
+	gettimeofday(&now, NULL);
+	if (env->last_frame.tv_sec + (env->last_frame.tv_usec / 1e6) + 1
+		/ FPS < now.tv_sec + (now.tv_usec / 1e6))
+	{
+		move_player(env->player, env);
+		draw_mini_map(env);
+		pos[0] = env->player->x / BLOCKW;
+		pos[1] = 0.5;
+		pos[2] = env->player->y / BLOCKH;
+		make_frame(env->scene_canvas, pos, env->player->angle, env);
+		if (env->player->render_move)
+			render_images_on_canvas(env);
+		gettimeofday(&env->last_frame, NULL);
+	}
 	return (1);
 }
 

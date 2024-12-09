@@ -38,7 +38,7 @@ void	render_images_on_canvas(t_env *env)
 	display_player_pos(env);
 	if (env->player->display_rules)
 		put_image_to_image(env->rules, env->scene_canvas, 250, 0);	
-	draw_ui(env, env->scene_canvas, 0);
+	draw_ui(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win,
 		env->scene_canvas->img, 0, 0);
 	mlx_put_image_to_window(env->mlx, env->mlx_win,

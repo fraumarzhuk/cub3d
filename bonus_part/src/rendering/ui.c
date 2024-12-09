@@ -14,12 +14,8 @@
 
 int	put_text_line_one(t_env *env)
 {
-    static int	pfand_collected;
 	char	str[50];
 
-    if (env->data->pfand_collected == pfand_collected)
-        return 0;
-    pfand_collected = env->data->pfand_collected;
 	if (env->data->pfand_amount > 0)
 		snprintf(str, sizeof(str), "Pfand left: %d/%d",
 			env->data->pfand_collected, env->data->pfand_amount);
@@ -35,12 +31,8 @@ int	put_text_line_one(t_env *env)
 
 int	put_text_line_two(t_env *env)
 {
-	static int	player_pos;
 	char		str[50];
 
-	if (env->player->player_pos == player_pos)
-		return 0;
-	player_pos = env->player->player_pos;
 	if (env->player->player_pos == BEER && BEER_SPRINT == 1)
 		snprintf(str, sizeof(str), "Holding: Beer (Makes you faster)");
 	if (env->player->player_pos == BEER && BEER_SPRINT == 0)
@@ -57,12 +49,8 @@ int	put_text_line_two(t_env *env)
 
 int	put_text_line_three(t_env *env)
 {
-	static char	looking_at;
 	char		str[50];
 
-	if (env->data->looking_at == looking_at)
-		return 0;
-	looking_at = env->data->looking_at;
 	if (env->data->looking_at == 'B' && SHOP_BEER == 1)
 		snprintf(str, sizeof(str), "Press 'E' to buy a beer");
 	else if (env->data->looking_at == 'M' && SHOP_BREZEL == 1)
@@ -98,25 +86,16 @@ void	put_ui_bg(t_img *canvas)
 	}
 }
 
-void	draw_ui(t_env *env, t_img *canvas, int mode)
+int	draw_ui(t_env *env)
 {
-    int ret;
 
 	if (UI_TEXT == 0 || env->player->display_bon == 1)
-		return ;
+		return (0);
+	put_ui_bg(env->scene_canvas);
 	mlx_set_font(env->mlx, env->mlx_win,
 		"-misc-fixed-bold-r-normal--40-0-100-100-c-0-iso10646-1");
-	if (mode == 0)
-		put_ui_bg(canvas);
-	else
-	{
-        ret = 0;
-		ret += put_text_line_one(env);
-		ret += put_text_line_two(env);
-		ret += put_text_line_three(env);
-        if(ret == 0)
-            put_image_to_image(env->screen_shot, canvas, 0, HEIGHT-UI_HEIGHT);
-        else
-            get_screenshot_image(env);
-	}
+	put_text_line_one(env);
+	put_text_line_two(env);
+	put_text_line_three(env);
+	return(0);
 }

@@ -93,11 +93,12 @@
 # define BREZEL 3
 
 // game
-# define SHOP_BEER 1
-# define SHOP_BREZEL 1
-# define BEER_SPRINT 1
+# define SHOP_BEER 0
+# define SHOP_BREZEL 0
+# define BEER_SPRINT 0
 # define SPEED_ADD 0.3
-# define BREZEL_WIN 1
+# define BREZEL_WIN 0
+# define FPS 60
 
 // UI
 # define UI_TEXT 0
@@ -211,6 +212,7 @@ typedef struct s_env
 	bool 			textures_loaded;
 	int				draw_x;
 	int				draw_y;
+	struct timeval	last_frame;
 	t_data			*data;
 	t_img			*canvas;
 	t_img			*scene_canvas;
@@ -414,7 +416,8 @@ int					filter_events(int keycode, t_env *env);
 void				handle_shop_events(int keycode, t_env *env);
 
 // ui
-void				draw_ui(t_env *env, t_img *canvas, int mode);
+void				put_ui_bg(t_img *canvas);
+int				draw_ui(t_env *env);
 
 // Xmlx
 void				grab_mouse(void *xvar, void *win);
