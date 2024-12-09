@@ -16,6 +16,9 @@ int	key_press(int keycode, t_env *env)
 {
 	if (keycode == ESC)
 		destroy(env);
+	if (keycode == EK || keycode == BK || keycode == MK || keycode == HK
+		|| keycode == SPACE)
+		handle_shop_events(keycode, env);
 	if (keycode == WK)
 		env->player->key_up = true;
 	if (keycode == SK)
@@ -30,7 +33,6 @@ int	key_press(int keycode, t_env *env)
 		env->player->right_rotate = true;
 	if ((keycode == LEFT || keycode == RIGHT) && env->player->mouse_on)
 		mouse_hook(1, 0, 0, env);
-	toggle_pictures(keycode, env);
 	if (keycode == PK)
 		collect_pfand(env);
 	if (keycode == XK)
@@ -84,9 +86,13 @@ int	key_release(int keycode, t_env *env)
 		env->player->left_rotate = false;
 	if (keycode == RIGHT)
 		env->player->right_rotate = false;
-	//if (keycode == XK)
-	//	env->player->display_bon = false;
 	return (0);
+}
+
+void	win(t_env *env)
+{
+	printf("You win!\n");
+	destroy(env);
 }
 
 int	destroy(t_env *env)

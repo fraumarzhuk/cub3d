@@ -47,6 +47,7 @@
 # define UP 65362
 # define PK 112
 # define XK 120
+# define EK 101
 # define LEFT 65361
 # define DOWN 65364
 # define RIGHT 65363
@@ -85,10 +86,24 @@
 
 // player
 # define SLIDING_SPEED 0.1
-# define HIDEPLAYER 0
 # define HANDS 1
 # define BEER 2
 # define BREZEL 3
+
+// game
+# define SHOP_BEER 1
+# define SHOP_BREZEL 1
+# define BEER_SPRINT 1
+# define SPEED_ADD 0.3
+# define BREZEL_WIN 1
+
+// UI
+# define UI_TEXT 0
+# define UI_HEIGHT 200
+# define UI_BACKGROUND_C 0x0c187c9
+# define UI_BORDER_C 0x0d76d56
+# define UI_TEXT_C 0x0FFF9BF
+# define HIDEPLAYER 0
 
 typedef struct map
 {
@@ -214,6 +229,7 @@ typedef struct s_env
 	t_img			*loading_screen;
 	t_img			*pfandbon;
 	t_img			*rules;
+	t_img			*screen_shot;
 	t_player		*player;
 }					t_env;
 
@@ -303,6 +319,7 @@ void				init_textures(t_env *env);
 int					key_press(int keycode, t_env *env);
 void				toggle_pictures(int keycode, t_env *env);
 int					key_release(int keycode, t_env *env);
+void 				win(t_env *env);
 int					destroy(t_env *env);
 
 // mouse
@@ -360,6 +377,20 @@ void				my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void				put_bg(t_img *frame, int i, t_env *env);
 void				img_to_wall(t_img *frame, t_img *image, t_raycast *rc);
 
+// raycasting objects
+void				find_intersection(t_raycast *rc, double *obj, double *intersect);
+void				check_objects(t_raycast *rc);
+void				print_object_slice(t_img *frame, t_raycast *rc, t_env *env);
+void				next_object(t_raycast *rc);
+
+void				init_data(t_data *data);
+void				ft_free_images(t_env *env);
+
+// raycasting_utils
+int					is_wall(char c, t_raycast *rc);
+t_img				*get_wall_img(t_env *env, t_raycast *rc);
+char				get_facing(t_raycast *rc);
+
 // raycasting
 void				set_raycast(t_raycast *rc, double *pos);
 void				put_wall_slice(t_img *frame, t_raycast *rc, t_env *env);
@@ -369,26 +400,22 @@ int					get_wall_dist(t_raycast *rc, t_env *env);
 void				make_frame(t_img *frame, double *pos, double dir,
 						t_env *env);
 
-// raycasting_utils
-int					is_wall(char c, t_raycast *rc);
-t_img				*get_wall_img(t_env *env, t_raycast *rc);
-char				get_facing(t_raycast *rc);
-
 // render_utils
 void				mm_pixel_put(int x, int y, int color, t_env *env);
 void				my_pixel_put(int x, int y, int color, t_img *img);
 int					get_color(int r, int g, int b, int a);
 void				clear_image(t_img *img, int width, int height);
+void 				get_screenshot_image(t_env *env);
 
-// raycasting objects
-void				find_intersection(t_raycast *rc, double *obj, double *intersect);
-void				check_objects(t_raycast *rc);
-void				print_object_slice(t_img *frame, t_raycast *rc, t_env *env);
-void				next_object(t_raycast *rc);
+// shops
+int					filter_events(int keycode, t_env *env);
+void				handle_shop_events(int keycode, t_env *env);
 
-void				init_data(t_data *data);
-void				ft_free_images(t_env *env);
+// ui
+void				draw_ui(t_env *env, t_img *canvas, int mode);
+
 // Xmlx
 void				grab_mouse(void *xvar, void *win);
 void				ungrab_mouse(void *xvar);
+unsigned int		get_screen_color(void *xvar, void *win, int x, int y);
 #endif

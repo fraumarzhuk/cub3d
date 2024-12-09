@@ -40,6 +40,8 @@ SRCS =	src/main.c \
 		src/rendering/raycasting_utils.c \
 		src/rendering/raycasting_objects.c \
 		src/rendering/init_textures.c \
+		src/rendering/shops.c \
+		src/rendering/ui.c \
 		src/Math-functions/distance.c \
 		src/Math-functions/new_pos.c \
 		src/Math-functions/radians_utils.c \

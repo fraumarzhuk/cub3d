@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:05:47 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 16:23:58 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:43:06 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,26 @@ void	move_player(t_player *player, t_env *env)
 {
 	double	next_x;
 	double	next_y;
+	double	speed;
 
 	next_x = player->x;
 	next_y = player->y;
+	speed = SPEED + (SPEED * (player->player_pos == BEER && BEER_SPRINT == 1));
 	if ((player->key_up || player->key_down || player->key_left
-		|| player->key_right || player->right_rotate || player->left_rotate
-		|| player->mouse_on) && !player->display_bon)
+			|| player->key_right || player->right_rotate || player->left_rotate
+			|| player->mouse_on) && !player->display_bon)
 	{
 		if ((player->right_rotate || player->left_rotate) && !player->no_rotate)
 			player->angle = new_angle(player->angle, ANGLE_SPEED,
 					player->left_rotate, player->right_rotate);
-		if (player->key_up && player->y - SPEED >= 0)
-			get_new_pos2(&next_x, &next_y, player->angle, SPEED);
-		if (player->key_down && player->y + SPEED < HEIGHT)
-			get_new_pos2(&next_x, &next_y, player->angle + 180, SPEED);
-		if (player->key_left && player->x - SPEED >= 0)
-			get_new_pos2(&next_x, &next_y, player->angle - 90, SPEED);
-		if (player->key_right && player->x + SPEED < WIDTH)
-			get_new_pos2(&next_x, &next_y, player->angle + 90, SPEED);
+		if (player->key_up && player->y - speed >= 0)
+			get_new_pos2(&next_x, &next_y, player->angle, speed);
+		if (player->key_down && player->y + speed < HEIGHT)
+			get_new_pos2(&next_x, &next_y, player->angle + 180, speed);
+		if (player->key_left && player->x - speed >= 0)
+			get_new_pos2(&next_x, &next_y, player->angle - 90, speed);
+		if (player->key_right && player->x + speed < WIDTH)
+			get_new_pos2(&next_x, &next_y, player->angle + 90, speed);
 		env->player->no_rotate = false;
 		wall_slide(player, env, next_x, next_y);
 	}
