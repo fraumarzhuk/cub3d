@@ -15,7 +15,6 @@
 void	init_canvas_img(t_img *canvas, t_env *env)
 {
 	canvas->img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
-	//add_allocnode();
 	if (!canvas->img)
 		error_and_exit("Failed to create image");
 	canvas->addr = mlx_get_data_addr(canvas->img, &canvas->bpp,
@@ -34,10 +33,9 @@ void	render_images_on_canvas(t_env *env)
 	clear_image(env->canvas, WIDTH, HEIGHT);
 	offset_x = WIDTH - MINI_M_SIZE;
 	offset_y = HEIGHT - MINI_M_SIZE;
-
 	display_player_pos(env);
 	if (env->player->display_rules)
-		put_image_to_image(env->rules, env->scene_canvas, 250, 0);	
+		put_image_to_image(env->rules, env->scene_canvas, 250, 0);
 	draw_ui(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_win,
 		env->scene_canvas->img, 0, 0);

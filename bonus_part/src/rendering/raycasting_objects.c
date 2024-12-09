@@ -31,7 +31,7 @@ void	print_object_slice(t_img *frame, t_raycast *rc, t_env *env)
 
 	while (rc->pfand)
 	{
-		object_height = (int)(Object_Width * env->pfand->height
+		object_height = (int)(OBJECT_WIDTH * env->pfand->height
 				/ env->pfand->width * HEIGHT / rc->pfand->dist);
 		y_bottom = HEIGHT / 2 + ((HEIGHT / rc->pfand->dist) * (FOV_MOD
 					/ ((double)Y_FOV * 2) * M_PI / 2.0)) / 2;
@@ -39,7 +39,7 @@ void	print_object_slice(t_img *frame, t_raycast *rc, t_env *env)
 		y_top = y_bottom - object_height;
 		while (y >= 0 && y >= y_top)
 		{
-			color = get_image_pixel(env->pfand, rc->pfand->pos / Object_Width
+			color = get_image_pixel(env->pfand, rc->pfand->pos / OBJECT_WIDTH
 					+ 0.5, fmax(0, (y - y_top) / (double)(object_height)));
 			if (color != (int)0xFF000000)
 				my_mlx_pixel_put(frame, WIDTH - rc->i, y, color);
@@ -85,7 +85,7 @@ void	check_objects(t_raycast *rc)
 		obj[1] = round(rc->new_pos[2]) + 0.5 - (rc->pos[2] > rc->new_pos[2]);
 	}
 	find_intersection(rc, obj, intersect);
-	if (get_distance2(obj, intersect) > Object_Width / 2)
+	if (get_distance2(obj, intersect) > OBJECT_WIDTH / 2)
 		return ;
 	pfand = ft_malloc(sizeof(t_object));
 	pfand->pos = get_distance2(obj, intersect) * (1 + (-2

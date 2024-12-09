@@ -14,7 +14,7 @@
 
 int	mini_draw_loop(t_env *env)
 {
-	double	pos[3];
+	double			pos[3];
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);

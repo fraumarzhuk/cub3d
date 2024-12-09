@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlaukat <tlaukat@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:08:50 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/09 05:04:36 by tlaukat          ###   ########.fr       */
+/*   Updated: 2024/12/09 16:57:15 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ void	init_data(t_data *data)
 	data->pfand_collected = 0;
 }
 
+void	init_player2(t_player *player)
+{
+	player->player_pos = HANDS;
+	player->display_rules = false;
+	player->mouse_on = false;
+	player->no_rotate = false;
+	player->p_x = 0;
+	player->p_y = 0;
+}
+
 void	init_player(t_player *player)
 {
 	player->x = MINI_M_SIZE / 2;
@@ -78,12 +88,7 @@ void	init_player(t_player *player)
 	player->counter = 0;
 	player->pfand_sum = 0;
 	player->mm_p_height = (int)(MINI_P * sin((80) * PI / 180.0));
-	player->player_pos = HANDS;
-	player->display_rules = false;
-	player->mouse_on = false;
-	player->no_rotate = false;
-	player->p_x = 0;
-	player->p_y = 0;
+	init_player2(player);
 }
 
 void	init_textures(t_env *env)

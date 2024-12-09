@@ -56,25 +56,6 @@ void	init_minim_img(t_img *img, t_env *env)
 	img->height = MINI_M_SIZE;
 }
 
-void	remove_green_bg(t_img *pattern_pic, t_env *env)
-{
-	t_img	*temp;
-
-	temp = (t_img *)ft_malloc(sizeof(t_img));
-	temp->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
-	if (!temp->img)
-		error_and_exit("Failed to create image");
-	temp->addr = mlx_get_data_addr(temp->img, &temp->bpp, &temp->size_line,
-			&temp->endian);
-	if (!temp->addr)
-		error_and_exit("Failed to get image data address");
-	temp->width = pattern_pic->width;
-	temp->height = pattern_pic->height;
-	put_image_to_image(pattern_pic, temp, 0, 0);
-	mlx_destroy_image(env->mlx, temp->img);
-	ft_free(temp);
-}
-
 void	draw_square(int size, int color, t_env *env)
 {
 	int	i;
@@ -97,7 +78,7 @@ void	draw_square(int size, int color, t_env *env)
 		mm_pixel_put(x + i++, y + size, color, env);
 }
 
-void draw_filled_square(int size, int color, t_env *env)
+void	draw_filled_square(int size, int color, t_env *env)
 {
 	int	i;
 	int	x;

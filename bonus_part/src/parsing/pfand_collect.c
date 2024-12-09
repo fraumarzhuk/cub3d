@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pfand_collect.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:01 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/09 15:38:29 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:55:47 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,6 @@ void	collect_pfand(t_env *env)
 
 void	give_pfand_to_automat(t_env *env)
 {
-	int		x;
-	int		y;
-
-	y = 0;
-	x = (!y); //env->player->xc;
-	y = x; //env->player->yc;
 	if (env->data->looking_at == 'A'
 		&& env->data->pfand_collected > 0)
 	{

@@ -81,8 +81,8 @@
 # define FOV_MOD 60
 # define RENDER_DISTANCE 1000
 # define REACH_DISTANCE 1
-# define Object_Width 0.1
-# define Object_Min_dist 0.4 
+# define OBJECT_WIDTH 0.1
+# define OBJECT_MIN_DIST 0.4 
 
 # define PI 3.14159265359
 
@@ -136,9 +136,9 @@ typedef struct s_player
 	double			plane_y;
 	int				p_x;
 	int				p_y;
-	int 			touches_h_wall;
+	int				touches_h_wall;
 	int				touches_v_wall;
-	bool 			no_rotate;
+	bool			no_rotate;
 	int				xc;
 	int				yc;
 	float			angle;
@@ -209,7 +209,7 @@ typedef struct s_env
 {
 	void			*mlx;
 	void			*mlx_win;
-	bool 			textures_loaded;
+	bool			textures_loaded;
 	int				draw_x;
 	int				draw_y;
 	struct timeval	last_frame;
@@ -323,7 +323,7 @@ void				init_textures(t_env *env);
 int					key_press(int keycode, t_env *env);
 void				toggle_pictures(int keycode, t_env *env);
 int					key_release(int keycode, t_env *env);
-void 				win(t_env *env);
+void				win(t_env *env);
 int					destroy(t_env *env);
 
 // mouse
@@ -337,16 +337,18 @@ void				render_images_on_canvas(t_env *env);
 void				display_player_pos(t_env *env);
 void				put_image_to_image(t_img *src, t_img *dst, int offset_x,
 						int offset_y);
-int					is_correct_pixel(t_img *dst, char *src_pixel, int offs_x, int offs_y);
+int					is_correct_pixel(t_img *dst, char *src_pixel,
+						int offs_x, int offs_y);
 
 // init window
 void				init_mlx(t_env *env);
 void				init_minim_img(t_img *img, t_env *env);
 void				put_loading_screen(t_env *env);
 void				draw_square(int size, int color, t_env *env);
-void				remove_green_bg(t_img *pattern_pic, t_env *env);
+void				draw_filled_square(int size, int color, t_env *env);
 
 //init_textures
+void				remove_green_bg(t_img *pattern_pic, t_env *env);
 void				init_texture_img(t_env *env);
 void				init_nobg_texture_img(t_env *env);
 void				init_xpm_texture(t_img *img, t_env *env, char *path);
@@ -358,6 +360,7 @@ void				draw_mini_map(t_env *env);
 void				calculate_draw_xy(t_env *env, int y, double px_offset,
 						double py_offset);
 void				draw_mini_border(t_env *env);
+void				draw_mini_map_walls(t_env *env, char position);
 
 // mini_raycasting
 bool				touch(double px, double py, t_env *env);
@@ -365,14 +368,13 @@ void				cast_mini_ray(t_player *player, t_env *env);
 void				draw_line(double px, double py, float angle, t_env *env);
 
 // player
-void 				wall_slide(t_player *player, t_env *env, double next_x, double next_y);
+void				wall_slide(t_player *player, t_env *env,
+						double next_x, double next_y);
 float				new_angle(float angle, float angle_speed, bool left,
 						bool right);
 void				move_player(t_player *player, t_env *env);
 void				move_player(t_player *player, t_env *env);
 void				set_new_coords(t_env *env, double next_x, double next_y);
-void				draw_triangle(int size, int x, int y, int color,
-						t_env *env);
 
 // raycasting_image_handler
 void				put_bg_slice(t_img *frame, int i, double dir, t_env *env);
@@ -382,7 +384,8 @@ void				put_bg(t_img *frame, int i, t_env *env);
 void				img_to_wall(t_img *frame, t_img *image, t_raycast *rc);
 
 // raycasting objects
-void				find_intersection(t_raycast *rc, double *obj, double *intersect);
+void				find_intersection(t_raycast *rc,
+						double *obj, double *intersect);
 void				check_objects(t_raycast *rc);
 void				print_object_slice(t_img *frame, t_raycast *rc, t_env *env);
 void				next_object(t_raycast *rc);
@@ -409,7 +412,6 @@ void				mm_pixel_put(int x, int y, int color, t_env *env);
 void				my_pixel_put(int x, int y, int color, t_img *img);
 int					get_color(int r, int g, int b, int a);
 void				clear_image(t_img *img, int width, int height);
-void 				get_screenshot_image(t_env *env);
 
 // shops
 int					filter_events(int keycode, t_env *env);
@@ -417,12 +419,11 @@ void				handle_shop_events(int keycode, t_env *env);
 
 // ui
 void				put_ui_bg(t_img *canvas);
-int				draw_ui(t_env *env);
+int					draw_ui(t_env *env);
 
 // Xmlx
+unsigned int		get_screen_color(void *xvar, void *win, int x, int y);
 void				grab_mouse(void *xvar, void *win);
 void				ungrab_mouse(void *xvar);
-unsigned int		get_screen_color(void *xvar, void *win, int x, int y);
-void				draw_filled_square(int size, int color, t_env *env);
-void				draw_mini_map_walls(t_env *env, char position);
+
 #endif

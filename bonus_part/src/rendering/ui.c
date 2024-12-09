@@ -26,7 +26,7 @@ int	put_text_line_one(t_env *env)
 	snprintf(str, sizeof(str), "Money: %.2f EURO", env->player->pfand_sum);
 	mlx_string_put(env->mlx, env->mlx_win, WIDTH / 40, HEIGHT - UI_HEIGHT
 		+ UI_HEIGHT * 0.5, UI_TEXT_C, str);
-    return 1;
+	return (1);
 }
 
 int	put_text_line_two(t_env *env)
@@ -44,7 +44,7 @@ int	put_text_line_two(t_env *env)
 		snprintf(str, sizeof(str), "Holding: Nothing");
 	mlx_string_put(env->mlx, env->mlx_win, WIDTH / 40, HEIGHT - UI_HEIGHT
 		+ UI_HEIGHT * 0.7, UI_TEXT_C, str);
-    return 1;
+	return (1);
 }
 
 int	put_text_line_three(t_env *env)
@@ -61,7 +61,7 @@ int	put_text_line_three(t_env *env)
 		snprintf(str, sizeof(str), "Press 'space' to view Controls");
 	mlx_string_put(env->mlx, env->mlx_win, WIDTH / 40, HEIGHT - UI_HEIGHT
 		+ UI_HEIGHT * 0.9, UI_TEXT_C, str);
-    return 1;
+	return (1);
 }
 
 void	put_ui_bg(t_img *canvas)
@@ -88,7 +88,6 @@ void	put_ui_bg(t_img *canvas)
 
 int	draw_ui(t_env *env)
 {
-
 	if (UI_TEXT == 0 || env->player->display_bon == 1)
 		return (0);
 	put_ui_bg(env->scene_canvas);
@@ -97,5 +96,5 @@ int	draw_ui(t_env *env)
 	put_text_line_one(env);
 	put_text_line_two(env);
 	put_text_line_three(env);
-	return(0);
+	return (0);
 }

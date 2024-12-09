@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhukova <mzhukova@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlaukat <tlaukat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:18:02 by mzhukova          #+#    #+#             */
-/*   Updated: 2024/12/07 15:06:01 by mzhukova         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:15:56 by tlaukat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub.h"
+
+void	remove_green_bg(t_img *pattern_pic, t_env *env)
+{
+	t_img	*temp;
+
+	temp = (t_img *)ft_malloc(sizeof(t_img));
+	temp->img = mlx_new_image(env->mlx, WIDTH, HEIGHT / 2);
+	if (!temp->img)
+		error_and_exit("Failed to create image");
+	temp->addr = mlx_get_data_addr(temp->img, &temp->bpp, &temp->size_line,
+			&temp->endian);
+	if (!temp->addr)
+		error_and_exit("Failed to get image data address");
+	temp->width = pattern_pic->width;
+	temp->height = pattern_pic->height;
+	put_image_to_image(pattern_pic, temp, 0, 0);
+	mlx_destroy_image(env->mlx, temp->img);
+	ft_free(temp);
+}
 
 void	init_texture_img(t_env *env)
 {
