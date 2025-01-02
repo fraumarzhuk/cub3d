@@ -74,11 +74,12 @@ Check out the gameplay demo:
 2. Compile the project:
    ```bash
    make
+   make bonus
    ```
 
 3. Run the game:
    ```bash
-   ./cub3d maps/mp_bonus.cub
+   ./cub3d maps/map_bonus.cub
    ```
 
 ---
