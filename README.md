@@ -10,10 +10,8 @@ A reimagined mini-game inspired by *Wolfstein 3D* with an Oktoberfest twist! Dev
 
 Check out the gameplay demo:
 
-[![Watch the Gameplay](videos/demo.mp4).
-
 <video controls>
-  <source src="videos/demo.mp4" type="video/mp4">
+  <source src="https://www.youtube.com/watch?v=GLjqHxh7r80" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 ## Features 🍻
