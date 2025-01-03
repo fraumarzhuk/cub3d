@@ -12,10 +12,6 @@ A reimagined mini-game inspired by *Wolfstein 3D* with an Oktoberfest twist! Dev
 
 Click the image to watch the video on YouTube!
 
-<video controls>
-  <source src="https://www.youtube.com/watch?v=GLjqHxh7r80" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 ## Features 🍻
 
 - **Pfand (Empty Bottle Collection)**: Gather empty bottles to earn money.
