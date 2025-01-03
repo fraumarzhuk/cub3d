@@ -85,4 +85,4 @@ Click the image to watch the video on YouTube!
 ---
 
 ## Credits 👥
-Developed  by **[@YourUsername](https://github.com/fraumarzhuk)** and **[@Gamma-42 (Tobi)](https://github.com/Gamma-42)**.
+Developed  by **[Mari](https://github.com/fraumarzhuk)** and **[@Gamma-42 (Tobi)](https://github.com/Gamma-42)**.
