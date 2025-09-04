@@ -6,7 +6,7 @@ A reimagined mini-game inspired by *Wolfstein 3D* with an Oktoberfest twist! Dev
 **Collaborators:** [@Gamadays (Tobi)](https://github.com/Gamadays)
 
 ---
-# Gameplay Video 🎥
+# Gameplay Video ˙✧˖°🎬 ⋆｡˚꩜
 
 [![Wolfstein 3D: Oktoberfest Edition](https://img.youtube.com/vi/GLjqHxh7r80/0.jpg)](https://www.youtube.com/watch?v=GLjqHxh7r80)
 
@@ -80,5 +80,5 @@ Click the image to watch the video on YouTube!
 
 ---
 
-## Credits 👥
+## Credits 	ヽ(°〇°)ﾉ
 Developed  by **[Mari](https://github.com/fraumarzhuk)** and **[@Gamma-42 (Tobi)](https://github.com/Gamma-42)**.
