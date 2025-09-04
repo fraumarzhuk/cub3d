@@ -1,4 +1,4 @@
-# Wolfstein 3D: Oktoberfest Edition 🎮🍺🥨
+# Wolfstein 3D: Oktoberfest Edition ٩(｡•́‿•̀｡)۶
 
 A reimagined mini-game inspired by *Wolfstein 3D* with an Oktoberfest twist! Developed in **C** using the **MiniLibX** graphical library. 
 
@@ -12,7 +12,7 @@ A reimagined mini-game inspired by *Wolfstein 3D* with an Oktoberfest twist! Dev
 
 Click the image to watch the video on YouTube!
 
-## Features 🍻
+## Features (◕‿◕)
 
 - **Pfand (Empty Bottle Collection)**: Gather empty bottles to earn money.
 - **Pfandautomat**: Trade collected bottles for a ticket to save your earnings.
@@ -26,7 +26,7 @@ Click the image to watch the video on YouTube!
 
 ---
 
-## Parsing Rules 📜
+## Parsing Rules (*´▽`*)
 
 ### Map Rules  
 1. **Maze Representation**:  
@@ -50,7 +50,7 @@ Click the image to watch the video on YouTube!
 
 ---
 
-## Fancy Features 🎉
+## Fancy Features °˖✧◝(⁰▿⁰)◜✧˖°
 - Custom implementation of **ray-casting** and **object ray-casting**.  
 - **Skybox** for realistic, moving clouds.  
 - **xMath** library for mathematical calculations.  
@@ -59,7 +59,7 @@ Click the image to watch the video on YouTube!
 
 ---
 
-## How to Run 🛠️
+## How to Run (´｡• ω •｡`)
 
 1. Clone the repository:
    ```bash
